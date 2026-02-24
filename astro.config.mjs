@@ -8,6 +8,7 @@ import node from '@astrojs/node';
 export default defineConfig({
   site: 'https://1digit.co.uk',
   adapter: node({ mode: 'standalone' }),
+  server: { host: '0.0.0.0', port: parseInt(process.env.PORT || '4321') },
   integrations: [
     tailwind({ applyBaseStyles: false }),
     react(),
