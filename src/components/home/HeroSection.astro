@@ -1,0 +1,68 @@
+---
+import FluidCanvas from './FluidCanvas.tsx';
+import Button from '@components/ui/Button.astro';
+import Container from '@components/layout/Container.astro';
+---
+
+<section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20">
+  <!-- Hero background: photograph + fluid animation overlay -->
+  <div class="absolute inset-0 z-0">
+    <!-- Layer 1: Background photograph -->
+    <div class="absolute inset-0 parallax-bg" style="background: url('/images/hero-bg.webp') center 65%/cover no-repeat; background-color: rgb(var(--color-surface));"></div>
+    <!-- Layer 2: Darkening scrim -->
+    <div class="absolute inset-0" style="background: rgb(var(--color-surface) / 0.4);"></div>
+    <!-- Layer 3: Edge fades (blend into site background) -->
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgb(var(--color-surface)) 0%, transparent 30%);"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to top, rgb(var(--color-surface)) 0%, transparent 40%);"></div>
+    <!-- Layer 4: Radial vignette -->
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 45%, transparent 30%, rgb(var(--color-surface)) 80%);"></div>
+    <!-- Layer 5: Fluid animation overlay (on top of fades so it's visible) -->
+    <FluidCanvas client:load />
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-6">
+    <Container>
+      <h1 class="text-display-lg md:text-display-xl leading-tight mb-6">
+        The human experts,<br />
+        <span class="text-accent">powered by AI</span>
+      </h1>
+      <p class="text-body-lg text-content-secondary max-w-2xl mx-auto mb-10">
+        We bridge complex AI capability and structured enterprise data platforms with disciplined delivery.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <Button href="/ai-readiness-assessment" variant="primary" size="lg">
+          Assess Your AI Readiness
+        </Button>
+        <Button href="/data-platforms" variant="outline" size="lg">
+          Explore Our Data Platforms
+        </Button>
+      </div>
+    </Container>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-content-muted">
+    <span class="text-body-xs">Scroll to explore</span>
+    <div class="scroll-indicator-mouse w-6 h-10 rounded-full border-2 border-content-muted/40 flex items-start justify-center p-1.5">
+      <div class="scroll-indicator-dot w-1.5 h-1.5 rounded-full bg-content-muted"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .scroll-indicator-mouse {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  const bg = document.querySelector('.parallax-bg') as HTMLElement | null;
+  if (bg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < window.innerHeight) {
+        bg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+      }
+    }, { passive: true });
+  }
+</script>

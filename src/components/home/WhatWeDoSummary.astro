@@ -1,0 +1,56 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import CapabilityCard from './CapabilityCard.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+
+const capabilities = [
+  {
+    icon: 'target',
+    title: 'AI Readiness & Assessment',
+    description: 'We evaluate organisational capability before implementation. Leadership alignment, strategy clarity, data maturity, and governance.',
+    href: '/what-we-do#assessment',
+  },
+  {
+    icon: 'database',
+    title: 'Smart Data Platforms',
+    description: 'Cloud-native lakehouse architectures with real-time ingestion, distributed querying, and multi-cloud flexibility.',
+    href: '/data-platforms',
+  },
+  {
+    icon: 'cpu',
+    title: 'AI-Enabled Products & Engineering',
+    description: 'AI-native application design with embedded workflows, guardrails, model governance, and continuous validation.',
+    href: '/what-we-do#products',
+  },
+  {
+    icon: 'shield',
+    title: 'AI Architecture, Governance & Security',
+    description: 'Risk frameworks, security alignment, role-based access controls, and AI Ops & SecOps frameworks.',
+    href: '/trust-security',
+  },
+];
+---
+
+<Section background="elevated" class="relative overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] ambient-glow bg-glow-steel/10"></div>
+  <Container class="relative z-10">
+    <ScrollReveal>
+      <SectionHeading
+        badge="What We Do"
+        heading="Capabilities That Drive AI Success"
+        description="From assessment to architecture, we deliver the full stack of capabilities needed for enterprise AI adoption."
+        align="center"
+      />
+    </ScrollReveal>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+      {capabilities.map((cap, i) => (
+        <ScrollReveal delay={i * 100}>
+          <CapabilityCard {...cap} />
+        </ScrollReveal>
+      ))}
+    </div>
+  </Container>
+</Section>

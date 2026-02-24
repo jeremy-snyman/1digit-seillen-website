@@ -1,0 +1,25 @@
+---
+import { mainNavigation } from '@content/data/navigation';
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+  {mainNavigation.map((item) => {
+    const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+    return (
+      <a
+        href={item.href}
+        class:list={[
+          'px-3 py-2 text-body-sm rounded-button transition-colors duration-200',
+          isActive
+            ? 'text-content'
+            : 'text-content-meta hover:text-content',
+        ]}
+        aria-current={isActive ? 'page' : undefined}
+      >
+        {item.label}
+      </a>
+    );
+  })}
+</nav>

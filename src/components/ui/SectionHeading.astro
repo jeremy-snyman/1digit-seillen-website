@@ -1,0 +1,60 @@
+---
+import Badge from './Badge.astro';
+
+interface Props {
+  badge?: string;
+  badgeVariant?: 'default' | 'accent';
+  heading: string;
+  serifWord?: string;
+  description?: string;
+  align?: 'left' | 'center';
+  headingSize?: 'md' | 'lg' | 'xl';
+  class?: string;
+}
+
+const {
+  badge,
+  badgeVariant = 'default',
+  heading,
+  serifWord,
+  description,
+  align = 'left',
+  headingSize = 'lg',
+  class: className,
+} = Astro.props;
+
+const headingSizeClasses = {
+  md: 'text-display-md',
+  lg: 'text-display-md lg:text-display-lg',
+  xl: 'text-display-lg lg:text-display-xl',
+};
+
+const alignClasses = {
+  left: 'text-left',
+  center: 'text-center mx-auto',
+};
+---
+
+<div class:list={[alignClasses[align], 'max-w-3xl', className]}>
+  {badge && (
+    <div class:list={['mb-4', align === 'center' && 'flex justify-center']}>
+      <Badge variant={badgeVariant}>{badge}</Badge>
+    </div>
+  )}
+  <h2 class:list={[headingSizeClasses[headingSize]]}>
+    {serifWord ? (
+      <Fragment>
+        {heading.split(serifWord).map((part, i) => (
+          <Fragment>
+            {part}{i < heading.split(serifWord).length - 1 && <em class="font-serif italic">{serifWord}</em>}
+          </Fragment>
+        ))}
+      </Fragment>
+    ) : heading}
+  </h2>
+  {description && (
+    <p class="mt-4 text-body-lg text-content-secondary max-w-2xl" class:list={[align === 'center' && 'mx-auto']}>
+      {description}
+    </p>
+  )}
+</div>

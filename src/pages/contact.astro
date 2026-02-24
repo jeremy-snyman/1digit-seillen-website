@@ -1,0 +1,78 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+import Badge from '@components/ui/Badge.astro';
+import ContactForm from '@components/forms/ContactForm';
+
+const title = 'Contact';
+const description = 'Get in touch to discuss your AI and data platform requirements.';
+---
+
+<PageLayout title={title} description={description}>
+  <Section class="pt-32 pb-16">
+    <Container>
+      <ScrollReveal>
+        <Badge variant="accent">CONTACT</Badge>
+        <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+          Let's Talk About <em class="font-serif italic">Your Data</em>
+        </h1>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <Section background="elevated">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-16">
+        <ScrollReveal>
+          <ContactForm client:visible />
+        </ScrollReveal>
+
+        <ScrollReveal delay={200}>
+          <div class="space-y-6">
+            <GlassCard padding="lg">
+              <h3 class="text-heading-xs font-semibold mb-4">Get in Touch</h3>
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <Icon name="mail" size={18} class="text-content mt-1" />
+                  <div>
+                    <p class="text-body-sm font-medium">Email</p>
+                    <a href="mailto:hello@1digit.co.uk" class="text-body-sm text-content hover:underline">hello@1digit.co.uk</a>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <Icon name="globe" size={18} class="text-content mt-1" />
+                  <div>
+                    <p class="text-body-sm font-medium">LinkedIn</p>
+                    <a href="https://linkedin.com/company/1digit" target="_blank" rel="noopener" class="text-body-sm text-content hover:underline">linkedin.com/company/1digit</a>
+                  </div>
+                </div>
+              </div>
+            </GlassCard>
+
+            <GlassCard padding="lg">
+              <h3 class="text-heading-xs font-semibold mb-4">Response Time</h3>
+              <p class="text-body-sm text-content-secondary">
+                We aim to respond to all enquiries within one working day. For urgent matters, please indicate this in your message.
+              </p>
+            </GlassCard>
+
+            <GlassCard padding="lg">
+              <h3 class="text-heading-xs font-semibold mb-4">Book a Call</h3>
+              <p class="text-body-sm text-content-secondary mb-4">
+                Prefer to speak directly? Book a 30-minute scoping call.
+              </p>
+              <div class="border-2 border-dashed border-surface-border rounded-xl p-6 text-center">
+                <p class="text-body-sm text-content-muted">Booking calendar placeholder</p>
+              </div>
+            </GlassCard>
+          </div>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

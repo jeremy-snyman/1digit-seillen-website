@@ -1,0 +1,402 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ============================================
+     Theme Variables
+     ============================================ */
+  :root,
+  html[data-theme="dark"] {
+    /* Surface (backgrounds) */
+    --color-surface: 4 7 13;
+    --color-surface-elevated: 16 19 28;
+    --color-surface-overlay: 13 15 23;
+    --color-surface-subtle: 20 20 20;
+    --color-surface-border: 216 231 242;
+    --alpha-surface-border: 0.07;
+
+    /* Content (text) */
+    --color-content: 228 233 242;
+    --color-content-secondary: 213 219 230;
+    --color-content-muted: 184 199 217;
+    --alpha-content-muted: 0.5;
+    --color-content-dimmed: 213 219 230;
+    --alpha-content-dimmed: 0.7;
+    --color-content-white: 255 255 255;
+    --color-content-meta: 99 105 150;
+    --color-content-inverse: 4 7 13;
+
+    /* Accent */
+    --color-accent: 190 205 225;
+    --alpha-accent: 0.8;
+    --alpha-accent-hover: 0.9;
+    --alpha-accent-muted: 0.2;
+
+    /* Glow */
+    --color-glow-blue: 190 205 225;
+    --alpha-glow-blue: 0.5;
+    --color-glow-steel: 80 100 130;
+    --alpha-glow-steel: 0.37;
+    --color-glow-light: 100 120 150;
+    --alpha-glow-light: 0.48;
+
+    /* Card highlight */
+    --color-card-highlight: 210 220 235;
+    --alpha-card-highlight: 0.15;
+
+    /* Semantic */
+    --color-danger: 255 68 68;
+    --color-success: 0 204 102;
+
+    /* Tint (white in dark mode for bg-white/ replacements) */
+    --color-tint: 255 255 255;
+
+    /* Shadows */
+    --shadow-card: inset 0 1px 0 rgba(210, 220, 235, 0.15), 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-card-hover: inset 0 1px 0 rgba(210, 220, 235, 0.15), 0 8px 24px rgba(80, 100, 130, 0.2);
+    --shadow-glow: 0 0 40px rgba(190, 205, 225, 0.15);
+    --shadow-glow-cta: 0 8px 30px rgba(255, 255, 255, 0.08);
+
+    /* Primary button */
+    --color-btn-primary-bg: var(--color-surface-elevated);
+    --color-btn-primary-text: var(--color-content-white);
+    --shadow-btn-primary: 0 8px 30px rgba(255, 255, 255, 0.08);
+
+    /* Glass card */
+    --glass-bg: 16 19 28;
+    --glass-border: rgba(216, 231, 242, 0.07);
+    --glass-highlight: rgba(210, 220, 235, 0.15);
+    --glass-hover-border: rgba(216, 231, 242, 0.12);
+    --glass-hover-shadow: inset 0 1px 0 rgba(210, 220, 235, 0.15), 0 8px 24px rgba(80, 100, 130, 0.2);
+    --glass-shadow: inset 0 1px 0 rgba(210, 220, 235, 0.15);
+
+    /* Hero overlays */
+    --color-hero-scrim: rgba(4, 7, 13, 0.4);
+    --color-hero-fade: 4 7 13;
+
+    /* Selection & Focus */
+    --color-selection-bg: rgba(190, 205, 225, 0.3);
+    --color-selection-text: 228 233 242;
+    --color-focus: rgba(190, 205, 225, 0.5);
+  }
+
+  /* ============================================
+     Light Theme
+     ============================================ */
+  html[data-theme="light"] {
+    /* Surface (backgrounds) */
+    --color-surface: 255 255 255;
+    --color-surface-elevated: 246 241 252;
+    --color-surface-overlay: 240 235 247;
+    --color-surface-subtle: 226 218 240;
+    --color-surface-border: 28 22 41;
+    --alpha-surface-border: 0.08;
+
+    /* Content (text) */
+    --color-content: 28 22 41;
+    --color-content-secondary: 61 53 86;
+    --color-content-muted: 28 22 41;
+    --alpha-content-muted: 0.45;
+    --color-content-dimmed: 28 22 41;
+    --alpha-content-dimmed: 0.6;
+    --color-content-white: 255 255 255;
+    --color-content-meta: 120 110 155;
+    --color-content-inverse: 255 255 255;
+
+    /* Accent */
+    --color-accent: 74 53 128;
+    --alpha-accent: 0.9;
+    --alpha-accent-hover: 0.95;
+    --alpha-accent-muted: 0.12;
+
+    /* Glow */
+    --color-glow-blue: 56 45 120;
+    --alpha-glow-blue: 0.85;
+    --color-glow-steel: 74 53 128;
+    --alpha-glow-steel: 0.35;
+    --color-glow-light: 74 53 128;
+    --alpha-glow-light: 0.4;
+
+    /* Card highlight */
+    --color-card-highlight: 74 53 128;
+    --alpha-card-highlight: 0.08;
+
+    /* Semantic */
+    --color-danger: 220 38 38;
+    --color-success: 22 163 74;
+
+    /* Tint (black in light mode) */
+    --color-tint: 49 16 129;
+
+    /* Shadows */
+    --shadow-card: 0 1px 2px rgba(28, 22, 41, 0.06), 0 4px 12px rgba(28, 22, 41, 0.08), 0 12px 28px rgba(74, 53, 128, 0.05);
+    --shadow-card-hover: 0 2px 4px rgba(28, 22, 41, 0.06), 0 8px 24px rgba(74, 53, 128, 0.12), 0 20px 48px rgba(74, 53, 128, 0.06);
+    --shadow-glow: 0 0 40px rgba(74, 53, 128, 0.12);
+    --shadow-glow-cta: 0 4px 20px rgba(74, 53, 128, 0.2);
+
+    /* Primary button */
+    --color-btn-primary-bg: 74 53 128;
+    --color-btn-primary-text: 255 255 255;
+    --shadow-btn-primary: 0 4px 14px rgba(74, 53, 128, 0.25), 0 2px 6px rgba(74, 53, 128, 0.15);
+
+    /* Glass card */
+    --glass-bg: 255 255 255;
+    --glass-border: rgba(28, 22, 41, 0.12);
+    --glass-highlight: rgba(246, 241, 252, 0.7);
+    --glass-hover-border: rgba(74, 53, 128, 0.2);
+    --glass-hover-shadow: 0 2px 4px rgba(28, 22, 41, 0.06), 0 8px 24px rgba(74, 53, 128, 0.12), 0 20px 48px rgba(74, 53, 128, 0.06);
+    --glass-shadow: 0 1px 2px rgba(28, 22, 41, 0.06), 0 4px 12px rgba(28, 22, 41, 0.08), 0 12px 28px rgba(74, 53, 128, 0.05);
+
+    /* Hero overlays */
+    --color-hero-scrim: rgba(255, 255, 255, 0.6);
+    --color-hero-fade: 255 255 255;
+
+    /* Selection & Focus */
+    --color-selection-bg: rgba(74, 53, 128, 0.2);
+    --color-selection-text: 28 22 41;
+    --color-focus: rgba(74, 53, 128, 0.5);
+  }
+
+  html {
+    @apply bg-surface text-content antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-body-md min-h-screen;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-selection-bg);
+    color: rgb(var(--color-selection-text));
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 rounded-sm;
+    outline-color: var(--color-focus);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Bridge: display font now maps to Inter via tailwind.config.mjs */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: rgb(var(--glass-bg));
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-card-hover {
+    background: rgb(var(--glass-bg));
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--glass-shadow);
+    transition: all 0.3s ease;
+  }
+
+  .glass-card-hover:hover {
+    border-color: var(--glass-hover-border);
+    box-shadow: var(--glass-hover-shadow);
+    transform: translateY(-2px);
+  }
+
+  .section-padding {
+    @apply py-section px-6 lg:px-10;
+  }
+
+  .container-main {
+    @apply max-w-container mx-auto px-6 lg:px-10;
+  }
+
+  /* CTA button under-glow */
+  .btn-glow {
+    position: relative;
+  }
+  .btn-glow::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 40px;
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(12px);
+    transition: opacity 0.3s ease, width 0.3s ease;
+  }
+  .btn-glow:hover::after {
+    opacity: 1;
+    width: 90%;
+  }
+
+  /* Section-to-section gradient fades */
+  .section-fade-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, rgb(var(--color-surface)), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .section-fade-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(rgb(var(--color-surface) / 0) 0%, rgb(var(--color-surface)) 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+/* Ambient section glows */
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(120px);
+  animation: glow-breathe 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-glow {
+    animation: none;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* Theme-aware imagery: transparent PNGs adapted for light mode */
+html[data-theme="light"] .theme-image {
+  filter: brightness(0.2) contrast(1.3);
+  opacity: 0.15;
+}
+
+html[data-theme="light"] .hero-bg-image {
+  filter: invert(1) hue-rotate(200deg) brightness(0.4) saturate(0.7);
+  opacity: 0.08;
+}
+
+/* Thumbnail images: transparent PNGs need only opacity control in light mode */
+html[data-theme="light"] .pillar-thumb {
+  filter: brightness(0.3) contrast(1.2);
+  opacity: 0.12;
+}
+
+/* Phase Rail animated connector */
+@keyframes rail-flow {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Milestone gate diamond unlock */
+@keyframes gate-unlock {
+  0% { transform: rotate(45deg) scale(0.5); opacity: 0; }
+  60% { transform: rotate(45deg) scale(1.1); opacity: 1; }
+  100% { transform: rotate(45deg) scale(1); opacity: 1; }
+}
+
+/* SVG line draw animation */
+@keyframes draw-line {
+  from { stroke-dashoffset: var(--line-length); }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Phase accent glows */
+.phase-glow-blue { position: relative; overflow: hidden; }
+.phase-glow-blue::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(100, 200, 255, 0.15) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.phase-glow-purple { position: relative; overflow: hidden; }
+.phase-glow-purple::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(160, 100, 255, 0.15) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.phase-glow-green { position: relative; overflow: hidden; }
+.phase-glow-green::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(80, 220, 180, 0.15) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.phase-glow-amber { position: relative; overflow: hidden; }
+.phase-glow-amber::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 180, 60, 0.15) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+html[data-theme="light"] .phase-glow-blue::before { background: radial-gradient(circle, rgba(56, 45, 120, 0.08) 0%, transparent 70%); }
+html[data-theme="light"] .phase-glow-purple::before { background: radial-gradient(circle, rgba(74, 53, 128, 0.08) 0%, transparent 70%); }
+html[data-theme="light"] .phase-glow-green::before { background: radial-gradient(circle, rgba(22, 163, 74, 0.08) 0%, transparent 70%); }
+html[data-theme="light"] .phase-glow-amber::before { background: radial-gradient(circle, rgba(217, 119, 6, 0.08) 0%, transparent 70%); }

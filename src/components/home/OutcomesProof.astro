@@ -1,0 +1,38 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+
+const outcomes = [
+  { metric: '60%', description: 'Reduction in data pipeline costs through smart architecture' },
+  { metric: '3x', description: 'Faster time to AI readiness with structured assessment' },
+  { metric: '100%', description: 'Data governance compliance across platform deployments' },
+];
+---
+
+<Section background="elevated" class="relative overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] ambient-glow bg-glow-steel/10"></div>
+  <Container class="relative z-10">
+    <ScrollReveal>
+      <SectionHeading
+        badge="Outcomes"
+        heading="Results That Matter"
+        description="Measurable impact through structured data platforms and AI-ready architectures."
+        align="center"
+      />
+    </ScrollReveal>
+
+    <div class="grid sm:grid-cols-3 gap-6 mt-16">
+      {outcomes.map((outcome, i) => (
+        <ScrollReveal delay={i * 100}>
+          <GlassCard padding="lg" class="text-center">
+            <div class="text-display-lg text-glow-blue mb-3">{outcome.metric}</div>
+            <p class="text-body-sm text-content-secondary">{outcome.description}</p>
+          </GlassCard>
+        </ScrollReveal>
+      ))}
+    </div>
+  </Container>
+</Section>

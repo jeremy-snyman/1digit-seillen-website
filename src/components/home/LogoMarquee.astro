@@ -1,0 +1,28 @@
+---
+import Marquee from '@components/interactive/Marquee.astro';
+import Section from '@components/layout/Section.astro';
+---
+
+<Section padding="sm" class="border-y border-surface-border relative">
+  <!-- Gradient edge masks -->
+  <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none"></div>
+  <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none"></div>
+  <Marquee speed={25}>
+    <span class="text-heading-md text-content-meta font-sans font-medium whitespace-nowrap">Tachyon</span>
+    <span class="text-content-muted/20">&#x2022;</span>
+    <span class="text-heading-md text-content-meta font-sans font-medium whitespace-nowrap">IONOS</span>
+    <span class="text-content-muted/20">&#x2022;</span>
+    <span class="text-heading-md text-content-meta font-sans font-medium whitespace-nowrap">Trino</span>
+    <span class="text-content-muted/20">&#x2022;</span>
+    <span class="text-heading-md text-content-meta font-sans font-medium whitespace-nowrap">Kafka</span>
+    <span class="text-content-muted/20">&#x2022;</span>
+    <span class="text-heading-md text-content-meta font-sans font-medium whitespace-nowrap">Superset</span>
+    <span class="text-content-muted/20">&#x2022;</span>
+    <span class="text-heading-md text-content-meta font-sans font-medium whitespace-nowrap">Smart Lakehouse</span>
+    <span class="text-content-muted/20">&#x2022;</span>
+    <span class="text-heading-md text-content-meta font-sans font-medium whitespace-nowrap">Cloud-Native</span>
+    <span class="text-content-muted/20">&#x2022;</span>
+    <span class="text-heading-md text-content-meta font-sans font-medium whitespace-nowrap">AI-Ready</span>
+    <span class="text-content-muted/20">&#x2022;</span>
+  </Marquee>
+</Section>

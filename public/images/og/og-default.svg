@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <!-- Subtle noise -->
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncR type="linear" slope="0.02" intercept="0.016"/>
+        <feFuncG type="linear" slope="0.02" intercept="0.027"/>
+        <feFuncB type="linear" slope="0.02" intercept="0.051"/>
+      </feComponentTransfer>
+    </filter>
+    <!-- Steel-blue glow behind text -->
+    <radialGradient id="glowHalo" cx="50%" cy="46%" r="25%">
+      <stop offset="0%" stop-color="#A8D1FF" stop-opacity="0.12"/>
+      <stop offset="50%" stop-color="#A8D1FF" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#A8D1FF" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Vignette -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#04070D" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#04070D" stop-opacity="0.5"/>
+    </radialGradient>
+    <!-- Top accent line gradient -->
+    <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A8D1FF" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#A8D1FF" stop-opacity="0.3"/>
+      <stop offset="70%" stop-color="#A8D1FF" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#A8D1FF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#04070D"/>
+  <rect width="1200" height="630" filter="url(#noise)" opacity="0.8"/>
+
+  <!-- Glow halo -->
+  <rect width="1200" height="630" fill="url(#glowHalo)"/>
+
+  <!-- Top accent line -->
+  <rect x="200" y="0" width="800" height="2" fill="url(#accentLine)"/>
+
+  <!-- Brand name: 1digit -->
+  <text x="600" y="280" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="72" font-weight="300" letter-spacing="8" fill="#E4E9F2">1digit</text>
+
+  <!-- Divider line -->
+  <line x1="520" y1="310" x2="680" y2="310" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1"/>
+
+  <!-- Tagline -->
+  <text x="600" y="360" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="400" letter-spacing="3" fill="#E4E9F2" fill-opacity="0.7">AI-Ready Data Architecture</text>
+
+  <!-- URL -->
+  <text x="600" y="530" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="400" letter-spacing="2" fill="#A8D1FF" fill-opacity="0.3">1digit.co.uk</text>
+
+  <!-- Vignette -->
+  <rect width="1200" height="630" fill="url(#vignette)"/>
+</svg>

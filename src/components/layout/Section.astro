@@ -1,0 +1,35 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  background?: 'default' | 'elevated' | 'subtle' | 'mid';
+  padding?: 'default' | 'sm' | 'none';
+}
+
+const {
+  id,
+  class: className,
+  background = 'default',
+  padding = 'default',
+} = Astro.props;
+
+const bgClasses = {
+  default: '',
+  elevated: 'bg-surface-elevated',
+  subtle: 'bg-surface-subtle',
+  mid: 'bg-surface-overlay',
+};
+
+const paddingClasses = {
+  default: 'py-section',
+  sm: 'py-section-sm',
+  none: '',
+};
+---
+
+<section
+  id={id}
+  class:list={[bgClasses[background], paddingClasses[padding], className]}
+>
+  <slot />
+</section>

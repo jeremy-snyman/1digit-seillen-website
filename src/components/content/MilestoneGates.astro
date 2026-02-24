@@ -1,0 +1,83 @@
+---
+interface Props {
+  gates: { title: string; criteria: string }[];
+  phases: string[];
+  class?: string;
+}
+
+const { gates, phases, class: className } = Astro.props;
+---
+
+<div class:list={['milestone-gates', className]}>
+  {/* Desktop: horizontal */}
+  <div class="hidden lg:flex items-center justify-between gap-0">
+    {phases.map((phase, i) => (
+      <div class="flex items-center">
+        {/* Phase label */}
+        <div class="flex flex-col items-center text-center px-2 lg:px-4 shrink-0">
+          <span class="text-body-sm font-semibold text-content whitespace-nowrap">{phase}</span>
+        </div>
+
+        {/* Diamond gate (after each phase except the last) */}
+        {i < gates.length && (
+          <div class="flex flex-col items-center mx-1 lg:mx-3 shrink-0 group">
+            <div class="gate-diamond w-7 h-7 border-2 border-glow-blue/50 shadow-[0_0_12px_rgba(var(--color-glow-blue)/0.3)]"
+              style={`animation-delay: ${i * 200}ms;`}
+            >
+              <div class="w-1.5 h-1.5 rounded-full bg-glow-blue/80"></div>
+            </div>
+            <span class="text-label-md text-content-muted mt-2 whitespace-nowrap max-w-[120px] text-center leading-tight">{gates[i].title}</span>
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+
+  {/* Mobile + Tablet: vertical */}
+  <div class="flex flex-col lg:hidden gap-0">
+    {phases.map((phase, i) => (
+      <div class="flex flex-col items-start">
+        {/* Phase label */}
+        <div class="flex items-center gap-3 py-3">
+          <div class="w-8 h-8 rounded-full bg-surface-elevated flex items-center justify-center text-content font-bold text-body-xs shrink-0">
+            {String(i + 1).padStart(2, '0')}
+          </div>
+          <span class="text-body-md font-semibold text-content">{phase}</span>
+        </div>
+
+        {/* Diamond gate */}
+        {i < gates.length && (
+          <div class="flex items-center gap-3 py-3 pl-3">
+            <div class="flex flex-col items-center">
+              <div class="w-0.5 h-4 bg-glow-steel/20"></div>
+              <div class="gate-diamond w-6 h-6 border-2 border-glow-blue/50 shadow-[0_0_12px_rgba(var(--color-glow-blue)/0.3)]"
+                style={`animation-delay: ${i * 200}ms;`}
+              >
+                <div class="w-1 h-1 rounded-full bg-glow-blue/80"></div>
+              </div>
+              <div class="w-0.5 h-4 bg-glow-steel/20"></div>
+            </div>
+            <div>
+              <span class="text-body-sm font-medium text-content">{gates[i].title}</span>
+              <p class="text-label-md text-content-muted">{gates[i].criteria}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .gate-diamond {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+    animation: gate-unlock 0.6s ease-out both;
+  }
+
+  .gate-diamond > div {
+    transform: rotate(-45deg);
+  }
+</style>

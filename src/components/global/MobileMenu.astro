@@ -1,0 +1,96 @@
+---
+import { mainNavigation, ctaNavItem } from '@content/data/navigation';
+import Button from '@components/ui/Button.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+const currentPath = Astro.url.pathname;
+---
+
+<div id="mobile-menu" class="fixed inset-0 z-[60] hidden" aria-label="Mobile navigation" role="dialog" aria-modal="true">
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-surface/95 backdrop-blur-lg" data-mobile-backdrop></div>
+
+  <!-- Menu content -->
+  <div class="relative flex flex-col h-full pt-20 px-6 pb-8">
+    <!-- Close button -->
+    <button
+      class="absolute top-5 right-6 p-2 text-content-secondary hover:text-content transition-colors"
+      data-mobile-close
+      aria-label="Close menu"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Nav links -->
+    <nav class="flex flex-col gap-2">
+      {mainNavigation.map((item) => {
+        const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+        return (
+          <a
+            href={item.href}
+            class:list={[
+              'text-heading-md py-3 border-b border-surface-border transition-colors',
+              isActive ? 'text-content' : 'text-content-secondary hover:text-content',
+            ]}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Theme Toggle + CTA -->
+    <div class="mt-auto pt-8 flex flex-col gap-4">
+      <div class="flex items-center gap-3 text-content-secondary">
+        <ThemeToggle />
+        <span class="text-body-sm">Toggle theme</span>
+      </div>
+      <Button href={ctaNavItem.href} variant="primary" size="lg" class="w-full justify-center">
+        {ctaNavItem.label}
+      </Button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const openBtn = document.querySelector('[data-mobile-toggle]');
+    const closeBtn = document.querySelector('[data-mobile-close]');
+    const backdrop = document.querySelector('[data-mobile-backdrop]');
+
+    if (!menu || !openBtn) return;
+
+    function open() {
+      menu!.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      menu!.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', open);
+    closeBtn?.addEventListener('click', close);
+    backdrop?.addEventListener('click', close);
+
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu!.classList.contains('hidden')) {
+        close();
+      }
+    });
+
+    // Close on nav link click
+    menu!.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', close);
+    });
+  }
+
+  initMobileMenu();
+  document.addEventListener('astro:after-swap', initMobileMenu);
+</script>

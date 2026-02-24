@@ -1,0 +1,310 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import FeatureList from '@components/content/FeatureList.astro';
+import ExpandableDetail from '@components/content/ExpandableDetail.astro';
+
+export const prerender = true;
+
+const title = 'AI Architecture Framework';
+const description = 'AI systems must be architected — not assembled. We design enterprise AI architecture grounded in TOGAF principles and structured for production.';
+
+const architectureDomains = [
+  {
+    title: 'Business Architecture',
+    icon: 'chart',
+    description: 'Mapping business capabilities to AI opportunities. Understanding value chains, stakeholder needs, and strategic alignment before selecting any technology.',
+  },
+  {
+    title: 'Data Architecture',
+    icon: 'database',
+    description: 'Designing data flows, storage strategies, quality frameworks, and governance models that enable AI at enterprise scale.',
+  },
+  {
+    title: 'Application Architecture',
+    icon: 'cpu',
+    description: 'Defining how AI services integrate with existing application landscapes — APIs, microservices, event-driven patterns, and user interfaces.',
+  },
+  {
+    title: 'Technology Architecture',
+    icon: 'settings',
+    description: 'Selecting infrastructure, platforms, and tooling that support scalable, secure, and cost-effective AI workloads.',
+  },
+];
+
+const architectureLayers = [
+  {
+    number: '01',
+    title: 'Business Capability Layer',
+    summary: 'Defines what the organisation needs AI to achieve — mapped to strategic goals, KPIs, and value streams.',
+    detail: 'This layer captures business capabilities using TOGAF business architecture principles. Capabilities are decomposed into value streams, mapped against strategic objectives, and assessed for AI applicability. Each capability is scored for automation potential, data readiness, and commercial impact before any technical design begins.',
+  },
+  {
+    number: '02',
+    title: 'Data Foundation Layer',
+    summary: 'Ensures data is structured, governed, and accessible for AI consumption — from ingestion through to feature engineering.',
+    detail: 'Built on modern lakehouse principles, this layer implements medallion architecture (bronze, silver, gold) for data quality progression. It includes data cataloguing, lineage tracking, quality scoring, schema evolution management, and feature stores. Data contracts between producers and consumers are formally defined and monitored.',
+  },
+  {
+    number: '03',
+    title: 'Platform & Orchestration Layer',
+    summary: 'The infrastructure backbone — compute, storage, networking, and workflow orchestration that powers AI workloads.',
+    detail: 'This layer abstracts infrastructure complexity through container orchestration (Kubernetes), serverless compute, and managed AI platforms. It includes ML pipeline orchestration (e.g. Airflow, Dagster), experiment tracking (MLflow), model registries, and resource management. Infrastructure-as-code ensures reproducibility and auditability across environments.',
+  },
+  {
+    number: '04',
+    title: 'AI Services & Agent Layer',
+    summary: 'Where AI models, agents, and intelligent services are deployed, managed, and exposed to the business.',
+    detail: 'This layer encompasses model serving infrastructure, LLM orchestration frameworks (LangChain, LlamaIndex), agent architectures, RAG pipelines, and API gateway management. It includes prompt management, model versioning, A/B testing infrastructure, and fallback strategies. Multi-model routing enables optimal model selection based on task complexity and cost constraints.',
+  },
+  {
+    number: '05',
+    title: 'Governance & Control Layer',
+    summary: 'Cross-cutting governance that ensures compliance, security, observability, and cost management across all layers.',
+    detail: 'Implemented as a cross-cutting concern spanning all layers, this includes RBAC and ABAC access control, audit logging, cost allocation and chargeback, compliance policy enforcement, drift detection, bias monitoring, and incident management. Governance is codified as policy-as-code and enforced through automated guardrails rather than manual review processes.',
+  },
+];
+
+const sdlcItems = [
+  'Architecture review checkpoints',
+  'Threat modelling',
+  'Data classification',
+  'Role-based access',
+  'CI/CD guardrails',
+  'AI evaluation frameworks',
+  'Logging & observability by design',
+];
+
+const complianceItems = [
+  'ISO 27001 familiarity',
+  'SOC 2 awareness',
+  'Risk modelling',
+  'Prompt injection mitigation',
+  'Data leakage prevention',
+  'Auditability',
+];
+
+const governanceItems = [
+  'Milestone-based architecture gates',
+  'Clear sign-off boundaries',
+  'Defined ownership models',
+  'Commercial modelling before scale',
+];
+---
+
+<PageLayout title={title} description={description}>
+  <!-- Hero -->
+  <Section class="pt-32 pb-16">
+    <Container>
+      <ScrollReveal>
+        <div class="max-w-3xl">
+          <Badge variant="accent">ARCHITECTURE</Badge>
+          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+            AI Architecture <em class="font-serif italic">Framework</em>
+          </h1>
+          <p class="text-body-lg text-content-secondary max-w-2xl">
+            {description}
+          </p>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Section 1: Architecture Philosophy -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="PHILOSOPHY"
+          heading="Architecture Philosophy"
+          description="Business capability mapping is the foundation of effective AI architecture. We apply TOGAF principles across four architecture domains to ensure every AI initiative is grounded in enterprise structure."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+        {architectureDomains.map((domain, i) => (
+          <ScrollReveal delay={i * 100}>
+            <GlassCard hover padding="lg" class="h-full">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 rounded-xl bg-glow-steel/20 flex items-center justify-center">
+                  <Icon name={domain.icon} size={24} class="text-content" />
+                </div>
+                <h3 class="text-heading-sm font-semibold">{domain.title}</h3>
+              </div>
+              <p class="text-body-md text-content-secondary">{domain.description}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+      <ScrollReveal delay={200}>
+        <div class="glass-card p-8 mt-12 text-center max-w-3xl mx-auto">
+          <p class="text-body-lg text-content-secondary italic">
+            "We do not start with models. We start with enterprise structure."
+          </p>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Section 2: AI-Native Reference Architecture -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="REFERENCE ARCHITECTURE"
+          heading="AI-Native Reference Architecture"
+          description="A layered architecture model designed for enterprise AI — from business capability through to governance and control."
+        />
+      </ScrollReveal>
+
+      <!-- Architecture Diagram -->
+      <ScrollReveal delay={100}>
+        <div class="mt-12 mb-16">
+          <img
+            src="/images/diagrams/reference-architecture.svg"
+            alt="AI-Native Reference Architecture — five layers from Business Capability through to Governance and Control"
+            width="1200"
+            height="600"
+            class="w-full h-auto rounded-card"
+            loading="lazy"
+          />
+        </div>
+      </ScrollReveal>
+
+      <!-- Architecture Layers -->
+      <div class="space-y-6">
+        {architectureLayers.map((layer, i) => (
+          <ScrollReveal delay={i * 100}>
+            <GlassCard padding="lg">
+              <div class="flex items-start gap-6">
+                <div class="hidden sm:flex w-14 h-14 rounded-xl bg-glow-steel/20 items-center justify-center shrink-0">
+                  <span class="text-content font-display font-bold text-lg">{layer.number}</span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-heading-sm font-semibold mb-2">
+                    <span class="sm:hidden text-content font-display mr-2">{layer.number}</span>
+                    {layer.title}
+                  </h3>
+                  <p class="text-body-md text-content-secondary mb-4">{layer.summary}</p>
+                  <ExpandableDetail title="View technical detail">
+                    <p class="text-body-sm text-content-secondary">{layer.detail}</p>
+                  </ExpandableDetail>
+                </div>
+              </div>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Section 3: Secure SDLC Integration -->
+  <Section background="elevated">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <ScrollReveal>
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-glow-steel/20 flex items-center justify-center">
+              <Icon name="shield" size={24} class="text-content" />
+            </div>
+            <h2 class="text-heading-lg font-semibold">Secure SDLC Integration</h2>
+          </div>
+          <p class="text-body-lg text-content-secondary mb-6">
+            Architecture is embedded into the delivery lifecycle — not treated as a one-off exercise. Every phase includes explicit architecture checkpoints and security controls.
+          </p>
+          <div class="glass-card p-6 mt-4">
+            <p class="text-body-md text-content-secondary italic">
+              "AI-first engineering is embedded in SDLC — not bolted on."
+            </p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <GlassCard padding="lg">
+            <FeatureList items={sdlcItems} />
+          </GlassCard>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Section 4: Security & Compliance Awareness -->
+  <Section>
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <ScrollReveal>
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-glow-steel/20 flex items-center justify-center">
+              <Icon name="lock" size={24} class="text-content" />
+            </div>
+            <h2 class="text-heading-lg font-semibold">Security & Compliance Awareness</h2>
+          </div>
+          <p class="text-body-lg text-content-secondary mb-6">
+            We design systems with security and compliance awareness at every layer. Our approach addresses AI-specific risks including prompt injection, data leakage, and auditability gaps.
+          </p>
+          <div class="glass-card p-6 mt-4">
+            <p class="text-body-sm text-content-muted">
+              <Icon name="shield" size={14} class="text-content inline mr-1" />
+              <strong class="text-content-secondary">Note:</strong> We align our practices with recognised standards such as ISO 27001 and SOC 2. Where we reference these standards, we indicate awareness and alignment — not formal certification — unless explicitly stated otherwise.
+            </p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <GlassCard padding="lg">
+            <FeatureList items={complianceItems} />
+          </GlassCard>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Section 5: Delivery Governance -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="GOVERNANCE"
+          heading="Delivery Governance"
+          description="Architecture without governance is just documentation. We implement milestone-based gates that ensure quality, alignment, and commercial viability at every stage."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12 max-w-3xl mx-auto">
+        {governanceItems.map((item, i) => (
+          <ScrollReveal delay={i * 100}>
+            <GlassCard hover padding="lg" class="text-center h-full">
+              <div class="w-12 h-12 rounded-full bg-glow-steel/20 mx-auto mb-4 flex items-center justify-center">
+                <Icon name="check" size={20} class="text-content" />
+              </div>
+              <p class="text-body-md font-medium">{item}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Bottom CTA -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <div class="text-center">
+          <SectionHeading
+            align="center"
+            heading="Discuss Your Architecture Landscape"
+            description="Whether you are starting from scratch or modernising legacy systems, we can help you design an AI architecture that scales."
+          />
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg" href="/contact">Discuss Your Architecture Landscape</Button>
+            <Button variant="outline" size="lg" href="/what-we-do">Explore Our Capabilities</Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+</PageLayout>

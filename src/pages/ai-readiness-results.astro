@@ -1,0 +1,26 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import Button from '@components/ui/Button.astro';
+
+const title = 'AI Readiness Results';
+const description = 'Your AI readiness assessment results.';
+---
+
+<PageLayout title={title} description={description}>
+  <Section class="pt-32 pb-16">
+    <Container size="narrow">
+      <ScrollReveal>
+        <div class="text-center">
+          <h1 class="text-display-md font-display mb-4">Assessment Results</h1>
+          <p class="text-body-lg text-content-secondary mb-8">
+            Your results are displayed immediately after completing the assessment.
+          </p>
+          <Button variant="primary" size="lg" href="/ai-readiness-assessment">Take the Assessment</Button>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+</PageLayout>

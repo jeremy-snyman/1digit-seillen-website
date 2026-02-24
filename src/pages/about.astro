@@ -1,0 +1,171 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import FeatureList from '@components/content/FeatureList.astro';
+import { values, differentiators, teamMembers } from '@content/data/team';
+
+const title = 'About 1Digit';
+const description = 'We are an AI architecture and data engineering firm focused on practical AI transformation — not hype.';
+---
+
+<PageLayout title={title} description={description}>
+  <!-- Hero / Mission -->
+  <Section class="pt-32 pb-16">
+    <Container>
+      <ScrollReveal>
+        <div class="max-w-3xl">
+          <Badge variant="accent">ABOUT US</Badge>
+          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+            Practical AI Transformation. <em class="font-serif italic">Not Hype.</em>
+          </h1>
+          <p class="text-body-lg text-content-secondary max-w-2xl">
+            1Digit is an AI architecture and data engineering firm that enables enterprise AI adoption through structured data platforms, governance models, and scalable engineering.
+          </p>
+          <p class="text-body-md text-content-muted mt-4 max-w-2xl">
+            We believe AI success is data-first, architecture-led, and governance-enabled.
+          </p>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- What Makes Us Different -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="WHY 1DIGIT"
+          heading="What Makes Us Different"
+          description="We are not another AI consultancy. Here is what sets us apart."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+        {differentiators.map((item, index) => (
+          <ScrollReveal delay={index * 100}>
+            <GlassCard hover padding="lg" class="h-full">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-glow-steel/20 flex items-center justify-center shrink-0">
+                  <span class="text-content font-display font-bold text-body-md">{String(index + 1).padStart(2, '0')}</span>
+                </div>
+                <div>
+                  <h3 class="text-heading-xs font-semibold mb-2">{item.title}</h3>
+                  <p class="text-body-md text-content-secondary">{item.description}</p>
+                </div>
+              </div>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Values -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="OUR VALUES"
+          heading="Principles We Work By"
+          description="These are not aspirational statements. They define how we operate on every engagement."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        {values.map((value, index) => (
+          <ScrollReveal delay={index * 100}>
+            <GlassCard padding="lg" class="h-full">
+              <h3 class="text-heading-xs font-semibold mb-3">{value.title}</h3>
+              <p class="text-body-md text-content-secondary">{value.description}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Team -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="TEAM"
+          heading="Leadership"
+          description="Small, senior, focused. We do not scale with juniors."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        {teamMembers.map((member, index) => (
+          <ScrollReveal delay={index * 100}>
+            <GlassCard padding="lg" class="text-center">
+              <div class="w-24 h-24 rounded-full bg-surface-subtle mx-auto mb-6 flex items-center justify-center">
+                <span class="text-display-md font-display text-content">{member.name.charAt(0)}</span>
+              </div>
+              <h3 class="text-heading-sm font-semibold">{member.name}</h3>
+              <p class="text-label-md text-content uppercase tracking-wider mt-1">{member.role}</p>
+              <p class="text-body-md text-content-secondary mt-4">{member.bio}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Partners -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <SectionHeading
+              badge="PARTNERSHIPS"
+              heading="Strategic Partners"
+              description="We partner with technology leaders to deliver enterprise-grade solutions."
+            />
+          </div>
+          <GlassCard padding="lg">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-glow-steel/20 flex items-center justify-center shrink-0">
+                <Icon name="globe" size={24} class="text-content" />
+              </div>
+              <div>
+                <h3 class="text-heading-sm font-semibold mb-2">IONOS</h3>
+                <p class="text-body-md text-content-secondary">
+                  1Digit is a technology provider to IONOS — not a reseller. We have architected and delivered a Smart Lakehouse platform for IONOS customers, offering cost-effective, European-sovereign data infrastructure.
+                </p>
+                <Button variant="outline" size="sm" href="/smart-lakehouse-ionos" class="mt-4">
+                  Learn About Smart Lakehouse
+                </Button>
+              </div>
+            </div>
+          </GlassCard>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Bottom CTA -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <div class="text-center">
+          <SectionHeading
+            align="center"
+            heading="Let's Talk"
+            description="Ready to make your data work for AI? Let's discuss how we can help."
+          />
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg" href="/contact">Get in Touch</Button>
+            <Button variant="outline" size="lg" href="/what-we-do">Explore Capabilities</Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+</PageLayout>

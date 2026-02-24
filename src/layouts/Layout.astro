@@ -1,0 +1,49 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import SEOHead from '@components/seo/SEOHead.astro';
+import SkipLink from '@components/global/SkipLink.astro';
+import CookieConsent from '@components/global/CookieConsent.astro';
+import '@styles/fonts.css';
+import '@styles/global.css';
+import '@styles/animations.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  noIndex?: boolean;
+  canonicalUrl?: string;
+  type?: 'website' | 'article';
+  publishDate?: string;
+  author?: string;
+}
+
+const props = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <SEOHead {...props} />
+    <script is:inline>
+  (function() {
+    var stored = localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') {
+      document.documentElement.setAttribute('data-theme', stored);
+    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+</script>
+    <ViewTransitions />
+  </head>
+  <body>
+    <SkipLink />
+    <slot />
+    <CookieConsent />
+  </body>
+</html>

@@ -1,0 +1,23 @@
+---
+import Button from '@components/ui/Button.astro';
+
+interface Props {
+  heading?: string;
+  description?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  heading = 'Ready to Take Action?',
+  description = 'Assess your AI readiness or speak to our team about your data challenges.',
+  ctaLabel = 'Take the Assessment',
+  ctaHref = '/ai-readiness-assessment',
+} = Astro.props;
+---
+
+<div class="not-prose my-8 glass-card p-6 text-center rounded-card">
+  <h4 class="text-heading-xs font-semibold mb-2">{heading}</h4>
+  <p class="text-body-sm text-content-secondary mb-4">{description}</p>
+  <Button variant="primary" size="sm" href={ctaHref}>{ctaLabel}</Button>
+</div>

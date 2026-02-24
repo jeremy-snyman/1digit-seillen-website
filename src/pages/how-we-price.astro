@@ -1,0 +1,379 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import Accordion from '@components/interactive/Accordion.astro';
+import AccordionItem from '@components/interactive/AccordionItem.astro';
+import PhaseRail from '@components/content/PhaseRail.astro';
+import EngagementPhaseCard from '@components/content/EngagementPhaseCard.astro';
+import PricingBand from '@components/content/PricingBand.astro';
+import AnimatedStat from '@components/interactive/AnimatedStat.tsx';
+import {
+  pricingPrinciples,
+  engagementPhases,
+  engagementSteps,
+  pricingBands,
+  assessmentExample,
+  valueStats,
+  engagementCommitments,
+} from '@content/data/pricing';
+import { pricingFAQ } from '@content/data/faq';
+
+const title = 'How We Price';
+const description = 'We price around outcomes and defined scope — not hours, not headcount, not open-ended retainers.';
+
+const phaseRailItems = engagementPhases.map((p) => ({ number: p.number, title: p.title }));
+---
+
+<PageLayout title={title} description={description}>
+
+  {/* ── S1: Hero ── */}
+  <Section class="relative overflow-hidden" padding="none">
+    {/* Background image + overlays */}
+    <div class="absolute inset-0">
+      <img
+        src="/images/pricing/hero-bg.svg"
+        alt=""
+        class="w-full h-full object-cover"
+        loading="eager"
+        aria-hidden="true"
+      />
+      {/* Scrim */}
+      <div class="absolute inset-0 bg-surface/70"></div>
+      {/* Top gradient */}
+      <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-surface to-transparent"></div>
+      {/* Bottom gradient */}
+      <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-surface to-transparent"></div>
+      {/* Ambient glow orb */}
+      <div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-glow-steel/15 rounded-full blur-[140px] pointer-events-none"></div>
+    </div>
+
+    <div class="relative min-h-[85vh] flex items-center">
+      <Container>
+        <ScrollReveal>
+          <div class="max-w-3xl pt-32 pb-20">
+            <Badge variant="accent">HOW WE PRICE</Badge>
+            <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+              We price around outcomes. Not hours.
+            </h1>
+            <p class="text-body-lg text-content-secondary max-w-2xl mb-4">
+              {description}
+            </p>
+            <p class="text-body-md text-content-muted max-w-2xl mb-8">
+              Every engagement has a defined scope, clear deliverables, and a published investment range. You know what you are getting before you commit.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <Button variant="primary" size="lg" href="/contact">Discuss Your Engagement</Button>
+              <Button variant="outline" size="lg" href="#pricing-bands">View Investment Ranges</Button>
+            </div>
+          </div>
+        </ScrollReveal>
+      </Container>
+    </div>
+  </Section>
+
+  {/* ── S2: Philosophy Pillars ── */}
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="PHILOSOPHY"
+          heading="How We Think About Value"
+          description="Five principles that guide how we scope, price, and deliver every engagement."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 mt-12">
+        {pricingPrinciples.map((item, i) => (
+          <ScrollReveal delay={i * 80}>
+            <GlassCard padding="md" class="text-center h-full">
+              <div class="w-8 h-8 rounded-full bg-surface-elevated mx-auto mb-3 flex items-center justify-center text-content-inverse font-bold text-body-sm">
+                {item.number}
+              </div>
+              <h3 class="text-body-sm font-semibold mb-2">{item.title}</h3>
+              <p class="text-body-xs text-content-secondary">{item.description}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* ── S3: Engagement Journey ── */}
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="ENGAGEMENT LIFECYCLE"
+          heading="Four Phases. One Structured Journey."
+          description="Each phase is self-contained with defined deliverables. Commission one, or all four."
+        />
+      </ScrollReveal>
+
+      <ScrollReveal delay={100}>
+        <PhaseRail phases={phaseRailItems} class="mt-12 mb-10" />
+      </ScrollReveal>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {engagementPhases.map((phase, i) => (
+          <ScrollReveal delay={i * 100}>
+            <EngagementPhaseCard
+              number={phase.number}
+              title={phase.title}
+              description={phase.description}
+              icon={phase.icon}
+              accentColor={phase.accentColor}
+              duration={phase.duration}
+              image={phase.image}
+              class="h-full"
+            />
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* ── S4: Pricing Bands ── */}
+  <Section id="pricing-bands" background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="INVESTMENT RANGES"
+          heading="Indicative Pricing Bands"
+          description="Published ranges for our most common engagements. Final scope and pricing confirmed after initial discussion."
+        />
+      </ScrollReveal>
+
+      <ScrollReveal delay={100}>
+        <GlassCard padding="none" class="mt-12 overflow-hidden">
+          {/* Column headers (desktop) */}
+          <div class="hidden md:grid grid-cols-12 gap-6 px-5 py-3 text-label-sm text-content-muted uppercase tracking-wider border-b border-surface-border">
+            <div class="col-span-5">Engagement</div>
+            <div class="col-span-3">Duration</div>
+            <div class="col-span-4 text-right">Investment</div>
+          </div>
+
+          {/* Band rows */}
+          <div class="divide-y divide-surface-border">
+            {pricingBands.map((band) => (
+              <PricingBand {...band} />
+            ))}
+          </div>
+
+          {/* Implementation footer */}
+          <div class="px-5 py-4 border-t border-surface-border bg-tint/3">
+            <p class="text-body-sm text-content-muted text-center">
+              Implementation engagements (data platforms, AI products) are scoped per project with milestone-based pricing.
+            </p>
+          </div>
+        </GlassCard>
+      </ScrollReveal>
+
+      <ScrollReveal delay={200}>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <Button variant="primary" size="lg" href="/contact">Discuss Scope & Pricing</Button>
+          <Button variant="outline" size="lg" href="/ai-readiness-assessment">Take the Free Assessment</Button>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  {/* ── S5: Assessment Spotlight ── */}
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="EXAMPLE ENGAGEMENT"
+          heading="See What a Diagnostic Looks Like"
+          description="The AI Maturity Scan is where most enterprise relationships begin — a lightweight, fixed-price engagement that delivers immediate value."
+        />
+      </ScrollReveal>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mt-12">
+        <ScrollReveal delay={100}>
+          <GlassCard padding="lg" class="h-full">
+            <div class="mb-6">
+              <h3 class="text-heading-md font-semibold">{assessmentExample.title}</h3>
+              <div class="flex flex-wrap items-center gap-4 mt-3">
+                <span class="text-glow-blue font-semibold">{assessmentExample.priceRange}</span>
+                <span class="text-body-sm text-content-muted">{assessmentExample.duration}</span>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <h4 class="text-label-sm text-content-muted uppercase tracking-wider mb-3">Process</h4>
+              <ul class="space-y-2.5">
+                {assessmentExample.processSteps.map((step) => (
+                  <li class="flex items-start gap-3 text-body-sm text-content-secondary">
+                    <div class="w-4 h-4 rounded-full bg-surface-subtle flex items-center justify-center mt-0.5 shrink-0">
+                      <Icon name="check" size={10} class="text-glow-blue" />
+                    </div>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="text-label-sm text-content-muted uppercase tracking-wider mb-3">Deliverables</h4>
+              <ul class="space-y-2.5">
+                {assessmentExample.deliverables.map((item) => (
+                  <li class="flex items-start gap-3 text-body-sm text-content-secondary">
+                    <div class="w-4 h-4 rounded-full bg-surface-subtle flex items-center justify-center mt-0.5 shrink-0">
+                      <Icon name="check" size={10} class="text-glow-blue" />
+                    </div>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="mt-6">
+              <Button variant="primary" size="md" href="/contact">Book a Scan</Button>
+            </div>
+          </GlassCard>
+        </ScrollReveal>
+
+        <ScrollReveal delay={200}>
+          <div class="rounded-xl overflow-hidden bg-surface-elevated h-full min-h-[300px] lg:min-h-0">
+            <img
+              src={assessmentExample.image}
+              alt="AI Maturity Assessment dashboard example"
+              class="w-full h-full object-cover theme-image"
+              loading="lazy"
+            />
+          </div>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ── S6: Value & ROI ── */}
+  <Section background="elevated" class="relative overflow-hidden">
+    {/* Ambient glow orbs */}
+    <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-glow-blue/10 rounded-full blur-[120px] pointer-events-none" style="animation: glow-breathe 8s ease-in-out infinite;"></div>
+    <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[300px] h-[300px] bg-glow-steel/10 rounded-full blur-[100px] pointer-events-none" style="animation: glow-breathe 8s ease-in-out 2s infinite;"></div>
+
+    <Container class="relative">
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="VALUE"
+          heading="Why This Approach Works"
+          description="Structured engagements with defined scope consistently outperform open-ended consulting."
+        />
+      </ScrollReveal>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        {valueStats.map((stat, i) => (
+          <ScrollReveal delay={i * 100}>
+            <GlassCard padding="lg" class="h-full">
+              <AnimatedStat
+                client:visible
+                value={stat.value}
+                suffix={stat.suffix}
+                label={stat.label}
+                description={stat.description}
+              />
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* ── S7: Commitments + FAQ ── */}
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="EVERY ENGAGEMENT"
+          heading="What You Always Get"
+          description="Regardless of scope, every engagement includes these commitments."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mt-12">
+        {engagementCommitments.map((item, i) => (
+          <ScrollReveal delay={i * 80}>
+            <GlassCard padding="md" class="text-center h-full">
+              <div class="w-10 h-10 rounded-lg bg-glow-steel/20 mx-auto mb-3 flex items-center justify-center">
+                <Icon name={item.icon} size={18} class="text-content" />
+              </div>
+              <h3 class="text-body-sm font-medium mb-2">{item.title}</h3>
+              <p class="text-body-xs text-content-secondary">{item.description}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <Section background="elevated">
+    <Container size="narrow">
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="FAQ"
+          heading="Common Questions"
+          description="Answers to the questions our clients ask most."
+        />
+      </ScrollReveal>
+      <div class="mt-12">
+        <ScrollReveal>
+          <Accordion>
+            {pricingFAQ.map((item) => (
+              <AccordionItem question={item.question} answer={item.answer} />
+            ))}
+          </Accordion>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ── S8: Bottom CTA ── */}
+  <Section class="relative overflow-hidden">
+    {/* Ambient glow */}
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-[600px] h-[300px] bg-glow-steel/20 rounded-full blur-[120px]" style="animation: glow-breathe 8s ease-in-out infinite;"></div>
+    </div>
+
+    <Container class="relative">
+      <ScrollReveal>
+        <div class="text-center">
+          <SectionHeading
+            align="center"
+            heading="Ready to Scope Your Engagement?"
+            description="Book a 30-minute pricing and scope discussion. No obligation, no hard sell — just clarity on what the right engagement looks like for you."
+          />
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg" href="/contact">Book a Scope Discussion</Button>
+            <Button variant="outline" size="lg" href="/ai-readiness-assessment">Take the Free Assessment</Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+</PageLayout>
+
+<style>
+  @keyframes glow-breathe {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [style*="glow-breathe"] {
+      animation: none !important;
+    }
+  }
+</style>

@@ -1,0 +1,197 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import FeatureList from '@components/content/FeatureList.astro';
+import DiagramPlaceholder from '@components/content/DiagramPlaceholder.astro';
+
+const title = 'Smart Lakehouse on IONOS';
+const description = 'Cost-effective, scalable enterprise data — built on European sovereign cloud infrastructure.';
+
+const benefits = [
+  { title: 'Cost Efficiency', icon: 'chart', description: 'Significantly lower total cost of ownership compared to hyperscaler data warehousing solutions. Pay for what you use, not what you provision.' },
+  { title: 'European Data Sovereignty', icon: 'shield', description: 'Data stays in Europe. GDPR-aligned infrastructure with no transatlantic data transfers required.' },
+  { title: 'Enterprise-Grade Performance', icon: 'zap', description: 'Distributed query execution, intelligent caching, and optimised storage for analytical and AI workloads at scale.' },
+  { title: 'SaaS-Like Simplicity', icon: 'settings', description: 'A managed lakehouse experience without the operational complexity. Focus on data, not infrastructure management.' },
+  { title: 'AI-Optimised Architecture', icon: 'cpu', description: 'Built for AI workloads from the ground up. Feature stores, model serving, and vector operations are first-class citizens.' },
+  { title: 'Open Standards', icon: 'globe', description: 'Built on open table formats and open-source technologies. No proprietary lock-in, full data portability.' },
+];
+
+const useCases = [
+  { title: 'AI & Machine Learning', description: 'Centralised, governed data estate that feeds AI models with clean, timely, structured data at scale.' },
+  { title: 'Business Analytics', description: 'Self-service analytics across your entire data landscape with sub-second query performance.' },
+  { title: 'Data Consolidation', description: 'Bring fragmented data from legacy systems, SaaS tools, and operational databases into one governed platform.' },
+  { title: 'Regulatory Compliance', description: 'European-sovereign data infrastructure with built-in governance, lineage, and audit capabilities.' },
+];
+
+const costLevers = [
+  'Open-source stack eliminates licensing premiums',
+  'European cloud pricing — typically 40-60% lower than hyperscaler equivalents',
+  'Tiered storage with automatic lifecycle management',
+  'Compute scales independently of storage',
+  'No egress fees within IONOS network',
+  'No minimum commitments or long-term contracts required',
+];
+---
+
+<PageLayout title={title} description={description}>
+  <!-- Hero -->
+  <Section class="pt-32 pb-16">
+    <Container>
+      <ScrollReveal>
+        <div class="max-w-3xl">
+          <div class="flex gap-3 mb-4">
+            <Badge variant="accent">PARTNERSHIP</Badge>
+            <Badge>IONOS</Badge>
+          </div>
+          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+            Smart Lakehouse on <em class="font-serif italic">IONOS</em>
+          </h1>
+          <p class="text-body-lg text-content-secondary max-w-2xl">
+            {description}
+          </p>
+          <p class="text-body-md text-content-muted mt-4 max-w-2xl">
+            1Digit has architected and delivered a data warehousing platform in partnership with IONOS. We are a <strong class="text-content">technology provider to IONOS</strong> — not merely a reseller.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 mt-8">
+            <Button variant="primary" size="lg" href="/contact">Compare Costs</Button>
+            <Button variant="outline" size="lg" href="/contact">Speak to Us</Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Positioning -->
+  <Section background="elevated">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <ScrollReveal>
+          <SectionHeading
+            badge="WHY SMART LAKEHOUSE"
+            heading="Enterprise Data Without Hyperscaler Costs"
+          />
+          <p class="text-body-lg text-content-secondary mt-6">
+            Hyperscaler data warehousing is powerful, but expensive. Snowflake, Databricks, and BigQuery come with significant compute costs, egress fees, and licensing complexity.
+          </p>
+          <p class="text-body-md text-content-secondary mt-4">
+            Smart Lakehouse on IONOS delivers the same enterprise-grade analytics and AI capability — built on open standards, hosted on European sovereign infrastructure, at a fraction of the cost.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <GlassCard padding="lg">
+            <h3 class="text-heading-sm font-semibold mb-4">What You Get</h3>
+            <FeatureList items={[
+              'Managed lakehouse environment',
+              'Distributed SQL query engine',
+              'Self-service analytics and visualisation',
+              'Data cataloguing and governance',
+              'AI/ML pipeline integration',
+              'Full observability and monitoring',
+            ]} />
+          </GlassCard>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Benefits -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="BENEFITS"
+          heading="Why Choose Smart Lakehouse"
+          description="Purpose-built for organisations that want enterprise data capability without hyperscaler costs."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        {benefits.map((benefit, index) => (
+          <ScrollReveal delay={index * 100}>
+            <GlassCard hover padding="lg" class="h-full">
+              <div class="w-12 h-12 rounded-xl bg-glow-steel/20 flex items-center justify-center mb-4">
+                <Icon name={benefit.icon} size={24} class="text-content" />
+              </div>
+              <h3 class="text-heading-xs font-semibold mb-2">{benefit.title}</h3>
+              <p class="text-body-md text-content-secondary">{benefit.description}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Use Cases -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="USE CASES"
+          heading="Built For"
+          description="Smart Lakehouse is designed for organisations that need data infrastructure for analytics and AI."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+        {useCases.map((uc, index) => (
+          <ScrollReveal delay={index * 100}>
+            <GlassCard hover padding="lg" class="h-full">
+              <h3 class="text-heading-xs font-semibold mb-3">{uc.title}</h3>
+              <p class="text-body-md text-content-secondary">{uc.description}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Cost Comparison -->
+  <Section>
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <ScrollReveal>
+          <SectionHeading
+            badge="COST COMPARISON"
+            heading="How We Control Costs"
+            description="We architect for cost efficiency by design — not as an afterthought."
+          />
+          <div class="mt-8">
+            <FeatureList items={costLevers} />
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <DiagramPlaceholder
+            title="Cost Comparison"
+            description="Interactive calculator or comparison chart — coming soon"
+            class="min-h-[300px]"
+          />
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Bottom CTA -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <div class="text-center">
+          <SectionHeading
+            align="center"
+            heading="Ready to Reduce Your Data Costs?"
+            description="Compare Smart Lakehouse against your current data warehousing spend."
+          />
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg" href="/contact">Compare Costs</Button>
+            <Button variant="outline" size="lg" href="/tachyon">Explore Tachyon</Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+</PageLayout>

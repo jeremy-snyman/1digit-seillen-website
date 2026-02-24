@@ -1,0 +1,42 @@
+---
+import Icon from '@components/ui/Icon.astro';
+
+interface Props {
+  waypoints: { day: string; title: string; description: string; icon: string }[];
+  class?: string;
+}
+
+const { waypoints, class: className } = Astro.props;
+---
+
+<div class:list={['week-strip glass-card overflow-hidden', className]}>
+  {/* Gradient background bar */}
+  <div class="absolute inset-0 bg-gradient-to-r from-glow-steel/5 via-glow-blue/10 to-glow-steel/5 pointer-events-none"></div>
+
+  <div class="relative flex flex-col md:flex-row items-stretch">
+    {waypoints.map((wp, i) => (
+      <div class:list={[
+        'flex-1 p-6 lg:p-8 relative',
+        i < waypoints.length - 1 && 'border-b md:border-b-0 md:border-r border-surface-border/[var(--alpha-surface-border)]',
+      ]}>
+        {/* Waypoint dot and vertical line on mobile */}
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-full bg-surface-elevated flex items-center justify-center shrink-0">
+            <Icon name={wp.icon} size={18} class="text-glow-blue" />
+          </div>
+          <div>
+            <span class="text-label-md uppercase tracking-wider text-content-muted block mb-1">{wp.day}</span>
+            <h3 class="text-heading-xs font-semibold mb-1.5">{wp.title}</h3>
+            <p class="text-body-sm text-content-secondary">{wp.description}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .week-strip {
+    position: relative;
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['divide-y divide-surface-border', className]} data-accordion>
+  <slot />
+</div>
+
+<script>
+  function initAccordion() {
+    document.querySelectorAll('[data-accordion]').forEach((accordion) => {
+      accordion.addEventListener('toggle', (e) => {
+        const target = e.target as HTMLDetailsElement;
+        if (target.open) {
+          accordion.querySelectorAll('details[open]').forEach((detail) => {
+            if (detail !== target) {
+              (detail as HTMLDetailsElement).open = false;
+            }
+          });
+        }
+      }, true);
+    });
+  }
+  initAccordion();
+  document.addEventListener('astro:after-swap', initAccordion);
+</script>

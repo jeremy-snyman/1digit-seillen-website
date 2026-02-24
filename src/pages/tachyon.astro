@@ -1,0 +1,232 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import Tag from '@components/ui/Tag.astro';
+import ServiceCard from '@components/content/ServiceCard.astro';
+import FeatureList from '@components/content/FeatureList.astro';
+const title = 'Tachyon';
+const description = 'Our AI-ready ingestion and processing engine. Cloud-agnostic, open-source driven, built for scale.';
+
+const capabilities = [
+  { title: 'Multi-Source Connectors', icon: 'layers', description: 'Connect to databases, APIs, file systems, streaming sources, and third-party platforms through a unified connector framework.' },
+  { title: 'Ingestion Multiplexer', icon: 'zap', description: 'Route, transform, and distribute data from multiple sources simultaneously with intelligent scheduling and prioritisation.' },
+  { title: 'Real-Time Processing', icon: 'cpu', description: 'Stream processing with sub-second latency for event-driven architectures and real-time analytics pipelines.' },
+  { title: 'Transformation Engine', icon: 'settings', description: 'Built-in data transformation, schema mapping, and quality validation at ingestion time — not after the fact.' },
+  { title: 'Monitoring & Observability', icon: 'chart', description: 'Full pipeline observability with metrics, alerting, and lineage tracking from source to destination.' },
+  { title: 'Cloud-Agnostic Deployment', icon: 'globe', description: 'Deploy on AWS, Azure, GCP, IONOS, or on-premise. No vendor lock-in, no proprietary formats.' },
+];
+
+const useCases = [
+  { title: 'AI-Ready Data Pipelines', description: 'Build reliable data pipelines that feed AI models with clean, structured, timely data. Tachyon ensures your models are never starved of quality inputs.' },
+  { title: 'Data Enrichment & Augmentation', description: 'Combine internal data with external sources — structured web extraction, third-party datasets, and enrichment APIs — in a single orchestrated flow.' },
+  { title: 'Whole-of-Market Intelligence', description: 'Construct comprehensive market datasets by ingesting, normalising, and combining data from across your competitive landscape.' },
+  { title: 'Real-Time Event Processing', description: 'Process business events as they happen. From IoT telemetry to transaction monitoring, Tachyon handles high-throughput streaming workloads.' },
+];
+
+const techStack = ['Trino', 'Apache Kafka', 'Apache Superset', 'Apache Iceberg', 'Kubernetes', 'Open Table Formats'];
+---
+
+<PageLayout title={title} description={description}>
+  <!-- Hero -->
+  <Section class="pt-32 pb-16">
+    <Container>
+      <ScrollReveal>
+        <div class="max-w-3xl">
+          <Badge variant="accent">PRODUCT</Badge>
+          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+            Tachyon: The <em class="font-serif italic">AI-Ready</em> Data Engine
+          </h1>
+          <p class="text-body-lg text-content-secondary max-w-2xl">
+            {description}
+          </p>
+          <p class="text-body-md text-content-muted mt-4 max-w-2xl">
+            Tachyon is an AI-ready data foundation — not just a data tool.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-6">
+            {techStack.map((tech) => (
+              <Tag>{tech}</Tag>
+            ))}
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 mt-8">
+            <Button variant="primary" size="lg" href="/contact">Book a Tachyon Walkthrough</Button>
+            <Button variant="outline" size="lg" href="/data-platforms">View Data Platforms</Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Problem -->
+  <Section background="elevated">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <ScrollReveal>
+          <SectionHeading
+            badge="THE PROBLEM"
+            heading="Multi-Source Ingestion Is Hard"
+          />
+          <p class="text-body-lg text-content-secondary mt-6">
+            Organisations struggle with data scattered across dozens of sources — each with different formats, protocols, and update frequencies. Traditional ETL tools force you into rigid pipelines that break when sources change.
+          </p>
+          <p class="text-body-md text-content-secondary mt-4">
+            Tachyon solves this with a flexible ingestion multiplexer that adapts to your sources, transforms data at the point of entry, and delivers structured, AI-ready outputs to your lakehouse or warehouse.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <GlassCard padding="lg">
+            <h3 class="text-heading-sm font-semibold mb-4">How Tachyon Works</h3>
+            <div class="space-y-4">
+              {[
+                { step: '01', label: 'Connect', desc: 'Plug into any data source with pre-built or custom connectors' },
+                { step: '02', label: 'Transform', desc: 'Apply schema mapping, validation, and enrichment at ingestion' },
+                { step: '03', label: 'Route', desc: 'Distribute processed data to the right destinations automatically' },
+                { step: '04', label: 'Monitor', desc: 'Track pipeline health, data quality, and throughput in real-time' },
+              ].map((item) => (
+                <div class="flex items-start gap-4">
+                  <div class="w-8 h-8 rounded-full bg-surface-elevated flex items-center justify-center text-content-inverse font-bold text-body-sm shrink-0">
+                    {item.step}
+                  </div>
+                  <div>
+                    <h4 class="text-body-md font-semibold">{item.label}</h4>
+                    <p class="text-body-sm text-content-secondary">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </GlassCard>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Capabilities -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="CAPABILITIES"
+          heading="What Tachyon Delivers"
+          description="A complete ingestion and processing platform, not a collection of disconnected tools."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        {capabilities.map((cap, index) => (
+          <ScrollReveal delay={index * 100}>
+            <ServiceCard {...cap} />
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Architecture Diagram -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="ARCHITECTURE"
+          heading="Tachyon Architecture"
+          description="A layered, cloud-agnostic architecture designed for flexibility, scale, and observability."
+        />
+      </ScrollReveal>
+      <ScrollReveal delay={200}>
+        <img
+          src="/images/diagrams/tachyon-architecture.svg"
+          alt="Tachyon Architecture — ingestion multiplexer with connectors, transform layer, routing engine, and observability"
+          width="1200"
+          height="600"
+          class="mt-12 w-full h-auto rounded-card"
+          loading="lazy"
+        />
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Use Cases -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="USE CASES"
+          heading="Built For Real Workloads"
+          description="Tachyon powers production data pipelines across industries and use cases."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+        {useCases.map((useCase, index) => (
+          <ScrollReveal delay={index * 100}>
+            <GlassCard hover padding="lg" class="h-full">
+              <h3 class="text-heading-xs font-semibold mb-3">{useCase.title}</h3>
+              <p class="text-body-md text-content-secondary">{useCase.description}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Deployment -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <SectionHeading
+              badge="DEPLOYMENT"
+              heading="Run Anywhere"
+              description="Tachyon is cloud-agnostic by design. Deploy on the infrastructure that fits your requirements."
+            />
+            <div class="mt-8">
+              <FeatureList items={[
+                'AWS, Azure, GCP — any major cloud provider',
+                'IONOS — European sovereign cloud infrastructure',
+                'On-premise — for regulated environments',
+                'Hybrid — split workloads across cloud and on-prem',
+                'Kubernetes-native — container-first deployment model',
+              ]} />
+            </div>
+          </div>
+          <GlassCard padding="lg">
+            <h3 class="text-heading-sm font-semibold mb-4">Open-Source Foundation</h3>
+            <p class="text-body-md text-content-secondary mb-6">
+              Tachyon is built on proven open-source technologies. No vendor lock-in, no proprietary formats, full transparency.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {techStack.map((tech) => (
+                <span class="px-3 py-1.5 rounded-badge bg-glow-steel/20 text-content text-body-sm font-medium">{tech}</span>
+              ))}
+            </div>
+          </GlassCard>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Bottom CTA -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <div class="text-center">
+          <SectionHeading
+            align="center"
+            heading="See Tachyon in Action"
+            description="Book a walkthrough and see how Tachyon can power your data infrastructure."
+          />
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg" href="/contact">Book a Tachyon Walkthrough</Button>
+            <Button variant="outline" size="lg" href="/smart-lakehouse-ionos">Explore Smart Lakehouse</Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+</PageLayout>

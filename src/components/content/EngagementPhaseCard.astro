@@ -1,0 +1,70 @@
+---
+import Icon from '@components/ui/Icon.astro';
+
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  icon: string;
+  accentColor: 'blue' | 'purple' | 'green' | 'amber';
+  duration: string;
+  image?: string;
+  class?: string;
+}
+
+const { number, title, description, icon, accentColor, duration, image, class: className } = Astro.props;
+
+const glowClass = `phase-glow-${accentColor}`;
+
+const accentGradients = {
+  blue: 'from-cyan-400/20 to-blue-500/20',
+  purple: 'from-purple-400/20 to-indigo-500/20',
+  green: 'from-emerald-400/20 to-teal-500/20',
+  amber: 'from-amber-400/20 to-orange-500/20',
+};
+
+const accentBorderColors = {
+  blue: 'rgba(100, 200, 255, 0.3)',
+  purple: 'rgba(160, 100, 255, 0.3)',
+  green: 'rgba(80, 220, 180, 0.3)',
+  amber: 'rgba(255, 180, 60, 0.3)',
+};
+---
+
+<div class:list={['glass-card-hover p-6 lg:p-8 relative', glowClass, className]}>
+  {/* Watermark number */}
+  <div class="absolute top-4 right-6 text-[120px] font-bold leading-none text-content/[0.03] pointer-events-none select-none z-0">
+    {number}
+  </div>
+
+  <div class="relative z-10">
+    {/* Icon in gradient circle */}
+    <div class:list={['w-12 h-12 rounded-xl bg-gradient-to-br flex items-center justify-center mb-5', accentGradients[accentColor]]}>
+      <Icon name={icon} size={22} class="text-content" />
+    </div>
+
+    {/* Title */}
+    <h3 class="text-heading-sm font-semibold mb-3">{title}</h3>
+
+    {/* Description */}
+    <p class="text-body-md text-content-secondary mb-5">{description}</p>
+
+    {/* Optional image area */}
+    {image && (
+      <div class="mb-5 rounded-lg overflow-hidden bg-surface/50">
+        <img src={image} alt={`${title} phase illustration`} class="w-full h-32 object-cover theme-image" loading="lazy" />
+      </div>
+    )}
+
+    {/* Duration pill */}
+    <span
+      class="inline-flex items-center gap-1.5 px-3 py-1 text-label-md rounded-full border text-content-muted"
+      style={`border-color: ${accentBorderColors[accentColor]};`}
+    >
+      <svg width="8" height="8" viewBox="0 0 16 16" fill="currentColor" class="opacity-60" aria-hidden="true">
+        <circle cx="8" cy="8" r="4" />
+      </svg>
+      {duration}
+    </span>
+  </div>
+</div>

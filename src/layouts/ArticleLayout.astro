@@ -1,0 +1,87 @@
+---
+import Layout from './Layout.astro';
+import Header from '@components/global/Header.astro';
+import Footer from '@components/global/Footer.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import Badge from '@components/ui/Badge.astro';
+import Button from '@components/ui/Button.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  excerpt?: string;
+  author?: string;
+  publishDate?: Date;
+  updatedDate?: Date;
+  category?: string;
+  tags?: string[];
+}
+
+const { title, description, excerpt, author, publishDate, updatedDate, category, tags = [] } = Astro.props;
+
+const formattedDate = publishDate
+  ? new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(publishDate))
+  : '';
+---
+
+<Layout title={title} description={description || excerpt}>
+  <Header />
+  <main id="main-content">
+    <!-- Article Header -->
+    <Section class="pt-32 pb-8">
+      <Container size="narrow">
+        <div class="mb-6">
+          {category && <Badge variant="accent">{category}</Badge>}
+        </div>
+        <h1 class="text-display-md lg:text-display-lg font-display mb-6">{title}</h1>
+        {excerpt && <p class="text-body-lg text-content-secondary mb-8">{excerpt}</p>}
+        <div class="flex items-center gap-4 text-body-sm text-content-muted border-b border-surface-border pb-8">
+          {author && (
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full bg-glow-steel/20 flex items-center justify-center">
+                <span class="text-content text-xs font-bold">{author.charAt(0)}</span>
+              </div>
+              <span>{author}</span>
+            </div>
+          )}
+          {formattedDate && <span>{formattedDate}</span>}
+          {tags.length > 0 && (
+            <div class="flex gap-2 ml-auto">
+              {tags.slice(0, 3).map((tag) => (
+                <span class="px-2 py-0.5 rounded bg-tint/5 text-xs">{tag}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      </Container>
+    </Section>
+
+    <!-- Article Body -->
+    <Section padding="sm">
+      <Container size="narrow">
+        <article class="prose prose-invert prose-lg max-w-none prose-headings:font-display prose-headings:font-semibold prose-h2:text-heading-lg prose-h3:text-heading-md prose-p:text-content-secondary prose-a:text-content prose-a:no-underline hover:prose-a:underline prose-strong:text-content prose-li:text-content-secondary prose-blockquote:border-surface-border prose-blockquote:text-content-secondary">
+          <slot />
+        </article>
+      </Container>
+    </Section>
+
+    <!-- Inline CTA -->
+    <Section padding="sm">
+      <Container size="narrow">
+        <GlassCard padding="lg" class="text-center">
+          <h3 class="text-heading-sm font-semibold mb-2">Ready to Take the Next Step?</h3>
+          <p class="text-body-md text-content-secondary mb-6">
+            Assess your AI readiness or discuss your data platform requirements with our team.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="md" href="/ai-readiness-assessment">Take the Assessment</Button>
+            <Button variant="outline" size="md" href="/contact">Get in Touch</Button>
+          </div>
+        </GlassCard>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</Layout>

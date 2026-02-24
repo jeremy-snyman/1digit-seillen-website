@@ -1,0 +1,18 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  class?: string;
+}
+
+const { title = 'Architecture Diagram', description = 'Diagram coming soon — SVG-ready component', class: className } = Astro.props;
+---
+
+<div class:list={['border-2 border-dashed border-surface-border rounded-card p-12 flex flex-col items-center justify-center text-center', className]}>
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-content-muted mb-4">
+    <rect x="3" y="3" width="18" height="18" rx="2" />
+    <path d="M3 9h18M9 3v18" />
+  </svg>
+  <p class="text-heading-xs font-semibold text-content-muted">{title}</p>
+  <p class="text-body-sm text-content-muted mt-1">{description}</p>
+</div>

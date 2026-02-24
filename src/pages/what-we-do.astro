@@ -1,0 +1,203 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import PillarCard from '@components/content/PillarCard.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+import { pillars, valueProps } from '@content/data/services';
+
+const title = 'What We Do';
+const description = 'We help organisations design and deliver AI systems that are structured, secure, and commercially viable.';
+---
+
+<PageLayout title={title} description={description}>
+  <!-- Hero -->
+  <Section class="pt-32 pb-16 relative overflow-hidden">
+    <!-- Hero background image -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 hero-bg-image" style="background: url('/images/what-we-do/hero-bg.jpeg') center/cover no-repeat;"></div>
+      <div class="absolute inset-0" style="background: rgb(var(--color-surface) / 0.55);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgb(var(--color-surface)) 0%, transparent 30%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(to top, rgb(var(--color-surface)) 0%, transparent 40%);"></div>
+    </div>
+    <Container class="relative z-10">
+      <ScrollReveal>
+        <div class="max-w-3xl">
+          <Badge variant="accent">CAPABILITIES</Badge>
+          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+            Capabilities That Drive AI Success
+          </h1>
+          <p class="text-body-lg text-content-secondary max-w-2xl">
+            {description}
+          </p>
+          <p class="text-body-md text-content-muted mt-4 max-w-2xl">
+            Written for decision-makers first. Technical depth available on demand.
+          </p>
+
+          <!-- Pillar Anchor Nav -->
+          <div class="flex flex-wrap gap-3 mt-8">
+            {pillars.map((pillar) => (
+              <a
+                href={`#${pillar.id}`}
+                class="inline-flex items-center gap-2 px-4 py-2 bg-tint/5 border border-surface-border rounded-badge
+                       text-body-sm text-content-secondary hover:text-content hover:border-glow-steel/30 hover:bg-tint/10
+                       transition-all"
+              >
+                <span class="text-glow-blue font-semibold">{pillar.number}</span>
+                <span>{pillar.title.split(' ').slice(0, 2).join(' ')}</span>
+              </a>
+            ))}
+          </div>
+
+          <!-- Primary CTA -->
+          <div class="mt-8">
+            <Button variant="primary" size="lg" href="/ai-readiness-assessment">Assess Your AI Readiness</Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Positioning Statement -->
+  <Section class="relative overflow-hidden">
+    <img
+      src="/images/what-we-do/positioning-accent.png"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover opacity-[0.04] pointer-events-none select-none theme-image"
+      loading="lazy"
+    />
+    <Container class="relative">
+      <ScrollReveal>
+        <div class="text-center max-w-4xl mx-auto">
+          <Badge>OUR COMMITMENT</Badge>
+          <p class="text-display-md font-display mt-6 text-content-secondary leading-relaxed">
+            We don't just advise on AI — we
+            <strong class="text-content">architect, build,</strong> and
+            <strong class="text-content">govern</strong> the systems that make it work.
+          </p>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Why 1digit -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="WHY 1DIGIT"
+          heading="Built for Real Results"
+          description="Everything you need to move from AI ambition to AI in production."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+        {valueProps.map((prop, i) => (
+          <ScrollReveal delay={i * 100}>
+            <GlassCard padding="lg" class="h-full">
+              <div class="w-12 h-12 rounded-xl bg-surface-subtle flex items-center justify-center mb-4">
+                <Icon name={prop.icon} size={24} class="text-glow-blue" />
+              </div>
+              <h3 class="text-heading-md font-semibold mb-3">{prop.title}</h3>
+              <p class="text-body-md text-content-secondary">{prop.description}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Pillar Overview Grid -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="CAPABILITIES"
+          heading="What We Deliver"
+          description="Four pillars that take you from assessment through to governed, production-ready AI."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+        {pillars.map((pillar, i) => (
+          <ScrollReveal delay={i * 100}>
+            <a href={`#${pillar.id}`} class="block h-full">
+              <GlassCard hover padding="lg" class="h-full group relative overflow-hidden">
+                <div class="absolute top-0 right-0 text-[100px] font-display font-bold
+                            text-tint/[0.03] leading-none select-none pointer-events-none">
+                  {pillar.number}
+                </div>
+                {pillar.thumbnail && (
+                  <img
+                    src={pillar.thumbnail}
+                    alt=""
+                    class="absolute -bottom-4 -right-4 w-28 h-28 opacity-15 select-none pointer-events-none pillar-thumb"
+                    loading="lazy"
+                  />
+                )}
+                <div class="relative">
+                  <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-surface-subtle flex items-center justify-center">
+                      <Icon name={pillar.icon} size={20} class="text-glow-blue" />
+                    </div>
+                    <span class="text-label-md text-glow-blue uppercase">{pillar.number}</span>
+                  </div>
+                  <h3 class="text-heading-md font-semibold mb-2">{pillar.title}</h3>
+                  <p class="text-body-sm text-content-secondary mb-4 line-clamp-2">{pillar.problem}</p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {pillar.outcomes.map((o) => (
+                      <span class="px-2 py-0.5 rounded-badge bg-glow-steel/10 text-glow-blue text-xs">{o}</span>
+                    ))}
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-body-sm text-content-muted">{pillar.timeframe}</span>
+                    <span class="text-body-sm text-content group-hover:text-glow-blue transition-colors
+                                 inline-flex items-center gap-1">
+                      Learn more <Icon name="chevron-right" size={14} />
+                    </span>
+                  </div>
+                </div>
+              </GlassCard>
+            </a>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Pillar Details -->
+  {pillars.map((pillar, index) => (
+    <Section background={index % 2 === 0 ? 'default' : 'elevated'} id={pillar.id}>
+      <Container>
+        <ScrollReveal delay={100}>
+          <PillarCard {...pillar} index={index} />
+        </ScrollReveal>
+      </Container>
+    </Section>
+  ))}
+
+  <!-- Bottom CTA -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <div class="text-center">
+          <SectionHeading
+            align="center"
+            badge="GET STARTED"
+            heading="Not Sure Where to Begin?"
+            description="Our AI Readiness Assessment gives you a clear picture of your current capabilities and a prioritised roadmap forward."
+          />
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg" href="/ai-readiness-assessment">Take the Assessment</Button>
+            <Button variant="outline" size="lg" href="/contact">Book a Scoping Call</Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+</PageLayout>

@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import Badge from '@components/ui/Badge.astro';
+import ArticleCard from '@components/insights/ArticleCard.astro';
+import ArticleGrid from '@components/insights/ArticleGrid.astro';
+import TagFilter from '@components/insights/TagFilter.astro';
+
+export const prerender = false;
+
+const allArticles = await getCollection('insights');
+const publishedArticles = allArticles
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
+
+const url = Astro.url;
+const activeTag = url.searchParams.get('tag') || undefined;
+
+const filteredArticles = activeTag
+  ? publishedArticles.filter((a) => a.data.tags.includes(activeTag) || a.data.category === activeTag)
+  : publishedArticles;
+
+const allTags = [...new Set(publishedArticles.flatMap((a) => [a.data.category, ...a.data.tags]))].sort();
+
+const title = 'Insights';
+const description = 'Articles on data strategy, AI readiness, governance, and cost-efficient cloud architecture.';
+---
+
+<PageLayout title={title} description={description}>
+  <Section class="pt-32 pb-16">
+    <Container>
+      <ScrollReveal>
+        <Badge variant="accent">INSIGHTS</Badge>
+        <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+          Insights & <em class="font-serif italic">Articles</em>
+        </h1>
+        <p class="text-body-lg text-content-secondary max-w-2xl mb-8">
+          {description}
+        </p>
+        <TagFilter tags={allTags} activeTag={activeTag} />
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <Section background="elevated">
+    <Container>
+      {filteredArticles.length > 0 ? (
+        <ArticleGrid>
+          {filteredArticles.map((article) => (
+            <ScrollReveal>
+              <ArticleCard
+                title={article.data.title}
+                excerpt={article.data.excerpt}
+                slug={article.id}
+                publishDate={article.data.publishDate}
+                category={article.data.category}
+                tags={article.data.tags}
+                author={article.data.author}
+                ogImage={article.data.ogImage}
+              />
+            </ScrollReveal>
+          ))}
+        </ArticleGrid>
+      ) : (
+        <div class="text-center py-16">
+          <p class="text-body-lg text-content-muted">No articles found for this filter.</p>
+        </div>
+      )}
+    </Container>
+  </Section>
+</PageLayout>

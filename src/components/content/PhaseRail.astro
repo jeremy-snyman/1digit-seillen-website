@@ -1,0 +1,61 @@
+---
+interface Props {
+  phases: { number: string; title: string }[];
+  class?: string;
+}
+
+const { phases, class: className } = Astro.props;
+---
+
+<div class:list={['phase-rail', className]}>
+  <div class="flex flex-col md:flex-row items-start md:items-center gap-0">
+    {phases.map((phase, i) => (
+      <div class="flex flex-col md:flex-row items-center gap-0">
+        {/* Node */}
+        <div class="flex items-center gap-3 md:gap-2 z-10">
+          <div class="w-10 h-10 rounded-full bg-surface-elevated border border-surface-border/[var(--alpha-surface-border)] flex items-center justify-center text-content font-bold text-body-sm shrink-0">
+            {phase.number}
+          </div>
+          <span class="text-body-sm font-medium text-content-secondary whitespace-nowrap">{phase.title}</span>
+        </div>
+
+        {/* Connector */}
+        {i < phases.length - 1 && (
+          <div class="rail-connector hidden md:block w-12 lg:w-20 h-0.5 mx-2 shrink-0"></div>
+        )}
+        {i < phases.length - 1 && (
+          <div class="rail-connector-v block md:hidden w-0.5 h-8 my-1 ml-5 shrink-0"></div>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .rail-connector {
+    background: linear-gradient(
+      90deg,
+      rgb(var(--color-glow-steel) / 0.1),
+      rgb(var(--color-glow-blue) / 0.5),
+      rgb(var(--color-glow-steel) / 0.1)
+    );
+    background-size: 200% 100%;
+    animation: rail-flow 4s ease-in-out infinite;
+  }
+
+  .rail-connector-v {
+    background: linear-gradient(
+      180deg,
+      rgb(var(--color-glow-steel) / 0.1),
+      rgb(var(--color-glow-blue) / 0.5),
+      rgb(var(--color-glow-steel) / 0.1)
+    );
+    background-size: 100% 200%;
+    animation: rail-flow-v 4s ease-in-out infinite;
+  }
+
+  @keyframes rail-flow-v {
+    0% { background-position: 0 200%; }
+    100% { background-position: 0 -200%; }
+  }
+</style>

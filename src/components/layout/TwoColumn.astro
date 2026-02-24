@@ -1,0 +1,35 @@
+---
+interface Props {
+  reversed?: boolean;
+  ratio?: '1:1' | '2:1' | '1:2' | '3:2' | '2:3';
+  gap?: 'sm' | 'md' | 'lg';
+  align?: 'start' | 'center' | 'stretch';
+  class?: string;
+}
+
+const { reversed = false, ratio = '1:1', gap = 'lg', align = 'start', class: className } = Astro.props;
+
+const ratioClasses: Record<string, string> = {
+  '1:1': 'lg:grid-cols-2',
+  '2:1': 'lg:grid-cols-[2fr_1fr]',
+  '1:2': 'lg:grid-cols-[1fr_2fr]',
+  '3:2': 'lg:grid-cols-[3fr_2fr]',
+  '2:3': 'lg:grid-cols-[2fr_3fr]',
+};
+
+const gapClasses = { sm: 'gap-8', md: 'gap-12', lg: 'gap-16' };
+const alignClasses = { start: 'items-start', center: 'items-center', stretch: 'items-stretch' };
+---
+
+<div class:list={['grid grid-cols-1', ratioClasses[ratio], gapClasses[gap], alignClasses[align], reversed && 'direction-reverse', className]}>
+  <slot />
+</div>
+
+<style>
+  .direction-reverse > :global(:first-child) {
+    @apply lg:order-2;
+  }
+  .direction-reverse > :global(:last-child) {
+    @apply lg:order-1;
+  }
+</style>

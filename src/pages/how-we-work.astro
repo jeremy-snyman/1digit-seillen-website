@@ -1,0 +1,348 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import FeatureList from '@components/content/FeatureList.astro';
+import PhaseRail from '@components/content/PhaseRail.astro';
+import PhaseCard from '@components/content/PhaseCard.astro';
+import WeekStrip from '@components/content/WeekStrip.astro';
+import MilestoneGates from '@components/content/MilestoneGates.astro';
+import {
+  processSteps,
+  commercialCheckpoints,
+  weekCadence,
+  partnershipInputs,
+  definitionOfDone,
+} from '@content/data/services';
+
+const title = 'How We Work';
+const description = 'Four phases. Clear gates. No chaos.';
+
+const phaseRailItems = processSteps.map((s) => ({ number: s.number, title: s.title }));
+const milestoneGates = processSteps.map((s) => s.gate);
+const phaseNames = processSteps.map((s) => s.title);
+---
+
+<PageLayout title={title} description={description}>
+
+  {/* ── Section 1: Hero ── */}
+  <Section class="pt-32 pb-16 relative overflow-hidden">
+    {/* Ambient glow */}
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-[600px] h-[300px] bg-glow-steel/20 rounded-full blur-[120px]"></div>
+    </div>
+
+    <Container class="relative">
+      <ScrollReveal>
+        <div class="max-w-3xl">
+          <Badge variant="accent">OUR PROCESS</Badge>
+          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+            Structured. Transparent. Modular.
+          </h1>
+          <p class="text-body-lg text-content-secondary max-w-2xl mb-8">
+            {description}
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={100}>
+        <PhaseRail phases={phaseRailItems} class="mb-8" />
+      </ScrollReveal>
+
+      <ScrollReveal delay={200}>
+        <p class="text-body-md text-content-muted max-w-2xl">
+          Each phase can be commissioned independently. Engage at the stage you need.
+        </p>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  {/* ── Section 2: Lifecycle Phases ── */}
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="ENGAGEMENT LIFECYCLE"
+          heading="Four Phases. Clear Outcomes."
+          description="Each phase is self-contained with defined deliverables. Commission one, or all four."
+        />
+      </ScrollReveal>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-12">
+        {processSteps.map((step, i) => (
+          <ScrollReveal delay={i * 100}>
+            <PhaseCard
+              number={step.number}
+              title={step.title}
+              description={step.description}
+              details={step.details}
+              icon={step.icon}
+              accentColor={step.accentColor}
+              image={step.image}
+              class="h-full"
+            />
+          </ScrollReveal>
+        ))}
+      </div>
+
+      {/* SVG dashed connectors between cards (desktop only) */}
+      <svg class="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0" aria-hidden="true">
+        <line x1="50%" y1="35%" x2="50%" y2="65%" stroke="rgb(var(--color-glow-steel))" stroke-width="1" stroke-dasharray="6 6" opacity="0.15" style="--line-length: 200;" />
+      </svg>
+    </Container>
+  </Section>
+
+  {/* ── Section 3: Flexibility Diagram ── */}
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <Badge variant="accent">MODULAR FRAMEWORK</Badge>
+          <h2 class="text-display-md lg:text-display-lg mt-4 mb-4">Start Where You Are</h2>
+          <p class="text-body-lg text-content-secondary">
+            You don't need to begin at Phase 1. Our modular framework lets you engage at the stage that matches your situation.
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={100}>
+        {/* Desktop: horizontal rail with entry arrows */}
+        <div class="hidden md:block">
+          <svg viewBox="0 0 800 200" class="w-full max-w-4xl mx-auto" aria-label="Modular engagement diagram showing four phases with multiple entry points">
+            {/* Phase blocks */}
+            <rect x="20" y="70" width="160" height="60" rx="8" fill="none" stroke="rgb(var(--color-glow-steel))" stroke-width="1" opacity="0.3" />
+            <text x="100" y="105" text-anchor="middle" fill="rgb(var(--color-content))" font-size="14" font-weight="600">Diagnose</text>
+
+            <rect x="220" y="70" width="160" height="60" rx="8" fill="none" stroke="rgb(var(--color-glow-steel))" stroke-width="1" opacity="0.3" />
+            <text x="300" y="105" text-anchor="middle" fill="rgb(var(--color-content))" font-size="14" font-weight="600">Architect</text>
+
+            <rect x="420" y="70" width="160" height="60" rx="8" fill="none" stroke="rgb(var(--color-glow-steel))" stroke-width="1" opacity="0.3" />
+            <text x="500" y="105" text-anchor="middle" fill="rgb(var(--color-content))" font-size="14" font-weight="600">Build</text>
+
+            <rect x="620" y="70" width="160" height="60" rx="8" fill="none" stroke="rgb(var(--color-glow-steel))" stroke-width="1" opacity="0.3" />
+            <text x="700" y="105" text-anchor="middle" fill="rgb(var(--color-content))" font-size="14" font-weight="600">Optimise</text>
+
+            {/* Connectors between blocks */}
+            <line x1="180" y1="100" x2="220" y2="100" stroke="rgb(var(--color-glow-steel))" stroke-width="1" opacity="0.2" />
+            <line x1="380" y1="100" x2="420" y2="100" stroke="rgb(var(--color-glow-steel))" stroke-width="1" opacity="0.2" />
+            <line x1="580" y1="100" x2="620" y2="100" stroke="rgb(var(--color-glow-steel))" stroke-width="1" opacity="0.2" />
+
+            {/* Entry arrows */}
+            <line x1="100" y1="30" x2="100" y2="65" stroke="#64C8FF" stroke-width="1.5" opacity="0.5" marker-end="url(#arrowBlue)" />
+            <text x="100" y="20" text-anchor="middle" fill="rgb(var(--color-content-muted))" font-size="11">Start from scratch</text>
+
+            <line x1="300" y1="30" x2="300" y2="65" stroke="#A064FF" stroke-width="1.5" opacity="0.5" marker-end="url(#arrowPurple)" />
+            <text x="300" y="20" text-anchor="middle" fill="rgb(var(--color-content-muted))" font-size="11">Have a diagnosis</text>
+
+            <line x1="500" y1="30" x2="500" y2="65" stroke="#50DCB4" stroke-width="1.5" opacity="0.5" marker-end="url(#arrowGreen)" />
+            <text x="500" y="20" text-anchor="middle" fill="rgb(var(--color-content-muted))" font-size="11">Need build support</text>
+
+            <line x1="700" y1="30" x2="700" y2="65" stroke="#FFB43C" stroke-width="1.5" opacity="0.5" marker-end="url(#arrowAmber)" />
+            <text x="700" y="20" text-anchor="middle" fill="rgb(var(--color-content-muted))" font-size="11">Optimise existing</text>
+
+            {/* Arrow markers */}
+            <defs>
+              <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8" fill="none" stroke="#64C8FF" stroke-width="1.5" />
+              </marker>
+              <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8" fill="none" stroke="#A064FF" stroke-width="1.5" />
+              </marker>
+              <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8" fill="none" stroke="#50DCB4" stroke-width="1.5" />
+              </marker>
+              <marker id="arrowAmber" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8" fill="none" stroke="#FFB43C" stroke-width="1.5" />
+              </marker>
+            </defs>
+          </svg>
+        </div>
+
+        {/* Mobile: vertical rail */}
+        <div class="block md:hidden space-y-4">
+          {[
+            { label: 'Start from scratch', phase: 'Diagnose', color: '#64C8FF' },
+            { label: 'Have a diagnosis', phase: 'Architect', color: '#A064FF' },
+            { label: 'Need build support', phase: 'Build', color: '#50DCB4' },
+            { label: 'Optimise existing', phase: 'Optimise', color: '#FFB43C' },
+          ].map((item) => (
+            <div class="flex items-center gap-4">
+              <div class="w-2 h-2 rounded-full shrink-0" style={`background: ${item.color};`}></div>
+              <div>
+                <span class="text-label-md text-content-muted block">{item.label}</span>
+                <span class="text-body-md font-semibold text-content">{item.phase}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={200}>
+        <p class="text-body-md text-content-secondary text-center max-w-2xl mx-auto mt-10">
+          Whether you need end-to-end delivery or a single diagnostic sprint, our modular framework adapts to where you are.
+        </p>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  {/* ── Section 4: Weekly Cadence ── */}
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="WEEKLY CADENCE"
+          heading="What a Typical Week Looks Like"
+          description="Lightweight, structured delivery rhythm that keeps stakeholders informed without creating overhead."
+        />
+      </ScrollReveal>
+      <ScrollReveal delay={100}>
+        <div class="mt-12">
+          <WeekStrip waypoints={weekCadence} />
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  {/* ── Section 5: How We Partner ── */}
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <SectionHeading
+            align="center"
+            badge="PARTNERSHIP"
+            heading="How We Partner"
+            description="Successful engagements require partnership. Here is what each side brings."
+          />
+        </div>
+      </ScrollReveal>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <ScrollReveal delay={100}>
+          <GlassCard hover padding="lg" class="h-full">
+            <h3 class="text-heading-sm font-semibold mb-5">Your Inputs</h3>
+            <FeatureList items={partnershipInputs.client} />
+          </GlassCard>
+        </ScrollReveal>
+
+        <ScrollReveal delay={200}>
+          <GlassCard hover padding="lg" class="h-full">
+            <h3 class="text-heading-sm font-semibold mb-5">Our Commitment</h3>
+            <FeatureList items={partnershipInputs.ours} />
+          </GlassCard>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ── Section 6: Milestone Gates ── */}
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="QUALITY GATES"
+          heading="Milestone Gates"
+          description="Formal checkpoints between phases. Nothing proceeds without stakeholder approval."
+        />
+      </ScrollReveal>
+      <ScrollReveal delay={100}>
+        <div class="mt-12">
+          <MilestoneGates gates={milestoneGates} phases={phaseNames} />
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  {/* ── Section 7: Commercial Checkpoints ── */}
+  <Section>
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <ScrollReveal>
+          <SectionHeading
+            badge="COMMERCIAL MODEL"
+            heading="Transparent Commercial Checkpoints"
+            description="No surprises. Payment milestones are tied to visible deliverables and stakeholder sign-off."
+          />
+        </ScrollReveal>
+
+        <ScrollReveal delay={100}>
+          <GlassCard padding="lg">
+            <div class="space-y-5">
+              {commercialCheckpoints.map((cp) => (
+                <div class="flex items-start gap-4">
+                  <div class="w-8 h-8 rounded-full bg-surface-elevated flex items-center justify-center text-content-inverse font-bold text-body-xs shrink-0">
+                    {cp.number}
+                  </div>
+                  <div>
+                    <h3 class="text-body-md font-semibold mb-0.5">{cp.title}</h3>
+                    <p class="text-body-sm text-content-secondary">{cp.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </GlassCard>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ── Section 8: Definition of Done ── */}
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <div class="text-center max-w-3xl mx-auto">
+          <SectionHeading
+            align="center"
+            badge="DEFINITION OF DONE"
+            heading="What Done Looks Like"
+            description="Every engagement has a defined endpoint. Here is what completion means."
+          />
+        </div>
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        {definitionOfDone.map((item, i) => (
+          <ScrollReveal delay={i * 100}>
+            <GlassCard hover padding="md" class="text-center h-full">
+              <div class="w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center font-bold text-body-md border-2 border-glow-steel/30 bg-surface-elevated text-content">
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <h3 class="text-heading-xs font-semibold mb-2">{item.title}</h3>
+              <p class="text-body-sm text-content-secondary">{item.description}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* ── Section 9: Bottom CTA ── */}
+  <Section class="relative overflow-hidden">
+    {/* Ambient glow */}
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-[600px] h-[300px] bg-glow-steel/20 rounded-full blur-[120px]"></div>
+    </div>
+
+    <Container class="relative">
+      <ScrollReveal>
+        <div class="text-center">
+          <SectionHeading
+            align="center"
+            heading="Ready to discuss scope?"
+            description="Book a 30-minute scoping call. We'll map your situation to our process and tell you exactly where to start."
+          />
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg" href="/contact">Book a Scoping Discussion</Button>
+            <Button variant="outline" size="lg" href="/how-we-price">View Pricing</Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+</PageLayout>

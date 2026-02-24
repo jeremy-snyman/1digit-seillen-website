@@ -1,0 +1,43 @@
+---
+import Icon from '@components/ui/Icon.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  details: string[];
+  icon: string;
+}
+
+const { number, title, description, details, icon } = Astro.props;
+---
+
+<div class="relative lg:pl-16">
+  <div class="absolute left-0 top-0 hidden lg:flex w-12 h-12 rounded-full bg-surface-elevated items-center justify-center text-content-inverse font-bold text-body-md z-10">
+    {number}
+  </div>
+
+  <GlassCard hover padding="lg">
+    <div class="flex items-start gap-4">
+      <div class="lg:hidden w-10 h-10 rounded-full bg-surface-elevated flex items-center justify-center text-content-inverse font-bold text-body-sm shrink-0">
+        {number}
+      </div>
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-3">
+          <Icon name={icon} size={20} class="text-glow-blue" />
+          <h3 class="text-heading-sm font-semibold">{title}</h3>
+        </div>
+        <p class="text-body-md text-content-secondary mb-4">{description}</p>
+        <div class="grid grid-cols-2 gap-2">
+          {details.map((detail) => (
+            <div class="flex items-center gap-2 text-body-sm text-content-muted">
+              <Icon name="check" size={14} class="text-glow-blue shrink-0" />
+              <span>{detail}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </GlassCard>
+</div>

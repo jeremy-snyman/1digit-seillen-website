@@ -1,0 +1,185 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import FeatureList from '@components/content/FeatureList.astro';
+
+const title = 'Trust & Security';
+const description = 'Security, governance, and compliance are not afterthoughts — they are embedded into everything we build.';
+
+const securityPillars = [
+  {
+    title: 'Secure SDLC',
+    icon: 'shield',
+    description: 'Security is integrated into every phase of the software development lifecycle — from architecture through to deployment and monitoring.',
+    items: [
+      'Architecture review checkpoints at every phase',
+      'Threat modelling exercises before implementation',
+      'Data classification and sensitivity mapping',
+      'Role-based access design from day one',
+      'CI/CD guardrails and automated security scanning',
+      'AI evaluation and validation frameworks',
+      'Logging and observability by design',
+    ],
+  },
+  {
+    title: 'Data Privacy',
+    icon: 'lock',
+    description: 'We design for privacy by default, with GDPR and POPIA awareness embedded into data architecture decisions.',
+    items: [
+      'Data minimisation principles',
+      'Consent management integration',
+      'Right to erasure and data portability support',
+      'Privacy impact assessments',
+      'Data processing agreements',
+      'Cross-border data transfer awareness',
+    ],
+  },
+  {
+    title: 'Governance & Auditability',
+    icon: 'chart',
+    description: 'AI systems require governance that scales. We build frameworks that provide oversight without creating bottlenecks.',
+    items: [
+      'Model governance and version control',
+      'Decision audit trails',
+      'Bias detection and mitigation',
+      'Performance monitoring and drift detection',
+      'Stakeholder reporting and dashboards',
+      'Policy compliance automation',
+    ],
+  },
+  {
+    title: 'AI Risk Mitigation',
+    icon: 'target',
+    description: 'AI introduces unique risks. We address them systematically with proven frameworks and controls.',
+    items: [
+      'Prompt injection prevention',
+      'Data leakage prevention strategies',
+      'Model hallucination monitoring',
+      'RBAC for AI system access',
+      'Output validation and guardrails',
+      'Incident response planning for AI failures',
+    ],
+  },
+];
+
+const complianceBadges = [
+  { title: 'ISO 27001', desc: 'Information security management awareness and alignment' },
+  { title: 'SOC 2', desc: 'Security, availability, and confidentiality awareness' },
+  { title: 'GDPR', desc: 'European data protection regulation compliance' },
+  { title: 'POPIA', desc: 'South African data protection alignment' },
+];
+---
+
+<PageLayout title={title} description={description}>
+  <!-- Hero -->
+  <Section class="pt-32 pb-16">
+    <Container>
+      <ScrollReveal>
+        <div class="max-w-3xl">
+          <Badge variant="accent">TRUST & SECURITY</Badge>
+          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+            Built on Trust. <em class="font-serif italic">Secured by Design.</em>
+          </h1>
+          <p class="text-body-lg text-content-secondary max-w-2xl">
+            {description}
+          </p>
+          <p class="text-body-md text-content-muted mt-4 max-w-2xl">
+            Can you trust us with your data and systems? Here is how we earn that trust.
+          </p>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Security Pillars -->
+  {securityPillars.map((pillar, index) => (
+    <Section background={index % 2 === 0 ? 'elevated' : 'default'}>
+      <Container>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <ScrollReveal>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 rounded-xl bg-glow-steel/20 flex items-center justify-center">
+                <Icon name={pillar.icon} size={24} class="text-content" />
+              </div>
+              <h2 class="text-heading-lg font-semibold">{pillar.title}</h2>
+            </div>
+            <p class="text-body-lg text-content-secondary">{pillar.description}</p>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <GlassCard padding="lg">
+              <FeatureList items={pillar.items} />
+            </GlassCard>
+          </ScrollReveal>
+        </div>
+      </Container>
+    </Section>
+  ))}
+
+  <!-- Compliance -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="COMPLIANCE"
+          heading="Standards Awareness"
+          description="We align our practices with recognised standards and frameworks. Where we claim awareness — not certification — we are transparent about it."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        {complianceBadges.map((badge, i) => (
+          <ScrollReveal delay={i * 100}>
+            <GlassCard hover padding="lg" class="text-center h-full">
+              <div class="w-16 h-16 rounded-full bg-glow-steel/20 mx-auto mb-4 flex items-center justify-center">
+                <Icon name="shield" size={28} class="text-content" />
+              </div>
+              <h3 class="text-heading-sm font-semibold mb-2">{badge.title}</h3>
+              <p class="text-body-sm text-content-secondary">{badge.desc}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- AI-First Engineering note -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <div class="glass-card p-8 lg:p-12 text-center max-w-3xl mx-auto">
+          <Icon name="zap" size={32} class="text-content mx-auto mb-4" />
+          <h3 class="text-heading-md font-semibold mb-4">AI-First Engineering</h3>
+          <p class="text-body-lg text-content-secondary">
+            AI-first engineering is embedded in our SDLC — not bolted on later. Every system we build considers AI governance, model security, and data privacy from the architecture phase.
+          </p>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Bottom CTA -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <div class="text-center">
+          <SectionHeading
+            align="center"
+            heading="Discuss Your Security Requirements"
+            description="Let's talk about how we can meet your security, governance, and compliance needs."
+          />
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg" href="/contact">Book a Security Discussion</Button>
+            <Button variant="outline" size="lg" href="/what-we-do">Explore Our Capabilities</Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+</PageLayout>

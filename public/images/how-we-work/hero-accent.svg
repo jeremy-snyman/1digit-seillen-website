@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" fill="none">
+  <rect width="960" height="320" fill="#04070d"/>
+  <defs>
+    <linearGradient id="hb" x1="0" y1="0.5" x2="1" y2="0.5">
+      <stop offset="0%" stop-color="#64C8FF" stop-opacity="0.15"/>
+      <stop offset="25%" stop-color="#A064FF" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#50DCB4" stop-opacity="0.15"/>
+      <stop offset="75%" stop-color="#FFB43C" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FFB43C" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <rect x="100" y="110" width="160" height="100" rx="8" stroke="#64C8FF" stroke-width="1" fill="none" opacity="0.25"/>
+  <rect x="300" y="110" width="160" height="100" rx="8" stroke="#A064FF" stroke-width="1" fill="none" opacity="0.25"/>
+  <rect x="500" y="110" width="160" height="100" rx="8" stroke="#50DCB4" stroke-width="1" fill="none" opacity="0.25"/>
+  <rect x="700" y="110" width="160" height="100" rx="8" stroke="#FFB43C" stroke-width="1" fill="none" opacity="0.25"/>
+  <line x1="260" y1="160" x2="300" y2="160" stroke="url(#hb)" stroke-width="1.5"/>
+  <line x1="460" y1="160" x2="500" y2="160" stroke="url(#hb)" stroke-width="1.5"/>
+  <line x1="660" y1="160" x2="700" y2="160" stroke="url(#hb)" stroke-width="1.5"/>
+</svg>

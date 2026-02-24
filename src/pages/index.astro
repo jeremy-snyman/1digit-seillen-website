@@ -1,0 +1,37 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import HeroSection from '../components/home/HeroSection.astro';
+import LogoMarquee from '../components/home/LogoMarquee.astro';
+import DataBarrierSection from '../components/home/DataBarrierSection.astro';
+import WhatWeDoSummary from '../components/home/WhatWeDoSummary.astro';
+import TachyonIonosBlock from '../components/home/TachyonIonosBlock.astro';
+import TrustSignals from '../components/home/TrustSignals.astro';
+import OutcomesProof from '../components/home/OutcomesProof.astro';
+import AssessmentCTA from '../components/home/AssessmentCTA.astro';
+import ScrollReveal from '../components/interactive/ScrollReveal.astro';
+---
+
+<PageLayout title="1Digit — AI Architecture & Data Engineering">
+  <HeroSection />
+  <ScrollReveal>
+    <LogoMarquee />
+  </ScrollReveal>
+  <ScrollReveal delay={100}>
+    <DataBarrierSection />
+  </ScrollReveal>
+  <ScrollReveal delay={200}>
+    <WhatWeDoSummary />
+  </ScrollReveal>
+  <ScrollReveal delay={100}>
+    <TachyonIonosBlock />
+  </ScrollReveal>
+  <ScrollReveal delay={200}>
+    <TrustSignals />
+  </ScrollReveal>
+  <ScrollReveal delay={100}>
+    <OutcomesProof />
+  </ScrollReveal>
+  <ScrollReveal delay={200}>
+    <AssessmentCTA />
+  </ScrollReveal>
+</PageLayout>

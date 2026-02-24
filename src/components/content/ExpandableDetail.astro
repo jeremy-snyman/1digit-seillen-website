@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  open?: boolean;
+  class?: string;
+}
+
+const { title, open = false, class: className } = Astro.props;
+---
+
+<details class:list={['group border-b border-surface-border', className]} open={open}>
+  <summary class="flex items-center justify-between cursor-pointer py-4 text-body-md font-medium text-content hover:text-glow-blue transition-colors list-none [&::-webkit-details-marker]:hidden">
+    <span>{title}</span>
+    <span class="ml-4 shrink-0 transition-transform duration-200 group-open:rotate-45">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+    </span>
+  </summary>
+  <div class="pb-4 text-content-secondary">
+    <slot />
+  </div>
+</details>

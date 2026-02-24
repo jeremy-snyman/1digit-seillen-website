@@ -1,0 +1,187 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import ServiceCard from '@components/content/ServiceCard.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import { dataPlatformPillars, dataPatterns } from '@content/data/services';
+
+const title = 'Data Platforms';
+const description = 'We design and deploy scalable data platforms that bring together ingestion, storage, processing, analytics, and AI capability in a unified architecture.';
+---
+
+<PageLayout title={title} description={description}>
+  <!-- Hero -->
+  <Section class="pt-32 pb-16">
+    <Container>
+      <ScrollReveal>
+        <div class="max-w-3xl">
+          <Badge variant="accent">DATA PLATFORMS</Badge>
+          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+            Smart Data Platforms for <em class="font-serif italic">AI-Ready</em> Enterprises
+          </h1>
+          <p class="text-body-lg text-content-secondary max-w-2xl">
+            {description}
+          </p>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Simple Explanation -->
+  <Section background="elevated">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <ScrollReveal>
+          <SectionHeading
+            badge="THE CHALLENGE"
+            heading="Why Data Platforms Matter"
+          />
+          <p class="text-body-lg text-content-secondary mt-6">
+            Most organisations have data spread across dozens of systems — CRMs, ERPs, spreadsheets, third-party APIs, and legacy databases. None of it talks to each other. None of it is AI-ready.
+          </p>
+          <p class="text-body-md text-content-secondary mt-4">
+            A smart data platform brings all of this together into a single, governed, queryable estate. It is the foundation that makes AI possible — not the AI itself, but the infrastructure that makes AI reliable.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <img
+            src="/images/diagrams/data-platform.svg"
+            alt="Data Platform Architecture — ingestion, lakehouse with Trino and Kafka, consumption endpoints, and governance"
+            width="1200"
+            height="600"
+            class="w-full h-auto rounded-card"
+            loading="lazy"
+          />
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 6 Core Pillars -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="CORE PILLARS"
+          heading="Six Pillars of a Smart Data Platform"
+          description="Every platform we build addresses these six interconnected capabilities."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        {dataPlatformPillars.map((pillar, index) => (
+          <ScrollReveal delay={index * 100}>
+            <ServiceCard {...pillar} />
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Patterns -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="INTEGRATION PATTERNS"
+          heading="How Data Gets In"
+          description="We design ingestion patterns matched to your data sources, volume, and latency requirements."
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+        {dataPatterns.map((pattern, index) => (
+          <ScrollReveal delay={index * 100}>
+            <GlassCard hover padding="lg">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-glow-steel/20 flex items-center justify-center shrink-0">
+                  <Icon name="zap" size={18} class="text-content" />
+                </div>
+                <div>
+                  <h3 class="text-heading-xs font-semibold mb-1">{pattern.name}</h3>
+                  <p class="text-body-md text-content-secondary">{pattern.description}</p>
+                </div>
+              </div>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Data Quality -->
+  <Section>
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <ScrollReveal>
+          <SectionHeading
+            badge="DATA QUALITY"
+            heading="Observability & Quality"
+            description="Data quality is not optional — it is the difference between AI that works and AI that generates expensive mistakes."
+          />
+          <div class="mt-8 space-y-4">
+            {[
+              'Schema validation and enforcement',
+              'Data lineage tracking from source to consumption',
+              'Anomaly detection and alerting',
+              'Quality scoring and SLA monitoring',
+              'Automated data profiling',
+            ].map((item) => (
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-glow-steel/20 flex items-center justify-center shrink-0">
+                  <Icon name="check" size={12} class="text-content" />
+                </div>
+                <span class="text-body-md text-content-secondary">{item}</span>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <GlassCard padding="lg">
+            <h3 class="text-heading-sm font-semibold mb-4">Cost Narrative</h3>
+            <p class="text-body-md text-content-secondary mb-4">
+              Cloud data costs should scale with value, not with complexity. Our platform designs prioritise:
+            </p>
+            <div class="space-y-3">
+              {[
+                'Tiered storage with automatic lifecycle management',
+                'Query optimisation to reduce compute spend',
+                'Open formats to avoid vendor lock-in premiums',
+                'Right-sized infrastructure with auto-scaling',
+              ].map((item) => (
+                <div class="flex items-center gap-3">
+                  <Icon name="check" size={16} class="text-content shrink-0" />
+                  <span class="text-body-sm text-content-secondary">{item}</span>
+                </div>
+              ))}
+            </div>
+          </GlassCard>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Bottom CTA -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <div class="text-center">
+          <SectionHeading
+            align="center"
+            heading="Ready to Unify Your Data?"
+            description="Explore our ingestion engine or discuss your data platform requirements."
+          />
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg" href="/tachyon">Explore Tachyon</Button>
+            <Button variant="outline" size="lg" href="/contact">Discuss Your Platform</Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+</PageLayout>

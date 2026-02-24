@@ -1,0 +1,42 @@
+---
+import Layout from './Layout.astro';
+import Logo from '@components/global/Logo.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  noIndex?: boolean;
+  canonicalUrl?: string;
+  type?: 'website' | 'article';
+  publishDate?: string;
+  author?: string;
+}
+
+const props = Astro.props;
+---
+
+<Layout {...props}>
+  <!-- Minimal Campaign Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-surface-border" style="background: rgb(var(--color-surface) / 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+    <div class="max-w-container mx-auto px-6 lg:px-8 flex items-center justify-center h-16 lg:h-20">
+      <Logo size="lg" />
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <!-- Minimal Campaign Footer -->
+  <footer class="border-t border-surface-border py-8">
+    <div class="max-w-container mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-body-xs text-content-muted">
+      <p>&copy; {new Date().getFullYear()} 1Digit. All rights reserved.</p>
+      <nav class="flex items-center gap-6" aria-label="Legal">
+        <a href="/privacy" class="hover:text-content transition-colors">Privacy Policy</a>
+        <a href="/terms" class="hover:text-content transition-colors">Terms of Service</a>
+      </nav>
+    </div>
+  </footer>
+</Layout>

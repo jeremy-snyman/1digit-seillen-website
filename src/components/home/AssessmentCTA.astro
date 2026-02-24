@@ -1,0 +1,29 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import Button from '@components/ui/Button.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+---
+
+<Section class="relative overflow-hidden">
+  <!-- Glow effect background -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+    <div class="w-[600px] h-[300px] bg-glow-steel/20 rounded-full blur-[120px]"></div>
+  </div>
+
+  <Container class="relative">
+    <ScrollReveal>
+      <div class="text-center max-w-3xl mx-auto">
+        <h2 class="text-display-md lg:text-display-lg mb-6">
+          Find out where you stand on <span class="text-content">AI readiness</span>
+        </h2>
+        <p class="text-body-lg text-content-secondary mb-10">
+          Our structured assessment evaluates your organisation across five critical pillars — and gives you a clear roadmap forward.
+        </p>
+        <Button href="/ai-readiness-assessment" variant="primary" size="lg">
+          Take the Assessment
+        </Button>
+      </div>
+    </ScrollReveal>
+  </Container>
+</Section>

@@ -1,0 +1,20 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import AssessmentForm from '@components/forms/AssessmentForm';
+
+const title = 'AI Readiness Assessment';
+const description = 'Evaluate your organisation\'s AI readiness across 5 key pillars. Get instant results with actionable recommendations.';
+---
+
+<PageLayout title={title} description={description}>
+  <Section class="pt-32 pb-16">
+    <Container size="narrow">
+      <ScrollReveal>
+        <AssessmentForm client:visible />
+      </ScrollReveal>
+    </Container>
+  </Section>
+</PageLayout>

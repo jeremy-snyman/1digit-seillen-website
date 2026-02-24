@@ -1,0 +1,14 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['relative', className]}>
+  <div class="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-glow-steel/50 via-glow-steel/20 to-transparent hidden lg:block"></div>
+  <div class="space-y-8 lg:space-y-12">
+    <slot />
+  </div>
+</div>

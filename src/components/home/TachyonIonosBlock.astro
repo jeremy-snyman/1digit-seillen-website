@@ -1,0 +1,51 @@
+---
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import Icon from '@components/ui/Icon.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+---
+
+<Section>
+  <Container>
+    <div class="grid md:grid-cols-2 gap-6">
+      <ScrollReveal>
+        <GlassCard hover padding="lg" class="h-full">
+          <Badge variant="accent">Product</Badge>
+          <h3 class="text-heading-xl mt-4 mb-3">Tachyon</h3>
+          <p class="text-body-md text-content-secondary mb-6">
+            Our AI-ready data foundation. Cloud-agnostic ingestion and processing engine built on open-source technologies.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-body-xs text-content-muted bg-tint/8 px-2 py-1 rounded">Cloud-agnostic</span>
+            <span class="text-body-xs text-content-muted bg-tint/8 px-2 py-1 rounded">Open-source</span>
+            <span class="text-body-xs text-content-muted bg-tint/8 px-2 py-1 rounded">AI-optimised</span>
+          </div>
+          <Button href="/tachyon" variant="outline" size="sm">
+            Explore Tachyon <Icon name="arrow-right" size={16} />
+          </Button>
+        </GlassCard>
+      </ScrollReveal>
+
+      <ScrollReveal delay={150}>
+        <GlassCard hover padding="lg" class="h-full">
+          <Badge>Partnership</Badge>
+          <h3 class="text-heading-xl mt-4 mb-3">Smart Lakehouse on IONOS</h3>
+          <p class="text-body-md text-content-secondary mb-6">
+            Enterprise data warehousing in partnership with IONOS. Cost-effective, scalable, and optimised for AI workloads.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-body-xs text-content-muted bg-tint/8 px-2 py-1 rounded">European super-scaler</span>
+            <span class="text-body-xs text-content-muted bg-tint/8 px-2 py-1 rounded">Cost-efficient</span>
+            <span class="text-body-xs text-content-muted bg-tint/8 px-2 py-1 rounded">Enterprise-ready</span>
+          </div>
+          <Button href="/smart-lakehouse-ionos" variant="outline" size="sm">
+            Learn More <Icon name="arrow-right" size={16} />
+          </Button>
+        </GlassCard>
+      </ScrollReveal>
+    </div>
+  </Container>
+</Section>

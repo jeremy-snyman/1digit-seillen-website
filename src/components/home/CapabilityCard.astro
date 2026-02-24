@@ -1,0 +1,28 @@
+---
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  href: string;
+}
+
+const { icon, title, description, href } = Astro.props;
+---
+
+<a href={href} class="group block">
+  <GlassCard hover padding="md" class="h-full">
+    <div class="flex flex-col gap-4">
+      <div class="w-12 h-12 rounded-card-sm bg-surface-subtle flex items-center justify-center text-glow-blue">
+        <Icon name={icon} size={24} />
+      </div>
+      <h3 class="text-heading-sm">{title}</h3>
+      <p class="text-body-sm text-content-secondary">{description}</p>
+      <div class="flex items-center gap-1 text-content-secondary text-body-sm font-medium mt-auto pt-2 group-hover:gap-2 transition-all">
+        Learn more <Icon name="arrow-right" size={16} />
+      </div>
+    </div>
+  </GlassCard>
+</a>

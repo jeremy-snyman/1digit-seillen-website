@@ -1,0 +1,22 @@
+---
+import Icon from '@components/ui/Icon.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  description: string;
+  icon: string;
+}
+
+const { title, subtitle, description, icon } = Astro.props;
+---
+
+<GlassCard hover padding="lg">
+  <div class="w-12 h-12 rounded-xl bg-surface-subtle flex items-center justify-center mb-4">
+    <Icon name={icon} size={24} class="text-glow-blue" />
+  </div>
+  <h3 class="text-heading-xs font-semibold mb-1">{title}</h3>
+  {subtitle && <p class="text-label-sm text-glow-blue uppercase tracking-wider mb-3">{subtitle}</p>}
+  <p class="text-body-md text-content-secondary">{description}</p>
+</GlassCard>

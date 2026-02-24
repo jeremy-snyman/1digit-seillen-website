@@ -1,0 +1,156 @@
+---
+import CampaignLayout from '@layouts/CampaignLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/ui/Icon.astro';
+import Accordion from '@components/interactive/Accordion.astro';
+import AccordionItem from '@components/interactive/AccordionItem.astro';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return [
+    {
+      params: { slug: 'data-platform-launch' },
+      props: {
+        campaign: {
+          title: 'Launch Your AI-Ready Data Platform',
+          description: 'Go from fragmented data to a unified, AI-ready platform in weeks — not months.',
+          heroHeading: 'Your Data Platform, <em class="font-serif italic">AI-Ready</em>',
+          heroSubtext: 'Stop wrestling with disconnected data sources. We design and deliver modern data platforms that make AI adoption seamless.',
+          ctaText: 'Book Your Free Architecture Review',
+          ctaHref: '/contact',
+          proofPoints: [
+            {
+              icon: 'zap',
+              title: 'Weeks, Not Months',
+              description: 'Our structured methodology delivers production-ready platforms on accelerated timelines.',
+            },
+            {
+              icon: 'shield',
+              title: 'Secure by Design',
+              description: 'Every platform ships with governance, RBAC, and compliance controls baked in from day one.',
+            },
+            {
+              icon: 'layers',
+              title: 'Built for AI',
+              description: 'Medallion architecture, feature stores, and ML pipelines included — not bolted on later.',
+            },
+          ],
+          faqs: [
+            {
+              question: 'How long does a typical data platform implementation take?',
+              answer: 'Most engagements deliver a production-ready foundation within 6 to 12 weeks, depending on scope and data complexity. We use milestone-based delivery so you see value at every stage.',
+            },
+            {
+              question: 'Do we need to migrate everything at once?',
+              answer: 'No. We design for incremental migration. You can start with a single domain or use case and expand over time. Our architecture supports parallel workloads across legacy and modern systems.',
+            },
+            {
+              question: 'What cloud platforms do you support?',
+              answer: 'We are cloud-agnostic and have delivered platforms on AWS, Azure, GCP, and IONOS. We recommend the platform that best fits your existing infrastructure, compliance requirements, and budget.',
+            },
+            {
+              question: 'How do you handle data governance and compliance?',
+              answer: 'Governance is embedded from the architecture phase. We implement data classification, access controls, audit logging, and lineage tracking as core platform capabilities — not afterthoughts.',
+            },
+            {
+              question: 'What happens after the platform is delivered?',
+              answer: 'We offer ongoing support and optimisation packages, or we can train your internal teams to manage the platform independently. Every delivery includes comprehensive documentation and knowledge transfer.',
+            },
+          ],
+        },
+      },
+    },
+  ];
+}
+
+const { campaign } = Astro.props;
+---
+
+<CampaignLayout title={campaign.title} description={campaign.description}>
+  <!-- Hero -->
+  <Section class="pt-32 pb-16">
+    <Container size="narrow">
+      <ScrollReveal>
+        <div class="text-center">
+          <h1 class="text-display-lg lg:text-display-xl font-display mb-6" set:html={campaign.heroHeading} />
+          <p class="text-body-lg text-content-secondary max-w-xl mx-auto mb-10">
+            {campaign.heroSubtext}
+          </p>
+          <Button variant="primary" size="lg" href={campaign.ctaHref}>
+            {campaign.ctaText}
+          </Button>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Proof Points -->
+  <Section background="elevated">
+    <Container>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {campaign.proofPoints.map((point: { icon: string; title: string; description: string }, i: number) => (
+          <ScrollReveal delay={i * 100}>
+            <GlassCard hover padding="lg" class="text-center h-full">
+              <div class="w-14 h-14 rounded-xl bg-glow-steel/20 mx-auto mb-4 flex items-center justify-center">
+                <Icon name={point.icon} size={28} class="text-content" />
+              </div>
+              <h3 class="text-heading-sm font-semibold mb-2">{point.title}</h3>
+              <p class="text-body-md text-content-secondary">{point.description}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- FAQ Section -->
+  <Section>
+    <Container size="narrow">
+      <ScrollReveal>
+        <div class="text-center mb-12">
+          <h2 class="text-display-md font-display mb-4">Frequently Asked Questions</h2>
+          <p class="text-body-lg text-content-secondary">Common questions about our data platform engagements.</p>
+        </div>
+      </ScrollReveal>
+      <ScrollReveal delay={100}>
+        <Accordion>
+          {campaign.faqs.map((faq: { question: string; answer: string }) => (
+            <AccordionItem question={faq.question} answer={faq.answer} />
+          ))}
+        </Accordion>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Bottom CTA -->
+  <Section background="elevated">
+    <Container size="narrow">
+      <ScrollReveal>
+        <div class="text-center">
+          <h2 class="text-display-md font-display mb-4">
+            Ready to Get Started?
+          </h2>
+          <p class="text-body-lg text-content-secondary mb-8 max-w-md mx-auto">
+            Book a free architecture review and discover what a modern data platform can do for your organisation.
+          </p>
+          <Button variant="primary" size="lg" href={campaign.ctaHref}>
+            {campaign.ctaText}
+          </Button>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- UTM Tracking Note (hidden, for developer reference) -->
+  <!--
+    UTM Tracking: This campaign page supports UTM parameters for attribution.
+    Example: /campaign/data-platform-launch?utm_source=linkedin&utm_medium=paid&utm_campaign=data-platform-q1
+    UTM parameters are preserved in the URL and can be captured by analytics tools
+    or passed through to the contact form for lead attribution.
+  -->
+</CampaignLayout>

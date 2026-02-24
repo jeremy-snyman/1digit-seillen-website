@@ -1,0 +1,57 @@
+---
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+
+interface Props {
+  name: string;
+  type: string;
+  description: string;
+  includes: string[];
+  duration: string;
+  priceRange: string;
+  cta: { label: string; href: string };
+  featured?: boolean;
+}
+
+const { name, type, description, includes, duration, priceRange, cta, featured = false } = Astro.props;
+---
+
+<div class:list={['relative h-full', featured && 'lg:-mt-4 lg:mb-4']}>
+  {featured && (
+    <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+      <Badge variant="accent">MOST POPULAR</Badge>
+    </div>
+  )}
+  <GlassCard padding="lg" class:list={['h-full flex flex-col', featured && 'border-glow-steel ring-1 ring-glow-steel']}>
+    <div class="mb-6">
+      <span class="text-label-sm text-content-muted uppercase tracking-wider">{type}</span>
+      <h3 class="text-heading-md font-semibold mt-1">{name}</h3>
+      <p class="text-body-md text-content-secondary mt-2">{description}</p>
+    </div>
+
+    <div class="mb-6">
+      <span class="text-display-md text-glow-blue">{priceRange}</span>
+      <p class="text-body-sm text-content-muted mt-1">{duration} typical duration</p>
+    </div>
+
+    <div class="flex-1 mb-8">
+      <p class="text-label-sm text-content-muted uppercase tracking-wider mb-3">Includes</p>
+      <ul class="space-y-2.5">
+        {includes.map((item) => (
+          <li class="flex items-start gap-3 text-body-sm text-content-secondary">
+            <div class="w-4 h-4 rounded-full bg-surface-subtle flex items-center justify-center mt-0.5 shrink-0">
+              <Icon name="check" size={10} class="text-glow-blue" />
+            </div>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <Button variant={featured ? 'primary' : 'outline'} size="md" href={cta.href} class="w-full justify-center">
+      {cta.label}
+    </Button>
+  </GlassCard>
+</div>

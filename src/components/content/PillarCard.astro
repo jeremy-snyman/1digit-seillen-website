@@ -1,0 +1,104 @@
+---
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+import Button from '@components/ui/Button.astro';
+import FeatureList from './FeatureList.astro';
+import ExpandableDetail from './ExpandableDetail.astro';
+
+interface Props {
+  number: string;
+  title: string;
+  icon: string;
+  problem: string;
+  approach: string[];
+  deliverables: string[];
+  outcomes: string[];
+  timeframe: string;
+  cta: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  index?: number;
+  image?: string;
+}
+
+const { number, title, icon, problem, approach, deliverables, outcomes, timeframe, cta, secondaryCta, index = 0, image } = Astro.props;
+const isOdd = index % 2 !== 0;
+---
+
+<GlassCard padding="lg" class="relative overflow-hidden">
+  <div class="absolute top-0 right-0 text-[120px] font-display font-bold text-tint/[0.03] leading-none select-none pointer-events-none">
+    {number}
+  </div>
+
+  <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+    <!-- Column 1: Info -->
+    <div class={isOdd ? 'md:order-last' : ''}>
+      <div class="flex items-center gap-4 mb-6">
+        <div class="w-12 h-12 rounded-xl bg-surface-subtle flex items-center justify-center">
+          <Icon name={icon} size={24} class="text-glow-blue" />
+        </div>
+        <div>
+          <span class="text-label-md text-glow-blue uppercase tracking-wider">{number}</span>
+          <h3 class="text-heading-md font-semibold">{title}</h3>
+        </div>
+      </div>
+
+      <p class="text-body-lg text-content-secondary mb-6">{problem}</p>
+
+      {index === 0 && (
+        <div class="glass-card p-4 mb-6 border border-glow-steel/20">
+          <p class="text-body-sm text-content-secondary mb-3">
+            Not sure where you stand? Take our 10-minute AI Readiness Assessment.
+          </p>
+          <Button variant="outline" size="sm" href="/ai-readiness-assessment">
+            Assess Your Readiness
+          </Button>
+        </div>
+      )}
+
+      <div class="mb-6">
+        <h4 class="text-label-md uppercase tracking-wider text-content-muted mb-3">Typical Outcomes</h4>
+        <div class="flex flex-wrap gap-2">
+          {outcomes.map((outcome) => (
+            <span class="px-3 py-1 rounded-badge bg-glow-steel/20 text-glow-blue text-body-sm">{outcome}</span>
+          ))}
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between border-t border-surface-border pt-6">
+        <span class="text-body-sm text-content-muted">{timeframe} typical duration</span>
+        <div class="flex gap-3">
+          {secondaryCta && (
+            <Button variant="outline" size="sm" href={secondaryCta.href}>{secondaryCta.label}</Button>
+          )}
+          <Button variant="primary" size="sm" href={cta.href}>{cta.label}</Button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 2: Expandable Details -->
+    <div>
+      {image && (
+        <img
+          src={image}
+          alt=""
+          loading="lazy"
+          class="w-full h-auto rounded-xl mb-6 theme-image"
+        />
+      )}
+      <ExpandableDetail title="Our Approach">
+        <ul class="space-y-2">
+          {approach.map((item) => (
+            <li class="flex items-start gap-3 text-body-md text-content-secondary">
+              <Icon name="chevron-right" size={16} class="text-glow-blue mt-1 shrink-0" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </ExpandableDetail>
+
+      <ExpandableDetail title="What You Get">
+        <FeatureList items={deliverables} />
+      </ExpandableDetail>
+    </div>
+  </div>
+</GlassCard>

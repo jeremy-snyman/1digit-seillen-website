@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="nodeGlow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="connGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A8D1FF" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#A8D1FF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#A8D1FF" stop-opacity="0.5"/>
+    </linearGradient>
+    <!-- Subtle noise -->
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.03"/>
+      </feComponentTransfer>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="600" fill="#04070D" rx="12"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.04" stroke="#A8D1FF" stroke-width="0.5">
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="216" x2="1200" y2="216"/>
+    <line x1="0" y1="312" x2="1200" y2="312"/>
+    <line x1="0" y1="408" x2="1200" y2="408"/>
+    <line x1="0" y1="504" x2="1200" y2="504"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="500" letter-spacing="3" fill="#A8D1FF" fill-opacity="0.5">AI-NATIVE REFERENCE ARCHITECTURE</text>
+
+  <!-- Layer 1: Business Capability -->
+  <g transform="translate(100, 60)">
+    <rect width="1000" height="80" rx="8" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1"/>
+    <!-- Layer label -->
+    <text x="28" y="35" font-family="Inter, -apple-system, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#A8D1FF" fill-opacity="0.6">01</text>
+    <text x="28" y="55" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#E4E9F2">Business Capability</text>
+    <!-- Nodes -->
+    <g filter="url(#nodeGlow)">
+      <circle cx="350" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="500" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="650" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="800" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+    </g>
+    <!-- Sub-labels -->
+    <text x="350" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Value Streams</text>
+    <text x="500" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">KPIs</text>
+    <text x="650" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Strategy</text>
+    <text x="800" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Stakeholders</text>
+  </g>
+
+  <!-- Connection lines L1→L2 -->
+  <g filter="url(#glow)">
+    <line x1="450" y1="140" x2="400" y2="158" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1"/>
+    <line x1="600" y1="140" x2="600" y2="158" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1"/>
+    <line x1="750" y1="140" x2="800" y2="158" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1"/>
+  </g>
+
+  <!-- Layer 2: Data Platform -->
+  <g transform="translate(100, 158)">
+    <rect width="1000" height="80" rx="8" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="28" y="35" font-family="Inter, -apple-system, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#A8D1FF" fill-opacity="0.6">02</text>
+    <text x="28" y="55" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#E4E9F2">Data Platform</text>
+    <g filter="url(#nodeGlow)">
+      <circle cx="350" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="500" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="650" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="800" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+    </g>
+    <text x="350" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Ingestion</text>
+    <text x="500" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Lakehouse</text>
+    <text x="650" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Quality</text>
+    <text x="800" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Lineage</text>
+  </g>
+
+  <!-- Connection lines L2→L3 -->
+  <g filter="url(#glow)">
+    <line x1="450" y1="238" x2="400" y2="256" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1"/>
+    <line x1="600" y1="238" x2="600" y2="256" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1"/>
+    <line x1="750" y1="238" x2="800" y2="256" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1"/>
+  </g>
+
+  <!-- Layer 3: AI/ML -->
+  <g transform="translate(100, 256)">
+    <rect width="1000" height="80" rx="8" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="28" y="35" font-family="Inter, -apple-system, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#A8D1FF" fill-opacity="0.6">03</text>
+    <text x="28" y="55" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#E4E9F2">AI / ML Layer</text>
+    <g filter="url(#nodeGlow)">
+      <circle cx="350" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="500" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="650" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="800" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+    </g>
+    <text x="350" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Models</text>
+    <text x="500" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Agents</text>
+    <text x="650" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">RAG</text>
+    <text x="800" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">MLOps</text>
+  </g>
+
+  <!-- Connection lines L3→L4 -->
+  <g filter="url(#glow)">
+    <line x1="450" y1="336" x2="400" y2="354" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1"/>
+    <line x1="600" y1="336" x2="600" y2="354" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1"/>
+    <line x1="750" y1="336" x2="800" y2="354" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1"/>
+  </g>
+
+  <!-- Layer 4: Application -->
+  <g transform="translate(100, 354)">
+    <rect width="1000" height="80" rx="8" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="28" y="35" font-family="Inter, -apple-system, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#A8D1FF" fill-opacity="0.6">04</text>
+    <text x="28" y="55" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#E4E9F2">Application Layer</text>
+    <g filter="url(#nodeGlow)">
+      <circle cx="350" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="500" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="650" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="800" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+    </g>
+    <text x="350" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">APIs</text>
+    <text x="500" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Microservices</text>
+    <text x="650" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Events</text>
+    <text x="800" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">UI</text>
+  </g>
+
+  <!-- Connection lines L4→L5 -->
+  <g filter="url(#glow)">
+    <line x1="450" y1="434" x2="400" y2="452" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1"/>
+    <line x1="600" y1="434" x2="600" y2="452" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1"/>
+    <line x1="750" y1="434" x2="800" y2="452" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1"/>
+  </g>
+
+  <!-- Layer 5: Governance & Control -->
+  <g transform="translate(100, 452)">
+    <rect width="1000" height="80" rx="8" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1.5"/>
+    <!-- Slightly brighter border for governance — it's the cross-cutting layer -->
+    <text x="28" y="35" font-family="Inter, -apple-system, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#A8D1FF" fill-opacity="0.6">05</text>
+    <text x="28" y="55" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#E4E9F2">Governance &amp; Control</text>
+    <g filter="url(#nodeGlow)">
+      <circle cx="350" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="500" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="650" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="800" cy="40" r="5" fill="#A8D1FF" fill-opacity="0.3" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+    </g>
+    <text x="350" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">RBAC / ABAC</text>
+    <text x="500" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Audit</text>
+    <text x="650" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Cost Mgmt</text>
+    <text x="800" y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Compliance</text>
+  </g>
+
+  <!-- Cross-cutting vertical line for Governance -->
+  <g filter="url(#glow)" opacity="0.3">
+    <line x1="1050" y1="80" x2="1050" y2="530" stroke="#A8D1FF" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="4,4"/>
+    <text x="1070" y="310" font-family="Inter, sans-serif" font-size="9" fill="#A8D1FF" fill-opacity="0.4" transform="rotate(90, 1070, 310)">CROSS-CUTTING</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="600" y="570" text-anchor="middle" font-family="Inter, -apple-system, sans-serif" font-size="10" fill="#E4E9F2" fill-opacity="0.2">1digit · AI-Native Reference Architecture</text>
+</svg>

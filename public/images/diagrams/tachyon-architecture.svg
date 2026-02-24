@@ -1,0 +1,252 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#A8D1FF" stroke-opacity="0.5" stroke-width="1"/>
+    </marker>
+    <linearGradient id="flowLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A8D1FF" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#A8D1FF" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#A8D1FF" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="600" fill="#04070D" rx="12"/>
+
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="500" letter-spacing="3" fill="#A8D1FF" fill-opacity="0.5">TACHYON ARCHITECTURE</text>
+
+  <!-- Flow direction indicator -->
+  <g opacity="0.3">
+    <text x="600" y="570" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#E4E9F2" fill-opacity="0.3">Data Flow →</text>
+  </g>
+
+  <!-- === STAGE 1: CONNECTORS (Left) === -->
+  <g transform="translate(40, 80)">
+    <text x="90" y="0" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#A8D1FF" fill-opacity="0.5">CONNECTORS</text>
+
+    <!-- Database connector -->
+    <g transform="translate(0, 20)">
+      <rect width="180" height="56" rx="6" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.15" stroke-width="1"/>
+      <g transform="translate(16, 16)">
+        <ellipse cx="10" cy="4" rx="10" ry="4" fill="none" stroke="#A8D1FF" stroke-opacity="0.4" stroke-width="1"/>
+        <path d="M0,4 v16 a10,4 0 0,0 20,0 v-16" fill="none" stroke="#A8D1FF" stroke-opacity="0.4" stroke-width="1"/>
+        <ellipse cx="10" cy="20" rx="10" ry="4" fill="none" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1"/>
+      </g>
+      <text x="52" y="34" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#E4E9F2">Databases</text>
+      <text x="52" y="46" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">SQL, NoSQL, Graph</text>
+    </g>
+
+    <!-- API connector -->
+    <g transform="translate(0, 90)">
+      <rect width="180" height="56" rx="6" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.15" stroke-width="1"/>
+      <g transform="translate(16, 14)">
+        <rect x="0" y="0" width="20" height="26" rx="3" fill="none" stroke="#A8D1FF" stroke-opacity="0.4" stroke-width="1"/>
+        <line x1="5" y1="8" x2="15" y2="8" stroke="#A8D1FF" stroke-opacity="0.3" stroke-width="1"/>
+        <line x1="5" y1="14" x2="15" y2="14" stroke="#A8D1FF" stroke-opacity="0.3" stroke-width="1"/>
+        <line x1="5" y1="20" x2="12" y2="20" stroke="#A8D1FF" stroke-opacity="0.3" stroke-width="1"/>
+      </g>
+      <text x="52" y="34" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#E4E9F2">APIs</text>
+      <text x="52" y="46" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">REST, GraphQL, gRPC</text>
+    </g>
+
+    <!-- File connector -->
+    <g transform="translate(0, 160)">
+      <rect width="180" height="56" rx="6" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.15" stroke-width="1"/>
+      <g transform="translate(16, 12)">
+        <path d="M0,6 L0,28 L20,28 L20,0 L6,0 L0,6 Z" fill="none" stroke="#A8D1FF" stroke-opacity="0.4" stroke-width="1"/>
+        <path d="M0,6 L6,6 L6,0" fill="none" stroke="#A8D1FF" stroke-opacity="0.3" stroke-width="1"/>
+      </g>
+      <text x="52" y="34" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#E4E9F2">Files</text>
+      <text x="52" y="46" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">CSV, JSON, Parquet</text>
+    </g>
+
+    <!-- Streaming connector -->
+    <g transform="translate(0, 230)">
+      <rect width="180" height="56" rx="6" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.15" stroke-width="1"/>
+      <g transform="translate(16, 16)">
+        <path d="M0,12 Q5,0 10,12 Q15,24 20,12" fill="none" stroke="#A8D1FF" stroke-opacity="0.4" stroke-width="1.5"/>
+      </g>
+      <text x="52" y="34" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#E4E9F2">Streams</text>
+      <text x="52" y="46" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Kafka, Webhooks, IoT</text>
+    </g>
+
+    <!-- Web connector -->
+    <g transform="translate(0, 300)">
+      <rect width="180" height="56" rx="6" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.15" stroke-width="1"/>
+      <g transform="translate(16, 14)">
+        <circle cx="10" cy="12" r="10" fill="none" stroke="#A8D1FF" stroke-opacity="0.4" stroke-width="1"/>
+        <ellipse cx="10" cy="12" rx="10" ry="4" fill="none" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="0.5"/>
+        <line x1="10" y1="2" x2="10" y2="22" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="0.5"/>
+      </g>
+      <text x="52" y="34" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#E4E9F2">Web</text>
+      <text x="52" y="46" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Scraping, Feeds</text>
+    </g>
+  </g>
+
+  <!-- === FLOW ARROWS: Connectors → Transform === -->
+  <g filter="url(#glow)">
+    <line x1="230" y1="130" x2="340" y2="220" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1" marker-end="url(#arrowhead)"/>
+    <line x1="230" y1="200" x2="340" y2="230" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1" marker-end="url(#arrowhead)"/>
+    <line x1="230" y1="270" x2="340" y2="260" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1" marker-end="url(#arrowhead)"/>
+    <line x1="230" y1="340" x2="340" y2="280" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1" marker-end="url(#arrowhead)"/>
+    <line x1="230" y1="410" x2="340" y2="300" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1" marker-end="url(#arrowhead)"/>
+  </g>
+
+  <!-- === STAGE 2: INGESTION MULTIPLEXER (Center-left) === -->
+  <g transform="translate(350, 100)">
+    <text x="100" y="0" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#A8D1FF" fill-opacity="0.5">INGESTION MULTIPLEXER</text>
+
+    <rect width="200" height="340" rx="8" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1.5"/>
+
+    <!-- Schema Validation -->
+    <g transform="translate(20, 30)">
+      <rect width="160" height="40" rx="4" fill="#04070D" stroke="#A8D1FF" stroke-opacity="0.12" stroke-width="0.5"/>
+      <text x="80" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#E4E9F2" fill-opacity="0.8">Schema Validation</text>
+      <text x="80" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">Type checking, contracts</text>
+    </g>
+
+    <!-- Transform -->
+    <g transform="translate(20, 85)">
+      <rect width="160" height="40" rx="4" fill="#04070D" stroke="#A8D1FF" stroke-opacity="0.12" stroke-width="0.5"/>
+      <text x="80" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#E4E9F2" fill-opacity="0.8">Transform Engine</text>
+      <text x="80" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">Mapping, normalisation</text>
+    </g>
+
+    <!-- Quality -->
+    <g transform="translate(20, 140)">
+      <rect width="160" height="40" rx="4" fill="#04070D" stroke="#A8D1FF" stroke-opacity="0.12" stroke-width="0.5"/>
+      <text x="80" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#E4E9F2" fill-opacity="0.8">Quality Scoring</text>
+      <text x="80" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">Anomaly detection</text>
+    </g>
+
+    <!-- Enrichment -->
+    <g transform="translate(20, 195)">
+      <rect width="160" height="40" rx="4" fill="#04070D" stroke="#A8D1FF" stroke-opacity="0.12" stroke-width="0.5"/>
+      <text x="80" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#E4E9F2" fill-opacity="0.8">Enrichment</text>
+      <text x="80" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">Augmentation, lookup</text>
+    </g>
+
+    <!-- Scheduling -->
+    <g transform="translate(20, 250)">
+      <rect width="160" height="40" rx="4" fill="#04070D" stroke="#A8D1FF" stroke-opacity="0.12" stroke-width="0.5"/>
+      <text x="80" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#E4E9F2" fill-opacity="0.8">Smart Scheduling</text>
+      <text x="80" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">Priority, orchestration</text>
+    </g>
+
+    <!-- Internal flow arrows -->
+    <g opacity="0.15">
+      <line x1="100" y1="72" x2="100" y2="84" stroke="#A8D1FF" stroke-width="1"/>
+      <line x1="100" y1="127" x2="100" y2="139" stroke="#A8D1FF" stroke-width="1"/>
+      <line x1="100" y1="182" x2="100" y2="194" stroke="#A8D1FF" stroke-width="1"/>
+      <line x1="100" y1="237" x2="100" y2="249" stroke="#A8D1FF" stroke-width="1"/>
+    </g>
+  </g>
+
+  <!-- === FLOW ARROWS: Transform → Routing === -->
+  <g filter="url(#glow)">
+    <line x1="560" y1="250" x2="650" y2="180" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1" marker-end="url(#arrowhead)"/>
+    <line x1="560" y1="270" x2="650" y2="270" stroke="#A8D1FF" stroke-opacity="0.3" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+    <line x1="560" y1="290" x2="650" y2="370" stroke="#A8D1FF" stroke-opacity="0.25" stroke-width="1" marker-end="url(#arrowhead)"/>
+  </g>
+
+  <!-- === STAGE 3: ROUTING ENGINE (Center-right) === -->
+  <g transform="translate(660, 100)">
+    <text x="100" y="0" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#A8D1FF" fill-opacity="0.5">ROUTING ENGINE</text>
+
+    <!-- Lakehouse destination -->
+    <g transform="translate(0, 20)">
+      <rect width="200" height="100" rx="6" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1"/>
+      <text x="100" y="28" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#E4E9F2">Lakehouse</text>
+      <g opacity="0.4">
+        <text x="100" y="48" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2">Bronze → Silver → Gold</text>
+        <rect x="20" y="60" width="50" height="4" rx="2" fill="#A8D1FF" fill-opacity="0.15"/>
+        <rect x="75" y="60" width="50" height="4" rx="2" fill="#A8D1FF" fill-opacity="0.25"/>
+        <rect x="130" y="60" width="50" height="4" rx="2" fill="#A8D1FF" fill-opacity="0.4"/>
+      </g>
+      <text x="100" y="82" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">Iceberg, Delta, Parquet</text>
+    </g>
+
+    <!-- Warehouse destination -->
+    <g transform="translate(0, 135)">
+      <rect width="200" height="70" rx="6" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1"/>
+      <text x="100" y="28" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#E4E9F2">Data Warehouse</text>
+      <text x="100" y="46" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Trino query engine</text>
+      <text x="100" y="58" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">Federated queries</text>
+    </g>
+
+    <!-- API / Streaming destination -->
+    <g transform="translate(0, 220)">
+      <rect width="200" height="70" rx="6" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1"/>
+      <text x="100" y="28" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#E4E9F2">Streaming Output</text>
+      <text x="100" y="46" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#E4E9F2" fill-opacity="0.4">Kafka topics, webhooks</text>
+      <text x="100" y="58" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">Event-driven delivery</text>
+    </g>
+  </g>
+
+  <!-- === FLOW ARROWS: Routing → Monitoring === -->
+  <g filter="url(#glow)">
+    <line x1="870" y1="200" x2="940" y2="200" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1" marker-end="url(#arrowhead)"/>
+    <line x1="870" y1="290" x2="940" y2="290" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1" marker-end="url(#arrowhead)"/>
+    <line x1="870" y1="380" x2="940" y2="380" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1" marker-end="url(#arrowhead)"/>
+  </g>
+
+  <!-- === STAGE 4: MONITORING (Right) === -->
+  <g transform="translate(950, 100)">
+    <text x="105" y="0" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#A8D1FF" fill-opacity="0.5">OBSERVABILITY</text>
+
+    <rect width="210" height="340" rx="8" fill="#10131C" stroke="#A8D1FF" stroke-opacity="0.2" stroke-width="1"/>
+
+    <!-- Pipeline Health -->
+    <g transform="translate(20, 25)">
+      <rect width="170" height="44" rx="4" fill="#04070D" stroke="#A8D1FF" stroke-opacity="0.1" stroke-width="0.5"/>
+      <text x="85" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#E4E9F2" fill-opacity="0.8">Pipeline Health</text>
+      <text x="85" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">Throughput, latency, errors</text>
+    </g>
+
+    <!-- Data Quality -->
+    <g transform="translate(20, 82)">
+      <rect width="170" height="44" rx="4" fill="#04070D" stroke="#A8D1FF" stroke-opacity="0.1" stroke-width="0.5"/>
+      <text x="85" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#E4E9F2" fill-opacity="0.8">Data Quality</text>
+      <text x="85" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">Scores, anomalies, drift</text>
+    </g>
+
+    <!-- Lineage -->
+    <g transform="translate(20, 139)">
+      <rect width="170" height="44" rx="4" fill="#04070D" stroke="#A8D1FF" stroke-opacity="0.1" stroke-width="0.5"/>
+      <text x="85" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#E4E9F2" fill-opacity="0.8">Data Lineage</text>
+      <text x="85" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">Source to destination</text>
+    </g>
+
+    <!-- Alerting -->
+    <g transform="translate(20, 196)">
+      <rect width="170" height="44" rx="4" fill="#04070D" stroke="#A8D1FF" stroke-opacity="0.1" stroke-width="0.5"/>
+      <text x="85" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#E4E9F2" fill-opacity="0.8">Alerting</text>
+      <text x="85" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">SLA monitoring, triggers</text>
+    </g>
+
+    <!-- Cost Tracking -->
+    <g transform="translate(20, 253)">
+      <rect width="170" height="44" rx="4" fill="#04070D" stroke="#A8D1FF" stroke-opacity="0.1" stroke-width="0.5"/>
+      <text x="85" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#E4E9F2" fill-opacity="0.8">Cost Tracking</text>
+      <text x="85" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#E4E9F2" fill-opacity="0.3">Resource usage, billing</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <text x="600" y="570" text-anchor="middle" font-family="Inter, -apple-system, sans-serif" font-size="10" fill="#E4E9F2" fill-opacity="0.2">1digit · Tachyon Ingestion Engine</text>
+</svg>

@@ -1,0 +1,44 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  priceRange: string;
+  duration: string;
+  highlighted?: boolean;
+  class?: string;
+}
+
+const { name, description, priceRange, duration, highlighted = false, class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    'grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-center px-5 py-5 md:py-4 transition-colors duration-200 rounded-lg',
+    highlighted ? 'bg-tint/5' : 'hover:bg-tint/5',
+    className,
+  ]}
+>
+  {/* Name + description */}
+  <div class="md:col-span-5">
+    <div class="flex items-center gap-2">
+      <h3 class="text-body-md font-semibold">{name}</h3>
+      {highlighted && (
+        <span class="text-label-sm px-2 py-0.5 rounded-full bg-glow-steel/20 text-content-secondary border border-glow-steel/30">
+          Popular
+        </span>
+      )}
+    </div>
+    <p class="text-body-sm text-content-muted mt-1">{description}</p>
+  </div>
+
+  {/* Duration */}
+  <div class="md:col-span-3">
+    <span class="text-label-sm text-content-muted uppercase tracking-wider md:hidden">Duration: </span>
+    <span class="text-body-sm text-content-secondary">{duration}</span>
+  </div>
+
+  {/* Price */}
+  <div class="md:col-span-4 md:text-right">
+    <span class="text-heading-sm text-glow-blue font-semibold">{priceRange}</span>
+  </div>
+</div>

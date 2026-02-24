@@ -1,0 +1,42 @@
+---
+import Logo from './Logo.astro';
+import Navigation from './Navigation.astro';
+import MobileMenu from './MobileMenu.astro';
+import Button from '@components/ui/Button.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { ctaNavItem } from '@content/data/navigation';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 border-b border-surface-border" style="background: rgb(var(--color-surface) / 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+  <div class="max-w-container mx-auto px-6 lg:px-10 flex items-center justify-between h-14">
+    <!-- Logo -->
+    <Logo />
+
+    <!-- Desktop Navigation -->
+    <Navigation />
+
+    <!-- Desktop CTA + Theme Toggle -->
+    <div class="hidden lg:flex items-center gap-2">
+      <ThemeToggle />
+      <Button href={ctaNavItem.href} variant="outline" size="sm">
+        {ctaNavItem.label}
+      </Button>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button
+      class="lg:hidden p-2 text-content-secondary hover:text-content transition-colors"
+      data-mobile-toggle
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <MobileMenu />
+</header>

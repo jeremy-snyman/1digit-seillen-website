@@ -1,0 +1,21 @@
+---
+import Icon from '@components/ui/Icon.astro';
+
+interface Props {
+  items: string[];
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<ul class:list={['space-y-2.5', className]}>
+  {items.map((item) => (
+    <li class="flex items-start gap-3 text-body-md text-content-secondary">
+      <div class="w-5 h-5 rounded-full bg-surface-subtle flex items-center justify-center mt-0.5 shrink-0">
+        <Icon name="check" size={12} class="text-glow-blue" />
+      </div>
+      <span>{item}</span>
+    </li>
+  ))}
+</ul>
