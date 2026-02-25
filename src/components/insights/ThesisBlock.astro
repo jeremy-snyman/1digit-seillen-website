@@ -1,0 +1,11 @@
+---
+interface Props {
+  thesis: string;
+}
+
+const { thesis } = Astro.props;
+---
+
+<div class="border-l-2 border-accent/60 pl-6 my-10">
+  <p class="text-heading-lg font-medium text-content leading-snug">{thesis}</p>
+</div>

@@ -1,0 +1,92 @@
+---
+import type { BodyBlock } from '@content/data/insights/index';
+import ThesisBlock from './ThesisBlock.astro';
+import QuoteBlock from './QuoteBlock.astro';
+import CalloutBlock from './CalloutBlock.astro';
+import DiagramBlock from './DiagramBlock.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+
+interface Props {
+  blocks: BodyBlock[];
+}
+
+const { blocks } = Astro.props;
+---
+
+<div class="space-y-0">
+  {blocks.map((block, i) => (
+    <ScrollReveal delay={i < 3 ? i * 80 : 0}>
+      {block.type === 'paragraph' && (
+        <p class="text-body-lg text-content-secondary leading-relaxed mb-6">{block.content}</p>
+      )}
+
+      {block.type === 'section' && (
+        <div class="mt-10 mb-6">
+          <h2 class="text-heading-lg font-display font-semibold mb-4 text-content">{block.heading}</h2>
+          {block.content.split('\n\n').map((para: string) => (
+            <p class="text-body-lg text-content-secondary leading-relaxed mb-4">{para}</p>
+          ))}
+        </div>
+      )}
+
+      {block.type === 'bulletList' && (
+        <ul class="list-disc list-outside pl-6 space-y-2 mb-6">
+          {block.items.map((item: string) => (
+            <li class="text-body-lg text-content-secondary leading-relaxed">{item}</li>
+          ))}
+        </ul>
+      )}
+
+      {block.type === 'numberedList' && (
+        <ol class="list-decimal list-outside pl-6 space-y-2 mb-6">
+          {block.items.map((item: string) => (
+            <li class="text-body-lg text-content-secondary leading-relaxed">{item}</li>
+          ))}
+        </ol>
+      )}
+
+      {block.type === 'quote' && (
+        <QuoteBlock content={block.content} attribution={block.attribution} />
+      )}
+
+      {block.type === 'callout' && (
+        <CalloutBlock content={block.content} />
+      )}
+
+      {block.type === 'diagram' && (
+        <DiagramBlock diagramType={block.diagramType} caption={block.caption} data={block.data} />
+      )}
+
+      {block.type === 'chart' && (
+        <div class="my-8">
+          <div
+            data-chart-block
+            data-chart-type={block.chartType}
+            data-chart-caption={block.caption}
+            data-chart-data={JSON.stringify(block.data)}
+            class="min-h-[300px] flex items-center justify-center text-content-muted"
+          >
+            <noscript>
+              <p class="text-body-sm text-content-muted">Chart: {block.caption}</p>
+            </noscript>
+          </div>
+        </div>
+      )}
+    </ScrollReveal>
+  ))}
+</div>
+
+<script>
+  // Hydrate chart blocks client-side
+  async function hydrateCharts() {
+    const chartEls = document.querySelectorAll('[data-chart-block]');
+    if (chartEls.length === 0) return;
+
+    const { hydrateChartBlock } = await import('./ChartBlockHydrator');
+    chartEls.forEach((el) => hydrateChartBlock(el as HTMLElement));
+  }
+
+  // Run on initial load and Astro page transitions
+  hydrateCharts();
+  document.addEventListener('astro:page-load', hydrateCharts);
+</script>

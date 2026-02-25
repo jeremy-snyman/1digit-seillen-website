@@ -1,0 +1,57 @@
+---
+import { getPublishedInsights } from '@content/data/insights/index';
+import ArticleCard from './ArticleCard.astro';
+import ArticleGrid from './ArticleGrid.astro';
+import Container from '@components/layout/Container.astro';
+import Section from '@components/layout/Section.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+
+interface Props {
+  currentSlug: string;
+  category: string;
+  tags: string[];
+}
+
+const { currentSlug, category, tags } = Astro.props;
+
+// Score articles by relevance: category match (high), tag overlap (lower)
+const articles = getPublishedInsights()
+  .filter((a) => a.slug !== currentSlug)
+  .map((a) => {
+    let score = 0;
+    if (a.category === category) score += 10;
+    const tagOverlap = a.tags.filter((t) => tags.includes(t)).length;
+    score += tagOverlap * 2;
+    return { article: a, score };
+  })
+  .filter((a) => a.score > 0)
+  .sort((a, b) => b.score - a.score)
+  .slice(0, 3)
+  .map((a) => a.article);
+---
+
+{articles.length > 0 && (
+  <Section background="elevated" padding="default">
+    <Container>
+      <ScrollReveal>
+        <h2 class="text-heading-xl font-display font-semibold mb-8 text-content">Related Insights</h2>
+      </ScrollReveal>
+      <ArticleGrid columns={3}>
+        {articles.map((article) => (
+          <ScrollReveal>
+            <ArticleCard
+              title={article.title}
+              thesis={article.thesis}
+              slug={article.slug}
+              publishDate={article.publishDate}
+              category={article.category}
+              researchType={article.researchType}
+              readTimeMinutes={article.readTimeMinutes}
+              coverImage={article.coverImage}
+            />
+          </ScrollReveal>
+        ))}
+      </ArticleGrid>
+    </Container>
+  </Section>
+)}

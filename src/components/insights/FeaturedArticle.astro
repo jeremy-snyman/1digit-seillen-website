@@ -1,0 +1,76 @@
+---
+import Container from '@components/layout/Container.astro';
+import Section from '@components/layout/Section.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import { formatInsightDate, categorySlug } from '@lib/insights';
+import type { InsightArticle } from '@content/data/insights/index';
+
+interface Props {
+  article: InsightArticle;
+}
+
+const { article } = Astro.props;
+const formattedDate = formatInsightDate(article.publishDate);
+const catSlug = categorySlug(article.category);
+const badgeClass = `cat-badge-${catSlug}`;
+const gradientClass = `cat-gradient-${catSlug}`;
+---
+
+<Section padding="sm">
+  <Container>
+    <ScrollReveal>
+      <a href={`/insights/${article.slug}`} class="group block">
+        <article class="glass-card-hover overflow-hidden relative">
+          <!-- Category glow orb -->
+          <div class:list={[gradientClass, 'absolute -top-10 -left-10 w-[200px] h-[200px] rounded-full blur-[80px] opacity-40 pointer-events-none']} aria-hidden="true"></div>
+
+          <div class="grid md:grid-cols-2 gap-0">
+            <!-- Left: content -->
+            <div class="relative z-10 p-8 lg:p-12 flex flex-col justify-center">
+              <div class="flex items-center gap-3 mb-4">
+                <span class:list={[badgeClass, 'px-2.5 py-1 rounded-full text-xs font-medium']}>{article.category}</span>
+                <span class="text-body-sm text-content-muted">{formattedDate}</span>
+              </div>
+
+              <h2 class="text-heading-xl lg:text-display-md font-display font-medium mb-4 text-content group-hover:text-glow-blue transition-colors leading-tight">
+                {article.title}
+              </h2>
+
+              <p class="text-body-md text-content-secondary mb-6 line-clamp-3">
+                {article.thesis}
+              </p>
+
+              <div class="flex items-center justify-between">
+                <span class="text-body-sm text-content-muted">{article.readTimeMinutes} min read</span>
+                <span class="text-glow-blue text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all duration-300">
+                  Read <span class="text-xs">&rarr;</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Right: cover image or gradient placeholder -->
+            <div class="relative h-64 md:h-auto min-h-[280px] overflow-hidden">
+              {article.coverImage ? (
+                <img
+                  src={article.coverImage}
+                  alt=""
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              ) : (
+                <div class:list={['w-full h-full flex items-center justify-center bg-surface-elevated relative']}>
+                  <div class:list={[gradientClass, 'absolute inset-0']}></div>
+                  <div class="relative w-20 h-20 rounded-full bg-surface-overlay/60 flex items-center justify-center">
+                    <svg class="w-8 h-8 text-content-muted/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </article>
+      </a>
+    </ScrollReveal>
+  </Container>
+</Section>

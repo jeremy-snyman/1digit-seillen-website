@@ -1,0 +1,174 @@
+---
+interface Props {
+  diagramType: string;
+  caption: string;
+  data?: Record<string, unknown>;
+}
+
+const { diagramType, caption } = Astro.props;
+
+// Diagram configurations by type
+const diagrams: Record<string, { layers: { label: string; description?: string }[] }> = {
+  'architecture-layered': {
+    layers: [
+      { label: 'AI Enablement', description: 'Model inputs, embeddings, agent feeds' },
+      { label: 'Activation', description: 'APIs, events, downstream sync' },
+      { label: 'Governance', description: 'Classification, access, audit' },
+      { label: 'Structuring', description: 'Validation, normalisation, quality' },
+      { label: 'Ingestion', description: 'Connectors, schema enforcement' },
+    ],
+  },
+  'data-flow': {
+    layers: [
+      { label: 'Data Sources' },
+      { label: 'Ingestion & Structure' },
+      { label: 'Governance & Quality' },
+      { label: 'Activation' },
+      { label: 'AI / Analytics' },
+    ],
+  },
+  'lifecycle-flow': {
+    layers: [
+      { label: 'Assess' },
+      { label: 'Design' },
+      { label: 'Build' },
+      { label: 'Deploy' },
+      { label: 'Operate' },
+    ],
+  },
+  'governance-layer': {
+    layers: [
+      { label: 'Policy' },
+      { label: 'Classification' },
+      { label: 'Access Control' },
+      { label: 'Audit Trail' },
+    ],
+  },
+  'platform-stack': {
+    layers: [
+      { label: 'Applications' },
+      { label: 'AI / ML Layer' },
+      { label: 'Analytics Engine' },
+      { label: 'Data Platform' },
+      { label: 'Infrastructure' },
+    ],
+  },
+};
+
+const isFlowType = ['data-flow', 'lifecycle-flow'].includes(diagramType);
+const diagram = diagrams[diagramType];
+const layers = diagram?.layers ?? [{ label: diagramType }];
+const layerCount = layers.length;
+---
+
+<figure class="my-8" role="img" aria-label={caption}>
+  {isFlowType ? (
+    <!-- Flow diagram: horizontal boxes with arrows -->
+    <div class="overflow-x-auto pb-2">
+      <svg
+        viewBox={`0 0 ${layerCount * 160 + (layerCount - 1) * 40} 80`}
+        class="w-full max-w-[680px] mx-auto"
+        style="min-width: 480px;"
+        aria-hidden="true"
+      >
+        {layers.map((layer, i) => {
+          const x = i * 200;
+          return (
+            <>
+              <rect
+                x={x}
+                y="10"
+                width="140"
+                height="60"
+                rx="8"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+                class="text-surface-border"
+              />
+              <text
+                x={x + 70}
+                y="45"
+                text-anchor="middle"
+                class="text-content-secondary"
+                fill="currentColor"
+                font-size="12"
+                font-family="Inter, system-ui, sans-serif"
+              >
+                {layer.label}
+              </text>
+              {i < layerCount - 1 && (
+                <path
+                  d={`M${x + 148} 40 L${x + 190} 40`}
+                  stroke="currentColor"
+                  stroke-width="1"
+                  class="text-content-muted"
+                  marker-end="url(#arrowhead)"
+                />
+              )}
+            </>
+          );
+        })}
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <path d="M0,0 L8,3 L0,6" fill="currentColor" class="text-content-muted" />
+          </marker>
+        </defs>
+      </svg>
+    </div>
+  ) : (
+    <!-- Layered diagram: stacked horizontal bars -->
+    <div class="max-w-[680px] mx-auto">
+      <svg
+        viewBox={`0 0 600 ${layerCount * 56 + 20}`}
+        class="w-full"
+        aria-hidden="true"
+      >
+        {layers.map((layer, i) => {
+          const y = i * 56 + 10;
+          const width = 600 - i * 24;
+          const x = (600 - width) / 2;
+          return (
+            <>
+              <rect
+                x={x}
+                y={y}
+                width={width}
+                height="44"
+                rx="6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+                class="text-surface-border"
+              />
+              <text
+                x="300"
+                y={y + 26}
+                text-anchor="middle"
+                dominant-baseline="middle"
+                class="text-content-secondary"
+                fill="currentColor"
+                font-size="13"
+                font-family="Inter, system-ui, sans-serif"
+              >
+                {layer.label}
+                {layer.description && (
+                  <tspan
+                    dx="8"
+                    class="text-content-muted"
+                    fill="currentColor"
+                    font-size="11"
+                    opacity="0.6"
+                  >
+                    — {layer.description}
+                  </tspan>
+                )}
+              </text>
+            </>
+          );
+        })}
+      </svg>
+    </div>
+  )}
+  <figcaption class="text-body-sm text-content-muted text-center mt-3">{caption}</figcaption>
+</figure>

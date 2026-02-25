@@ -1,0 +1,86 @@
+---
+interface ComparisonRow {
+  scenario: string;
+  scenarioDetail?: string;
+  hyperscaler: string;
+  tachyon: string;
+  savings: string;
+}
+
+interface Props {
+  rows: ComparisonRow[];
+  disclaimer?: string;
+  callout?: string;
+  class?: string;
+}
+
+const { rows, disclaimer, callout, class: className } = Astro.props;
+---
+
+<div class:list={[className]}>
+  {/* Desktop: Table layout */}
+  <div class="hidden md:block glass-card overflow-hidden">
+    {/* Header */}
+    <div class="grid grid-cols-4 gap-4 px-6 py-4 border-b border-surface-border text-label-md uppercase tracking-wider text-content-muted">
+      <div>Scenario</div>
+      <div>Hyperscaler + Snowflake</div>
+      <div>Tachyon on IONOS</div>
+      <div>Indicative Savings</div>
+    </div>
+
+    {/* Rows */}
+    {rows.map((row) => (
+      <div class="grid grid-cols-4 gap-4 px-6 py-5 border-b border-surface-border last:border-b-0 hover:bg-tint/5 transition-colors">
+        <div>
+          <p class="text-body-md font-semibold text-content">{row.scenario}</p>
+          {row.scenarioDetail && (
+            <p class="text-body-sm text-content-muted mt-0.5">{row.scenarioDetail}</p>
+          )}
+        </div>
+        <div class="text-body-md text-content-secondary">{row.hyperscaler}</div>
+        <div class="text-body-md text-content-secondary">{row.tachyon}</div>
+        <div class="text-body-md text-glow-blue font-semibold">{row.savings}</div>
+      </div>
+    ))}
+  </div>
+
+  {/* Mobile: Stacked cards */}
+  <div class="md:hidden space-y-4">
+    {rows.map((row) => (
+      <div class="glass-card p-5 space-y-3">
+        <div>
+          <p class="text-heading-xs font-semibold text-content">{row.scenario}</p>
+          {row.scenarioDetail && (
+            <p class="text-body-sm text-content-muted mt-0.5">{row.scenarioDetail}</p>
+          )}
+        </div>
+        <div class="space-y-2 text-body-sm">
+          <div>
+            <span class="text-content-muted uppercase tracking-wider text-body-xs">Hyperscaler + Snowflake</span>
+            <p class="text-content-secondary mt-0.5">{row.hyperscaler}</p>
+          </div>
+          <div>
+            <span class="text-content-muted uppercase tracking-wider text-body-xs">Tachyon on IONOS</span>
+            <p class="text-content-secondary mt-0.5">{row.tachyon}</p>
+          </div>
+          <div>
+            <span class="text-content-muted uppercase tracking-wider text-body-xs">Indicative Savings</span>
+            <p class="text-glow-blue font-semibold text-body-md mt-0.5">{row.savings}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* Callout stat below table */}
+  {callout && (
+    <div class="mt-8 text-center">
+      <p class="text-heading-lg font-semibold text-glow-blue">{callout}</p>
+    </div>
+  )}
+
+  {/* Disclaimer */}
+  {disclaimer && (
+    <p class="mt-4 text-body-sm text-content-muted text-center italic">{disclaimer}</p>
+  )}
+</div>

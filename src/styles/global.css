@@ -400,3 +400,34 @@ html[data-theme="light"] .phase-glow-blue::before { background: radial-gradient(
 html[data-theme="light"] .phase-glow-purple::before { background: radial-gradient(circle, rgba(74, 53, 128, 0.08) 0%, transparent 70%); }
 html[data-theme="light"] .phase-glow-green::before { background: radial-gradient(circle, rgba(22, 163, 74, 0.08) 0%, transparent 70%); }
 html[data-theme="light"] .phase-glow-amber::before { background: radial-gradient(circle, rgba(217, 119, 6, 0.08) 0%, transparent 70%); }
+
+/* ============================================
+   Category Badge & Gradient Colours
+   ============================================ */
+
+/* Badge pills */
+.cat-badge-data-strategy { background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.2); }
+.cat-badge-ai-readiness  { background: rgba(52, 211, 153, 0.12); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.2); }
+.cat-badge-data-platforms { background: rgba(251, 191, 36, 0.12); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.2); }
+.cat-badge-ai-strategy   { background: rgba(192, 132, 252, 0.12); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.2); }
+.cat-badge-default        { background: rgba(190, 205, 225, 0.12); color: rgb(190, 205, 225); border: 1px solid rgba(190, 205, 225, 0.2); }
+
+/* Gradient overlays for card hover */
+.cat-gradient-data-strategy { background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(6, 182, 212, 0.04) 100%); }
+.cat-gradient-ai-readiness  { background: linear-gradient(135deg, rgba(52, 211, 153, 0.08) 0%, rgba(20, 184, 166, 0.04) 100%); }
+.cat-gradient-data-platforms { background: linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(245, 158, 11, 0.04) 100%); }
+.cat-gradient-ai-strategy   { background: linear-gradient(135deg, rgba(192, 132, 252, 0.08) 0%, rgba(168, 85, 247, 0.04) 100%); }
+.cat-gradient-default        { background: linear-gradient(135deg, rgba(190, 205, 225, 0.08) 0%, rgba(150, 170, 200, 0.04) 100%); }
+
+/* Light theme overrides */
+html[data-theme="light"] .cat-badge-data-strategy { background: rgba(14, 116, 144, 0.1); color: #0e7490; border-color: rgba(14, 116, 144, 0.2); }
+html[data-theme="light"] .cat-badge-ai-readiness  { background: rgba(5, 150, 105, 0.1); color: #059669; border-color: rgba(5, 150, 105, 0.2); }
+html[data-theme="light"] .cat-badge-data-platforms { background: rgba(180, 83, 9, 0.1); color: #b45309; border-color: rgba(180, 83, 9, 0.2); }
+html[data-theme="light"] .cat-badge-ai-strategy   { background: rgba(126, 34, 206, 0.1); color: #7e22ce; border-color: rgba(126, 34, 206, 0.2); }
+html[data-theme="light"] .cat-badge-default        { background: rgba(74, 53, 128, 0.1); color: #4a3580; border-color: rgba(74, 53, 128, 0.2); }
+
+html[data-theme="light"] .cat-gradient-data-strategy { background: linear-gradient(135deg, rgba(14, 116, 144, 0.06) 0%, rgba(6, 182, 212, 0.03) 100%); }
+html[data-theme="light"] .cat-gradient-ai-readiness  { background: linear-gradient(135deg, rgba(5, 150, 105, 0.06) 0%, rgba(20, 184, 166, 0.03) 100%); }
+html[data-theme="light"] .cat-gradient-data-platforms { background: linear-gradient(135deg, rgba(180, 83, 9, 0.06) 0%, rgba(245, 158, 11, 0.03) 100%); }
+html[data-theme="light"] .cat-gradient-ai-strategy   { background: linear-gradient(135deg, rgba(126, 34, 206, 0.06) 0%, rgba(168, 85, 247, 0.03) 100%); }
+html[data-theme="light"] .cat-gradient-default        { background: linear-gradient(135deg, rgba(74, 53, 128, 0.06) 0%, rgba(100, 70, 160, 0.03) 100%); }

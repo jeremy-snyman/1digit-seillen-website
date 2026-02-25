@@ -1,0 +1,45 @@
+---
+import GlassCard from '@components/ui/GlassCard.astro';
+import { getInsightBySlug, getPinnedInsight, getCampaignFeaturedInsights } from '@content/data/insights/index';
+import type { InsightArticle } from '@content/data/insights/index';
+
+interface Props {
+  slug?: string;
+  pinned?: boolean;
+  campaignFeatured?: boolean;
+}
+
+const { slug, pinned, campaignFeatured } = Astro.props;
+
+let article: InsightArticle | undefined;
+
+if (slug) {
+  article = getInsightBySlug(slug);
+} else if (pinned) {
+  article = getPinnedInsight();
+} else if (campaignFeatured) {
+  const featured = getCampaignFeaturedInsights();
+  article = featured[0];
+}
+
+// Graceful: render nothing if article not found
+if (!article) return;
+---
+
+<a href={`/insights/${article.slug}`} class="group block">
+  <GlassCard hover padding="md">
+    <div class="flex items-start gap-4">
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="px-2 py-0.5 rounded bg-glow-steel/20 text-glow-blue text-xs font-medium">{article.category}</span>
+          <span class="text-label-md uppercase tracking-wider text-content-muted">{article.researchType}</span>
+        </div>
+        <h3 class="text-heading-md font-semibold text-content mb-2 group-hover:text-glow-blue transition-colors">{article.title}</h3>
+        <p class="text-body-sm text-content-secondary line-clamp-2">{article.thesis}</p>
+      </div>
+      <span class="text-glow-blue text-sm font-medium group-hover:gap-2 inline-flex items-center gap-1 transition-all flex-shrink-0 mt-1">
+        Read <span class="text-xs">→</span>
+      </span>
+    </div>
+  </GlassCard>
+</a>

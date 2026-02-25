@@ -8,111 +8,289 @@ import GlassCard from '@components/ui/GlassCard.astro';
 import Icon from '@components/ui/Icon.astro';
 import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
+import Tag from '@components/ui/Tag.astro';
 import FeatureList from '@components/content/FeatureList.astro';
 import DiagramPlaceholder from '@components/content/DiagramPlaceholder.astro';
+import StatHighlight from '@components/content/StatHighlight.astro';
+import CostComparisonTable from '@components/content/CostComparisonTable.astro';
+import CostCalculatorTeaser from '@components/content/CostCalculatorTeaser.astro';
+import {
+  heroTagline,
+  heroPartnershipText,
+  techStackTags,
+  costProblems,
+  statHighlights,
+  differentiators,
+  comparisonRows,
+  comparisonCallout,
+  comparisonDisclaimer,
+  architectureFeatures,
+  architectureLayers,
+  benefits,
+  useCases,
+} from '@content/data/smart-lakehouse';
 
-const title = 'Smart Lakehouse on IONOS';
-const description = 'Cost-effective, scalable enterprise data — built on European sovereign cloud infrastructure.';
-
-const benefits = [
-  { title: 'Cost Efficiency', icon: 'chart', description: 'Significantly lower total cost of ownership compared to hyperscaler data warehousing solutions. Pay for what you use, not what you provision.' },
-  { title: 'European Data Sovereignty', icon: 'shield', description: 'Data stays in Europe. GDPR-aligned infrastructure with no transatlantic data transfers required.' },
-  { title: 'Enterprise-Grade Performance', icon: 'zap', description: 'Distributed query execution, intelligent caching, and optimised storage for analytical and AI workloads at scale.' },
-  { title: 'SaaS-Like Simplicity', icon: 'settings', description: 'A managed lakehouse experience without the operational complexity. Focus on data, not infrastructure management.' },
-  { title: 'AI-Optimised Architecture', icon: 'cpu', description: 'Built for AI workloads from the ground up. Feature stores, model serving, and vector operations are first-class citizens.' },
-  { title: 'Open Standards', icon: 'globe', description: 'Built on open table formats and open-source technologies. No proprietary lock-in, full data portability.' },
-];
-
-const useCases = [
-  { title: 'AI & Machine Learning', description: 'Centralised, governed data estate that feeds AI models with clean, timely, structured data at scale.' },
-  { title: 'Business Analytics', description: 'Self-service analytics across your entire data landscape with sub-second query performance.' },
-  { title: 'Data Consolidation', description: 'Bring fragmented data from legacy systems, SaaS tools, and operational databases into one governed platform.' },
-  { title: 'Regulatory Compliance', description: 'European-sovereign data infrastructure with built-in governance, lineage, and audit capabilities.' },
-];
-
-const costLevers = [
-  'Open-source stack eliminates licensing premiums',
-  'European cloud pricing — typically 40-60% lower than hyperscaler equivalents',
-  'Tiered storage with automatic lifecycle management',
-  'Compute scales independently of storage',
-  'No egress fees within IONOS network',
-  'No minimum commitments or long-term contracts required',
-];
+const title = 'Tachyon Intelligence Platform — Smart Lakehouse on IONOS';
+const description = 'Enterprise data lakehouse on European sovereign cloud. 40–60% lower infrastructure cost than hyperscaler equivalents.';
 ---
 
 <PageLayout title={title} description={description}>
-  <!-- Hero -->
-  <Section class="pt-32 pb-16">
-    <Container>
-      <ScrollReveal>
-        <div class="max-w-3xl">
-          <div class="flex gap-3 mb-4">
-            <Badge variant="accent">PARTNERSHIP</Badge>
-            <Badge>IONOS</Badge>
+
+  {/* ── S1: Hero ── */}
+  <Section class="relative overflow-hidden" padding="none">
+    {/* Background layers */}
+    <div class="absolute inset-0">
+      {/* Radial gradient base */}
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 40%, rgb(var(--color-surface-elevated)) 0%, rgb(var(--color-surface)) 70%);"></div>
+      {/* Hero background image — slot for future AI-generated webp */}
+      {/* <img src="/images/smart-lakehouse/hero-bg.webp" alt="" class="absolute inset-0 w-full h-full object-cover opacity-30 hero-bg-image" loading="eager" aria-hidden="true" /> */}
+      {/* Scrim */}
+      <div class="absolute inset-0 bg-surface/60"></div>
+      {/* Top gradient */}
+      <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-surface to-transparent"></div>
+      {/* Bottom gradient */}
+      <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-surface to-transparent"></div>
+      {/* Ambient glow orb */}
+      <div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-glow-steel/15 rounded-full blur-[140px] pointer-events-none"></div>
+    </div>
+
+    <div class="relative min-h-[85vh] flex items-center">
+      <Container>
+        <ScrollReveal>
+          <div class="max-w-3xl pt-32 pb-20">
+            <div class="flex gap-3 mb-4">
+              <Badge variant="accent">PARTNERSHIP</Badge>
+              <Badge>IONOS</Badge>
+            </div>
+            <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+              Tachyon <em class="font-serif italic">Intelligence</em> Platform
+            </h1>
+            <p class="text-body-lg text-content-secondary max-w-2xl mb-4">
+              {heroTagline}
+            </p>
+            <p class="text-body-md text-content-muted max-w-2xl mb-8">
+              {heroPartnershipText}
+            </p>
+
+            {/* Tech stack tags */}
+            <div class="flex flex-wrap gap-2 mb-8">
+              {techStackTags.map((tag) => (
+                <Tag>{tag}</Tag>
+              ))}
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <Button variant="primary" size="lg" href="#cost-comparison">Compare Costs</Button>
+              <Button variant="outline" size="lg" href="/contact">Speak to Us</Button>
+            </div>
           </div>
-          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
-            Smart Lakehouse on <em class="font-serif italic">IONOS</em>
-          </h1>
-          <p class="text-body-lg text-content-secondary max-w-2xl">
-            {description}
-          </p>
-          <p class="text-body-md text-content-muted mt-4 max-w-2xl">
-            1Digit has architected and delivered a data warehousing platform in partnership with IONOS. We are a <strong class="text-content">technology provider to IONOS</strong> — not merely a reseller.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 mt-8">
-            <Button variant="primary" size="lg" href="/contact">Compare Costs</Button>
-            <Button variant="outline" size="lg" href="/contact">Speak to Us</Button>
-          </div>
-        </div>
-      </ScrollReveal>
-    </Container>
+        </ScrollReveal>
+      </Container>
+    </div>
   </Section>
 
-  <!-- Positioning -->
+
+  {/* ── S2: Core Commercial Narrative ── */}
   <Section background="elevated">
     <Container>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <ScrollReveal>
-          <SectionHeading
-            badge="WHY SMART LAKEHOUSE"
-            heading="Enterprise Data Without Hyperscaler Costs"
-          />
-          <p class="text-body-lg text-content-secondary mt-6">
-            Hyperscaler data warehousing is powerful, but expensive. Snowflake, Databricks, and BigQuery come with significant compute costs, egress fees, and licensing complexity.
-          </p>
-          <p class="text-body-md text-content-secondary mt-4">
-            Smart Lakehouse on IONOS delivers the same enterprise-grade analytics and AI capability — built on open standards, hosted on European sovereign infrastructure, at a fraction of the cost.
-          </p>
-        </ScrollReveal>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div>
+          <ScrollReveal>
+            <SectionHeading
+              badge="THE COST PROBLEM"
+              heading="Why Organisations Move Away From Snowflake + Hyperscaler Infrastructure"
+            />
+            <p class="text-body-lg text-content-secondary mt-6">
+              When data grows, cost grows faster. Hyperscaler data warehousing is powerful — but the economics work against you at scale.
+            </p>
+          </ScrollReveal>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
+            {costProblems.map((problem, index) => (
+              <ScrollReveal delay={index * 100}>
+                <GlassCard hover padding="md" class="h-full">
+                  <div class="w-10 h-10 rounded-lg bg-glow-steel/20 flex items-center justify-center mb-3">
+                    <Icon name={problem.icon} size={20} class="text-content" />
+                  </div>
+                  <h3 class="text-heading-xs font-semibold mb-2">{problem.title}</h3>
+                  <p class="text-body-sm text-content-secondary">{problem.description}</p>
+                </GlassCard>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal delay={500}>
+            <p class="text-body-lg text-content-secondary mt-10 max-w-xl">
+              At small scale, <em class="text-content">manageable</em>. At large scale, <em class="text-content font-semibold">material</em>.
+            </p>
+          </ScrollReveal>
+        </div>
+
+        {/* Cost escalation visual placeholder */}
         <ScrollReveal delay={200}>
-          <GlassCard padding="lg">
-            <h3 class="text-heading-sm font-semibold mb-4">What You Get</h3>
-            <FeatureList items={[
-              'Managed lakehouse environment',
-              'Distributed SQL query engine',
-              'Self-service analytics and visualisation',
-              'Data cataloguing and governance',
-              'AI/ML pipeline integration',
-              'Full observability and monitoring',
-            ]} />
-          </GlassCard>
+          <div class="relative hidden lg:block">
+            <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
+            <div class="relative border-2 border-dashed border-surface-border rounded-card p-12 flex flex-col items-center justify-center text-center aspect-[4/3]">
+              <Icon name="chart" size={48} class="text-content-muted mb-4" />
+              <p class="text-heading-xs font-semibold text-content-muted">Cost Escalation</p>
+              <p class="text-body-sm text-content-muted mt-1">AI-generated visual coming soon</p>
+            </div>
+          </div>
         </ScrollReveal>
       </div>
     </Container>
   </Section>
 
-  <!-- Benefits -->
+
+  {/* ── S3: The Tachyon Difference ── */}
   <Section>
     <Container>
       <ScrollReveal>
         <SectionHeading
           align="center"
-          badge="BENEFITS"
-          heading="Why Choose Smart Lakehouse"
-          description="Purpose-built for organisations that want enterprise data capability without hyperscaler costs."
+          badge="THE TACHYON DIFFERENCE"
+          heading="Built for Technical and Financial Scale"
         />
       </ScrollReveal>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+
+      {/* Stat highlights */}
+      <div class="relative mt-12">
+        {/* Ambient glow behind stats */}
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-glow-steel/10 rounded-full blur-[120px] pointer-events-none ambient-glow"></div>
+
+        <div class="relative grid grid-cols-1 md:grid-cols-3 gap-6">
+          {statHighlights.map((stat, index) => (
+            <ScrollReveal delay={index * 100}>
+              <GlassCard padding="lg" class="h-full">
+                <StatHighlight
+                  value={stat.value}
+                  label={stat.label}
+                  description={stat.description}
+                  size="lg"
+                />
+              </GlassCard>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+
+      {/* Differentiators */}
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mt-16">
+        <ScrollReveal delay={300}>
+          <FeatureList items={differentiators} />
+        </ScrollReveal>
+        <ScrollReveal delay={400}>
+          <div class="relative">
+            <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
+            <div class="relative border-2 border-dashed border-surface-border rounded-card p-12 flex flex-col items-center justify-center text-center aspect-[4/3]">
+              <Icon name="shield" size={48} class="text-content-muted mb-4" />
+              <p class="text-heading-xs font-semibold text-content-muted">Tachyon Stability</p>
+              <p class="text-body-sm text-content-muted mt-1">AI-generated visual coming soon</p>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+
+      <ScrollReveal delay={500}>
+        <p class="text-body-lg text-content-secondary text-center mt-12 max-w-2xl mx-auto">
+          Not cheap cloud. <em class="text-content font-semibold">Cost-efficient enterprise infrastructure.</em>
+        </p>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+
+  {/* ── S4: Cost Comparison Table ── */}
+  <Section background="elevated" id="cost-comparison">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="COST COMPARISON"
+          heading="Indicative Cost Comparison"
+        />
+      </ScrollReveal>
+
+      <ScrollReveal delay={200}>
+        <div class="mt-12">
+          <CostComparisonTable
+            rows={comparisonRows}
+            callout={comparisonCallout}
+            disclaimer={comparisonDisclaimer}
+          />
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={400}>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <Button variant="primary" size="lg" href="/contact">Get a Tailored Estimate</Button>
+          <Button variant="outline" size="lg" href="#architecture">View Architecture</Button>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+
+  {/* ── S5: Architecture & Capability ── */}
+  <Section id="architecture">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="ARCHITECTURE"
+          heading="What You Get"
+        />
+      </ScrollReveal>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mt-12">
+        {/* Left: Diagram + stacked layers */}
+        <div class="space-y-10">
+          <ScrollReveal delay={100}>
+            <div class="relative">
+              <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
+              <DiagramPlaceholder
+                title="Architecture Diagram"
+                description="Bespoke SVG diagram — coming soon"
+                class="relative min-h-[240px]"
+              />
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={200}>
+            <div class="max-w-md mx-auto lg:mx-0">
+              <h3 class="text-heading-xs font-semibold text-center lg:text-left mb-4">Platform Architecture</h3>
+              <div class="space-y-3">
+                {architectureLayers.map((layer, i) => (
+                  <div class:list={[
+                    'relative px-6 py-4 rounded-card text-center font-medium text-body-md transition-all',
+                    i === 0 && 'bg-glow-steel/20 text-accent border border-glow-steel/30',
+                    i === 1 && 'bg-tint/8 text-content border border-surface-border',
+                    i === 2 && 'bg-tint/5 text-content-secondary border border-surface-border',
+                    i === 3 && 'bg-surface-overlay text-content-muted border border-surface-border',
+                  ]}>
+                    {layer}
+                    {i < architectureLayers.length - 1 && (
+                      <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 z-10">
+                        <Icon name="chevron-right" size={16} class="text-content-muted rotate-90" />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        {/* Right: Feature list */}
+        <ScrollReveal delay={200}>
+          <GlassCard padding="lg">
+            <h3 class="text-heading-sm font-semibold mb-4">What You Get</h3>
+            <FeatureList items={architectureFeatures} />
+          </GlassCard>
+        </ScrollReveal>
+      </div>
+
+      {/* Benefits grid */}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
         {benefits.map((benefit, index) => (
           <ScrollReveal delay={index * 100}>
             <GlassCard hover padding="lg" class="h-full">
@@ -128,14 +306,15 @@ const costLevers = [
     </Container>
   </Section>
 
-  <!-- Use Cases -->
+
+  {/* ── S6: Use Cases ── */}
   <Section background="elevated">
     <Container>
       <ScrollReveal>
         <SectionHeading
           badge="USE CASES"
           heading="Built For"
-          description="Smart Lakehouse is designed for organisations that need data infrastructure for analytics and AI."
+          description="The Tachyon Intelligence Platform is designed for organisations that need cost-efficient data infrastructure for analytics and AI."
         />
       </ScrollReveal>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
@@ -151,47 +330,50 @@ const costLevers = [
     </Container>
   </Section>
 
-  <!-- Cost Comparison -->
+
+  {/* ── S7: Cost Calculator Teaser ── */}
   <Section>
     <Container>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <ScrollReveal>
-          <SectionHeading
-            badge="COST COMPARISON"
-            heading="How We Control Costs"
-            description="We architect for cost efficiency by design — not as an afterthought."
-          />
-          <div class="mt-8">
-            <FeatureList items={costLevers} />
-          </div>
+          <Badge>COMING SOON</Badge>
+          <h2 class="text-display-md lg:text-display-lg font-display mt-4 mb-6">
+            Personalised Cost Calculator
+          </h2>
+          <p class="text-body-lg text-content-secondary max-w-lg mb-4">
+            Model your data infrastructure costs and see an indicative comparison between hyperscaler-based warehousing and the Tachyon Intelligence Platform on IONOS.
+          </p>
+          <p class="text-body-md text-content-muted max-w-lg mb-8">
+            Enter your data volumes, query patterns, and workload types to receive a tailored cost estimate.
+          </p>
+          <Button variant="primary" size="lg" href="/contact">Get an Estimate Now</Button>
         </ScrollReveal>
+
         <ScrollReveal delay={200}>
-          <DiagramPlaceholder
-            title="Cost Comparison"
-            description="Interactive calculator or comparison chart — coming soon"
-            class="min-h-[300px]"
-          />
+          <CostCalculatorTeaser />
         </ScrollReveal>
       </div>
     </Container>
   </Section>
 
-  <!-- Bottom CTA -->
+
+  {/* ── S8: Bottom CTA ── */}
   <Section background="elevated">
     <Container>
       <ScrollReveal>
         <div class="text-center">
           <SectionHeading
             align="center"
-            heading="Ready to Reduce Your Data Costs?"
-            description="Compare Smart Lakehouse against your current data warehousing spend."
+            heading="Ready to Reduce Your Data Infrastructure Costs?"
+            description="Compare the Tachyon Intelligence Platform against your current hyperscaler spend."
           />
           <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg" href="/contact">Compare Costs</Button>
-            <Button variant="outline" size="lg" href="/tachyon">Explore Tachyon</Button>
+            <Button variant="primary" size="lg" href="/contact">Compare Your Costs</Button>
+            <Button variant="outline" size="lg" href="/tachyon">Explore Tachyon Engine</Button>
           </div>
         </div>
       </ScrollReveal>
     </Container>
   </Section>
+
 </PageLayout>

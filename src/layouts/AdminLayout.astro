@@ -1,0 +1,82 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={`Admin — ${title}`} noIndex={true}>
+  <div id="admin-auth-gate" class="min-h-screen bg-surface">
+    <!-- Loading state -->
+    <div id="admin-loading" class="flex items-center justify-center min-h-screen">
+      <p class="text-body-sm text-content-muted">Checking authentication...</p>
+    </div>
+
+    <!-- Admin content — hidden until authenticated -->
+    <div id="admin-content" class="hidden">
+      <!-- Admin Header -->
+      <header class="border-b border-surface-border bg-surface-elevated">
+        <div class="max-w-[1260px] mx-auto px-6 py-4 flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <a href="/admin/insights" data-astro-reload class="text-heading-md font-semibold text-content hover:text-glow-blue transition-colors">
+              Insights Admin
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <a href="/insights" data-astro-reload class="text-body-sm text-content-muted hover:text-content transition-colors">
+              View Site &rarr;
+            </a>
+            <button
+              id="admin-logout"
+              class="text-body-sm text-content-muted hover:text-content transition-colors"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="max-w-[1260px] mx-auto px-6 py-8">
+        <slot />
+      </main>
+    </div>
+  </div>
+
+  <script is:inline>
+    document.addEventListener('astro:page-load', function() {
+      var STORAGE_KEY = 'admin_auth';
+      var loading = document.getElementById('admin-loading');
+      var content = document.getElementById('admin-content');
+
+      // Bail if not on an admin layout page
+      if (!loading || !content) return;
+
+      // Check authentication
+      if (!sessionStorage.getItem(STORAGE_KEY)) {
+        // Not authenticated — redirect to login
+        loading.classList.remove('hidden');
+        content.classList.add('hidden');
+        var currentPath = window.location.pathname;
+        window.location.href = '/admin/login?redirect=' + encodeURIComponent(currentPath);
+        return;
+      }
+
+      // Authenticated — show content
+      loading.classList.add('hidden');
+      content.classList.remove('hidden');
+
+      // Logout handler — idempotent via data attribute flag
+      var logoutBtn = document.getElementById('admin-logout');
+      if (logoutBtn && !logoutBtn.hasAttribute('data-listener-bound')) {
+        logoutBtn.setAttribute('data-listener-bound', 'true');
+        logoutBtn.addEventListener('click', function() {
+          sessionStorage.removeItem(STORAGE_KEY);
+          window.location.href = '/admin/login';
+        });
+      }
+    });
+  </script>
+</Layout>

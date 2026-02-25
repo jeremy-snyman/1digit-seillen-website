@@ -18,6 +18,13 @@ import { ctaNavItem } from '@content/data/navigation';
     <!-- Desktop CTA + Theme Toggle -->
     <div class="hidden lg:flex items-center gap-2">
       <ThemeToggle />
+      <a
+        id="admin-header-link"
+        href="/admin/insights"
+        class="hidden text-body-sm text-content-muted hover:text-content transition-colors px-2 py-1"
+      >
+        Admin
+      </a>
       <Button href={ctaNavItem.href} variant="outline" size="sm">
         {ctaNavItem.label}
       </Button>
@@ -40,3 +47,22 @@ import { ctaNavItem } from '@content/data/navigation';
 
   <MobileMenu />
 </header>
+
+<script is:inline>
+  (function showAdminLinks() {
+    if (sessionStorage.getItem('admin_auth')) {
+      var desktop = document.getElementById('admin-header-link');
+      var mobile = document.getElementById('admin-mobile-link');
+      if (desktop) desktop.classList.remove('hidden');
+      if (mobile) mobile.classList.remove('hidden');
+    }
+  })();
+  document.addEventListener('astro:after-swap', function() {
+    if (sessionStorage.getItem('admin_auth')) {
+      var desktop = document.getElementById('admin-header-link');
+      var mobile = document.getElementById('admin-mobile-link');
+      if (desktop) desktop.classList.remove('hidden');
+      if (mobile) mobile.classList.remove('hidden');
+    }
+  });
+</script>

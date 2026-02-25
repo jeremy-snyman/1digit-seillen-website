@@ -1,0 +1,21 @@
+---
+import AdminLayout from '@layouts/AdminLayout.astro';
+import ArticleEditor from '@components/admin/ArticleEditor';
+import { getAllInsights } from '@content/data/insights/index';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const articles = getAllInsights();
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<AdminLayout title={`Edit — ${article.title}`}>
+  <ArticleEditor client:load initial={article} />
+</AdminLayout>

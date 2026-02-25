@@ -9,6 +9,9 @@ import TrustSignals from '../components/home/TrustSignals.astro';
 import OutcomesProof from '../components/home/OutcomesProof.astro';
 import AssessmentCTA from '../components/home/AssessmentCTA.astro';
 import ScrollReveal from '../components/interactive/ScrollReveal.astro';
+import InsightHighlight from '../components/insights/InsightHighlight.astro';
+import Section from '../components/layout/Section.astro';
+import Container from '../components/layout/Container.astro';
 ---
 
 <PageLayout title="1Digit — AI Architecture & Data Engineering">
@@ -30,6 +33,14 @@ import ScrollReveal from '../components/interactive/ScrollReveal.astro';
   </ScrollReveal>
   <ScrollReveal delay={100}>
     <OutcomesProof />
+  </ScrollReveal>
+  <ScrollReveal delay={100}>
+    <Section padding="sm">
+      <Container size="narrow">
+        <p class="text-label-md uppercase tracking-wider text-content-muted mb-4">Latest Insight</p>
+        <InsightHighlight pinned />
+      </Container>
+    </Section>
   </ScrollReveal>
   <ScrollReveal delay={200}>
     <AssessmentCTA />

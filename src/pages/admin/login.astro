@@ -1,0 +1,124 @@
+---
+import Layout from '@layouts/Layout.astro';
+---
+
+<Layout title="Admin Login — 1Digit" noIndex={true}>
+  <main class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
+    <!-- Ambient glow -->
+    <div class="ambient-glow w-[400px] h-[400px] -top-20 -left-20 bg-[rgba(80,100,130,0.15)]" aria-hidden="true"></div>
+    <div class="ambient-glow w-[300px] h-[300px] -bottom-10 -right-10 bg-[rgba(130,90,200,0.1)]" aria-hidden="true"></div>
+
+    <div class="glass-card w-full max-w-md p-8 relative z-10">
+      <!-- 1Digit brand mark -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-elevated border border-surface-border/[var(--alpha-surface-border)] mb-4">
+          <span class="text-xl font-bold text-content">1</span>
+        </div>
+        <h1 class="text-heading-lg font-display text-content">Admin Login</h1>
+        <p class="text-body-sm text-content-muted mt-2">Sign in to access the admin panel</p>
+      </div>
+
+      <!-- Login form -->
+      <form id="admin-login-form" class="space-y-5">
+        <div>
+          <label for="admin-username" class="block text-body-sm font-medium text-content-secondary mb-1.5">Username</label>
+          <input
+            type="text"
+            id="admin-username"
+            name="username"
+            required
+            autocomplete="username"
+            class="w-full px-4 py-2.5 rounded-xl bg-surface-elevated border border-surface-border/[var(--alpha-surface-border)] text-content placeholder:text-content-muted/50 focus:outline-none focus:border-accent/40 transition-colors"
+            placeholder="Enter username"
+          />
+        </div>
+        <div>
+          <label for="admin-password" class="block text-body-sm font-medium text-content-secondary mb-1.5">Password</label>
+          <input
+            type="password"
+            id="admin-password"
+            name="password"
+            required
+            autocomplete="current-password"
+            class="w-full px-4 py-2.5 rounded-xl bg-surface-elevated border border-surface-border/[var(--alpha-surface-border)] text-content placeholder:text-content-muted/50 focus:outline-none focus:border-accent/40 transition-colors"
+            placeholder="Enter password"
+          />
+        </div>
+
+        <div id="login-error" class="hidden text-danger text-body-sm text-center"></div>
+
+        <button
+          type="submit"
+          class="w-full py-2.5 rounded-xl bg-surface-elevated border border-surface-border/[var(--alpha-surface-border)] text-content font-medium hover:border-accent/30 hover:shadow-[var(--shadow-glow)] transition-all duration-300"
+        >
+          Sign In
+        </button>
+      </form>
+
+      <div class="mt-6 text-center">
+        <a href="/" class="text-body-sm text-content-muted hover:text-content transition-colors inline-flex items-center gap-1.5">
+          <span>&larr;</span> Back to site
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script is:inline>
+    document.addEventListener('astro:page-load', function() {
+      var form = document.getElementById('admin-login-form');
+      var errorEl = document.getElementById('login-error');
+
+      // Bail if not on login page
+      if (!form || !errorEl) return;
+
+      // If already authenticated, redirect immediately
+      if (sessionStorage.getItem('admin_auth')) {
+        var params = new URLSearchParams(window.location.search);
+        var redirect = params.get('redirect') || '/admin/insights';
+        window.location.href = redirect;
+        return;
+      }
+
+      // SHA-256 hash function
+      async function sha256(message) {
+        var msgBuffer = new TextEncoder().encode(message);
+        var hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        var hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+      }
+
+      // Expected hashes (username: admin, password: admin)
+      var EXPECTED_USER_HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'; // sha256('admin')
+      var EXPECTED_PASS_HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'; // sha256('admin')
+
+      // Idempotent — skip if already bound
+      if (form.hasAttribute('data-listener-bound')) return;
+      form.setAttribute('data-listener-bound', 'true');
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        errorEl.classList.add('hidden');
+
+        var username = document.getElementById('admin-username').value.trim();
+        var password = document.getElementById('admin-password').value;
+
+        var userHash = await sha256(username);
+        var passHash = await sha256(password);
+
+        // Simple hash-based check
+        if (userHash === EXPECTED_USER_HASH && passHash === EXPECTED_PASS_HASH) {
+          // Store auth token
+          sessionStorage.setItem('admin_auth', btoa(Date.now().toString()));
+
+          // Redirect
+          var params = new URLSearchParams(window.location.search);
+          var redirect = params.get('redirect') || '/admin/insights';
+          window.location.href = redirect;
+        } else {
+          errorEl.textContent = 'Invalid credentials';
+          errorEl.classList.remove('hidden');
+        }
+      });
+    });
+  </script>
+</Layout>

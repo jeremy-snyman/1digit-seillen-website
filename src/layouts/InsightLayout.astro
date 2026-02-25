@@ -1,0 +1,145 @@
+---
+import Layout from './Layout.astro';
+import Header from '@components/global/Header.astro';
+import Footer from '@components/global/Footer.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import ThesisBlock from '@components/insights/ThesisBlock.astro';
+import BlockRenderer from '@components/insights/BlockRenderer.astro';
+import ContextualCTA from '@components/insights/ContextualCTA.astro';
+import RelatedInsights from '@components/insights/RelatedInsights.astro';
+import PdfDownload from '@components/insights/PdfDownload';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import { formatInsightDate, buildArticleSchema, buildInsightCanonical, categorySlug } from '@lib/insights';
+import type { InsightArticle } from '@content/data/insights/index';
+
+interface Props {
+  article: InsightArticle;
+}
+
+const { article } = Astro.props;
+const formattedDate = formatInsightDate(article.publishDate);
+const schema = buildArticleSchema({
+  title: article.title,
+  summary: article.summary,
+  publishDate: article.publishDate,
+  slug: article.slug,
+  ogImage: article.ogImage || undefined,
+});
+const canonical = buildInsightCanonical(article.slug);
+const catSlug = categorySlug(article.category);
+const badgeClass = `cat-badge-${catSlug}`;
+const gradientClass = `cat-gradient-${catSlug}`;
+---
+
+<Layout
+  title={article.seoTitle || article.title}
+  description={article.seoDescription || article.summary}
+  ogImage={article.ogImage || undefined}
+  type="article"
+  publishDate={article.publishDate}
+  canonicalUrl={canonical}
+>
+  <Header />
+  <main id="main-content">
+    <!-- Back to Insights -->
+    <Section class="pt-28 pb-0">
+      <Container size="narrow">
+        <a
+          href="/insights"
+          class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-body-sm text-content-muted hover:text-content border border-surface-border/[var(--alpha-surface-border)] hover:border-accent/30 transition-all duration-300"
+        >
+          <span>&larr;</span> Back to Insights
+        </a>
+      </Container>
+    </Section>
+
+    <!-- Article Header -->
+    <Section class="pt-8 pb-4 relative overflow-hidden">
+      <Container size="narrow">
+        <!-- Ambient glow orb -->
+        <div class:list={[gradientClass, 'absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full blur-[100px] opacity-50 pointer-events-none']} aria-hidden="true" style="animation: glow-breathe 8s ease-in-out infinite;"></div>
+
+        <ScrollReveal>
+          <div class="mb-4 flex items-center gap-3">
+            <span class:list={[badgeClass, 'px-2.5 py-1 rounded-full text-xs font-medium']}>{article.category}</span>
+            <span class="text-body-sm text-content-muted">{formattedDate}</span>
+            <span class="text-body-sm text-content-muted opacity-40">&middot;</span>
+            <span class="text-body-sm text-content-muted">{article.readTimeMinutes} min read</span>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={80}>
+          <h1 class="text-display-md lg:text-display-lg font-display font-medium mb-8 text-content">{article.title}</h1>
+        </ScrollReveal>
+      </Container>
+    </Section>
+
+    <!-- Cover Image Hero -->
+    <Section class="pt-0 pb-8">
+      <Container size="narrow">
+        <ScrollReveal delay={120}>
+          <div class="h-[280px] lg:h-[380px] rounded-2xl overflow-hidden">
+            {article.coverImage ? (
+              <img
+                src={article.coverImage}
+                alt=""
+                class="w-full h-full object-cover"
+                loading="eager"
+              />
+            ) : (
+              <div class:list={['w-full h-full flex items-center justify-center bg-surface-elevated relative']}>
+                <div class:list={[gradientClass, 'absolute inset-0']}></div>
+                <div class="relative w-20 h-20 rounded-full bg-surface-overlay/60 flex items-center justify-center">
+                  <svg class="w-8 h-8 text-content-muted/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+                  </svg>
+                </div>
+              </div>
+            )}
+          </div>
+        </ScrollReveal>
+      </Container>
+    </Section>
+
+    <!-- Thesis -->
+    <Section padding="none">
+      <Container size="narrow">
+        <ScrollReveal>
+          <ThesisBlock thesis={article.thesis} />
+        </ScrollReveal>
+      </Container>
+    </Section>
+
+    <!-- Body Blocks -->
+    <Section padding="sm">
+      <Container size="narrow">
+        <BlockRenderer blocks={article.bodyBlocks} />
+      </Container>
+    </Section>
+
+    <!-- Contextual CTA -->
+    <Section padding="none">
+      <Container size="narrow">
+        <ContextualCTA ctaType={article.ctaType} />
+      </Container>
+    </Section>
+
+    <!-- PDF Download -->
+    <Section padding="none">
+      <Container size="narrow">
+        <PdfDownload client:visible article={article} />
+      </Container>
+    </Section>
+
+    <!-- Related Insights -->
+    <RelatedInsights
+      currentSlug={article.slug}
+      category={article.category}
+      tags={article.tags}
+    />
+  </main>
+  <Footer />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</Layout>

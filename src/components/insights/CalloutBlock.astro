@@ -1,0 +1,21 @@
+---
+import GlassCard from '@components/ui/GlassCard.astro';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+---
+
+<div class="my-8">
+  <GlassCard padding="md" class="border-l-2 border-accent/40">
+    <div class="flex gap-4">
+      <div class="flex-shrink-0 mt-0.5">
+        <Icon name="lightbulb" size={20} class="text-accent" />
+      </div>
+      <p class="text-body-md text-content-secondary leading-relaxed">{content}</p>
+    </div>
+  </GlassCard>
+</div>

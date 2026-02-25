@@ -1,0 +1,32 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  description?: string;
+  size?: 'md' | 'lg';
+  class?: string;
+}
+
+const {
+  value,
+  label,
+  description,
+  size = 'md',
+  class: className,
+} = Astro.props;
+
+const valueSizeClasses = {
+  md: 'text-display-md',
+  lg: 'text-display-lg',
+};
+---
+
+<div class:list={['text-center', className]}>
+  <p class:list={[valueSizeClasses[size], 'font-display font-semibold text-glow-blue']}>
+    {value}
+  </p>
+  <p class="text-heading-xs font-semibold mt-2">{label}</p>
+  {description && (
+    <p class="text-body-sm text-content-muted mt-1">{description}</p>
+  )}
+</div>
