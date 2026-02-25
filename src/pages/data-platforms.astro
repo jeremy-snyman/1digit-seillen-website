@@ -4,184 +4,353 @@ import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
 import SectionHeading from '@components/ui/SectionHeading.astro';
 import ScrollReveal from '@components/interactive/ScrollReveal.astro';
-import ServiceCard from '@components/content/ServiceCard.astro';
 import GlassCard from '@components/ui/GlassCard.astro';
 import Icon from '@components/ui/Icon.astro';
 import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
-import { dataPlatformPillars, dataPatterns } from '@content/data/services';
+import FeatureList from '@components/content/FeatureList.astro';
+import SmokeCanvas from '@components/home/SmokeCanvas.tsx';
+import {
+  platformPhilosophy,
+  tachyonOverview,
+  smartLakeOverview,
+  cloudPositioning,
+  futurePlatforms,
+} from '@content/data/services';
 
-const title = 'Data Platforms';
-const description = 'We design and deploy scalable data platforms that bring together ingestion, storage, processing, analytics, and AI capability in a unified architecture.';
+const title = 'Our Platforms';
+const description = 'Proprietary platforms engineered to accelerate data infrastructure, reduce cost, and deliver production-grade AI foundations — without rebuilding from scratch.';
 ---
 
 <PageLayout title={title} description={description}>
-  <!-- Hero -->
-  <Section class="pt-32 pb-16">
+
+  <!-- ============================================
+       Section 1: Hero — SmokeCanvas atmospheric background
+       ============================================ -->
+  <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <!-- Background layers -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 40%, rgb(var(--color-surface-elevated)) 0%, rgb(var(--color-surface)) 70%);"></div>
+      <SmokeCanvas client:load />
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 70%, rgb(var(--color-surface)) 100%);"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 text-center px-6">
+      <Container>
+        <ScrollReveal>
+          <Badge variant="accent">OUR PLATFORMS</Badge>
+        </ScrollReveal>
+        <ScrollReveal delay={100}>
+          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+            Engineered Platforms.<br />
+            <span class="text-accent">Delivered with Discipline.</span>
+          </h1>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <p class="text-body-lg text-content-secondary max-w-2xl mx-auto mb-10">
+            We build proprietary data platforms — not bespoke projects. Structured, governed, cloud-agnostic foundations that accelerate delivery and reduce cost for every client engagement.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={300}>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button variant="primary" size="lg" href="/tachyon">Explore Tachyon</Button>
+            <Button variant="outline" size="lg" href="/smart-lakehouse-ionos">Explore Smart Data Lake</Button>
+          </div>
+        </ScrollReveal>
+      </Container>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       Section 2: Platform Philosophy — elevated
+       ============================================ -->
+  <Section background="elevated">
     <Container>
       <ScrollReveal>
-        <div class="max-w-3xl">
-          <Badge variant="accent">DATA PLATFORMS</Badge>
-          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
-            Smart Data Platforms for <em class="font-serif italic">AI-Ready</em> Enterprises
-          </h1>
-          <p class="text-body-lg text-content-secondary max-w-2xl">
-            {description}
+        <div class="max-w-3xl mx-auto text-center mb-12">
+          <p class="text-quote text-content text-display-sm leading-relaxed">
+            "We do not rebuild architecture from scratch for every client."
           </p>
         </div>
       </ScrollReveal>
-    </Container>
-  </Section>
 
-  <!-- Simple Explanation -->
-  <Section background="elevated">
-    <Container>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <ScrollReveal>
-          <SectionHeading
-            badge="THE CHALLENGE"
-            heading="Why Data Platforms Matter"
-          />
-          <p class="text-body-lg text-content-secondary mt-6">
-            Most organisations have data spread across dozens of systems — CRMs, ERPs, spreadsheets, third-party APIs, and legacy databases. None of it talks to each other. None of it is AI-ready.
-          </p>
-          <p class="text-body-md text-content-secondary mt-4">
-            A smart data platform brings all of this together into a single, governed, queryable estate. It is the foundation that makes AI possible — not the AI itself, but the infrastructure that makes AI reliable.
-          </p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <ScrollReveal delay={100}>
+          <GlassCard padding="lg" class="h-full">
+            <h3 class="text-heading-sm font-semibold mb-6">What Our Platforms Do</h3>
+            <FeatureList items={platformPhilosophy.whatPlatformsDo} />
+          </GlassCard>
         </ScrollReveal>
         <ScrollReveal delay={200}>
-          <img
-            src="/images/diagrams/data-platform.svg"
-            alt="Data Platform Architecture — ingestion, lakehouse with Trino and Kafka, consumption endpoints, and governance"
-            width="1200"
-            height="600"
-            class="w-full h-auto rounded-card"
-            loading="lazy"
-          />
+          <GlassCard padding="lg" class="h-full">
+            <h3 class="text-heading-sm font-semibold mb-6">How They May Be Used</h3>
+            <FeatureList items={platformPhilosophy.howUsed} />
+          </GlassCard>
         </ScrollReveal>
       </div>
+
+      <ScrollReveal delay={300}>
+        <p class="text-center text-body-lg mt-12 max-w-2xl mx-auto">
+          We are not tool resellers. We are <span class="text-accent font-semibold">platform builders</span>.
+        </p>
+      </ScrollReveal>
     </Container>
   </Section>
 
-  <!-- 6 Core Pillars -->
+
+  <!-- ============================================
+       Section 3: Tachyon (Primary Platform) — default
+       ============================================ -->
   <Section>
     <Container>
       <ScrollReveal>
-        <SectionHeading
-          align="center"
-          badge="CORE PILLARS"
-          heading="Six Pillars of a Smart Data Platform"
-          description="Every platform we build addresses these six interconnected capabilities."
-        />
+        <div class="text-center mb-12">
+          <Badge variant="accent">PRIMARY PLATFORM</Badge>
+          <h2 class="text-display-md lg:text-display-lg mt-4">Tachyon</h2>
+          <p class="text-accent text-body-lg font-medium mt-2">Structured Data. Activated at Speed.</p>
+          <p class="text-body-lg text-content-secondary max-w-2xl mx-auto mt-4">
+            Tachyon is our proprietary data ingestion and activation engine — built to impose structure on chaos, enforce governance by design, and deliver AI-ready outputs at low latency.
+          </p>
+        </div>
       </ScrollReveal>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        {dataPlatformPillars.map((pillar, index) => (
-          <ScrollReveal delay={index * 100}>
-            <ServiceCard {...pillar} />
-          </ScrollReveal>
-        ))}
-      </div>
-    </Container>
-  </Section>
 
-  <!-- Patterns -->
-  <Section background="elevated">
-    <Container>
-      <ScrollReveal>
-        <SectionHeading
-          badge="INTEGRATION PATTERNS"
-          heading="How Data Gets In"
-          description="We design ingestion patterns matched to your data sources, volume, and latency requirements."
-        />
-      </ScrollReveal>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-        {dataPatterns.map((pattern, index) => (
+      <!-- Pain points + image placeholder -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+        <ScrollReveal delay={100}>
+          <h3 class="text-heading-sm font-semibold mb-6">Problems Tachyon Solves</h3>
+          <div class="space-y-4">
+            {tachyonOverview.painPoints.map((point, i) => (
+              <div class="flex items-start gap-4">
+                <span class="text-accent font-bold text-body-lg mt-0.5 shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                <p class="text-body-md text-content-secondary">{point}</p>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <div class="relative">
+            <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
+            <div class="relative border-2 border-dashed border-surface-border rounded-card p-12 flex flex-col items-center justify-center text-center aspect-[4/3]">
+              <Icon name="zap" size={48} class="text-content-muted mb-4" />
+              <p class="text-heading-xs font-semibold text-content-muted">Tachyon Data Flow</p>
+              <p class="text-body-sm text-content-muted mt-1">AI-generated visual coming soon</p>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+
+      <!-- 4-card capabilities grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {tachyonOverview.capabilities.map((cap, index) => (
           <ScrollReveal delay={index * 100}>
-            <GlassCard hover padding="lg">
+            <GlassCard hover padding="lg" class="h-full">
               <div class="flex items-start gap-4">
                 <div class="w-10 h-10 rounded-lg bg-glow-steel/20 flex items-center justify-center shrink-0">
-                  <Icon name="zap" size={18} class="text-content" />
+                  <Icon name={cap.icon} size={20} class="text-accent" />
                 </div>
                 <div>
-                  <h3 class="text-heading-xs font-semibold mb-1">{pattern.name}</h3>
-                  <p class="text-body-md text-content-secondary">{pattern.description}</p>
+                  <h4 class="text-heading-xs font-semibold mb-1">{cap.title}</h4>
+                  <p class="text-body-md text-content-secondary">{cap.description}</p>
                 </div>
               </div>
             </GlassCard>
           </ScrollReveal>
         ))}
       </div>
+
+      <ScrollReveal delay={400}>
+        <div class="text-center mt-12">
+          <Button variant="primary" size="lg" href="/tachyon">Explore Tachyon</Button>
+        </div>
+      </ScrollReveal>
     </Container>
   </Section>
 
-  <!-- Data Quality -->
-  <Section>
+
+  <!-- ============================================
+       Section 4: Smart Data Lake on IONOS — elevated
+       ============================================ -->
+  <Section background="elevated">
     <Container>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <ScrollReveal>
-          <SectionHeading
-            badge="DATA QUALITY"
-            heading="Observability & Quality"
-            description="Data quality is not optional — it is the difference between AI that works and AI that generates expensive mistakes."
-          />
-          <div class="mt-8 space-y-4">
-            {[
-              'Schema validation and enforcement',
-              'Data lineage tracking from source to consumption',
-              'Anomaly detection and alerting',
-              'Quality scoring and SLA monitoring',
-              'Automated data profiling',
-            ].map((item) => (
-              <div class="flex items-center gap-3">
-                <div class="w-5 h-5 rounded-full bg-glow-steel/20 flex items-center justify-center shrink-0">
-                  <Icon name="check" size={12} class="text-content" />
-                </div>
-                <span class="text-body-md text-content-secondary">{item}</span>
+      <ScrollReveal>
+        <div class="text-center mb-12">
+          <div class="flex items-center justify-center gap-3 mb-4">
+            <Badge>PARTNERSHIP</Badge>
+            <Badge variant="accent">IONOS</Badge>
+          </div>
+          <h2 class="text-display-md lg:text-display-lg">Smart Data Lake on IONOS</h2>
+          <p class="text-accent text-body-lg font-medium mt-2">Enterprise Analytics. 40–60% Lower Infrastructure Cost.</p>
+          <p class="text-body-lg text-content-secondary max-w-2xl mx-auto mt-4">
+            A fully managed lakehouse platform built on IONOS European sovereign cloud infrastructure — delivering enterprise-grade analytics, AI enablement, and governance at a fraction of hyperscaler cost.
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <!-- Two-column: image + feature list (reversed) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
+        <ScrollReveal delay={100} class="order-2 lg:order-1">
+          <div class="relative">
+            <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
+            <div class="relative border-2 border-dashed border-surface-border rounded-card p-12 flex flex-col items-center justify-center text-center aspect-[4/3]">
+              <Icon name="database" size={48} class="text-content-muted mb-4" />
+              <p class="text-heading-xs font-semibold text-content-muted">Smart Data Lake Infrastructure</p>
+              <p class="text-body-sm text-content-muted mt-1">AI-generated visual coming soon</p>
+            </div>
+          </div>
+        </ScrollReveal>
+        <div class="order-1 lg:order-2 space-y-8">
+          <ScrollReveal delay={150}>
+            <h3 class="text-heading-sm font-semibold mb-4">Why It Matters</h3>
+            <FeatureList items={smartLakeOverview.whyItMatters} />
+          </ScrollReveal>
+          <ScrollReveal delay={250}>
+            <h3 class="text-heading-sm font-semibold mb-4">Who It's For</h3>
+            <div class="space-y-3">
+              {smartLakeOverview.whoItsFor.map((item) => (
+                <GlassCard padding="sm">
+                  <p class="text-body-md text-content-secondary">{item}</p>
+                </GlassCard>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+
+      <!-- Architecture overview: CSS stacked blocks -->
+      <ScrollReveal delay={300}>
+        <div class="max-w-xl mx-auto">
+          <h3 class="text-heading-xs font-semibold text-center mb-6">Platform Architecture</h3>
+          <div class="space-y-3">
+            {smartLakeOverview.architectureLayers.map((layer, i) => (
+              <div class:list={[
+                'relative px-6 py-4 rounded-card text-center font-medium text-body-md transition-all',
+                i === 0 && 'bg-glow-steel/20 text-accent border border-glow-steel/30',
+                i === 1 && 'bg-tint/8 text-content border border-surface-border',
+                i === 2 && 'bg-tint/5 text-content-secondary border border-surface-border',
+                i === 3 && 'bg-surface-overlay text-content-muted border border-surface-border',
+              ]}>
+                {layer}
+                {i < smartLakeOverview.architectureLayers.length - 1 && (
+                  <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 z-10">
+                    <Icon name="chevron-right" size={16} class="text-content-muted rotate-90" />
+                  </div>
+                )}
               </div>
             ))}
           </div>
-        </ScrollReveal>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={400}>
+        <div class="text-center mt-12">
+          <Button variant="primary" size="lg" href="/smart-lakehouse-ionos">Explore the Full Platform</Button>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+
+  <!-- ============================================
+       Section 5: Cloud Positioning — default
+       ============================================ -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="CLOUD STRATEGY"
+          heading="Cloud-Agnostic by Design"
+          description="Our recommendations are commercial and architectural — not vendor-led."
+        />
+      </ScrollReveal>
+
+      <ScrollReveal delay={100}>
+        <div class="flex flex-wrap items-center justify-center gap-3 mt-10 mb-12">
+          {cloudPositioning.clouds.map((cloud) => (
+            <span class="px-5 py-2.5 rounded-badge bg-tint/8 text-content border border-surface-border text-body-md font-medium">
+              {cloud}
+            </span>
+          ))}
+        </div>
+      </ScrollReveal>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <ScrollReveal delay={200}>
-          <GlassCard padding="lg">
-            <h3 class="text-heading-sm font-semibold mb-4">Cost Narrative</h3>
-            <p class="text-body-md text-content-secondary mb-4">
-              Cloud data costs should scale with value, not with complexity. Our platform designs prioritise:
-            </p>
-            <div class="space-y-3">
-              {[
-                'Tiered storage with automatic lifecycle management',
-                'Query optimisation to reduce compute spend',
-                'Open formats to avoid vendor lock-in premiums',
-                'Right-sized infrastructure with auto-scaling',
-              ].map((item) => (
-                <div class="flex items-center gap-3">
-                  <Icon name="check" size={16} class="text-content shrink-0" />
-                  <span class="text-body-sm text-content-secondary">{item}</span>
-                </div>
-              ))}
+          <GlassCard padding="lg" class="h-full">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="zap" size={20} class="text-accent" />
+              <h3 class="text-heading-xs font-semibold">Tachyon</h3>
             </div>
+            <p class="text-body-md text-content-secondary">
+              Cloud-neutral by architecture. Tachyon deploys on any major cloud provider, on-premise, or hybrid environments — with no vendor-specific dependencies or lock-in.
+            </p>
+          </GlassCard>
+        </ScrollReveal>
+        <ScrollReveal delay={300}>
+          <GlassCard padding="lg" class="h-full">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="database" size={20} class="text-accent" />
+              <h3 class="text-heading-xs font-semibold">Smart Data Lake</h3>
+            </div>
+            <p class="text-body-md text-content-secondary">
+              Purpose-built on IONOS European sovereign cloud infrastructure — optimised for cost, compliance, and performance where European data residency or cost reduction are priorities.
+            </p>
           </GlassCard>
         </ScrollReveal>
       </div>
     </Container>
   </Section>
 
-  <!-- Bottom CTA -->
+
+  <!-- ============================================
+       Section 6: Future Platforms — elevated
+       ============================================ -->
   <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="WHAT'S NEXT"
+          heading="Expanding Platform Portfolio"
+        />
+      </ScrollReveal>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        {futurePlatforms.map((platform, index) => (
+          <ScrollReveal delay={index * 100}>
+            <div class="flex flex-col items-center text-center p-6">
+              <div class="w-14 h-14 rounded-xl bg-glow-steel/15 flex items-center justify-center mb-4">
+                <Icon name={platform.icon} size={24} class="text-accent" />
+              </div>
+              <h3 class="text-heading-xs font-semibold">{platform.title}</h3>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+
+  <!-- ============================================
+       Section 7: Final CTA — default
+       ============================================ -->
+  <Section>
     <Container>
       <ScrollReveal>
         <div class="text-center">
           <SectionHeading
             align="center"
-            heading="Ready to Unify Your Data?"
-            description="Explore our ingestion engine or discuss your data platform requirements."
+            heading="Discuss Your Platform Strategy"
           />
           <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg" href="/tachyon">Explore Tachyon</Button>
-            <Button variant="outline" size="lg" href="/contact">Discuss Your Platform</Button>
+            <Button variant="primary" size="lg" href="/contact">Start the Conversation</Button>
+            <Button variant="outline" size="lg" href="/how-we-work">How We Work</Button>
           </div>
         </div>
       </ScrollReveal>
     </Container>
   </Section>
+
 </PageLayout>

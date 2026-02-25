@@ -219,3 +219,67 @@ export const definitionOfDone = [
   { title: 'Knowledge Transfer', description: 'Your team understands what was built, why decisions were made, and how to operate it' },
   { title: 'Clear Next Steps', description: 'Defined recommendations and options for the next phase of work' },
 ];
+
+/* ============================================
+   Our Platforms page data
+   ============================================ */
+
+export const platformPhilosophy = {
+  whatPlatformsDo: [
+    'Accelerate implementation timelines',
+    'Reduce engineering overhead',
+    'Enforce governance by design',
+    'Improve observability across pipelines',
+    'Lower cost-to-serve',
+    'Shorten time to production',
+  ],
+  howUsed: [
+    'Delivery accelerators within client engagements',
+    'Standalone commercial systems deployed independently',
+    'Cloud-agnostic foundations adaptable to any environment',
+    'Integration layers within existing enterprise architecture',
+  ],
+};
+
+export const tachyonOverview = {
+  painPoints: [
+    'Fragmented and inconsistent schemas across data sources',
+    'Uncontrolled unstructured data growth',
+    'Mixed personal and operational datasets without separation',
+    'Slow batch activation cycles delaying time-to-value',
+    'AI and analytics consuming unreliable inputs',
+  ],
+  capabilities: [
+    { icon: 'layers', title: 'Structured Ingestion', description: 'Schema enforcement and version control at entry.' },
+    { icon: 'shield', title: 'Sensitivity Detection', description: 'Automatic identification and secure separation of regulated data.' },
+    { icon: 'zap', title: 'Low-Latency Activation', description: 'Batch-to-event conversion and real-time distribution.' },
+    { icon: 'cpu', title: 'AI-Ready Outputs', description: 'Prepared datasets, embeddings and structured feeds for models and agents.' },
+  ],
+};
+
+export const smartLakeOverview = {
+  whyItMatters: [
+    'Up to 40–60% lower infrastructure cost vs hyperscaler warehouse deployments',
+    'Unified data, analytics and governance in one platform',
+    'Transparent pricing and predictable scaling',
+    'Enterprise-grade performance on European cloud infrastructure',
+    'Sovereign data positioning where required',
+  ],
+  whoItsFor: [
+    'Organisations starting their data journey and needing affordable scale',
+    'Enterprises reducing infrastructure cost across large workloads',
+    'AI programmes expanding without exploding cloud bills',
+  ],
+  architectureLayers: ['Analytics & AI', 'Processing & Query', 'Unified Data Lake', 'IONOS Cloud Infrastructure'],
+};
+
+export const cloudPositioning = {
+  clouds: ['AWS', 'Azure', 'GCP', 'IONOS', 'Hybrid / Multi-Cloud'],
+};
+
+export const futurePlatforms = [
+  { icon: 'cpu', title: 'AI-Native Orchestration' },
+  { icon: 'zap', title: 'Workflow Intelligence' },
+  { icon: 'users', title: 'Enterprise Operating Models' },
+  { icon: 'shield', title: 'Governance Automation' },
+];
