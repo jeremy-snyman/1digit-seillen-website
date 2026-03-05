@@ -11,30 +11,34 @@ const capabilities = [
     title: 'AI Readiness & Assessment',
     description: 'We evaluate organisational capability before implementation. Leadership alignment, strategy clarity, data maturity, and governance.',
     href: '/what-we-do#assessment',
+    color: 'blue' as const,
   },
   {
     icon: 'database',
     title: 'Smart Data Platforms',
     description: 'Cloud-native lakehouse architectures with real-time ingestion, distributed querying, and multi-cloud flexibility.',
     href: '/data-platforms',
+    color: 'emerald' as const,
   },
   {
     icon: 'cpu',
     title: 'AI-Enabled Products & Engineering',
     description: 'AI-native application design with embedded workflows, guardrails, model governance, and continuous validation.',
     href: '/what-we-do#products',
+    color: 'purple' as const,
   },
   {
     icon: 'shield',
     title: 'AI Architecture, Governance & Security',
     description: 'Risk frameworks, security alignment, role-based access controls, and AI Ops & SecOps frameworks.',
     href: '/trust-security',
+    color: 'amber' as const,
   },
 ];
 ---
 
-<Section background="elevated" class="relative overflow-hidden">
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] ambient-glow bg-glow-steel/10"></div>
+<Section padding="sm" class="relative overflow-hidden">
+  <div class="mesh-gradient w-[600px] h-[400px] bg-glow-steel/20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style="animation: mesh-drift-1 20s ease-in-out infinite;"></div>
   <Container class="relative z-10">
     <ScrollReveal>
       <SectionHeading

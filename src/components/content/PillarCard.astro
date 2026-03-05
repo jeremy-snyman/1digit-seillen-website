@@ -4,6 +4,7 @@ import Icon from '@components/ui/Icon.astro';
 import Button from '@components/ui/Button.astro';
 import FeatureList from './FeatureList.astro';
 import ExpandableDetail from './ExpandableDetail.astro';
+import ImagePlaceholder from '@components/ui/ImagePlaceholder.astro';
 
 interface Props {
   number: string;
@@ -18,26 +19,50 @@ interface Props {
   secondaryCta?: { label: string; href: string };
   index?: number;
   image?: string;
+  thumbnail?: string;
+  thumbnailLight?: string;
+  accentColor?: 'blue' | 'amber' | 'purple' | 'emerald';
 }
 
-const { number, title, icon, problem, approach, deliverables, outcomes, timeframe, cta, secondaryCta, index = 0, image } = Astro.props;
+const { title, icon, problem, approach, deliverables, outcomes, cta, secondaryCta, index = 0, thumbnail, thumbnailLight, accentColor } = Astro.props;
 const isOdd = index % 2 !== 0;
+
+const borderColorMap: Record<string, string> = {
+  blue: 'border-l-signal-blue/40',
+  amber: 'border-l-signal-amber/40',
+  purple: 'border-l-signal-purple/40',
+  emerald: 'border-l-signal-emerald/40',
+};
+
+const textColorMap: Record<string, string> = {
+  blue: 'text-signal-blue',
+  amber: 'text-signal-amber',
+  purple: 'text-signal-purple',
+  emerald: 'text-signal-emerald',
+};
+
+const badgeBgMap: Record<string, string> = {
+  blue: 'bg-signal-blue/20 text-signal-blue',
+  amber: 'bg-signal-amber/20 text-signal-amber',
+  purple: 'bg-signal-purple/20 text-signal-purple',
+  emerald: 'bg-signal-emerald/20 text-signal-emerald',
+};
+
+const borderClass = accentColor ? borderColorMap[accentColor] : '';
+const iconColor = accentColor ? textColorMap[accentColor] : 'text-glow-blue';
+const badgeColor = accentColor ? badgeBgMap[accentColor] : 'bg-glow-steel/20 text-glow-blue';
 ---
 
-<GlassCard padding="lg" class="relative overflow-hidden">
-  <div class="absolute top-0 right-0 text-[120px] font-display font-bold text-tint/[0.03] leading-none select-none pointer-events-none">
-    {number}
-  </div>
+<GlassCard padding="lg" class={`relative overflow-hidden border-l-2 ${borderClass} shadow-lg shadow-black/10 border border-tint/[0.08]`}>
 
   <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
     <!-- Column 1: Info -->
     <div class={isOdd ? 'md:order-last' : ''}>
       <div class="flex items-center gap-4 mb-6">
         <div class="w-12 h-12 rounded-xl bg-surface-subtle flex items-center justify-center">
-          <Icon name={icon} size={24} class="text-glow-blue" />
+          <Icon name={icon} size={24} class={iconColor} />
         </div>
         <div>
-          <span class="text-label-md text-glow-blue uppercase tracking-wider">{number}</span>
           <h3 class="text-heading-md font-semibold">{title}</h3>
         </div>
       </div>
@@ -59,13 +84,12 @@ const isOdd = index % 2 !== 0;
         <h4 class="text-label-md uppercase tracking-wider text-content-muted mb-3">Typical Outcomes</h4>
         <div class="flex flex-wrap gap-2">
           {outcomes.map((outcome) => (
-            <span class="px-3 py-1 rounded-badge bg-glow-steel/20 text-glow-blue text-body-sm">{outcome}</span>
+            <span class={`px-3 py-1 rounded-badge text-body-sm ${badgeColor}`}>{outcome}</span>
           ))}
         </div>
       </div>
 
-      <div class="flex items-center justify-between border-t border-surface-border pt-6">
-        <span class="text-body-sm text-content-muted">{timeframe} typical duration</span>
+      <div class="flex items-center justify-end border-t border-surface-border pt-6">
         <div class="flex gap-3">
           {secondaryCta && (
             <Button variant="outline" size="sm" href={secondaryCta.href}>{secondaryCta.label}</Button>
@@ -77,19 +101,25 @@ const isOdd = index % 2 !== 0;
 
     <!-- Column 2: Expandable Details -->
     <div>
-      {image && (
-        <img
-          src={image}
-          alt=""
-          loading="lazy"
-          class="w-full h-auto rounded-xl mb-6 theme-image"
-        />
+      {thumbnail ? (
+        <>
+          <img src={thumbnail} alt=""
+               class="w-full h-auto mb-6 pillar-thumb-dark"
+               loading="lazy" />
+          <img src={thumbnailLight || thumbnail} alt=""
+               class="w-full h-auto mb-6 pillar-thumb-light"
+               loading="lazy" />
+        </>
+      ) : (
+        <div class="mb-6">
+          <ImagePlaceholder aspect="4/3" label={title} />
+        </div>
       )}
       <ExpandableDetail title="Our Approach">
         <ul class="space-y-2">
           {approach.map((item) => (
             <li class="flex items-start gap-3 text-body-md text-content-secondary">
-              <Icon name="chevron-right" size={16} class="text-glow-blue mt-1 shrink-0" />
+              <Icon name="chevron-right" size={16} class={`${iconColor} mt-1 shrink-0`} />
               <span>{item}</span>
             </li>
           ))}

@@ -43,3 +43,53 @@
   0%, 100% { filter: drop-shadow(0 0 8px rgb(var(--color-accent) / 0.3)); }
   50% { filter: drop-shadow(0 0 16px rgb(var(--color-accent) / 0.6)); }
 }
+
+/* Border shimmer for premium cards */
+@keyframes border-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Ambient floating drift for mesh orbs */
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-10px, 20px) scale(0.97); }
+  75% { transform: translate(-30px, -10px) scale(1.03); }
+}
+
+/* Offset mesh drift variants */
+@keyframes mesh-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -30px) scale(1.04); }
+  66% { transform: translate(-25px, 15px) scale(0.98); }
+}
+
+@keyframes mesh-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-20px, 25px) scale(0.96); }
+  66% { transform: translate(30px, -15px) scale(1.05); }
+}
+
+/* CTA glow pulse */
+@keyframes cta-glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgb(var(--color-accent-bright) / 0.15), 0 0 60px rgb(var(--color-accent-bright) / 0.05); }
+  50% { box-shadow: 0 0 30px rgb(var(--color-accent-bright) / 0.25), 0 0 80px rgb(var(--color-accent-bright) / 0.1); }
+}
+
+/* Line reveal (scaleX from 0 to 1) */
+@keyframes line-reveal {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Reduced motion: disable all new animations */
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-border::before,
+  .mesh-gradient,
+  [style*="animation: drift"],
+  [style*="animation: mesh-drift"],
+  [style*="animation: cta-glow-pulse"] {
+    animation: none !important;
+  }
+}

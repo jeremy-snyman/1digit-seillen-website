@@ -1,6 +1,7 @@
 ---
 import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
 import GlassCard from '@components/ui/GlassCard.astro';
 import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
@@ -8,25 +9,40 @@ import Icon from '@components/ui/Icon.astro';
 import ScrollReveal from '@components/interactive/ScrollReveal.astro';
 ---
 
-<Section>
-  <Container>
+<Section background="elevated" padding="sm" class="relative overflow-hidden">
+  <Container class="relative z-10">
+    <ScrollReveal>
+      <SectionHeading
+        badge="Our Platforms"
+        heading="Technology Built for Enterprise AI"
+        align="center"
+        class="mb-16"
+      />
+    </ScrollReveal>
+
     <div class="grid md:grid-cols-2 gap-6">
       <ScrollReveal>
-        <GlassCard hover padding="lg" class="h-full">
-          <Badge variant="accent">Product</Badge>
-          <h3 class="text-heading-xl mt-4 mb-3">Tachyon</h3>
-          <p class="text-body-md text-content-secondary mb-6">
-            Our AI-ready data foundation. Cloud-agnostic ingestion and processing engine built on open-source technologies.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="text-body-xs text-content-muted bg-tint/8 px-2 py-1 rounded">Cloud-agnostic</span>
-            <span class="text-body-xs text-content-muted bg-tint/8 px-2 py-1 rounded">Open-source</span>
-            <span class="text-body-xs text-content-muted bg-tint/8 px-2 py-1 rounded">AI-optimised</span>
-          </div>
-          <Button href="/tachyon" variant="outline" size="sm">
-            Explore Tachyon <Icon name="arrow-right" size={16} />
-          </Button>
-        </GlassCard>
+        <div class="shimmer-border rounded-card h-full">
+          <GlassCard hover padding="lg" class="h-full relative overflow-hidden">
+            {/* Subtle blue inner gradient */}
+            <div class="absolute inset-0 bg-gradient-to-br from-signal-blue/5 to-transparent rounded-card pointer-events-none"></div>
+            <div class="relative z-10">
+              <Badge variant="accent">Product</Badge>
+              <h3 class="text-heading-xl mt-4 mb-3">Tachyon</h3>
+              <p class="text-body-md text-content-secondary mb-6">
+                Our AI-ready data foundation. Cloud-agnostic ingestion and processing engine built on open-source technologies.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="text-body-xs bg-signal-blue/8 text-signal-blue px-2 py-1 rounded">Cloud-agnostic</span>
+                <span class="text-body-xs bg-signal-blue/8 text-signal-blue px-2 py-1 rounded">Open-source</span>
+                <span class="text-body-xs bg-signal-blue/8 text-signal-blue px-2 py-1 rounded">AI-optimised</span>
+              </div>
+              <Button href="/tachyon" variant="outline" size="sm">
+                Explore Tachyon <Icon name="arrow-right" size={16} />
+              </Button>
+            </div>
+          </GlassCard>
+        </div>
       </ScrollReveal>
 
       <ScrollReveal delay={150}>
@@ -37,9 +53,9 @@ import ScrollReveal from '@components/interactive/ScrollReveal.astro';
             Enterprise data warehousing in partnership with IONOS. Cost-effective, scalable, and optimised for AI workloads.
           </p>
           <div class="flex flex-wrap gap-2 mb-6">
-            <span class="text-body-xs text-content-muted bg-tint/8 px-2 py-1 rounded">European super-scaler</span>
-            <span class="text-body-xs text-content-muted bg-tint/8 px-2 py-1 rounded">Cost-efficient</span>
-            <span class="text-body-xs text-content-muted bg-tint/8 px-2 py-1 rounded">Enterprise-ready</span>
+            <span class="text-body-xs bg-signal-amber/8 text-signal-amber px-2 py-1 rounded">European super-scaler</span>
+            <span class="text-body-xs bg-signal-amber/8 text-signal-amber px-2 py-1 rounded">Cost-efficient</span>
+            <span class="text-body-xs bg-signal-amber/8 text-signal-amber px-2 py-1 rounded">Enterprise-ready</span>
           </div>
           <Button href="/smart-lakehouse-ionos" variant="outline" size="sm">
             Learn More <Icon name="arrow-right" size={16} />

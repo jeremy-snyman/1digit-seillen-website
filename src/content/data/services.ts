@@ -21,7 +21,9 @@ export const pillars = [
     outcomes: ['Confidence to invest', 'Reduced failed pilots', 'Clear scope and ownership'],
     timeframe: '2–5 weeks',
     cta: { label: 'Assess Your AI Readiness', href: '/ai-readiness-assessment' },
-    thumbnail: '/images/what-we-do/ai-readiness-thumb.png',
+    accentColor: 'blue' as const,
+    thumbnail: '/images/what-we-do/ai-readiness-thumb.jpeg',
+    thumbnailLight: '/images/what-we-do/ai-readiness-thumb-light.jpeg',
     image: '/images/what-we-do/ai-readiness-detail.png',
   },
   {
@@ -47,7 +49,9 @@ export const pillars = [
     outcomes: ['Unified data estate', 'AI-ready infrastructure', 'Reduced cloud spend'],
     timeframe: '6–16 weeks',
     cta: { label: 'Explore Data Platforms', href: '/data-platforms' },
-    thumbnail: '/images/what-we-do/data-platforms-thumb.png',
+    accentColor: 'amber' as const,
+    thumbnail: '/images/what-we-do/data-platforms-thumb.jpeg',
+    thumbnailLight: '/images/what-we-do/data-platforms-thumb-light.jpeg',
     image: '/images/what-we-do/data-platforms-detail.png',
   },
   {
@@ -72,7 +76,9 @@ export const pillars = [
     outcomes: ['Production-ready AI products', 'Governed model deployment', 'Measurable business value'],
     timeframe: '8–20 weeks',
     cta: { label: 'Discuss Your AI Product', href: '/contact' },
+    accentColor: 'purple' as const,
     thumbnail: '/images/what-we-do/ai-products-thumb.png',
+    thumbnailLight: '/images/what-we-do/ai-products-thumb-light.png',
     image: '/images/what-we-do/ai-products-detail.png',
   },
   {
@@ -97,7 +103,9 @@ export const pillars = [
     timeframe: '4–12 weeks',
     cta: { label: 'View Full Architecture Framework', href: '/architecture' },
     secondaryCta: { label: 'Discuss Governance', href: '/contact' },
+    accentColor: 'emerald' as const,
     thumbnail: '/images/what-we-do/governance-thumb.png',
+    thumbnailLight: '/images/what-we-do/governance-thumb-light.png',
     image: '/images/what-we-do/governance-detail.png',
   },
 ];
@@ -107,16 +115,22 @@ export const valueProps = [
     icon: 'target',
     title: 'Assessment-First Approach',
     description: 'We diagnose before we build. Every engagement starts with honest assessment — no assumptions, no templates.',
+    image: '/images/what-we-do/value-assessment-first.png',
+    imageLight: '/images/what-we-do/value-assessment-first-light.png',
   },
   {
     icon: 'layers',
     title: 'End-to-End Delivery',
     description: 'Strategy through to production. One team, no handoff gaps between advice and implementation.',
+    image: '/images/what-we-do/value-end-to-end.png',
+    imageLight: '/images/what-we-do/value-end-to-end-light.png',
   },
   {
     icon: 'shield',
     title: 'Governance by Design',
     description: 'Security, compliance, and auditability built in from day one — not bolted on as an afterthought.',
+    image: '/images/what-we-do/value-governance-by-design.png',
+    imageLight: '/images/what-we-do/value-governance-by-design-light.png',
   },
 ];
 
@@ -191,9 +205,9 @@ export const commercialCheckpoints = [
 ];
 
 export const weekCadence = [
-  { day: 'Monday', title: 'Sprint Planning', description: 'Priority alignment and clear objectives set for the week.', icon: 'target' },
-  { day: 'Midweek', title: 'Focused Delivery', description: 'Heads-down delivery with async check-ins. Issues surfaced early, blockers removed fast.', icon: 'zap' },
-  { day: 'Friday', title: 'Review & Demo', description: 'Progress review and stakeholder update. Deliverables demonstrated, next week scoped.', icon: 'chart' },
+  { day: 'Monday', title: 'Sprint Planning', description: 'Priority alignment and clear objectives set for the week.', icon: 'target', accentColor: 'blue' as const },
+  { day: 'Midweek', title: 'Focused Delivery', description: 'Heads-down delivery with async check-ins. Issues surfaced early, blockers removed fast.', icon: 'zap', accentColor: 'green' as const },
+  { day: 'Friday', title: 'Review & Demo', description: 'Progress review and stakeholder update. Deliverables demonstrated, next week scoped.', icon: 'chart', accentColor: 'amber' as const },
 ];
 
 export const partnershipInputs = {

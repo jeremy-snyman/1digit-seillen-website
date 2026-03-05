@@ -7,15 +7,28 @@ interface Props {
   title: string;
   description: string;
   href: string;
+  color?: 'blue' | 'purple' | 'amber' | 'emerald';
 }
 
-const { icon, title, description, href } = Astro.props;
+const { icon, title, description, href, color } = Astro.props;
+
+const colorMap = {
+  blue: { bg: 'bg-signal-blue/15 border border-signal-blue/20', text: 'text-signal-blue' },
+  purple: { bg: 'bg-signal-purple/15 border border-signal-purple/20', text: 'text-signal-purple' },
+  amber: { bg: 'bg-signal-amber/15 border border-signal-amber/20', text: 'text-signal-amber' },
+  emerald: { bg: 'bg-signal-emerald/15 border border-signal-emerald/20', text: 'text-signal-emerald' },
+};
+
+const colorClasses = color ? colorMap[color] : { bg: 'bg-surface-subtle', text: 'text-glow-blue' };
 ---
 
 <a href={href} class="group block">
   <GlassCard hover padding="md" class="h-full">
     <div class="flex flex-col gap-4">
-      <div class="w-12 h-12 rounded-card-sm bg-surface-subtle flex items-center justify-center text-glow-blue">
+      <div class:list={[
+        'w-12 h-12 rounded-card-sm flex items-center justify-center',
+        colorClasses.bg, colorClasses.text,
+      ]}>
         <Icon name={icon} size={24} />
       </div>
       <h3 class="text-heading-sm">{title}</h3>

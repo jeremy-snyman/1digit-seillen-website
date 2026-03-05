@@ -3,7 +3,7 @@ interface Props {
   id?: string;
   class?: string;
   background?: 'default' | 'elevated' | 'subtle' | 'mid';
-  padding?: 'default' | 'sm' | 'none';
+  padding?: 'default' | 'sm' | 'lg' | 'none';
 }
 
 const {
@@ -23,6 +23,7 @@ const bgClasses = {
 const paddingClasses = {
   default: 'py-section',
   sm: 'py-section-sm',
+  lg: 'py-section-lg',
   none: '',
 };
 ---

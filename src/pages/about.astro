@@ -8,54 +8,202 @@ import GlassCard from '@components/ui/GlassCard.astro';
 import Icon from '@components/ui/Icon.astro';
 import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
-import FeatureList from '@components/content/FeatureList.astro';
-import { values, differentiators, teamMembers } from '@content/data/team';
+import DiagramPlaceholder from '@components/content/DiagramPlaceholder.astro';
+import SmokeCanvas from '@components/home/SmokeCanvas.tsx';
+import {
+  heroDescription,
+  missionText,
+  visionText,
+  philosophyQuote,
+  corePillars,
+  differentiatorIntro,
+  differentiators,
+  approachIntro,
+  approachSteps,
+  approachQuote,
+  valuesIntro,
+  values,
+  valuesStatement,
+  coreStatement,
+} from '@content/data/about';
 
 const title = 'About 1Digit';
 const description = 'We are an AI architecture and data engineering firm focused on practical AI transformation — not hype.';
 ---
 
 <PageLayout title={title} description={description}>
-  <!-- Hero / Mission -->
-  <Section class="pt-32 pb-16">
+
+  {/* ══════════════════════════════════════════════
+      S1 — Hero (full-viewport, SmokeCanvas)
+      ══════════════════════════════════════════════ */}
+  <section class="relative min-h-[90vh] flex items-center overflow-hidden">
+    {/* Background layers */}
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 40%, rgb(var(--color-surface-elevated)) 0%, rgb(var(--color-surface)) 70%);"></div>
+      <SmokeCanvas client:load />
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 70%, rgb(var(--color-surface)) 100%);"></div>
+      {/* Ambient glow orb */}
+      <div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-glow-steel/10 rounded-full blur-[160px] pointer-events-none ambient-glow"></div>
+    </div>
+
+    {/* Content */}
+    <div class="relative z-10 px-6 w-full">
+      <Container>
+        <div class="max-w-3xl pt-32 pb-20">
+          <ScrollReveal>
+            <Badge variant="accent">ABOUT US</Badge>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <h1 class="mt-4 mb-6">
+              <span class="about-gradient-text text-display-lg lg:text-display-xl font-display block">Practical AI Transformation.</span>
+              <span class="about-gradient-text text-display-lg lg:text-display-xl font-display block text-accent">Not Hype.</span>
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <p class="text-body-lg text-content-secondary max-w-2xl mb-8">
+              {heroDescription}
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={300}>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <Button variant="primary" size="lg" href="/contact">Start a Conversation</Button>
+              <Button variant="outline" size="lg" href="/what-we-do">Explore Capabilities</Button>
+            </div>
+          </ScrollReveal>
+        </div>
+      </Container>
+    </div>
+
+    {/* Scroll indicator */}
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-content-muted">
+      <span class="text-body-xs">Scroll to explore</span>
+      <div class="scroll-indicator-mouse w-6 h-10 rounded-full border-2 border-content-muted/40 flex items-start justify-center p-1.5">
+        <div class="scroll-indicator-dot w-1.5 h-1.5 rounded-full bg-content-muted"></div>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════
+      S2 — Mission & Vision (elevated)
+      ══════════════════════════════════════════════ */}
+  <Section background="elevated">
     <Container>
-      <ScrollReveal>
-        <div class="max-w-3xl">
-          <Badge variant="accent">ABOUT US</Badge>
-          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
-            Practical AI Transformation. <em class="font-serif italic">Not Hype.</em>
-          </h1>
-          <p class="text-body-lg text-content-secondary max-w-2xl">
-            1Digit is an AI architecture and data engineering firm that enables enterprise AI adoption through structured data platforms, governance models, and scalable engineering.
-          </p>
-          <p class="text-body-md text-content-muted mt-4 max-w-2xl">
-            We believe AI success is data-first, architecture-led, and governance-enabled.
-          </p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        {/* Left — Mission */}
+        <ScrollReveal>
+          <div>
+            <div class="w-14 h-14 rounded-xl bg-glow-steel/20 flex items-center justify-center mb-6">
+              <Icon name="target" size={28} class="text-accent" />
+            </div>
+            <h2 class="text-display-sm font-display mb-4">Our Mission</h2>
+            <p class="text-body-lg text-content-secondary leading-relaxed">
+              {missionText}
+            </p>
+          </div>
+        </ScrollReveal>
+
+        {/* Right — Vision */}
+        <ScrollReveal delay={150}>
+          <div>
+            <div class="w-14 h-14 rounded-xl bg-glow-steel/20 flex items-center justify-center mb-6">
+              <Icon name="rocket" size={28} class="text-accent" />
+            </div>
+            <h2 class="text-display-sm font-display mb-4">Our Vision</h2>
+            <p class="text-body-lg text-content-secondary leading-relaxed">
+              {visionText}
+            </p>
+          </div>
+        </ScrollReveal>
+      </div>
+
+      {/* Pull-quote */}
+      <ScrollReveal delay={300}>
+        <div class="mt-16 max-w-2xl mx-auto">
+          <div class="border-l-2 border-glow-blue/40 pl-8">
+            <p class="text-body-lg text-content leading-relaxed">
+              "{philosophyQuote}"
+            </p>
+          </div>
+        </div>
+      </ScrollReveal>
+
+      {/* Image placeholder */}
+      <ScrollReveal delay={400}>
+        <div class="mt-12">
+          <DiagramPlaceholder
+            title="Data Architecture Constellation"
+            description="Abstract interconnected data nodes forming a constellation pattern — representing data architecture and AI systems"
+          />
         </div>
       </ScrollReveal>
     </Container>
   </Section>
 
-  <!-- What Makes Us Different -->
+
+  {/* ══════════════════════════════════════════════
+      S3 — Core Pillars (default)
+      ══════════════════════════════════════════════ */}
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="OUR PILLARS"
+          heading="How We Operate"
+          description="Three principles that define every engagement, every architecture, and every deliverable."
+        />
+      </ScrollReveal>
+
+      <div class="relative mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+          {corePillars.map((pillar, index) => (
+            <ScrollReveal delay={index * 100}>
+              <GlassCard hover padding="lg" class="h-full text-center">
+                <div class="w-14 h-14 rounded-xl bg-glow-steel/20 mx-auto mb-6 flex items-center justify-center">
+                  <Icon name={pillar.icon} size={28} class="text-accent" />
+                </div>
+                <h3 class="text-heading-sm font-semibold mb-3">{pillar.title}</h3>
+                <p class="text-body-md text-content-secondary">{pillar.description}</p>
+              </GlassCard>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+
+  {/* ══════════════════════════════════════════════
+      S4 — What Makes Us Different (elevated)
+      ══════════════════════════════════════════════ */}
   <Section background="elevated">
     <Container>
       <ScrollReveal>
         <SectionHeading
+          align="center"
           badge="WHY 1DIGIT"
           heading="What Makes Us Different"
-          description="We are not another AI consultancy. Here is what sets us apart."
+          description={differentiatorIntro}
         />
       </ScrollReveal>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+
+      <div class="max-w-3xl mx-auto mt-12 space-y-6">
         {differentiators.map((item, index) => (
           <ScrollReveal delay={index * 100}>
-            <GlassCard hover padding="lg" class="h-full">
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-lg bg-glow-steel/20 flex items-center justify-center shrink-0">
-                  <span class="text-content font-display font-bold text-body-md">{String(index + 1).padStart(2, '0')}</span>
+            <GlassCard hover padding="lg" class="relative overflow-hidden">
+              {/* Giant decorative background number */}
+              <span class="absolute bottom-0 right-4 text-[8rem] font-bold leading-none text-tint/4 select-none pointer-events-none">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+
+              <div class="relative flex items-start gap-5">
+                <div class="w-12 h-12 rounded-xl bg-glow-steel/20 flex items-center justify-center shrink-0">
+                  <Icon name={item.icon} size={24} class="text-accent" />
                 </div>
                 <div>
-                  <h3 class="text-heading-xs font-semibold mb-2">{item.title}</h3>
+                  <p class="text-label-md text-content-muted mb-1">{String(index + 1).padStart(2, '0')}</p>
+                  <h3 class="text-heading-sm font-semibold mb-2">{item.title}</h3>
                   <p class="text-body-md text-content-secondary">{item.description}</p>
                 </div>
               </div>
@@ -66,106 +214,167 @@ const description = 'We are an AI architecture and data engineering firm focused
     </Container>
   </Section>
 
-  <!-- Values -->
+
+  {/* ══════════════════════════════════════════════
+      S5 — Our Approach (default)
+      ══════════════════════════════════════════════ */}
   <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="OUR APPROACH"
+          heading="How We Deliver"
+          description={approachIntro}
+        />
+      </ScrollReveal>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-12 items-start">
+        {/* Left — Steps */}
+        <div class="space-y-6">
+          {approachSteps.map((step, index) => (
+            <ScrollReveal delay={index * 100}>
+              <div class="flex items-start gap-5">
+                <div class="w-12 h-12 rounded-xl bg-glow-steel/20 flex items-center justify-center shrink-0">
+                  <Icon name={step.icon} size={24} class="text-accent" />
+                </div>
+                <div>
+                  <p class="text-label-md text-content-muted mb-1">{step.number}</p>
+                  <h3 class="text-heading-xs font-semibold mb-1">{step.title}</h3>
+                  <p class="text-body-md text-content-secondary">{step.description}</p>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {/* Right — Image placeholder */}
+        <ScrollReveal delay={200}>
+          <div class="relative">
+            <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
+            <DiagramPlaceholder
+              title="Engineering Blueprint"
+              description="Layered horizontal bands representing structured delivery phases — assessment, architecture, engineering, delivery, evolution"
+              class="relative min-h-[400px]"
+            />
+          </div>
+        </ScrollReveal>
+      </div>
+
+      {/* Pull-quote */}
+      <ScrollReveal delay={600}>
+        <div class="mt-16 max-w-2xl mx-auto">
+          <div class="border-l-2 border-glow-blue/40 pl-8">
+            <p class="text-body-lg text-content leading-relaxed">
+              "{approachQuote}"
+            </p>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+
+  {/* ══════════════════════════════════════════════
+      S6 — Values (elevated)
+      ══════════════════════════════════════════════ */}
+  <Section background="elevated" class="overflow-hidden">
     <Container>
       <ScrollReveal>
         <SectionHeading
           align="center"
           badge="OUR VALUES"
           heading="Principles We Work By"
-          description="These are not aspirational statements. They define how we operate on every engagement."
+          description={valuesIntro}
         />
       </ScrollReveal>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        {values.map((value, index) => (
-          <ScrollReveal delay={index * 100}>
-            <GlassCard padding="lg" class="h-full">
-              <h3 class="text-heading-xs font-semibold mb-3">{value.title}</h3>
-              <p class="text-body-md text-content-secondary">{value.description}</p>
-            </GlassCard>
-          </ScrollReveal>
-        ))}
-      </div>
-    </Container>
-  </Section>
 
-  <!-- Team -->
-  <Section background="elevated">
-    <Container>
-      <ScrollReveal>
-        <SectionHeading
-          badge="TEAM"
-          heading="Leadership"
-          description="Small, senior, focused. We do not scale with juniors."
-        />
-      </ScrollReveal>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-        {teamMembers.map((member, index) => (
-          <ScrollReveal delay={index * 100}>
-            <GlassCard padding="lg" class="text-center">
-              <div class="w-24 h-24 rounded-full bg-surface-subtle mx-auto mb-6 flex items-center justify-center">
-                <span class="text-display-md font-display text-content">{member.name.charAt(0)}</span>
-              </div>
-              <h3 class="text-heading-sm font-semibold">{member.name}</h3>
-              <p class="text-label-md text-content uppercase tracking-wider mt-1">{member.role}</p>
-              <p class="text-body-md text-content-secondary mt-4">{member.bio}</p>
-            </GlassCard>
-          </ScrollReveal>
-        ))}
-      </div>
-    </Container>
-  </Section>
+      <div class="relative mt-12">
+        {/* Ambient glow behind grid */}
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-glow-steel/10 rounded-full blur-[120px] pointer-events-none ambient-glow"></div>
 
-  <!-- Partners -->
-  <Section>
-    <Container>
-      <ScrollReveal>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <SectionHeading
-              badge="PARTNERSHIPS"
-              heading="Strategic Partners"
-              description="We partner with technology leaders to deliver enterprise-grade solutions."
-            />
-          </div>
-          <GlassCard padding="lg">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-xl bg-glow-steel/20 flex items-center justify-center shrink-0">
-                <Icon name="globe" size={24} class="text-content" />
-              </div>
-              <div>
-                <h3 class="text-heading-sm font-semibold mb-2">IONOS</h3>
-                <p class="text-body-md text-content-secondary">
-                  1Digit is a technology provider to IONOS — not a reseller. We have architected and delivered a Smart Lakehouse platform for IONOS customers, offering cost-effective, European-sovereign data infrastructure.
-                </p>
-                <Button variant="outline" size="sm" href="/smart-lakehouse-ionos" class="mt-4">
-                  Learn About Smart Lakehouse
-                </Button>
-              </div>
-            </div>
-          </GlassCard>
+        <div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {values.map((value, index) => (
+            <ScrollReveal delay={index * 80}>
+              <GlassCard hover padding="lg" class="h-full">
+                <div class="w-10 h-10 rounded-lg bg-glow-steel/20 flex items-center justify-center mb-4">
+                  <Icon name={value.icon} size={20} class="text-accent" />
+                </div>
+                <h3 class="text-heading-xs font-semibold mb-3">{value.title}</h3>
+                <p class="text-body-md text-content-secondary">{value.description}</p>
+              </GlassCard>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+
+      {/* Closing statement */}
+      <ScrollReveal delay={600}>
+        <div class="mt-12 max-w-2xl mx-auto text-center">
+          <p class="text-body-lg text-content-secondary leading-relaxed">
+            {valuesStatement}
+          </p>
         </div>
       </ScrollReveal>
     </Container>
   </Section>
 
-  <!-- Bottom CTA -->
-  <Section background="elevated">
+
+  {/* ══════════════════════════════════════════════
+      S7 — Closing CTA (default)
+      ══════════════════════════════════════════════ */}
+  <Section class="overflow-hidden">
     <Container>
-      <ScrollReveal>
-        <div class="text-center">
-          <SectionHeading
-            align="center"
-            heading="Let's Talk"
-            description="Ready to make your data work for AI? Let's discuss how we can help."
-          />
-          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg" href="/contact">Get in Touch</Button>
-            <Button variant="outline" size="lg" href="/what-we-do">Explore Capabilities</Button>
+      <div class="relative text-center max-w-3xl mx-auto">
+        {/* Ambient glow orb */}
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-glow-steel/10 rounded-full blur-[120px] pointer-events-none ambient-glow"></div>
+
+        <ScrollReveal>
+          <p class="relative text-display-md lg:text-display-lg font-display">
+            {coreStatement}
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <div class="relative mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg" href="/contact">Start a Conversation</Button>
+            <Button variant="outline" size="lg" href="/what-we-do">Explore Our Capabilities</Button>
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
+      </div>
     </Container>
   </Section>
+
 </PageLayout>
+
+<style>
+  /* Radial gradient text fill for hero heading */
+  .about-gradient-text {
+    background: radial-gradient(ellipse at 50% 40%, rgb(228 233 242) 0%, rgb(190 205 225 / 0.6) 60%, rgb(80 100 130 / 0.3) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* The accent line keeps its own color */
+  h1 .text-accent {
+    -webkit-text-fill-color: unset;
+    background: none;
+  }
+
+  /* Light theme: darker gradient for readability */
+  :global([data-theme="light"]) .about-gradient-text {
+    background: radial-gradient(ellipse at 50% 40%, rgb(15 20 40) 0%, rgb(40 50 80 / 0.8) 60%, rgb(80 90 120 / 0.5) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  :global([data-theme="light"]) h1 .text-accent {
+    -webkit-text-fill-color: unset;
+    background: none;
+  }
+
+  /* Scroll indicator bounce */
+  .scroll-indicator-mouse {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+</style>

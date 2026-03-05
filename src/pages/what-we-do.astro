@@ -64,7 +64,7 @@ const description = 'We help organisations design and deliver AI systems that ar
   </Section>
 
   <!-- Positioning Statement -->
-  <Section class="relative overflow-hidden">
+  <Section padding="sm" class="relative overflow-hidden">
     <img
       src="/images/what-we-do/positioning-accent.png"
       alt=""
@@ -99,12 +99,22 @@ const description = 'We help organisations design and deliver AI systems that ar
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
         {valueProps.map((prop, i) => (
           <ScrollReveal delay={i * 100}>
-            <GlassCard padding="lg" class="h-full">
-              <div class="w-12 h-12 rounded-xl bg-surface-subtle flex items-center justify-center mb-4">
-                <Icon name={prop.icon} size={24} class="text-glow-blue" />
+            <GlassCard padding="lg" class="h-full relative overflow-hidden">
+              <div class="absolute -bottom-2 -right-2 w-20 h-20 opacity-10 pointer-events-none select-none">
+                {prop.image && (
+                  <>
+                    <img src={prop.image} alt="" class="w-full h-full object-contain value-thumb-dark" loading="lazy" />
+                    <img src={prop.imageLight || prop.image} alt="" class="w-full h-full object-contain value-thumb-light" loading="lazy" />
+                  </>
+                )}
               </div>
-              <h3 class="text-heading-md font-semibold mb-3">{prop.title}</h3>
-              <p class="text-body-md text-content-secondary">{prop.description}</p>
+              <div class="relative">
+                <div class="w-12 h-12 rounded-xl bg-surface-subtle flex items-center justify-center mb-4">
+                  <Icon name={prop.icon} size={24} class="text-glow-blue" />
+                </div>
+                <h3 class="text-heading-md font-semibold mb-3">{prop.title}</h3>
+                <p class="text-body-md text-content-secondary">{prop.description}</p>
+              </div>
             </GlassCard>
           </ScrollReveal>
         ))}
@@ -113,7 +123,7 @@ const description = 'We help organisations design and deliver AI systems that ar
   </Section>
 
   <!-- Pillar Overview Grid -->
-  <Section>
+  <Section padding="sm">
     <Container>
       <ScrollReveal>
         <SectionHeading
@@ -128,17 +138,23 @@ const description = 'We help organisations design and deliver AI systems that ar
           <ScrollReveal delay={i * 100}>
             <a href={`#${pillar.id}`} class="block h-full">
               <GlassCard hover padding="lg" class="h-full group relative overflow-hidden">
-                <div class="absolute top-0 right-0 text-[100px] font-display font-bold
-                            text-tint/[0.03] leading-none select-none pointer-events-none">
-                  {pillar.number}
-                </div>
                 {pillar.thumbnail && (
-                  <img
-                    src={pillar.thumbnail}
-                    alt=""
-                    class="absolute -bottom-4 -right-4 w-28 h-28 opacity-15 select-none pointer-events-none pillar-thumb"
-                    loading="lazy"
-                  />
+                  <>
+                    <img
+                      src={pillar.thumbnail}
+                      alt=""
+                      class="absolute top-4 right-4 w-24 h-24 opacity-15
+                             select-none pointer-events-none pillar-thumb-dark"
+                      loading="lazy"
+                    />
+                    <img
+                      src={pillar.thumbnailLight || pillar.thumbnail}
+                      alt=""
+                      class="absolute top-4 right-4 w-24 h-24 opacity-15
+                             select-none pointer-events-none pillar-thumb-light"
+                      loading="lazy"
+                    />
+                  </>
                 )}
                 <div class="relative">
                   <div class="flex items-center gap-3 mb-4">
@@ -154,8 +170,7 @@ const description = 'We help organisations design and deliver AI systems that ar
                       <span class="px-2 py-0.5 rounded-badge bg-glow-steel/10 text-glow-blue text-xs">{o}</span>
                     ))}
                   </div>
-                  <div class="flex items-center justify-between">
-                    <span class="text-body-sm text-content-muted">{pillar.timeframe}</span>
+                  <div class="flex items-center justify-end">
                     <span class="text-body-sm text-content group-hover:text-glow-blue transition-colors
                                  inline-flex items-center gap-1">
                       Learn more <Icon name="chevron-right" size={14} />
@@ -172,7 +187,7 @@ const description = 'We help organisations design and deliver AI systems that ar
 
   <!-- Pillar Details -->
   {pillars.map((pillar, index) => (
-    <Section background={index % 2 === 0 ? 'default' : 'elevated'} id={pillar.id}>
+    <Section background="elevated" padding="sm" id={pillar.id}>
       <Container>
         <ScrollReveal delay={100}>
           <PillarCard {...pillar} index={index} />
@@ -182,8 +197,15 @@ const description = 'We help organisations design and deliver AI systems that ar
   ))}
 
   <!-- Bottom CTA -->
-  <Section background="elevated">
-    <Container>
+  <Section background="elevated" class="relative overflow-hidden">
+    <!-- Ambient background: image when available, CSS gradient fallback -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute inset-0 opacity-30" style="background: url('/images/what-we-do/cta-bg.jpeg') center/cover no-repeat;"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-signal-blue/[0.06] blur-[100px]"></div>
+      <div class="absolute top-1/3 left-1/4 w-[400px] h-[200px] rounded-full bg-signal-purple/[0.04] blur-[80px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[350px] h-[180px] rounded-full bg-signal-emerald/[0.03] blur-[80px]"></div>
+    </div>
+    <Container class="relative">
       <ScrollReveal>
         <div class="text-center">
           <SectionHeading

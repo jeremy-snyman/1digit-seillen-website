@@ -9,35 +9,50 @@ const cards = [
     icon: 'lightbulb',
     title: 'Strategic Vision',
     description: 'Chart a clear path to AI-enabled transformation with strategies aligned to your business goals.',
-    gradient: 'from-blue-500/20 to-cyan-500/20',
+    gradient: 'from-signal-blue/25 to-signal-blue/5',
+    color: 'blue',
   },
   {
     icon: 'shield',
     title: 'Trusted Architecture',
     description: 'Build secure, scalable AI foundations with enterprise-grade governance and compliance.',
-    gradient: 'from-purple-500/20 to-pink-500/20',
+    gradient: 'from-signal-purple/25 to-signal-purple/5',
+    color: 'purple',
   },
   {
     icon: 'rocket',
     title: 'Accelerated Delivery',
     description: 'Move from concept to production faster with our proven methodologies and accelerators.',
-    gradient: 'from-orange-500/20 to-red-500/20',
+    gradient: 'from-signal-amber/25 to-signal-amber/5',
+    color: 'amber',
   },
   {
     icon: 'users',
     title: 'Embedded Excellence',
     description: 'Develop internal AI capabilities that sustain long after our engagement ends.',
-    gradient: 'from-green-500/20 to-emerald-500/20',
+    gradient: 'from-signal-emerald/25 to-signal-emerald/5',
+    color: 'emerald',
   },
 ];
+
+const colorMap = {
+  blue: { text: 'text-signal-blue', bg: 'bg-signal-blue/15', border: 'border-signal-blue/20' },
+  purple: { text: 'text-signal-purple', bg: 'bg-signal-purple/15', border: 'border-signal-purple/20' },
+  amber: { text: 'text-signal-amber', bg: 'bg-signal-amber/15', border: 'border-signal-amber/20' },
+  emerald: { text: 'text-signal-emerald', bg: 'bg-signal-emerald/15', border: 'border-signal-emerald/20' },
+};
 ---
 
 <Section background="elevated" class="relative overflow-hidden">
-  <Container>
+  {/* Ambient mesh orbs */}
+  <div class="mesh-gradient w-[400px] h-[400px] bg-signal-blue/40 -left-48 top-1/3" style="animation: drift 20s ease-in-out infinite;"></div>
+  <div class="mesh-gradient w-[350px] h-[350px] bg-signal-purple/30 -right-36 top-1/4" style="animation: drift 20s ease-in-out infinite 5s;"></div>
+
+  <Container class="relative z-10">
     <ScrollReveal>
       <div class="text-center mb-16">
         <h2 class="text-display-md font-display font-bold text-content">
-          Your AI ambitions, realized
+          Your AI ambitions, <em class="font-serif italic">realized</em>
         </h2>
         <p class="text-body-lg text-content-secondary max-w-2xl mx-auto mt-4">
           Whether you're starting your AI journey or scaling existing
@@ -48,31 +63,37 @@ const cards = [
     </ScrollReveal>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {cards.map((card, i) => (
-        <ScrollReveal delay={i * 100}>
-          <div class="glass-card-hover h-full relative overflow-hidden group p-6">
-            {/* Gradient overlay */}
-            <div
-              class:list={[
-                'absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br rounded-card pointer-events-none',
-                card.gradient,
-              ]}
-            />
-            <div class="relative z-10">
-              {/* Icon container */}
-              <div class="w-12 h-12 rounded-xl bg-tint/5 border border-tint/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Icon name={card.icon} size={24} class="text-tint/80" />
+      {cards.map((card, i) => {
+        const colors = colorMap[card.color as keyof typeof colorMap];
+        return (
+          <ScrollReveal delay={i * 100}>
+            <div class="glass-card-hover h-full relative overflow-hidden group p-6">
+              {/* Gradient overlay — visible on load, stronger on hover */}
+              <div
+                class:list={[
+                  'absolute inset-0 opacity-30 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br rounded-card pointer-events-none',
+                  card.gradient,
+                ]}
+              />
+              <div class="relative z-10">
+                {/* Signal-colored icon container */}
+                <div class:list={[
+                  'w-12 h-12 rounded-xl border flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300',
+                  colors.bg, colors.border,
+                ]}>
+                  <Icon name={card.icon} size={24} class={colors.text} />
+                </div>
+                <h3 class="text-heading-md font-display font-bold text-content mb-3">
+                  {card.title}
+                </h3>
+                <p class="text-body-sm text-content-secondary">
+                  {card.description}
+                </p>
               </div>
-              <h3 class="text-heading-md font-display font-bold text-content mb-3">
-                {card.title}
-              </h3>
-              <p class="text-body-sm text-content-secondary">
-                {card.description}
-              </p>
             </div>
-          </div>
-        </ScrollReveal>
-      ))}
+          </ScrollReveal>
+        );
+      })}
     </div>
   </Container>
 </Section>

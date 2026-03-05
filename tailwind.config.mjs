@@ -24,6 +24,13 @@ export default {
           DEFAULT: 'rgb(var(--color-accent) / var(--alpha-accent))',
           hover: 'rgb(var(--color-accent) / var(--alpha-accent-hover))',
           muted: 'rgb(var(--color-accent) / var(--alpha-accent-muted))',
+          bright: 'rgb(var(--color-accent-bright) / <alpha-value>)',
+        },
+        signal: {
+          blue: 'rgb(var(--color-signal-blue) / <alpha-value>)',
+          purple: 'rgb(var(--color-signal-purple) / <alpha-value>)',
+          amber: 'rgb(var(--color-signal-amber) / <alpha-value>)',
+          emerald: 'rgb(var(--color-signal-emerald) / <alpha-value>)',
         },
         glow: {
           blue: 'rgb(var(--color-glow-blue) / var(--alpha-glow-blue))',
@@ -60,6 +67,7 @@ export default {
       spacing: {
         section: '6.25rem',
         'section-sm': '4.5rem',
+        'section-lg': '8rem',
       },
       maxWidth: {
         container: '1260px',

@@ -1,5 +1,6 @@
 ---
 import Icon from '@components/ui/Icon.astro';
+import ImagePlaceholder from '@components/ui/ImagePlaceholder.astro';
 
 interface Props {
   number: string;
@@ -23,15 +24,32 @@ const accentBorderColors = {
   amber: 'rgba(255, 180, 60, 0.3)',
 };
 
+const accentTopBorderColors = {
+  blue: '#64C8FF',
+  purple: '#A064FF',
+  green: '#50DCB4',
+  amber: '#FFB43C',
+};
+
 const accentGradients = {
-  blue: 'from-cyan-400/20 to-blue-500/20',
-  purple: 'from-purple-400/20 to-indigo-500/20',
-  green: 'from-emerald-400/20 to-teal-500/20',
-  amber: 'from-amber-400/20 to-orange-500/20',
+  blue: 'from-cyan-400/30 to-blue-500/30',
+  purple: 'from-purple-400/30 to-indigo-500/30',
+  green: 'from-emerald-400/30 to-teal-500/30',
+  amber: 'from-amber-400/30 to-orange-500/30',
+};
+
+const placeholderLabels: Record<string, string> = {
+  Diagnose: 'Diagnose phase illustration',
+  Architect: 'Architect phase illustration',
+  Build: 'Build phase illustration',
+  Optimise: 'Optimise phase illustration',
 };
 ---
 
-<div class:list={['glass-card-hover p-6 lg:p-8 relative', glowClass, className]}>
+<div
+  class:list={['glass-card-hover p-6 lg:p-8 relative border-t-2', glowClass, className]}
+  style={`border-top-color: ${accentTopBorderColors[accentColor]};`}
+>
   {/* Watermark number */}
   <div class="absolute top-4 right-6 text-[120px] font-bold leading-none text-content/[0.03] pointer-events-none select-none z-0">
     {number}
@@ -49,12 +67,15 @@ const accentGradients = {
     {/* Description */}
     <p class="text-body-md text-content-secondary mb-5">{description}</p>
 
-    {/* Optional image area */}
+    {/* Optional SVG image area */}
     {image && (
       <div class="mb-5 rounded-lg overflow-hidden bg-surface/50">
         <img src={image} alt={`${title} phase illustration`} class="w-full h-32 object-cover theme-image" loading="lazy" />
       </div>
     )}
+
+    {/* ImagePlaceholder */}
+    <ImagePlaceholder aspect="16/9" label={placeholderLabels[title] || `${title} illustration`} class="mb-5" />
 
     {/* Detail checklist */}
     <ul class="space-y-2 mb-5">

@@ -5,24 +5,31 @@ import Button from '@components/ui/Button.astro';
 import ScrollReveal from '@components/interactive/ScrollReveal.astro';
 ---
 
-<Section class="relative overflow-hidden">
-  <!-- Glow effect background -->
+<Section background="elevated" class="relative overflow-hidden">
+  {/* Top divider */}
+  <div class="absolute top-0 left-0 right-0 section-divider"></div>
+
+  {/* 3-layer ambient glow */}
   <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-    <div class="w-[600px] h-[300px] bg-glow-steel/20 rounded-full blur-[120px]"></div>
+    <div class="absolute w-[600px] h-[300px] bg-signal-blue/15 rounded-full blur-[120px]" style="animation: drift 20s ease-in-out infinite;"></div>
+    <div class="absolute w-[400px] h-[250px] bg-signal-purple/10 rounded-full blur-[100px] -left-20" style="animation: mesh-drift-1 18s ease-in-out infinite;"></div>
+    <div class="absolute w-[350px] h-[200px] bg-signal-emerald/8 rounded-full blur-[100px] -right-20" style="animation: mesh-drift-2 22s ease-in-out infinite;"></div>
   </div>
 
-  <Container class="relative">
+  <Container class="relative z-10">
     <ScrollReveal>
       <div class="text-center max-w-3xl mx-auto">
-        <h2 class="text-display-md lg:text-display-lg mb-6">
-          Find out where you stand on <span class="text-content">AI readiness</span>
+        <h2 class="text-display-lg lg:text-display-xl mb-6">
+          Find out where you stand on <span class="text-accent-bright">AI readiness</span>
         </h2>
         <p class="text-body-lg text-content-secondary mb-10">
           Our structured assessment evaluates your organisation across five critical pillars — and gives you a clear roadmap forward.
         </p>
-        <Button href="/ai-readiness-assessment" variant="primary" size="lg">
-          Take the Assessment
-        </Button>
+        <div class="inline-block" style="animation: cta-glow-pulse 4s ease-in-out infinite;">
+          <Button href="/ai-readiness-assessment" variant="primary" size="lg">
+            Take the Assessment
+          </Button>
+        </div>
       </div>
     </ScrollReveal>
   </Container>

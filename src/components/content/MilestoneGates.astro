@@ -2,10 +2,11 @@
 interface Props {
   gates: { title: string; criteria: string }[];
   phases: string[];
+  gateColors?: string[];
   class?: string;
 }
 
-const { gates, phases, class: className } = Astro.props;
+const { gates, phases, gateColors = ['#64C8FF', '#A064FF', '#50DCB4'], class: className } = Astro.props;
 ---
 
 <div class:list={['milestone-gates', className]}>
@@ -21,10 +22,14 @@ const { gates, phases, class: className } = Astro.props;
         {/* Diamond gate (after each phase except the last) */}
         {i < gates.length && (
           <div class="flex flex-col items-center mx-1 lg:mx-3 shrink-0 group">
-            <div class="gate-diamond w-7 h-7 border-2 border-glow-blue/50 shadow-[0_0_12px_rgba(var(--color-glow-blue)/0.3)]"
-              style={`animation-delay: ${i * 200}ms;`}
+            <div
+              class="gate-diamond w-7 h-7 border-2"
+              style={`border-color: ${gateColors[i] || gateColors[0]}; box-shadow: 0 0 12px ${gateColors[i] || gateColors[0]}4d; animation: gate-unlock 0.6s ease-out both; animation-delay: ${i * 300}ms;`}
             >
-              <div class="w-1.5 h-1.5 rounded-full bg-glow-blue/80"></div>
+              <div
+                class="w-1.5 h-1.5 rounded-full"
+                style={`background: ${gateColors[i] || gateColors[0]}; animation: glow-breathe 8s ease-in-out infinite;`}
+              ></div>
             </div>
             <span class="text-label-md text-content-muted mt-2 whitespace-nowrap max-w-[120px] text-center leading-tight">{gates[i].title}</span>
           </div>
@@ -50,10 +55,14 @@ const { gates, phases, class: className } = Astro.props;
           <div class="flex items-center gap-3 py-3 pl-3">
             <div class="flex flex-col items-center">
               <div class="w-0.5 h-4 bg-glow-steel/20"></div>
-              <div class="gate-diamond w-6 h-6 border-2 border-glow-blue/50 shadow-[0_0_12px_rgba(var(--color-glow-blue)/0.3)]"
-                style={`animation-delay: ${i * 200}ms;`}
+              <div
+                class="gate-diamond w-6 h-6 border-2"
+                style={`border-color: ${gateColors[i] || gateColors[0]}; box-shadow: 0 0 12px ${gateColors[i] || gateColors[0]}4d; animation: gate-unlock 0.6s ease-out both; animation-delay: ${i * 300}ms;`}
               >
-                <div class="w-1 h-1 rounded-full bg-glow-blue/80"></div>
+                <div
+                  class="w-1 h-1 rounded-full"
+                  style={`background: ${gateColors[i] || gateColors[0]}; animation: glow-breathe 8s ease-in-out infinite;`}
+                ></div>
               </div>
               <div class="w-0.5 h-4 bg-glow-steel/20"></div>
             </div>
@@ -74,7 +83,6 @@ const { gates, phases, class: className } = Astro.props;
     align-items: center;
     justify-content: center;
     transform: rotate(45deg);
-    animation: gate-unlock 0.6s ease-out both;
   }
 
   .gate-diamond > div {
