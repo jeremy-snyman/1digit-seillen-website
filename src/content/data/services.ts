@@ -24,7 +24,8 @@ export const pillars = [
     accentColor: 'blue' as const,
     thumbnail: '/images/what-we-do/ai-readiness-thumb.jpeg',
     thumbnailLight: '/images/what-we-do/ai-readiness-thumb-light.jpeg',
-    image: '/images/what-we-do/ai-readiness-detail.png',
+    image: '/images/what-we-do/ai-readiness-detail.jpeg',
+    imageLight: '/images/what-we-do/ai-readiness-detail-light.jpeg',
   },
   {
     id: 'data-platforms',
@@ -52,7 +53,7 @@ export const pillars = [
     accentColor: 'amber' as const,
     thumbnail: '/images/what-we-do/data-platforms-thumb.jpeg',
     thumbnailLight: '/images/what-we-do/data-platforms-thumb-light.jpeg',
-    image: '/images/what-we-do/data-platforms-detail.png',
+    image: '/images/what-we-do/data-platforms-detail.jpeg',
   },
   {
     id: 'ai-products',
@@ -79,7 +80,8 @@ export const pillars = [
     accentColor: 'purple' as const,
     thumbnail: '/images/what-we-do/ai-products-thumb.png',
     thumbnailLight: '/images/what-we-do/ai-products-thumb-light.png',
-    image: '/images/what-we-do/ai-products-detail.png',
+    image: '/images/what-we-do/ai-products-detail.jpeg',
+    imageLight: '/images/what-we-do/ai-products-detail-light.jpeg',
   },
   {
     id: 'governance',
@@ -106,7 +108,8 @@ export const pillars = [
     accentColor: 'emerald' as const,
     thumbnail: '/images/what-we-do/governance-thumb.png',
     thumbnailLight: '/images/what-we-do/governance-thumb-light.png',
-    image: '/images/what-we-do/governance-detail.png',
+    image: '/images/what-we-do/governance-detail.jpeg',
+    imageLight: '/images/what-we-do/governance-detail-light.jpeg',
   },
 ];
 
@@ -292,8 +295,8 @@ export const cloudPositioning = {
 };
 
 export const futurePlatforms = [
-  { icon: 'cpu', title: 'AI-Native Orchestration' },
-  { icon: 'zap', title: 'Workflow Intelligence' },
-  { icon: 'users', title: 'Enterprise Operating Models' },
-  { icon: 'shield', title: 'Governance Automation' },
+  { icon: 'cpu', title: 'AI-Native Orchestration', description: 'Intelligent task routing and model coordination across complex AI workflows.', accentColor: 'blue' as const },
+  { icon: 'zap', title: 'Workflow Intelligence', description: 'Automated decision pipelines that learn and adapt from operational patterns.', accentColor: 'purple' as const },
+  { icon: 'users', title: 'Enterprise Operating Models', description: 'Structured frameworks for scaling AI capability across business functions.', accentColor: 'emerald' as const },
+  { icon: 'shield', title: 'Governance Automation', description: 'Continuous compliance monitoring and policy enforcement at scale.', accentColor: 'amber' as const },
 ];

@@ -1,0 +1,305 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import CampaignLayout from '@layouts/CampaignLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/ui/Icon.astro';
+import Badge from '@components/ui/Badge.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import Accordion from '@components/interactive/Accordion.astro';
+import AccordionItem from '@components/interactive/AccordionItem.astro';
+import FeatureList from '@components/content/FeatureList.astro';
+import MaturityCurve from '@components/campaign/MaturityCurve.astro';
+
+import {
+  campaignMeta,
+  hero,
+  assessmentAreas,
+  deliverables,
+  processSteps,
+  whyCredibility,
+  whoThisIsFor,
+  faqs,
+} from '@content/data/ai-readiness-campaign';
+
+export const prerender = false;
+
+const useFullNav = Astro.url.searchParams.get('nav') === 'full';
+const LayoutComponent = useFullNav ? PageLayout : CampaignLayout;
+---
+
+<LayoutComponent title={campaignMeta.title} description={campaignMeta.description}>
+
+  <!-- 1. Hero -->
+  <Section class="pt-32 pb-16 relative overflow-hidden">
+    <div class="ambient-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-glow-blue/10 blur-[120px]"></div>
+    <Container size="narrow" class="relative z-10">
+      <ScrollReveal>
+        <div class="text-center">
+          <div class="flex justify-center mb-6">
+            <Badge variant="accent">{hero.badge}</Badge>
+          </div>
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-glow-blue/30 bg-glow-blue/10 mb-8">
+            <span class="text-body-md font-semibold text-glow-blue">{hero.priceLabel}</span>
+          </div>
+          <h1 class="text-display-lg lg:text-display-xl font-display mb-6">
+            {hero.heading.split(hero.serifWord)[0]}<em class="font-serif italic">{hero.serifWord}</em>{hero.heading.split(hero.serifWord)[1]}
+          </h1>
+          <p class="text-body-lg text-content-secondary max-w-xl mx-auto mb-10">
+            {hero.subtext}
+          </p>
+          <Button variant="primary" size="lg" href={campaignMeta.ctaHref}>
+            {campaignMeta.ctaText}
+          </Button>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- 2. Assessment Scope -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="What We Assess"
+          heading="Six dimensions of AI readiness"
+          serifWord="readiness"
+          description="We go beyond surface-level surveys. Each dimension is assessed through structured interviews, technical reviews, and evidence-based scoring."
+          align="center"
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        {assessmentAreas.map((area, i) => (
+          <ScrollReveal delay={i * 100}>
+            <GlassCard hover padding="lg" class="h-full text-center">
+              <div class="w-14 h-14 rounded-xl bg-glow-steel/20 mx-auto mb-4 flex items-center justify-center">
+                <Icon name={area.icon} size={28} class="text-content" />
+              </div>
+              <h3 class="text-heading-sm font-semibold mb-2">{area.title}</h3>
+              <p class="text-body-md text-content-secondary">{area.description}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 3. Deliverables -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="What You Receive"
+          heading="Five actionable deliverables"
+          serifWord="actionable"
+          description="Every deliverable is designed for decision-makers — not filed away and forgotten."
+          align="center"
+        />
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        {deliverables.map((item, i) => (
+          <ScrollReveal delay={i * 100}>
+            <GlassCard hover padding="lg" class="h-full relative overflow-hidden">
+              <span class="absolute top-4 right-5 text-display-lg font-display text-tint/5 select-none leading-none">
+                {item.number}
+              </span>
+              <div class="relative">
+                <div class="w-9 h-9 rounded-full bg-glow-blue/15 flex items-center justify-center mb-4">
+                  <span class="text-body-sm font-bold text-glow-blue">{item.number}</span>
+                </div>
+                <h3 class="text-heading-sm font-semibold mb-2">{item.title}</h3>
+                <p class="text-body-md text-content-secondary">{item.description}</p>
+              </div>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 4. How It Works -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="Our Process"
+          heading="Four weeks to clarity"
+          serifWord="clarity"
+          description="A structured engagement designed to be thorough without dragging on."
+          align="center"
+        />
+      </ScrollReveal>
+      <div class="relative mt-12">
+        <!-- Connecting line (lg only) -->
+        <div class="hidden lg:block absolute top-[3.25rem] left-[calc(12.5%+1rem)] right-[calc(12.5%+1rem)] h-0.5 bg-gradient-to-r from-glow-blue/40 via-glow-steel/40 to-glow-blue/40"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {processSteps.map((step, i) => (
+            <ScrollReveal delay={i * 150}>
+              <div class="text-center">
+                <div class="relative z-10 w-12 h-12 rounded-full bg-glow-blue/15 border-2 border-glow-blue/30 flex items-center justify-center mx-auto mb-2">
+                  <span class="text-body-md font-bold text-glow-blue">{step.step}</span>
+                </div>
+                <span class="text-label-md text-glow-blue uppercase tracking-wider">{step.duration}</span>
+                <GlassCard padding="md" class="mt-3 h-full">
+                  <h3 class="text-heading-sm font-semibold mb-2">{step.title}</h3>
+                  <p class="text-body-sm text-content-secondary">{step.description}</p>
+                </GlassCard>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 5. Transparent Pricing -->
+  <Section>
+    <Container size="narrow">
+      <ScrollReveal>
+        <div class="text-center mb-12">
+          <SectionHeading
+            badge="Transparent Pricing"
+            heading="One price, everything included"
+            serifWord="everything"
+            align="center"
+          />
+        </div>
+      </ScrollReveal>
+      <ScrollReveal delay={100}>
+        <GlassCard padding="lg" class="shimmer-border text-center">
+          <p class="text-display-lg lg:text-display-xl font-display text-glow-blue mb-2">{campaignMeta.price}</p>
+          <p class="text-body-lg text-content-secondary mb-8">Fixed price · No hidden costs</p>
+          <div class="text-left max-w-md mx-auto mb-8">
+            <FeatureList items={[
+              'Discovery workshop with your leadership team',
+              'Deep assessment across six dimensions',
+              'Capability heatmap and risk analysis',
+              'Prioritised roadmap with quick wins',
+              'Executive readout and Q&A session',
+            ]} />
+          </div>
+          <Button variant="primary" size="lg" href={campaignMeta.ctaHref}>
+            {campaignMeta.ctaText}
+          </Button>
+        </GlassCard>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- 6. AI Maturity Curve -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <SectionHeading
+          badge="Maturity Model"
+          heading="Where does your organisation sit?"
+          serifWord="organisation"
+          description="Our assessment maps your capabilities against a five-level AI maturity model."
+          align="center"
+        />
+      </ScrollReveal>
+      <ScrollReveal delay={100}>
+        <GlassCard padding="lg" class="mt-12">
+          <MaturityCurve />
+        </GlassCard>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- 7. Why 1Digit -->
+  <Section>
+    <Container size="narrow">
+      <ScrollReveal>
+        <SectionHeading
+          badge="Why 1Digit"
+          heading="Built on deep expertise"
+          serifWord="expertise"
+          align="center"
+        />
+      </ScrollReveal>
+      <ScrollReveal delay={100}>
+        <GlassCard padding="lg" class="mt-12">
+          <FeatureList items={whyCredibility} />
+        </GlassCard>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- 8. Who This Is For -->
+  <Section background="elevated">
+    <Container size="narrow">
+      <ScrollReveal>
+        <SectionHeading
+          badge="Is This For You?"
+          heading="Who this assessment is for"
+          serifWord="for"
+          align="center"
+        />
+      </ScrollReveal>
+      <ScrollReveal delay={100}>
+        <GlassCard padding="lg" class="mt-12">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+            {whoThisIsFor.map((item) => (
+              <div class="flex items-start gap-3 text-body-md text-content-secondary">
+                <div class="w-5 h-5 rounded-full bg-surface-subtle flex items-center justify-center mt-0.5 shrink-0">
+                  <Icon name="check" size={12} class="text-glow-blue" />
+                </div>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </GlassCard>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- 9. Bottom CTA -->
+  <Section class="relative overflow-hidden">
+    <div class="ambient-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-glow-blue/8 blur-[100px]"></div>
+    <Container size="narrow" class="relative z-10">
+      <ScrollReveal>
+        <div class="text-center">
+          <h2 class="text-display-md lg:text-display-lg font-display mb-4">
+            Ready to assess your <em class="font-serif italic">AI readiness</em>?
+          </h2>
+          <p class="text-body-lg text-content-secondary mb-2 max-w-md mx-auto">
+            {campaignMeta.price} · Fixed price · 4 weeks to clarity.
+          </p>
+          <p class="text-body-md text-content-meta mb-8 max-w-md mx-auto">
+            Book a 30-minute introduction call to discuss your goals and see if the assessment is right for you.
+          </p>
+          <Button variant="primary" size="lg" href={campaignMeta.ctaHref}>
+            {campaignMeta.ctaText}
+          </Button>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- 10. FAQ -->
+  <Section background="elevated">
+    <Container size="narrow">
+      <ScrollReveal>
+        <SectionHeading
+          badge="FAQ"
+          heading="Frequently asked questions"
+          serifWord="questions"
+          align="center"
+        />
+      </ScrollReveal>
+      <ScrollReveal delay={100}>
+        <div class="mt-12">
+          <Accordion>
+            {faqs.map((faq) => (
+              <AccordionItem question={faq.question} answer={faq.answer} />
+            ))}
+          </Accordion>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+</LayoutComponent>

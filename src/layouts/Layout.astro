@@ -32,6 +32,8 @@ const props = Astro.props;
     <script is:inline>
   (function() {
     function resolveTheme() {
+      var urlParam = new URLSearchParams(window.location.search).get('theme');
+      if (urlParam === 'light' || urlParam === 'dark') return urlParam;
       var stored = localStorage.getItem('theme');
       if (stored === 'light' || stored === 'dark') return stored;
       if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';

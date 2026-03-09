@@ -1,0 +1,98 @@
+---
+/**
+ * MaturityCurve — inline SVG showing 5 AI maturity levels on an ascending curve.
+ * Desktop: SVG with gradient fill and labeled nodes.
+ * Mobile: vertical numbered list fallback.
+ */
+import { maturityStages } from '@content/data/ai-readiness-campaign';
+---
+
+<!-- Desktop SVG (hidden on mobile) -->
+<div class="hidden md:block">
+  <svg
+    viewBox="0 0 800 340"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-full h-auto"
+    role="img"
+    aria-label="AI Maturity Curve showing five stages from Ad Hoc to Optimised"
+  >
+    <defs>
+      <linearGradient id="curve-gradient" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#EF4444" stop-opacity="0.25" />
+        <stop offset="25%" stop-color="#F59E0B" stop-opacity="0.2" />
+        <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.2" />
+        <stop offset="75%" stop-color="#8B5CF6" stop-opacity="0.2" />
+        <stop offset="100%" stop-color="#10B981" stop-opacity="0.25" />
+      </linearGradient>
+      <linearGradient id="line-gradient" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#EF4444" />
+        <stop offset="25%" stop-color="#F59E0B" />
+        <stop offset="50%" stop-color="#3B82F6" />
+        <stop offset="75%" stop-color="#8B5CF6" />
+        <stop offset="100%" stop-color="#10B981" />
+      </linearGradient>
+    </defs>
+
+    <!-- Filled area under the curve -->
+    <path
+      d="M80 260 C180 250, 220 220, 280 200 C340 180, 380 160, 420 140 C460 120, 520 90, 560 70 C600 50, 660 35, 720 25 L720 300 L80 300 Z"
+      fill="url(#curve-gradient)"
+    />
+
+    <!-- Curve line -->
+    <path
+      d="M80 260 C180 250, 220 220, 280 200 C340 180, 380 160, 420 140 C460 120, 520 90, 560 70 C600 50, 660 35, 720 25"
+      stroke="url(#line-gradient)"
+      stroke-width="3"
+      stroke-linecap="round"
+    />
+
+    <!-- Node 1: Ad Hoc -->
+    <circle cx="80" cy="260" r="10" fill="#EF4444" />
+    <circle cx="80" cy="260" r="14" stroke="#EF4444" stroke-width="1.5" fill="none" opacity="0.4" />
+    <text x="80" y="290" text-anchor="middle" class="fill-current text-content" style="font-size:13px;font-weight:600;">Ad Hoc</text>
+
+    <!-- Node 2: Aware -->
+    <circle cx="240" cy="210" r="10" fill="#F59E0B" />
+    <circle cx="240" cy="210" r="14" stroke="#F59E0B" stroke-width="1.5" fill="none" opacity="0.4" />
+    <text x="240" y="240" text-anchor="middle" class="fill-current text-content" style="font-size:13px;font-weight:600;">Aware</text>
+
+    <!-- Node 3: Defined -->
+    <circle cx="400" cy="148" r="10" fill="#3B82F6" />
+    <circle cx="400" cy="148" r="14" stroke="#3B82F6" stroke-width="1.5" fill="none" opacity="0.4" />
+    <text x="400" y="178" text-anchor="middle" class="fill-current text-content" style="font-size:13px;font-weight:600;">Defined</text>
+
+    <!-- Node 4: Managed -->
+    <circle cx="560" cy="72" r="10" fill="#8B5CF6" />
+    <circle cx="560" cy="72" r="14" stroke="#8B5CF6" stroke-width="1.5" fill="none" opacity="0.4" />
+    <text x="560" y="102" text-anchor="middle" class="fill-current text-content" style="font-size:13px;font-weight:600;">Managed</text>
+
+    <!-- Node 5: Optimised -->
+    <circle cx="720" cy="25" r="10" fill="#10B981" />
+    <circle cx="720" cy="25" r="14" stroke="#10B981" stroke-width="1.5" fill="none" opacity="0.4" />
+    <text x="720" y="55" text-anchor="middle" class="fill-current text-content" style="font-size:13px;font-weight:600;">Optimised</text>
+  </svg>
+</div>
+
+<!-- Mobile fallback (hidden on md+) -->
+<div class="block md:hidden space-y-4">
+  {maturityStages.map((stage) => (
+    <div class="flex items-start gap-4">
+      <div
+        class="w-9 h-9 rounded-full flex items-center justify-center shrink-0 text-white font-semibold text-body-sm"
+        style={`background-color: ${stage.color};`}
+      >
+        {stage.level}
+      </div>
+      <div>
+        <p class="font-semibold text-content">{stage.label}</p>
+        <p class="text-body-sm text-content-secondary">{stage.description}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<p class="text-center text-body-sm text-content-meta mt-6">
+  The assessment determines where you sit on this curve — and how to move forward.
+</p>

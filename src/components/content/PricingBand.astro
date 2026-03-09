@@ -5,10 +5,11 @@ interface Props {
   priceRange: string;
   duration: string;
   highlighted?: boolean;
+  accentColor?: string;
   class?: string;
 }
 
-const { name, description, priceRange, duration, highlighted = false, class: className } = Astro.props;
+const { name, description, priceRange, duration, highlighted = false, accentColor, class: className } = Astro.props;
 ---
 
 <div
@@ -20,10 +21,16 @@ const { name, description, priceRange, duration, highlighted = false, class: cla
 >
   {/* Name + description */}
   <div class="md:col-span-5">
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2.5">
+      {accentColor && (
+        <div
+          class="w-2.5 h-2.5 rounded-full shrink-0"
+          style={`background: ${accentColor}; box-shadow: 0 0 8px ${accentColor}44;`}
+        ></div>
+      )}
       <h3 class="text-body-md font-semibold">{name}</h3>
       {highlighted && (
-        <span class="text-label-sm px-2 py-0.5 rounded-full bg-glow-steel/20 text-content-secondary border border-glow-steel/30">
+        <span class="text-label-sm px-2 py-0.5 rounded-full bg-signal-purple/15 text-content-secondary border border-signal-purple/30">
           Popular
         </span>
       )}
@@ -39,6 +46,7 @@ const { name, description, priceRange, duration, highlighted = false, class: cla
 
   {/* Price */}
   <div class="md:col-span-4 md:text-right">
-    <span class="text-heading-sm text-glow-blue font-semibold">{priceRange}</span>
+    <span class="text-label-sm text-content-muted uppercase tracking-wider md:hidden">Investment: </span>
+    <span class="text-heading-sm text-accent-bright font-semibold">{priceRange}</span>
   </div>
 </div>

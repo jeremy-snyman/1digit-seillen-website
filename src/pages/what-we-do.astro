@@ -17,7 +17,7 @@ const description = 'We help organisations design and deliver AI systems that ar
 
 <PageLayout title={title} description={description}>
   <!-- Hero -->
-  <Section class="pt-32 pb-16 relative overflow-hidden">
+  <Section class="pt-40 pb-24 relative overflow-hidden">
     <!-- Hero background image -->
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0 hero-bg-image" style="background: url('/images/what-we-do/hero-bg.jpeg') center/cover no-repeat;"></div>
@@ -29,7 +29,7 @@ const description = 'We help organisations design and deliver AI systems that ar
       <ScrollReveal>
         <div class="max-w-3xl">
           <Badge variant="accent">CAPABILITIES</Badge>
-          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6 wwd-heading-gradient">
             Capabilities That Drive AI Success
           </h1>
           <p class="text-body-lg text-content-secondary max-w-2xl">
@@ -46,7 +46,7 @@ const description = 'We help organisations design and deliver AI systems that ar
                 href={`#${pillar.id}`}
                 class="inline-flex items-center gap-2 px-4 py-2 bg-tint/5 border border-surface-border rounded-badge
                        text-body-sm text-content-secondary hover:text-content hover:border-glow-steel/30 hover:bg-tint/10
-                       transition-all"
+                       transition-[color,border-color,background-color,transform] duration-300 ease-out hover:scale-[1.02]"
               >
                 <span class="text-glow-blue font-semibold">{pillar.number}</span>
                 <span>{pillar.title.split(' ').slice(0, 2).join(' ')}</span>
@@ -62,6 +62,8 @@ const description = 'We help organisations design and deliver AI systems that ar
       </ScrollReveal>
     </Container>
   </Section>
+
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   <!-- Positioning Statement -->
   <Section padding="sm" class="relative overflow-hidden">
@@ -85,30 +87,30 @@ const description = 'We help organisations design and deliver AI systems that ar
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
+
   <!-- Why 1digit -->
-  <Section background="elevated">
-    <Container>
+  <Section padding="none" class="py-40 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2
+                  w-[793px] h-[499px] rounded-full blur-[150px]
+                  bg-glow-steel/10"></div>
+    </div>
+    <Container class="relative z-10">
       <ScrollReveal>
         <SectionHeading
           align="center"
           badge="WHY 1DIGIT"
           heading="Built for Real Results"
+          headingClass="wwd-heading-gradient"
           description="Everything you need to move from AI ambition to AI in production."
         />
       </ScrollReveal>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
         {valueProps.map((prop, i) => (
           <ScrollReveal delay={i * 100}>
-            <GlassCard padding="lg" class="h-full relative overflow-hidden">
-              <div class="absolute -bottom-2 -right-2 w-20 h-20 opacity-10 pointer-events-none select-none">
-                {prop.image && (
-                  <>
-                    <img src={prop.image} alt="" class="w-full h-full object-contain value-thumb-dark" loading="lazy" />
-                    <img src={prop.imageLight || prop.image} alt="" class="w-full h-full object-contain value-thumb-light" loading="lazy" />
-                  </>
-                )}
-              </div>
-              <div class="relative">
+            <GlassCard padding="lg" class="h-full">
+              <div>
                 <div class="w-12 h-12 rounded-xl bg-surface-subtle flex items-center justify-center mb-4">
                   <Icon name={prop.icon} size={24} class="text-glow-blue" />
                 </div>
@@ -122,14 +124,22 @@ const description = 'We help organisations design and deliver AI systems that ar
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
+
   <!-- Pillar Overview Grid -->
-  <Section padding="sm">
-    <Container>
+  <Section padding="sm" class="relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-1/2 right-1/3 -translate-y-1/2
+                  w-[600px] h-[400px] rounded-full blur-[150px]
+                  bg-glow-steel/8"></div>
+    </div>
+    <Container class="relative z-10">
       <ScrollReveal>
         <SectionHeading
           align="center"
           badge="CAPABILITIES"
           heading="What We Deliver"
+          headingClass="wwd-heading-gradient"
           description="Four pillars that take you from assessment through to governed, production-ready AI."
         />
       </ScrollReveal>
@@ -137,25 +147,17 @@ const description = 'We help organisations design and deliver AI systems that ar
         {pillars.map((pillar, i) => (
           <ScrollReveal delay={i * 100}>
             <a href={`#${pillar.id}`} class="block h-full">
-              <GlassCard hover padding="lg" class="h-full group relative overflow-hidden">
-                {pillar.thumbnail && (
-                  <>
-                    <img
-                      src={pillar.thumbnail}
-                      alt=""
-                      class="absolute top-4 right-4 w-24 h-24 opacity-15
-                             select-none pointer-events-none pillar-thumb-dark"
-                      loading="lazy"
-                    />
-                    <img
-                      src={pillar.thumbnailLight || pillar.thumbnail}
-                      alt=""
-                      class="absolute top-4 right-4 w-24 h-24 opacity-15
-                             select-none pointer-events-none pillar-thumb-light"
-                      loading="lazy"
-                    />
-                  </>
-                )}
+              <GlassCard variant="solid" hover padding="lg" class="h-full group relative overflow-hidden">
+                {/* Per-pillar accent glow */}
+                <div class={`absolute inset-0 rounded-card pointer-events-none opacity-0
+                             group-hover:opacity-100 transition-opacity duration-500
+                             bg-gradient-to-br ${
+                               pillar.accentColor === 'blue' ? 'from-signal-blue/8' :
+                               pillar.accentColor === 'amber' ? 'from-signal-amber/6' :
+                               pillar.accentColor === 'purple' ? 'from-signal-purple/8' :
+                               pillar.accentColor === 'emerald' ? 'from-signal-emerald/6' :
+                               'from-signal-blue/8'
+                             } to-transparent`}></div>
                 <div class="relative">
                   <div class="flex items-center gap-3 mb-4">
                     <div class="w-10 h-10 rounded-xl bg-surface-subtle flex items-center justify-center">
@@ -185,9 +187,11 @@ const description = 'We help organisations design and deliver AI systems that ar
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
+
   <!-- Pillar Details -->
   {pillars.map((pillar, index) => (
-    <Section background="elevated" padding="sm" id={pillar.id}>
+    <Section padding="sm" id={pillar.id}>
       <Container>
         <ScrollReveal delay={100}>
           <PillarCard {...pillar} index={index} />
@@ -196,14 +200,15 @@ const description = 'We help organisations design and deliver AI systems that ar
     </Section>
   ))}
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
+
   <!-- Bottom CTA -->
-  <Section background="elevated" class="relative overflow-hidden">
-    <!-- Ambient background: image when available, CSS gradient fallback -->
+  <Section padding="none" class="py-40 relative overflow-hidden">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div class="absolute inset-0 opacity-30" style="background: url('/images/what-we-do/cta-bg.jpeg') center/cover no-repeat;"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-signal-blue/[0.06] blur-[100px]"></div>
-      <div class="absolute top-1/3 left-1/4 w-[400px] h-[200px] rounded-full bg-signal-purple/[0.04] blur-[80px]"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-[350px] h-[180px] rounded-full bg-signal-emerald/[0.03] blur-[80px]"></div>
+      <div class="absolute inset-0 opacity-20 hero-bg-image" style="background: url('/images/what-we-do/hero-bg.jpeg') center/cover no-repeat;"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                  w-[793px] h-[499px] rounded-full blur-[150px]
+                  bg-glow-steel/10"></div>
     </div>
     <Container class="relative">
       <ScrollReveal>
@@ -212,6 +217,7 @@ const description = 'We help organisations design and deliver AI systems that ar
             align="center"
             badge="GET STARTED"
             heading="Not Sure Where to Begin?"
+            headingClass="wwd-heading-gradient"
             description="Our AI Readiness Assessment gives you a clear picture of your current capabilities and a prioritised roadmap forward."
           />
           <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">

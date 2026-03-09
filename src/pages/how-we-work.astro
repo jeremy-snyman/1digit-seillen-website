@@ -11,13 +11,10 @@ import Badge from '@components/ui/Badge.astro';
 import FeatureList from '@components/content/FeatureList.astro';
 import PhaseRail from '@components/content/PhaseRail.astro';
 import PhaseCard from '@components/content/PhaseCard.astro';
-import WeekStrip from '@components/content/WeekStrip.astro';
 import MilestoneGates from '@components/content/MilestoneGates.astro';
-import ImagePlaceholder from '@components/ui/ImagePlaceholder.astro';
 import {
   processSteps,
   commercialCheckpoints,
-  weekCadence,
   partnershipInputs,
   definitionOfDone,
 } from '@content/data/services';
@@ -41,8 +38,7 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
 
   {/* ── Section 1: Hero ── */}
   <Section class="pt-40 pb-24 relative overflow-hidden min-h-[70vh]">
-    {/* 3-layer ambient mesh */}
-    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
       <div class="w-[600px] h-[300px] bg-signal-blue/15 rounded-full blur-[120px]" style="animation: drift 20s ease-in-out infinite;"></div>
       <div class="w-[400px] h-[250px] bg-signal-purple/10 rounded-full blur-[100px] absolute top-1/3 left-1/3" style="animation: mesh-drift-1 25s ease-in-out infinite;"></div>
       <div class="w-[350px] h-[200px] bg-signal-amber/[0.08] rounded-full blur-[90px] absolute bottom-1/4 right-1/4" style="animation: mesh-drift-2 22s ease-in-out infinite;"></div>
@@ -50,11 +46,10 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
 
     <Container class="relative">
       <div class="grid lg:grid-cols-5 gap-12 items-center">
-        {/* Text column */}
         <div class="col-span-3">
           <ScrollReveal>
             <Badge variant="accent">OUR PROCESS</Badge>
-            <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-2">
+            <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-2 wwd-heading-gradient">
               Structured. Transparent. Modular.
             </h1>
             <div class="h-px w-32 bg-gradient-to-r from-[#64C8FF] via-[#A064FF] via-[#50DCB4] to-[#FFB43C] mt-4 mb-6"></div>
@@ -74,10 +69,12 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
           </ScrollReveal>
         </div>
 
-        {/* Image column */}
         <div class="col-span-2 hidden lg:block">
           <ScrollReveal delay={150}>
-            <ImagePlaceholder aspect="1/1" label="Hero process flow" />
+            <div class="relative rounded-2xl overflow-hidden shadow-xl hww-hero-vignette">
+              <img src="/images/how-we-work/hero-dark.png" alt="Team collaborating on a process flow diagram" class="w-full h-auto hww-hero-dark" loading="eager" />
+              <img src="/images/how-we-work/hero-light.png" alt="Team collaborating on a process flow diagram" class="w-full h-auto hww-hero-light" loading="eager" />
+            </div>
           </ScrollReveal>
         </div>
       </div>
@@ -85,21 +82,22 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
   </Section>
 
   {/* ── Section 2: Lifecycle Phases ── */}
-  <div class="section-divider"></div>
-  <Section background="elevated">
+  <div class="wwd-section-divider" aria-hidden="true"></div>
+  <Section background="elevated" class="relative overflow-hidden">
     <Container>
       <ScrollReveal>
         <SectionHeading
           badge="ENGAGEMENT LIFECYCLE"
           heading="Four Phases. Clear Outcomes."
+          headingClass="wwd-heading-gradient"
           description="Each phase is self-contained with defined deliverables. Commission one, or all four."
         />
       </ScrollReveal>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mt-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mt-12">
         {processSteps.map((step, i) => (
           <ScrollReveal delay={i * 100}>
-            <div class:list={[i % 2 === 1 && 'lg:mt-8']}>
+            <div>
               <PhaseCard
                 number={step.number}
                 title={step.title}
@@ -114,21 +112,17 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
           </ScrollReveal>
         ))}
       </div>
-
-      {/* SVG dashed connectors between cards (desktop only) */}
-      <svg class="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0" aria-hidden="true">
-        <line x1="50%" y1="35%" x2="50%" y2="65%" stroke="rgb(var(--color-glow-steel))" stroke-width="1" stroke-dasharray="6 6" opacity="0.15" style="--line-length: 200;" />
-      </svg>
     </Container>
   </Section>
 
-  {/* ── Section 3: Flexibility Diagram ── */}
-  <Section padding="lg">
+  {/* ── Section 3: Modular Framework ── */}
+  <div class="wwd-section-divider" aria-hidden="true"></div>
+  <Section>
     <Container>
       <ScrollReveal>
-        <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="text-center max-w-3xl mx-auto mb-12">
           <Badge variant="accent">MODULAR FRAMEWORK</Badge>
-          <h2 class="text-display-md lg:text-display-lg mt-4 mb-4">Start Where You Are</h2>
+          <h2 class="text-display-md lg:text-display-lg mt-4 mb-4 wwd-heading-gradient">Start Where You Are</h2>
           <p class="text-body-lg text-content-secondary">
             You don't need to begin at Phase 1. Our modular framework lets you engage at the stage that matches your situation.
           </p>
@@ -136,11 +130,9 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
       </ScrollReveal>
 
       <ScrollReveal delay={100}>
-        {/* Desktop: horizontal rail with entry arrows */}
         <div class="hidden md:block">
           <div class="glass-card p-8 lg:p-12 relative dot-grid-bg">
             <svg viewBox="0 0 800 200" class="w-full max-w-4xl mx-auto" aria-label="Modular engagement diagram showing four phases with multiple entry points">
-              {/* Phase blocks with tinted fills */}
               <rect x="20" y="70" width="160" height="60" rx="8" fill="rgba(100,200,255,0.08)" stroke="rgb(var(--color-glow-steel))" stroke-width="1" opacity="0.5" />
               <text x="100" y="105" text-anchor="middle" fill="rgb(var(--color-content))" font-size="14" font-weight="600">Diagnose</text>
 
@@ -153,12 +145,10 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
               <rect x="620" y="70" width="160" height="60" rx="8" fill="rgba(255,180,60,0.08)" stroke="rgb(var(--color-glow-steel))" stroke-width="1" opacity="0.5" />
               <text x="700" y="105" text-anchor="middle" fill="rgb(var(--color-content))" font-size="14" font-weight="600">Optimise</text>
 
-              {/* Connectors between blocks */}
               <line x1="180" y1="100" x2="220" y2="100" stroke="rgb(var(--color-glow-steel))" stroke-width="1" opacity="0.2" />
               <line x1="380" y1="100" x2="420" y2="100" stroke="rgb(var(--color-glow-steel))" stroke-width="1" opacity="0.2" />
               <line x1="580" y1="100" x2="620" y2="100" stroke="rgb(var(--color-glow-steel))" stroke-width="1" opacity="0.2" />
 
-              {/* Entry arrows with increased opacity */}
               <g class="arrow-animated">
                 <line x1="100" y1="30" x2="100" y2="65" stroke="#64C8FF" stroke-width="1.5" opacity="0.7" marker-end="url(#arrowBlue)" />
                 <text x="100" y="20" text-anchor="middle" fill="rgb(var(--color-content-muted))" font-size="11">Start from scratch</text>
@@ -179,7 +169,6 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
                 <text x="700" y="20" text-anchor="middle" fill="rgb(var(--color-content-muted))" font-size="11">Optimise existing</text>
               </g>
 
-              {/* Arrow markers */}
               <defs>
                 <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
                   <path d="M0,0 L8,4 L0,8" fill="none" stroke="#64C8FF" stroke-width="1.5" />
@@ -196,12 +185,10 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
               </defs>
             </svg>
 
-            {/* Ambient glow beneath SVG card */}
-            <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[400px] h-[60px] bg-signal-blue/10 rounded-full blur-[60px] pointer-events-none"></div>
+            <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[400px] h-[60px] bg-signal-blue/10 rounded-full blur-[60px] pointer-events-none" aria-hidden="true"></div>
           </div>
         </div>
 
-        {/* Mobile: vertical rail */}
         <div class="block md:hidden space-y-4">
           {[
             { label: 'Start from scratch', phase: 'Diagnose', color: '#64C8FF' },
@@ -228,79 +215,28 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
     </Container>
   </Section>
 
-  {/* ── Section 4: Weekly Cadence ── */}
-  <Section background="elevated" class="relative overflow-hidden">
+  {/* ── Section 4: How We Partner ── */}
+  <div class="wwd-section-divider" aria-hidden="true"></div>
+  <Section background="elevated">
     <Container>
-      {/* Ambient glow orb */}
-      <div class="absolute top-1/2 right-0 -translate-y-1/2 w-[400px] h-[300px] bg-signal-blue/10 rounded-full blur-[120px] pointer-events-none" style="animation: drift 20s ease-in-out infinite;"></div>
-
       <ScrollReveal>
         <SectionHeading
-          badge="WEEKLY CADENCE"
-          heading="What a Typical Week Looks Like"
-          description="Lightweight, structured delivery rhythm that keeps stakeholders informed without creating overhead."
+          align="center"
+          badge="PARTNERSHIP"
+          heading="How We Partner"
+          description="Successful engagements require partnership. Here is what each side brings."
         />
       </ScrollReveal>
 
-      <div class="grid lg:grid-cols-5 gap-10 mt-16">
-        <div class="lg:col-span-3">
-          <ScrollReveal delay={100}>
-            <WeekStrip waypoints={weekCadence} />
-          </ScrollReveal>
-        </div>
-        <div class="lg:col-span-2">
-          <ScrollReveal delay={200}>
-            <ImagePlaceholder aspect="4/3" label="Weekly cadence rhythm" />
-          </ScrollReveal>
-        </div>
-      </div>
-
-      {/* Stat strip */}
-      <ScrollReveal delay={300}>
-        <div class="grid grid-cols-3 gap-4 mt-10">
-          {[
-            { stat: '3', label: 'Touchpoints/week' },
-            { stat: '100%', label: 'Visibility' },
-            { stat: '< 24h', label: 'Response' },
-          ].map((item) => (
-            <div class="glass-card p-4 text-center">
-              <div class="text-heading-md font-bold text-accent-bright">{item.stat}</div>
-              <div class="text-label-md text-content-muted">{item.label}</div>
-            </div>
-          ))}
-        </div>
-      </ScrollReveal>
-    </Container>
-  </Section>
-
-  {/* ── Section 5: How We Partner ── */}
-  <div class="section-divider"></div>
-  <Section padding="lg">
-    <Container>
-      <ScrollReveal>
-        <div class="text-center max-w-3xl mx-auto mb-12">
-          <SectionHeading
-            align="center"
-            badge="PARTNERSHIP"
-            heading="How We Partner"
-            description="Successful engagements require partnership. Here is what each side brings."
-          />
-        </div>
-      </ScrollReveal>
-
-      <ScrollReveal delay={100}>
-        <ImagePlaceholder aspect="16/9" label="Partnership bridge" class="max-w-4xl mx-auto mb-10" />
-      </ScrollReveal>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
-        <ScrollReveal direction="left" delay={150}>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 mt-12">
+        <ScrollReveal direction="left" delay={100}>
           <GlassCard hover padding="lg" class="h-full bg-gradient-to-br from-signal-blue/5 to-transparent">
             <h3 class="text-heading-sm font-semibold mb-5">Your Inputs</h3>
             <FeatureList items={partnershipInputs.client} />
           </GlassCard>
         </ScrollReveal>
 
-        <ScrollReveal direction="right" delay={200}>
+        <ScrollReveal direction="right" delay={150}>
           <GlassCard hover padding="lg" class="h-full bg-gradient-to-br from-signal-purple/5 to-transparent">
             <h3 class="text-heading-sm font-semibold mb-5">Our Commitment</h3>
             <FeatureList items={partnershipInputs.ours} />
@@ -310,35 +246,33 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
     </Container>
   </Section>
 
-  {/* ── Section 6: Milestone Gates ── */}
-  <div class="section-divider"></div>
-  <Section background="elevated">
+  {/* ── Section 5: Milestone Gates ── */}
+  <div class="wwd-section-divider" aria-hidden="true"></div>
+  <Section>
     <Container>
       <ScrollReveal>
         <SectionHeading
           badge="QUALITY GATES"
           heading="Milestone Gates"
+          headingClass="wwd-heading-gradient"
           description="Formal checkpoints between phases. Nothing proceeds without stakeholder approval."
         />
       </ScrollReveal>
       <ScrollReveal delay={100}>
-        <div class="mt-16">
+        <div class="mt-12">
           <MilestoneGates gates={milestoneGates} phases={phaseNames} gateColors={['#64C8FF', '#A064FF', '#50DCB4']} />
         </div>
-      </ScrollReveal>
-      <ScrollReveal delay={200}>
-        <ImagePlaceholder aspect="16/9" label="Quality gates path" class="max-w-4xl mx-auto mt-10" />
       </ScrollReveal>
     </Container>
   </Section>
 
-  {/* ── Section 7: Commercial Checkpoints ── */}
-  <Section padding="lg">
-    <Container>
-      {/* Ambient glow orb */}
-      <div class="absolute left-0 top-1/3 w-[350px] h-[250px] bg-signal-purple/10 rounded-full blur-[100px] pointer-events-none" style="animation: drift 22s ease-in-out infinite;"></div>
+  {/* ── Section 6: Commercial Checkpoints ── */}
+  <div class="wwd-section-divider" aria-hidden="true"></div>
+  <Section background="elevated" class="relative overflow-hidden">
+    <Container class="relative">
+      <div class="absolute left-0 top-1/3 w-[350px] h-[250px] bg-signal-purple/10 rounded-full blur-[100px] pointer-events-none" style="animation: drift 22s ease-in-out infinite;" aria-hidden="true"></div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
         <div>
           <ScrollReveal>
             <SectionHeading
@@ -347,16 +281,13 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
               description="No surprises. Payment milestones are tied to visible deliverables and stakeholder sign-off."
             />
           </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <ImagePlaceholder aspect="4/3" label="Commercial transparency" class="mt-8" />
-          </ScrollReveal>
         </div>
 
-        <ScrollReveal delay={150}>
+        <ScrollReveal delay={100}>
           <GlassCard padding="lg" class="shimmer-border">
             <div class="space-y-5">
               {commercialCheckpoints.map((cp, i) => (
-                <ScrollReveal delay={i * 100 + 200}>
+                <ScrollReveal delay={i * 100 + 150}>
                   <div class="flex items-start gap-4">
                     <div
                       class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-body-xs shrink-0"
@@ -378,30 +309,29 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
     </Container>
   </Section>
 
-  {/* ── Section 8: Definition of Done ── */}
-  <div class="section-divider"></div>
-  <Section background="elevated" padding="lg">
+  {/* ── Section 7: Definition of Done ── */}
+  <div class="wwd-section-divider" aria-hidden="true"></div>
+  <Section class="relative overflow-hidden">
     <Container class="relative">
-      {/* Ambient glow orb */}
-      <div class="absolute right-0 top-1/4 w-[300px] h-[200px] bg-signal-emerald/10 rounded-full blur-[100px] pointer-events-none" style="animation: drift 18s ease-in-out infinite;"></div>
+      <div class="absolute right-0 top-1/4 w-[300px] h-[200px] bg-signal-emerald/10 rounded-full blur-[100px] pointer-events-none" style="animation: drift 18s ease-in-out infinite;" aria-hidden="true"></div>
 
       <ScrollReveal>
-        <div class="text-center max-w-3xl mx-auto">
-          <SectionHeading
-            align="center"
-            badge="DEFINITION OF DONE"
-            heading="What Done Looks Like"
-            description="Every engagement has a defined endpoint. Here is what completion means."
-          />
-        </div>
+        <SectionHeading
+          align="center"
+          badge="DEFINITION OF DONE"
+          heading="What Done Looks Like"
+          headingClass="wwd-heading-gradient"
+          description="Every engagement has a defined endpoint. Here is what completion means."
+        />
       </ScrollReveal>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
         {definitionOfDone.map((item, i) => (
           <ScrollReveal delay={i * 150}>
             <GlassCard
               hover
               padding="md"
               class="text-center h-full hover:scale-[1.02] transition-transform duration-300 border-t-2"
+              style={`border-top-color: ${dodColors[i]};`}
             >
               <div
                 class="w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center"
@@ -418,19 +348,11 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
     </Container>
   </Section>
 
-  {/* ── Section 9: Bottom CTA ── */}
-  <div class="section-divider"></div>
-  <Section padding="lg" class="relative overflow-hidden">
-    {/* 3-layer ambient mesh */}
-    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-      <div class="w-[600px] h-[300px] bg-signal-blue/15 rounded-full blur-[120px]" style="animation: drift 20s ease-in-out infinite;"></div>
-      <div class="w-[400px] h-[250px] bg-signal-purple/10 rounded-full blur-[100px] absolute top-1/3 left-1/4" style="animation: mesh-drift-1 25s ease-in-out infinite;"></div>
-      <div class="w-[350px] h-[200px] bg-signal-emerald/[0.08] rounded-full blur-[90px] absolute bottom-1/4 right-1/4" style="animation: mesh-drift-2 22s ease-in-out infinite;"></div>
-    </div>
-
-    {/* CTA background image */}
-    <div class="absolute inset-0 pointer-events-none">
-      <img src="/images/how-we-work/cta-bg.jpeg" alt="" class="w-full h-full object-cover opacity-[0.15] theme-image" loading="lazy" />
+  {/* ── Section 8: Bottom CTA ── */}
+  <div class="wwd-section-divider" aria-hidden="true"></div>
+  <Section padding="none" class="py-40 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[793px] h-[499px] rounded-full blur-[150px] bg-glow-steel/10"></div>
     </div>
 
     <Container class="relative">
@@ -438,15 +360,16 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
         <div class="text-center">
           <SectionHeading
             align="center"
-            heading="Ready to discuss scope?"
+            badge="GET STARTED"
+            heading="Ready to Discuss Scope?"
+            headingClass="wwd-heading-gradient"
             description="Book a 30-minute scoping call. We'll map your situation to our process and tell you exactly where to start."
           />
           <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg" href="/contact" class="cta-glow-pulse-btn">Book a Scoping Discussion</Button>
+            <Button variant="primary" size="lg" href="/contact">Book a Scoping Discussion</Button>
             <Button variant="outline" size="lg" href="/how-we-price">View Pricing</Button>
           </div>
 
-          {/* Trust signal strip */}
           <div class="flex flex-wrap justify-center gap-3 mt-8">
             {['Structured Delivery', 'No Surprises', 'Clear Milestones', 'Modular Engagement'].map((badge) => (
               <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-label-md rounded-full border border-surface-border/[var(--alpha-surface-border)] text-content-muted bg-surface-elevated/50">
@@ -463,14 +386,3 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
   </Section>
 
 </PageLayout>
-
-<style>
-  .cta-glow-pulse-btn {
-    animation: cta-glow-pulse 4s ease-in-out infinite;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .cta-glow-pulse-btn {
-      animation: none;
-    }
-  }
-</style>

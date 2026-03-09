@@ -14,20 +14,20 @@ const description = 'Get in touch to discuss your AI and data platform requireme
 ---
 
 <PageLayout title={title} description={description}>
-  <Section class="pt-32 pb-16">
+  <Section class="pt-32 pb-8">
     <Container>
       <ScrollReveal>
         <Badge variant="accent">CONTACT</Badge>
-        <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
-          Let's Talk About <em class="font-serif italic">Your Data</em>
+        <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-0">
+          Let's <em class="font-serif italic">Talk</em> ...
         </h1>
       </ScrollReveal>
     </Container>
   </Section>
 
-  <Section background="elevated">
+  <Section background="elevated" padding="sm">
     <Container>
-      <div class="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-16">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10">
         <ScrollReveal>
           <ContactForm client:visible />
         </ScrollReveal>
@@ -61,15 +61,6 @@ const description = 'Get in touch to discuss your AI and data platform requireme
               </p>
             </GlassCard>
 
-            <GlassCard padding="lg">
-              <h3 class="text-heading-xs font-semibold mb-4">Book a Call</h3>
-              <p class="text-body-sm text-content-secondary mb-4">
-                Prefer to speak directly? Book a 30-minute scoping call.
-              </p>
-              <div class="border-2 border-dashed border-surface-border rounded-xl p-6 text-center">
-                <p class="text-body-sm text-content-muted">Booking calendar placeholder</p>
-              </div>
-            </GlassCard>
           </div>
         </ScrollReveal>
       </div>

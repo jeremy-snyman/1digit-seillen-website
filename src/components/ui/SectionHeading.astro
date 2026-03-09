@@ -9,6 +9,7 @@ interface Props {
   description?: string;
   align?: 'left' | 'center';
   headingSize?: 'md' | 'lg' | 'xl';
+  headingClass?: string;
   class?: string;
 }
 
@@ -20,6 +21,7 @@ const {
   description,
   align = 'left',
   headingSize = 'lg',
+  headingClass,
   class: className,
 } = Astro.props;
 
@@ -41,7 +43,7 @@ const alignClasses = {
       <Badge variant={badgeVariant}>{badge}</Badge>
     </div>
   )}
-  <h2 class:list={[headingSizeClasses[headingSize]]}>
+  <h2 class:list={[headingSizeClasses[headingSize], headingClass]}>
     {serifWord ? (
       <Fragment>
         {heading.split(serifWord).map((part, i) => (

@@ -9,6 +9,7 @@ import Icon from '@components/ui/Icon.astro';
 import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
 import FeatureList from '@components/content/FeatureList.astro';
+import ImagePlaceholder from '@components/ui/ImagePlaceholder.astro';
 import SmokeCanvas from '@components/home/SmokeCanvas.tsx';
 import {
   platformPhilosophy,
@@ -20,6 +21,22 @@ import {
 
 const title = 'Our Platforms';
 const description = 'Proven platforms and engineering capability to accelerate data infrastructure, reduce cost, and deliver production-grade AI foundations — whether bespoke, platform-led, or a combination of both.';
+
+const layerColors = [
+  { bg: 'bg-signal-blue/15', border: 'border-signal-blue/30', text: 'text-signal-blue' },
+  { bg: 'bg-signal-purple/15', border: 'border-signal-purple/30', text: 'text-signal-purple' },
+  { bg: 'bg-signal-emerald/15', border: 'border-signal-emerald/30', text: 'text-signal-emerald' },
+  { bg: 'bg-signal-amber/15', border: 'border-signal-amber/30', text: 'text-signal-amber' },
+];
+
+const layerWidths = ['max-w-[65%]', 'max-w-[75%]', 'max-w-[85%]', 'max-w-[95%]'];
+
+const signalColorMap: Record<string, { iconBg: string; iconColor: string; border: string }> = {
+  blue: { iconBg: 'bg-signal-blue/15', iconColor: 'text-signal-blue', border: 'border-signal-blue/25' },
+  purple: { iconBg: 'bg-signal-purple/15', iconColor: 'text-signal-purple', border: 'border-signal-purple/25' },
+  emerald: { iconBg: 'bg-signal-emerald/15', iconColor: 'text-signal-emerald', border: 'border-signal-emerald/25' },
+  amber: { iconBg: 'bg-signal-amber/15', iconColor: 'text-signal-amber', border: 'border-signal-amber/25' },
+};
 ---
 
 <PageLayout title={title} description={description}>
@@ -31,31 +48,57 @@ const description = 'Proven platforms and engineering capability to accelerate d
     <!-- Background layers -->
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 40%, rgb(var(--color-surface-elevated)) 0%, rgb(var(--color-surface)) 70%);"></div>
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        class="absolute inset-0 w-full h-full object-cover z-0 platform-hero-video"
+        poster="/images/data-platforms/hero-poster.jpg"
+      >
+        <source src="/images/data-platforms/hero-bg.mp4" type="video/mp4" />
+      </video>
       <SmokeCanvas client:load />
       <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 70%, rgb(var(--color-surface)) 100%);"></div>
     </div>
 
     <!-- Content -->
-    <div class="relative z-10 text-center px-6">
+    <div class="relative z-10 px-6">
       <Container>
-        <ScrollReveal>
-          <Badge variant="accent">OUR PLATFORMS</Badge>
-        </ScrollReveal>
-        <ScrollReveal delay={100}>
-          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
-            Engineered Platforms.<br />
-            <span class="text-accent">Delivered with Discipline.</span>
-          </h1>
-        </ScrollReveal>
-        <ScrollReveal delay={200}>
-          <p class="text-body-lg text-content-secondary max-w-2xl mx-auto mb-10">
-            We build proven, proprietary data platforms that can serve as standalone products, delivery accelerators, or foundations within bespoke engagements — structured, governed, and cloud-agnostic by design.
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={300}>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="primary" size="lg" href="/tachyon">Explore Tachyon</Button>
-            <Button variant="outline" size="lg" href="/smart-lakehouse-ionos">Explore Smart Data Lake</Button>
+        <div class="text-center">
+          <ScrollReveal>
+            <Badge variant="accent">OUR PLATFORMS</Badge>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <h1 class="text-display-lg lg:text-display-xl font-display mt-6 mb-4">
+              <span class="wwd-heading-gradient">Engineered Platforms.</span><br />
+              <span class="text-accent">Delivered with Discipline.</span>
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <p class="text-body-lg text-content-secondary max-w-2xl mx-auto mb-8">
+              We build proven, proprietary data platforms that can serve as standalone products, delivery accelerators, or foundations within bespoke engagements — structured, governed, and cloud-agnostic by design.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={300}>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button variant="primary" size="lg" href="/tachyon">Explore Tachyon</Button>
+              <Button variant="outline" size="lg" href="/smart-lakehouse-ionos">Explore Smart Data Lake</Button>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        {/* Scroll indicator */}
+        <ScrollReveal delay={500}>
+          <div class="flex justify-center mt-12 lg:mt-16">
+            <div class="flex flex-col items-center gap-2 text-content-muted" style="animation: bounce-subtle 2.5s ease-in-out infinite;">
+              <svg width="20" height="32" viewBox="0 0 20 32" fill="none" class="text-content-muted">
+                <rect x="1" y="1" width="18" height="30" rx="9" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="10" cy="10" r="2.5" fill="currentColor" class="animate-scroll-dot"/>
+              </svg>
+              <span class="text-label-md uppercase tracking-wider">Scroll</span>
+            </div>
           </div>
         </ScrollReveal>
       </Container>
@@ -69,8 +112,10 @@ const description = 'Proven platforms and engineering capability to accelerate d
   <Section background="elevated">
     <Container>
       <ScrollReveal>
-        <div class="max-w-3xl mx-auto text-center mb-12">
-          <p class="text-quote text-content text-display-sm leading-relaxed">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+          {/* Line reveal decoration */}
+          <div class="section-divider mx-auto max-w-[120px] mb-8" style="animation: line-reveal 1.2s ease-out both;"></div>
+          <p class="font-serif italic text-display-sm leading-relaxed text-content">
             "Proven platforms that accelerate delivery — whether deployed standalone or woven into bespoke engagements."
           </p>
         </div>
@@ -91,10 +136,13 @@ const description = 'Proven platforms and engineering capability to accelerate d
         </ScrollReveal>
       </div>
 
-      <ScrollReveal delay={300}>
-        <p class="text-center text-body-lg mt-12 max-w-2xl mx-auto">
-          Proprietary platforms. Bespoke capability. <span class="text-accent font-semibold">Always engineered to fit.</span>
-        </p>
+      <ScrollReveal delay={400}>
+        <div class="mt-16 pt-8">
+          <div class="section-divider mb-8"></div>
+          <p class="text-center text-body-lg max-w-2xl mx-auto">
+            Proprietary platforms. Bespoke capability. <span class="text-accent font-semibold">Always engineered to fit.</span>
+          </p>
+        </div>
       </ScrollReveal>
     </Container>
   </Section>
@@ -103,8 +151,11 @@ const description = 'Proven platforms and engineering capability to accelerate d
   <!-- ============================================
        Section 3: Tachyon (Primary Platform) — default
        ============================================ -->
-  <Section>
-    <Container>
+  <Section class="relative overflow-hidden">
+    {/* Subtle section overlay gradient */}
+    <div class="absolute inset-0 bg-gradient-to-br from-signal-blue/3 to-transparent pointer-events-none"></div>
+
+    <Container class="relative z-10">
       <ScrollReveal>
         <div class="text-center mb-12">
           <Badge variant="accent">PRIMARY PLATFORM</Badge>
@@ -116,38 +167,50 @@ const description = 'Proven platforms and engineering capability to accelerate d
         </div>
       </ScrollReveal>
 
-      <!-- Pain points + image placeholder -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-        <ScrollReveal delay={100}>
-          <h3 class="text-heading-sm font-semibold mb-6">Problems Tachyon Solves</h3>
+      <!-- Pain points + premium placeholder -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
+        <div>
+          <ScrollReveal>
+            <h3 class="text-heading-sm font-semibold mb-6">Problems Tachyon Solves</h3>
+          </ScrollReveal>
           <div class="space-y-4">
             {tachyonOverview.painPoints.map((point, i) => (
-              <div class="flex items-start gap-4">
-                <span class="text-accent font-bold text-body-lg mt-0.5 shrink-0">{String(i + 1).padStart(2, '0')}</span>
-                <p class="text-body-md text-content-secondary">{point}</p>
-              </div>
+              <ScrollReveal delay={50 * (i + 1)}>
+                <div class="flex items-start gap-4">
+                  <span class="bg-accent-muted rounded-lg w-8 h-8 flex items-center justify-center text-accent font-bold text-body-sm shrink-0 mt-0.5">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <p class="text-body-md text-content-secondary">{point}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
-        </ScrollReveal>
+        </div>
         <ScrollReveal delay={200}>
-          <div class="relative">
-            <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
-            <div class="relative border-2 border-dashed border-surface-border rounded-card p-12 flex flex-col items-center justify-center text-center aspect-[4/3]">
-              <Icon name="zap" size={48} class="text-content-muted mb-4" />
-              <p class="text-heading-xs font-semibold text-content-muted">Tachyon Data Flow</p>
-              <p class="text-body-sm text-content-muted mt-1">AI-generated visual coming soon</p>
-            </div>
+          <div class="rounded-2xl overflow-hidden border border-surface-border/10">
+            <img
+              src="/images/data-platforms/tachyon-flow.png"
+              alt="Tachyon data flow — multiple event ingest through pipeline entry, security shields, and enhanced data validation, with a feedback loop for enriched data, routing to analytics dashboards, AI models, operational systems, and agent memory"
+              class="w-full h-auto tachyon-img-dark"
+              loading="lazy"
+            />
+            <img
+              src="/images/data-platforms/tachyon-flow-light.png"
+              alt="Tachyon data flow — multiple event ingest through pipeline entry, security shields, and enhanced data validation, with a feedback loop for enriched data, routing to analytics dashboards, AI models, operational systems, and agent memory"
+              class="w-full h-auto tachyon-img-light"
+              loading="lazy"
+            />
           </div>
         </ScrollReveal>
       </div>
 
       <!-- 4-card capabilities grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
         {tachyonOverview.capabilities.map((cap, index) => (
           <ScrollReveal delay={index * 100}>
-            <GlassCard hover padding="lg" class="h-full">
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-lg bg-glow-steel/20 flex items-center justify-center shrink-0">
+            <GlassCard hover padding="lg" class="h-full group">
+              <div class="flex flex-col gap-4">
+                <div class="w-10 h-10 rounded-lg bg-glow-steel/20 border border-glow-steel/20 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-[1.02]">
                   <Icon name={cap.icon} size={20} class="text-accent" />
                 </div>
                 <div>
@@ -161,7 +224,7 @@ const description = 'Proven platforms and engineering capability to accelerate d
       </div>
 
       <ScrollReveal delay={400}>
-        <div class="text-center mt-12">
+        <div class="text-center mt-16">
           <Button variant="primary" size="lg" href="/tachyon">Explore Tachyon</Button>
         </div>
       </ScrollReveal>
@@ -178,9 +241,9 @@ const description = 'Proven platforms and engineering capability to accelerate d
         <div class="text-center mb-12">
           <div class="flex items-center justify-center gap-3 mb-4">
             <Badge>PARTNERSHIP</Badge>
-            <Badge variant="accent">IONOS</Badge>
+            <Badge variant="accent" class="!bg-signal-amber/12 !text-signal-amber !border-signal-amber/25">IONOS</Badge>
           </div>
-          <h2 class="text-display-md lg:text-display-lg">Smart Data Lake on IONOS</h2>
+          <h2 class="text-display-md lg:text-display-lg mb-8">Smart Data Lake on IONOS</h2>
           <p class="text-accent text-body-lg font-medium mt-2">Enterprise Analytics. 40–60% Lower Infrastructure Cost.</p>
           <p class="text-body-lg text-content-secondary max-w-2xl mx-auto mt-4">
             A fully managed lakehouse platform built on IONOS European sovereign cloud infrastructure — delivering enterprise-grade analytics, AI enablement, and governance at a fraction of hyperscaler cost.
@@ -188,17 +251,16 @@ const description = 'Proven platforms and engineering capability to accelerate d
         </div>
       </ScrollReveal>
 
-      <!-- Two-column: image + feature list (reversed) -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
+      <!-- Two-column: premium placeholder + feature list -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
         <ScrollReveal delay={100} class="order-2 lg:order-1">
-          <div class="relative">
-            <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
-            <div class="relative border-2 border-dashed border-surface-border rounded-card p-12 flex flex-col items-center justify-center text-center aspect-[4/3]">
-              <Icon name="database" size={48} class="text-content-muted mb-4" />
-              <p class="text-heading-xs font-semibold text-content-muted">Smart Data Lake Infrastructure</p>
-              <p class="text-body-sm text-content-muted mt-1">AI-generated visual coming soon</p>
-            </div>
-          </div>
+          <ImagePlaceholder
+            variant="premium"
+            aspect="4/3"
+            label="Smart Data Lake Infrastructure"
+            icon="database"
+            accentColor="amber"
+          />
         </ScrollReveal>
         <div class="order-1 lg:order-2 space-y-8">
           <ScrollReveal delay={150}>
@@ -218,18 +280,20 @@ const description = 'Proven platforms and engineering capability to accelerate d
         </div>
       </div>
 
-      <!-- Architecture overview: CSS stacked blocks -->
-      <ScrollReveal delay={300}>
-        <div class="max-w-xl mx-auto">
-          <h3 class="text-heading-xs font-semibold text-center mb-6">Platform Architecture</h3>
-          <div class="space-y-3">
-            {smartLakeOverview.architectureLayers.map((layer, i) => (
+      <!-- Architecture overview: tapered pyramid layers -->
+      <div class="mt-16">
+        <ScrollReveal>
+          <h3 class="text-heading-xs font-semibold text-center mb-8">Platform Architecture</h3>
+        </ScrollReveal>
+        <div class="max-w-xl mx-auto space-y-4">
+          {smartLakeOverview.architectureLayers.map((layer, i) => (
+            <ScrollReveal delay={150 * (i + 1)} direction="up">
               <div class:list={[
-                'relative px-6 py-4 rounded-card text-center font-medium text-body-md transition-all',
-                i === 0 && 'bg-glow-steel/20 text-accent border border-glow-steel/30',
-                i === 1 && 'bg-tint/8 text-content border border-surface-border',
-                i === 2 && 'bg-tint/5 text-content-secondary border border-surface-border',
-                i === 3 && 'bg-surface-overlay text-content-muted border border-surface-border',
+                'relative px-6 py-4 rounded-card text-center font-medium text-body-md transition-all mx-auto border',
+                layerWidths[i],
+                layerColors[i].bg,
+                layerColors[i].border,
+                layerColors[i].text,
               ]}>
                 {layer}
                 {i < smartLakeOverview.architectureLayers.length - 1 && (
@@ -238,10 +302,10 @@ const description = 'Proven platforms and engineering capability to accelerate d
                   </div>
                 )}
               </div>
-            ))}
-          </div>
+            </ScrollReveal>
+          ))}
         </div>
-      </ScrollReveal>
+      </div>
 
       <ScrollReveal delay={400}>
         <div class="text-center mt-12">
@@ -266,37 +330,48 @@ const description = 'Proven platforms and engineering capability to accelerate d
         />
       </ScrollReveal>
 
-      <ScrollReveal delay={100}>
-        <div class="flex flex-wrap items-center justify-center gap-3 mt-10 mb-12">
-          {cloudPositioning.clouds.map((cloud) => (
-            <span class="px-5 py-2.5 rounded-badge bg-tint/8 text-content border border-surface-border text-body-md font-medium">
+      <div class="flex flex-wrap items-center justify-center gap-3 mt-12 mb-14">
+        {cloudPositioning.clouds.map((cloud, i) => (
+          <ScrollReveal delay={50 * (i + 1)}>
+            <span class:list={[
+              'px-5 py-2.5 rounded-badge text-body-md font-medium border transition-colors',
+              cloud === 'IONOS'
+                ? 'bg-signal-amber/12 text-signal-amber border-signal-amber/25'
+                : 'bg-tint/8 text-content border-surface-border',
+            ]}>
               {cloud}
             </span>
-          ))}
-        </div>
-      </ScrollReveal>
+          </ScrollReveal>
+        ))}
+      </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <ScrollReveal delay={200}>
-          <GlassCard padding="lg" class="h-full">
-            <div class="flex items-center gap-3 mb-4">
-              <Icon name="zap" size={20} class="text-accent" />
-              <h3 class="text-heading-xs font-semibold">Tachyon</h3>
+          <GlassCard padding="lg" class="h-full relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-signal-blue/5 to-transparent pointer-events-none rounded-[16px]"></div>
+            <div class="relative">
+              <div class="flex items-center gap-3 mb-4">
+                <Icon name="zap" size={20} class="text-accent" />
+                <h3 class="text-heading-xs font-semibold">Tachyon</h3>
+              </div>
+              <p class="text-body-md text-content-secondary">
+                Cloud-neutral by architecture. Tachyon deploys on any major cloud provider, on-premise, or hybrid environments — with no vendor-specific dependencies or lock-in.
+              </p>
             </div>
-            <p class="text-body-md text-content-secondary">
-              Cloud-neutral by architecture. Tachyon deploys on any major cloud provider, on-premise, or hybrid environments — with no vendor-specific dependencies or lock-in.
-            </p>
           </GlassCard>
         </ScrollReveal>
         <ScrollReveal delay={300}>
-          <GlassCard padding="lg" class="h-full">
-            <div class="flex items-center gap-3 mb-4">
-              <Icon name="database" size={20} class="text-accent" />
-              <h3 class="text-heading-xs font-semibold">Smart Data Lake</h3>
+          <GlassCard padding="lg" class="h-full relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-signal-amber/5 to-transparent pointer-events-none rounded-[16px]"></div>
+            <div class="relative">
+              <div class="flex items-center gap-3 mb-4">
+                <Icon name="database" size={20} class="text-accent" />
+                <h3 class="text-heading-xs font-semibold">Smart Data Lake</h3>
+              </div>
+              <p class="text-body-md text-content-secondary">
+                Purpose-built on IONOS European sovereign cloud infrastructure — optimised for cost, compliance, and performance where European data residency or cost reduction are priorities.
+              </p>
             </div>
-            <p class="text-body-md text-content-secondary">
-              Purpose-built on IONOS European sovereign cloud infrastructure — optimised for cost, compliance, and performance where European data residency or cost reduction are priorities.
-            </p>
           </GlassCard>
         </ScrollReveal>
       </div>
@@ -317,17 +392,26 @@ const description = 'Proven platforms and engineering capability to accelerate d
         />
       </ScrollReveal>
 
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-        {futurePlatforms.map((platform, index) => (
-          <ScrollReveal delay={index * 100}>
-            <div class="flex flex-col items-center text-center p-6">
-              <div class="w-14 h-14 rounded-xl bg-glow-steel/15 flex items-center justify-center mb-4">
-                <Icon name={platform.icon} size={24} class="text-accent" />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
+        {futurePlatforms.map((platform, index) => {
+          const colors = signalColorMap[platform.accentColor];
+          return (
+            <ScrollReveal delay={index * 100}>
+              <div class="glass-card-hover p-8 flex flex-col items-center text-center h-full group">
+                <div class:list={[
+                  'w-14 h-14 rounded-xl flex items-center justify-center mb-4 border transition-transform duration-300 group-hover:scale-110',
+                  colors.iconBg,
+                  colors.border,
+                ]}>
+                  <Icon name={platform.icon} size={24} class={colors.iconColor} />
+                </div>
+                <h3 class="text-heading-xs font-semibold mb-2">{platform.title}</h3>
+                <p class="text-body-sm text-content-secondary mb-3">{platform.description}</p>
+                <span class="text-label-md uppercase tracking-wider text-content-muted mt-auto">Coming Soon</span>
               </div>
-              <h3 class="text-heading-xs font-semibold">{platform.title}</h3>
-            </div>
-          </ScrollReveal>
-        ))}
+            </ScrollReveal>
+          );
+        })}
       </div>
     </Container>
   </Section>
@@ -336,15 +420,20 @@ const description = 'Proven platforms and engineering capability to accelerate d
   <!-- ============================================
        Section 7: Final CTA — default
        ============================================ -->
-  <Section>
-    <Container>
+  <Section padding="lg" class="relative overflow-hidden">
+    {/* Ambient mesh orbs */}
+    <div class="mesh-gradient w-[350px] h-[350px] top-[5%] left-[-5%] bg-signal-blue/10 z-0" style="animation: drift 14s ease-in-out infinite;"></div>
+    <div class="mesh-gradient w-[250px] h-[250px] bottom-[10%] right-[-3%] bg-signal-purple/8 z-0" style="animation: mesh-drift-1 16s ease-in-out infinite;"></div>
+
+    <Container class="relative z-10">
       <ScrollReveal>
         <div class="text-center">
-          <SectionHeading
-            align="center"
-            heading="Discuss Your Platform Strategy"
-          />
-          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+          <Badge variant="accent">GET STARTED</Badge>
+          <h2 class="text-display-md lg:text-display-lg mt-4 wwd-heading-gradient">Discuss Your Platform Strategy</h2>
+          <p class="mt-4 text-body-lg text-content-secondary max-w-2xl mx-auto">
+            Whether you need a data foundation, a cost-efficient lakehouse, or a bespoke platform architecture — we'll help you find the right path.
+          </p>
+          <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="primary" size="lg" href="/contact">Start the Conversation</Button>
             <Button variant="outline" size="lg" href="/how-we-work">How We Work</Button>
           </div>
@@ -354,3 +443,13 @@ const description = 'Proven platforms and engineering capability to accelerate d
   </Section>
 
 </PageLayout>
+
+<style>
+  @keyframes scroll-dot {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(10px); opacity: 0.3; }
+  }
+  .animate-scroll-dot {
+    animation: scroll-dot 2s ease-in-out infinite;
+  }
+</style>

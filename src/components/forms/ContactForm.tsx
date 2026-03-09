@@ -87,7 +87,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-surface-elevated text-content border border-surface-border rounded-full font-medium hover:bg-tint/10 transition-colors disabled:opacity-50"
+        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[rgb(var(--color-btn-primary-bg))] text-[rgb(var(--color-btn-primary-text))] border border-surface-border hover:border-content/20 rounded-full font-medium shadow-btn-primary hover:shadow-lg active:scale-[0.98] transition-all disabled:opacity-50 btn-glow"
       >
         {status === 'loading' ? (
           <>

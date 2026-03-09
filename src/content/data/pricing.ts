@@ -4,6 +4,7 @@ export interface PricingPrinciple {
   number: string;
   title: string;
   description: string;
+  icon: string;
 }
 
 export interface EngagementPhase {
@@ -14,6 +15,7 @@ export interface EngagementPhase {
   accentColor: 'blue' | 'purple' | 'green' | 'amber';
   duration: string;
   image: string;
+  details: string[];
 }
 
 export interface PricingBandItem {
@@ -22,6 +24,7 @@ export interface PricingBandItem {
   priceRange: string;
   duration: string;
   highlighted?: boolean;
+  accentColor?: string;
 }
 
 export interface AssessmentExample {
@@ -30,7 +33,8 @@ export interface AssessmentExample {
   duration: string;
   processSteps: string[];
   deliverables: string[];
-  image: string;
+  imageDark: string;
+  imageLight: string;
 }
 
 export interface ValueStat {
@@ -53,26 +57,31 @@ export const pricingPrinciples: PricingPrinciple[] = [
     number: '01',
     title: 'Defined Scope',
     description: 'Every engagement has clear boundaries, deliverables, and acceptance criteria agreed upfront.',
+    icon: 'clipboard',
   },
   {
     number: '02',
     title: 'Outcome-Based Delivery',
     description: 'We price around results and milestones — not hours logged or bodies on seats.',
+    icon: 'target',
   },
   {
     number: '03',
     title: 'Indicative Pricing Bands',
     description: 'Published ranges so you can plan budgets before the first conversation.',
+    icon: 'chart',
   },
   {
     number: '04',
     title: 'Milestone-Based Execution',
     description: 'Payment tied to visible progress. Nothing proceeds without stakeholder sign-off.',
+    icon: 'check',
   },
   {
     number: '05',
     title: 'Optional Retained Advisory',
     description: 'Ongoing support available after delivery — step down gracefully, not abruptly.',
+    icon: 'users',
   },
 ];
 
@@ -85,6 +94,12 @@ export const engagementPhases: EngagementPhase[] = [
     accentColor: 'blue',
     duration: '1–5 weeks',
     image: '/images/pricing/phase-diagnostic.svg',
+    details: [
+      'Stakeholder interviews (3–5 sessions)',
+      'Scoring across 6 AI readiness pillars',
+      'Data and infrastructure review',
+      'Governance and risk assessment',
+    ],
   },
   {
     number: '02',
@@ -94,6 +109,12 @@ export const engagementPhases: EngagementPhase[] = [
     accentColor: 'purple',
     duration: '4–8 weeks',
     image: '/images/pricing/phase-strategy.svg',
+    details: [
+      'Prioritised use case scoring',
+      'ROI modelling and investment sequencing',
+      'Governance alignment review',
+      'Implementation roadmap with phasing',
+    ],
   },
   {
     number: '03',
@@ -103,6 +124,12 @@ export const engagementPhases: EngagementPhase[] = [
     accentColor: 'green',
     duration: '8–20 weeks',
     image: '/images/pricing/phase-build.svg',
+    details: [
+      'Sprint-based milestone delivery',
+      'Quality gates and stakeholder checkpoints',
+      'Architecture and security reviews',
+      'Continuous validation and testing',
+    ],
   },
   {
     number: '04',
@@ -112,14 +139,14 @@ export const engagementPhases: EngagementPhase[] = [
     accentColor: 'amber',
     duration: 'Monthly',
     image: '/images/pricing/phase-operate.svg',
+    details: [
+      'Performance monitoring and drift detection',
+      'Cost optimisation and governance updates',
+      'Executive advisory and reporting',
+      'Continuous improvement cycles',
+    ],
   },
 ];
-
-export const engagementSteps = engagementPhases.map((p) => ({
-  number: p.number,
-  title: p.title,
-  description: p.description,
-}));
 
 export const pricingBands: PricingBandItem[] = [
   {
@@ -127,6 +154,7 @@ export const pricingBands: PricingBandItem[] = [
     description: 'Structured assessment of AI readiness with executive summary and high-level roadmap.',
     priceRange: '£8,000 – £15,000',
     duration: '1–2 weeks',
+    accentColor: '#64C8FF',
   },
   {
     name: 'Enterprise Readiness Review',
@@ -134,18 +162,21 @@ export const pricingBands: PricingBandItem[] = [
     priceRange: '£25,000 – £60,000',
     duration: '3–5 weeks',
     highlighted: true,
+    accentColor: '#A064FF',
   },
   {
     name: 'Strategy & Roadmap',
     description: 'Prioritised implementation plan with use case scoring, ROI modelling, and investment sequencing.',
     priceRange: '£40,000 – £120,000',
     duration: '4–8 weeks',
+    accentColor: '#50DCB4',
   },
   {
     name: 'AI Ops / SecOps Retainer',
     description: 'Ongoing monitoring, drift detection, governance updates, and executive advisory.',
     priceRange: '£10,000 – £35,000/mo',
     duration: 'Monthly',
+    accentColor: '#FFB43C',
   },
 ];
 
@@ -165,7 +196,8 @@ export const assessmentExample: AssessmentExample = {
     'Gap analysis and quick wins',
     'High-level transformation roadmap',
   ],
-  image: '/images/pricing/assessment-example.svg',
+  imageDark: '/images/pricing/assessment-example.svg',
+  imageLight: '/images/pricing/assessment-example.svg',
 };
 
 export const valueStats: ValueStat[] = [
@@ -216,4 +248,3 @@ export const engagementCommitments: EngagementCommitment[] = [
     icon: 'arrow-right',
   },
 ];
-

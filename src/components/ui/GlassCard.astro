@@ -2,14 +2,18 @@
 interface Props {
   hover?: boolean;
   padding?: 'sm' | 'md' | 'lg' | 'none';
+  variant?: 'default' | 'solid';
   class?: string;
+  style?: string;
   tag?: string;
 }
 
 const {
   hover = false,
   padding = 'md',
+  variant = 'default',
   class: className,
+  style,
   tag = 'div',
 } = Astro.props;
 
@@ -20,13 +24,17 @@ const paddingClasses = {
   lg: 'p-8',
 };
 
+const cardClass = variant === 'solid'
+  ? (hover ? 'glass-card-solid-hover' : 'glass-card-solid')
+  : (hover ? 'glass-card-hover' : 'glass-card');
+
 const Tag = tag as any;
 ---
 
 <Tag class:list={[
-  hover ? 'glass-card-hover' : 'glass-card',
+  cardClass,
   paddingClasses[padding],
   className,
-]}>
+]} style={style}>
   <slot />
 </Tag>
