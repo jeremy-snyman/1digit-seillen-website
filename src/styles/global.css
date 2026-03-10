@@ -745,6 +745,71 @@ html[data-theme="light"] .cat-gradient-default        { background: linear-gradi
 html[data-theme="light"] .tachyon-img-dark { display: none; }
 html[data-theme="light"] .tachyon-img-light { display: block; }
 
+/* Trust & Security — icon hover micro-interaction */
+.trust-icon-hover .trust-icon {
+  transition: transform 0.3s ease;
+}
+.trust-icon-hover:hover .trust-icon {
+  transform: scale(1.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust-icon-hover:hover .trust-icon {
+    transform: none;
+  }
+}
+
+/* ============================================
+   Smart Lakehouse — Page-specific Classes
+   ============================================ */
+
+/* Lakehouse gradient text — radial 4-color gradient on headings */
+.lakehouse-gradient-text {
+  background: radial-gradient(
+    ellipse at 30% 50%,
+    rgb(var(--color-signal-blue)) 0%,
+    rgb(var(--color-signal-purple)) 35%,
+    rgb(var(--color-signal-emerald)) 65%,
+    rgb(var(--color-signal-amber)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Architecture layer hover interaction */
+.arch-layer {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.arch-layer:hover {
+  transform: translateX(4px);
+  box-shadow: -4px 0 16px rgb(var(--color-signal-purple) / 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-layer:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Lakehouse image theme toggle */
+.lakehouse-img-light { display: none; }
+
+html[data-theme="light"] .lakehouse-img-dark { display: none; }
+html[data-theme="light"] .lakehouse-img-light { display: block; }
+
+/* Scroll indicator animation */
+.scroll-indicator-mouse {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-indicator-mouse {
+    animation: none;
+  }
+}
+
 /* Platform hero video */
 .platform-hero-video {
   opacity: 0.18;

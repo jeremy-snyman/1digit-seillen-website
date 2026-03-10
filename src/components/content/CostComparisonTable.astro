@@ -39,7 +39,7 @@ const { rows, disclaimer, callout, class: className } = Astro.props;
         </div>
         <div class="text-body-md text-content-secondary">{row.hyperscaler}</div>
         <div class="text-body-md text-content-secondary">{row.tachyon}</div>
-        <div class="text-body-md text-glow-blue font-semibold">{row.savings}</div>
+        <div class="text-body-md text-signal-emerald font-semibold">{row.savings}</div>
       </div>
     ))}
   </div>
@@ -65,7 +65,7 @@ const { rows, disclaimer, callout, class: className } = Astro.props;
           </div>
           <div>
             <span class="text-content-muted uppercase tracking-wider text-body-xs">Indicative Savings</span>
-            <p class="text-glow-blue font-semibold text-body-md mt-0.5">{row.savings}</p>
+            <p class="text-signal-emerald font-semibold text-body-md mt-0.5">{row.savings}</p>
           </div>
         </div>
       </div>
@@ -75,7 +75,7 @@ const { rows, disclaimer, callout, class: className } = Astro.props;
   {/* Callout stat below table */}
   {callout && (
     <div class="mt-8 text-center">
-      <p class="text-heading-lg font-semibold text-glow-blue">{callout}</p>
+      <p class="text-heading-lg font-semibold text-signal-emerald">{callout}</p>
     </div>
   )}
 

@@ -1,0 +1,104 @@
+---
+/**
+ * GovernancePyramid — 5 horizontal glass layers stacked as a pyramid
+ * Replaces S4 Governance DiagramPlaceholder
+ */
+const layers = [
+  { label: 'Strategic Oversight', width: 40 },
+  { label: 'Policy Governance', width: 55 },
+  { label: 'Architecture Controls', width: 70 },
+  { label: 'Operational Execution', width: 85 },
+  { label: 'Data & Infrastructure', width: 100 },
+];
+---
+
+<div class="max-w-3xl mx-auto">
+  {/* Desktop SVG */}
+  <svg
+    viewBox="0 0 500 320"
+    class="hidden md:block w-full h-auto"
+    role="img"
+    aria-label="Enterprise governance pyramid with 5 layers"
+  >
+    <defs>
+      <linearGradient id="pyramid-edge" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="rgb(var(--color-signal-blue))" stop-opacity="0" />
+        <stop offset="50%" stop-color="rgb(var(--color-signal-blue))" stop-opacity="0.5" />
+        <stop offset="100%" stop-color="rgb(var(--color-signal-blue))" stop-opacity="0" />
+      </linearGradient>
+    </defs>
+
+    {layers.map((layer, i) => {
+      const totalLayers = layers.length;
+      const layerHeight = 44;
+      const gap = 8;
+      const y = i * (layerHeight + gap) + 20;
+      const w = (layer.width / 100) * 400;
+      const x = (500 - w) / 2;
+      const opacity = 0.12 - i * 0.015;
+
+      return (
+        <g class="pyramid-layer" style={`animation-delay: ${(totalLayers - 1 - i) * 120}ms;`}>
+          {/* Layer rectangle */}
+          <rect
+            x={x} y={y}
+            width={w} height={layerHeight}
+            rx="8"
+            fill={`rgb(var(--color-signal-blue) / ${opacity})`}
+            stroke="url(#pyramid-edge)"
+            stroke-width="1"
+          />
+          {/* Layer label */}
+          <text
+            x="250" y={y + layerHeight / 2 + 1}
+            text-anchor="middle"
+            dominant-baseline="central"
+            fill="rgb(var(--color-content-secondary))"
+            font-size="11"
+            font-weight="500"
+          >
+            {layer.label}
+          </text>
+        </g>
+      );
+    })}
+
+    {/* Accent triangle outline */}
+    <path
+      d="M250 10 L460 290 L40 290 Z"
+      fill="none"
+      stroke="rgb(var(--color-signal-blue) / 0.08)"
+      stroke-width="1"
+      stroke-dasharray="4 6"
+    />
+  </svg>
+
+  {/* Mobile fallback — stacked bars */}
+  <div class="md:hidden space-y-2">
+    {layers.map((layer, i) => (
+      <div
+        class="mx-auto rounded-lg bg-signal-blue/10 border border-signal-blue/20 py-3 px-4 text-center"
+        style={`width: ${layer.width}%;`}
+      >
+        <span class="text-body-sm text-content-secondary">{layer.label}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .pyramid-layer {
+    opacity: 0;
+    animation: pyramid-rise 0.6s ease-out forwards;
+  }
+  @keyframes pyramid-rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pyramid-layer {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>

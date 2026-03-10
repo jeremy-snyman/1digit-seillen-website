@@ -1,0 +1,102 @@
+---
+/**
+ * ComplianceShield — 4 overlapping translucent shields in diamond arrangement
+ * Replaces S5 Compliance DiagramPlaceholder
+ */
+
+const colorFill = {
+  blue: 'rgb(var(--color-signal-blue) / 0.1)',
+  purple: 'rgb(var(--color-signal-purple) / 0.1)',
+  emerald: 'rgb(var(--color-signal-emerald) / 0.1)',
+  amber: 'rgb(var(--color-signal-amber) / 0.1)',
+};
+const colorStroke = {
+  blue: 'rgb(var(--color-signal-blue) / 0.35)',
+  purple: 'rgb(var(--color-signal-purple) / 0.35)',
+  emerald: 'rgb(var(--color-signal-emerald) / 0.35)',
+  amber: 'rgb(var(--color-signal-amber) / 0.35)',
+};
+const colorSolid = {
+  blue: 'rgb(var(--color-signal-blue))',
+  purple: 'rgb(var(--color-signal-purple))',
+  emerald: 'rgb(var(--color-signal-emerald))',
+  amber: 'rgb(var(--color-signal-amber))',
+};
+const mobileColorMap = {
+  blue: 'bg-signal-blue/10 border-signal-blue/25 text-signal-blue',
+  purple: 'bg-signal-purple/10 border-signal-purple/25 text-signal-purple',
+  emerald: 'bg-signal-emerald/10 border-signal-emerald/25 text-signal-emerald',
+  amber: 'bg-signal-amber/10 border-signal-amber/25 text-signal-amber',
+};
+
+const shields = [
+  { label: 'ISO 27001', color: 'blue' as const, offsetX: 0, offsetY: -50 },
+  { label: 'SOC 2', color: 'purple' as const, offsetX: -60, offsetY: 10 },
+  { label: 'GDPR', color: 'emerald' as const, offsetX: 60, offsetY: 10 },
+  { label: 'POPIA', color: 'amber' as const, offsetX: 0, offsetY: 70 },
+];
+
+// Pre-compute shield paths
+const shieldData = shields.map((s, i) => {
+  const scx = 250 + s.offsetX;
+  const scy = 140 + s.offsetY;
+  const d = `M${scx} ${scy - 35} L${scx - 30} ${scy - 20} V${scy + 5} C${scx - 30} ${scy + 25} ${scx} ${scy + 40} ${scx} ${scy + 40} C${scx} ${scy + 40} ${scx + 30} ${scy + 25} ${scx + 30} ${scy + 5} V${scy - 20} Z`;
+  return { label: s.label, color: s.color, cx: scx, cy: scy, d, delay: i * 200 };
+});
+---
+
+<div class="max-w-3xl mx-auto">
+  {/* Desktop SVG */}
+  <svg
+    viewBox="0 0 500 300"
+    class="hidden md:block w-full h-auto"
+    role="img"
+    aria-label="Four compliance standards represented as overlapping shields"
+  >
+    {shieldData.map((shield) => (
+      <g class="compliance-shield" style={`animation-delay: ${shield.delay}ms;`}>
+        <path
+          d={shield.d}
+          fill={colorFill[shield.color]}
+          stroke={colorStroke[shield.color]}
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+        <text
+          x={shield.cx} y={shield.cy + 5}
+          text-anchor="middle"
+          dominant-baseline="central"
+          fill={colorSolid[shield.color]}
+          font-size="10"
+          font-weight="600"
+        >
+          {shield.label}
+        </text>
+      </g>
+    ))}
+  </svg>
+
+  {/* Mobile fallback — 2x2 grid */}
+  <div class="md:hidden grid grid-cols-2 gap-3">
+    {shields.map((shield) => (
+      <div class:list={['rounded-lg border p-4 text-center', mobileColorMap[shield.color]]}>
+        <div class="text-label-md font-semibold">{shield.label}</div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .compliance-shield {
+    animation: glow-breathe 6s ease-in-out infinite;
+  }
+  .compliance-shield:nth-child(2) { animation-delay: 1.5s; }
+  .compliance-shield:nth-child(3) { animation-delay: 3s; }
+  .compliance-shield:nth-child(4) { animation-delay: 4.5s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .compliance-shield {
+      animation: none;
+    }
+  }
+</style>

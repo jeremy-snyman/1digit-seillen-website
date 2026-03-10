@@ -4,6 +4,7 @@ interface Props {
   label: string;
   description?: string;
   size?: 'md' | 'lg';
+  valueClass?: string;
   class?: string;
 }
 
@@ -12,6 +13,7 @@ const {
   label,
   description,
   size = 'md',
+  valueClass,
   class: className,
 } = Astro.props;
 
@@ -22,7 +24,7 @@ const valueSizeClasses = {
 ---
 
 <div class:list={['text-center', className]}>
-  <p class:list={[valueSizeClasses[size], 'font-display font-semibold text-glow-blue']}>
+  <p class:list={[valueSizeClasses[size], 'font-display font-semibold', valueClass || 'text-glow-blue']}>
     {value}
   </p>
   <p class="text-heading-xs font-semibold mt-2">{label}</p>

@@ -1,8 +1,11 @@
 // ── Trust & Security Page — Data ──
 
+export type SignalColor = 'blue' | 'purple' | 'amber' | 'emerald';
+
 export interface PhilosophyPillar {
   icon: string;
   label: string;
+  color: SignalColor;
 }
 
 export interface SDLCCard {
@@ -24,8 +27,10 @@ export interface AuditCapability {
 }
 
 export interface ComplianceStandard {
+  icon: string;
   title: string;
   description: string;
+  color: SignalColor;
 }
 
 export interface RiskCard {
@@ -43,6 +48,7 @@ export interface DeliveryStep {
   icon: string;
   title: string;
   description: string;
+  color: SignalColor;
 }
 
 // ── S1: Hero ──
@@ -56,11 +62,11 @@ export const philosophyIntro =
   'Security is not a feature we add at the end. It is a design constraint we apply from the beginning. Every architecture decision, every data flow, every deployment model is evaluated through a security lens before a single line of code is written.';
 
 export const philosophyPillars: PhilosophyPillar[] = [
-  { icon: 'layers', label: 'Architecture-First Security' },
-  { icon: 'database', label: 'Data Privacy by Default' },
-  { icon: 'settings', label: 'Governance by Design' },
-  { icon: 'rocket', label: 'Secure Delivery' },
-  { icon: 'target', label: 'Continuous Risk Management' },
+  { icon: 'layers', label: 'Architecture-First Security', color: 'blue' },
+  { icon: 'database', label: 'Data Privacy by Default', color: 'purple' },
+  { icon: 'settings', label: 'Governance by Design', color: 'amber' },
+  { icon: 'rocket', label: 'Secure Delivery', color: 'emerald' },
+  { icon: 'target', label: 'Continuous Risk Management', color: 'blue' },
 ];
 
 // ── S3: Secure SDLC ──
@@ -105,6 +111,9 @@ export const sdlcCards: SDLCCard[] = [
     description: 'Logging, monitoring, and alerting built into the architecture — not bolted on after the first incident.',
   },
 ];
+
+// Signal color cycle for SDLC cards
+export const sdlcColorCycle: SignalColor[] = ['blue', 'purple', 'emerald', 'amber', 'blue', 'purple', 'emerald'];
 
 // ── S4: Governance ──
 
@@ -180,20 +189,28 @@ export const complianceIntro =
 
 export const complianceStandards: ComplianceStandard[] = [
   {
+    icon: 'shield',
     title: 'ISO 27001',
     description: 'Information security management awareness and alignment. Our engineering practices follow ISO 27001 control objectives for access management, cryptography, and operational security.',
+    color: 'blue',
   },
   {
+    icon: 'lock',
     title: 'SOC 2',
     description: 'Security, availability, and confidentiality awareness. We design systems that support SOC 2 audit readiness for enterprise clients who require third-party assurance.',
+    color: 'purple',
   },
   {
+    icon: 'globe',
     title: 'GDPR',
     description: 'European data protection regulation compliance. Data minimisation, consent management, right to erasure, and cross-border transfer awareness built into data architecture.',
+    color: 'emerald',
   },
   {
+    icon: 'users',
     title: 'POPIA',
     description: 'South African data protection alignment. Processing limitation, purpose specification, and information officer support designed into every system handling personal information.',
+    color: 'amber',
   },
 ];
 
@@ -266,30 +283,35 @@ export const deliverySteps: DeliveryStep[] = [
     icon: 'shield',
     title: 'Security Architecture Review',
     description: 'Every engagement begins with a formal security architecture review — threat modelling, data classification, and compliance mapping before a single line of code.',
+    color: 'blue',
   },
   {
     number: '02',
     icon: 'users',
     title: 'Stakeholder Governance Alignment',
     description: 'We align with your existing governance structures — architecture review boards, change advisory boards, and security committees.',
+    color: 'purple',
   },
   {
     number: '03',
     icon: 'settings',
     title: 'Controlled Deployment Pipelines',
     description: 'CI/CD pipelines with security gates, automated testing, and staged rollouts. No cowboy deployments.',
+    color: 'emerald',
   },
   {
     number: '04',
     icon: 'clipboard',
     title: 'Documentation and Knowledge Transfer',
     description: 'Comprehensive runbooks, architecture decision records, and operational documentation — not a GitHub README.',
+    color: 'amber',
   },
   {
     number: '05',
     icon: 'chart',
     title: 'Ongoing Monitoring and Support',
     description: 'Post-deployment monitoring, incident response integration, and continuous security assessment as part of every engagement.',
+    color: 'blue',
   },
 ];
 

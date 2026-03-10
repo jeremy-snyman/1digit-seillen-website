@@ -9,14 +9,19 @@ import Icon from '@components/ui/Icon.astro';
 import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
 import FeatureList from '@components/content/FeatureList.astro';
-import DiagramPlaceholder from '@components/content/DiagramPlaceholder.astro';
 import SmokeCanvas from '@components/home/SmokeCanvas.tsx';
+import SecurityLifecycleRing from '@components/trust/SecurityLifecycleRing.astro';
+import GovernancePyramid from '@components/trust/GovernancePyramid.astro';
+import AuditTrailFlow from '@components/trust/AuditTrailFlow.astro';
+import ComplianceShield from '@components/trust/ComplianceShield.astro';
+import AIRiskNetwork from '@components/trust/AIRiskNetwork.astro';
 import {
   heroDescription,
   philosophyIntro,
   philosophyPillars,
   sdlcIntro,
   sdlcCards,
+  sdlcColorCycle,
   governanceIntro,
   governancePrinciples,
   togafQuote,
@@ -33,9 +38,48 @@ import {
   deliverySteps,
   coreStatement,
 } from '@content/data/trust-security';
+import type { SignalColor } from '@content/data/trust-security';
 
 const title = 'Trust & Security';
 const description = 'Security, governance, and compliance are not afterthoughts — they are embedded into everything we build.';
+
+// Signal color utility maps
+const signalBg: Record<SignalColor, string> = {
+  blue: 'bg-signal-blue/15',
+  purple: 'bg-signal-purple/15',
+  amber: 'bg-signal-amber/15',
+  emerald: 'bg-signal-emerald/15',
+};
+const signalText: Record<SignalColor, string> = {
+  blue: 'text-signal-blue',
+  purple: 'text-signal-purple',
+  amber: 'text-signal-amber',
+  emerald: 'text-signal-emerald',
+};
+const signalBorder: Record<SignalColor, string> = {
+  blue: 'border-signal-blue',
+  purple: 'border-signal-purple',
+  amber: 'border-signal-amber',
+  emerald: 'border-signal-emerald',
+};
+const accentTopBorderColors: Record<SignalColor, string> = {
+  blue: '#64C8FF',
+  purple: '#A064FF',
+  emerald: '#50DCB4',
+  amber: '#FFB43C',
+};
+const accentGradients: Record<SignalColor, string> = {
+  blue: 'from-cyan-400/30 to-blue-500/30',
+  purple: 'from-purple-400/30 to-indigo-500/30',
+  emerald: 'from-emerald-400/30 to-teal-500/30',
+  amber: 'from-amber-400/30 to-orange-500/30',
+};
+const phaseGlowClass: Record<SignalColor, string> = {
+  blue: 'phase-glow-blue',
+  purple: 'phase-glow-purple',
+  emerald: 'phase-glow-green',
+  amber: 'phase-glow-amber',
+};
 ---
 
 <PageLayout title={title} description={description}>
@@ -43,27 +87,27 @@ const description = 'Security, governance, and compliance are not afterthoughts 
   {/* ══════════════════════════════════════════════
       S1 — Hero (full-viewport, SmokeCanvas)
       ══════════════════════════════════════════════ */}
-  <section class="relative min-h-[90vh] flex items-center overflow-hidden">
+  <section class="relative min-h-[80vh] md:min-h-[90vh] flex items-center overflow-hidden">
     {/* Background layers */}
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 40%, rgb(var(--color-surface-elevated)) 0%, rgb(var(--color-surface)) 70%);"></div>
       <SmokeCanvas client:load />
       <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 70%, rgb(var(--color-surface)) 100%);"></div>
       {/* Ambient glow orb */}
-      <div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-glow-steel/10 rounded-full blur-[160px] pointer-events-none ambient-glow"></div>
+      <div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-signal-blue/8 rounded-full blur-[160px] pointer-events-none ambient-glow"></div>
     </div>
 
     {/* Content */}
-    <div class="relative z-10 px-6 w-full">
+    <div class="relative z-10 w-full">
       <Container>
-        <div class="max-w-3xl pt-32 pb-20">
+        <div class="max-w-3xl pt-36 pb-24">
           <ScrollReveal>
             <Badge variant="accent">TRUST & SECURITY</Badge>
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <h1 class="mt-4 mb-6">
-              <span class="trust-gradient-text text-display-lg lg:text-display-xl font-display block">Built for Enterprise.</span>
-              <span class="trust-gradient-text text-display-lg lg:text-display-xl font-display block">Engineered for Trust.</span>
+              <span class="trust-gradient-text text-display-md md:text-display-lg lg:text-display-xl font-display block">Built for Enterprise.</span>
+              <span class="trust-gradient-text text-display-md md:text-display-lg lg:text-display-xl font-display block">Engineered for Trust.</span>
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={200}>
@@ -81,8 +125,8 @@ const description = 'Security, governance, and compliance are not afterthoughts 
       </Container>
     </div>
 
-    {/* Scroll indicator */}
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-content-muted">
+    {/* Scroll indicator — hidden on mobile */}
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2 text-content-muted">
       <span class="text-body-xs">Scroll to explore</span>
       <div class="scroll-indicator-mouse w-6 h-10 rounded-full border-2 border-content-muted/40 flex items-start justify-center p-1.5">
         <div class="scroll-indicator-dot w-1.5 h-1.5 rounded-full bg-content-muted"></div>
@@ -90,6 +134,7 @@ const description = 'Security, governance, and compliance are not afterthoughts 
     </div>
   </section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S2 — Philosophy (elevated)
@@ -106,15 +151,16 @@ const description = 'Security, governance, and compliance are not afterthoughts 
       </ScrollReveal>
 
       <div class="relative mt-12">
-        {/* Ambient glow behind grid */}
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-glow-steel/10 rounded-full blur-[120px] pointer-events-none ambient-glow"></div>
+        {/* Mesh gradient orbs */}
+        <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[250px] bg-signal-blue/8 rounded-full blur-[120px] pointer-events-none" style="animation: drift 20s ease-in-out infinite;" aria-hidden="true"></div>
+        <div class="absolute top-1/3 right-1/4 w-[300px] h-[200px] bg-signal-purple/8 rounded-full blur-[100px] pointer-events-none" style="animation: mesh-drift-1 25s ease-in-out infinite;" aria-hidden="true"></div>
 
-        <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div class="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {philosophyPillars.map((pillar, index) => (
-            <ScrollReveal delay={index * 80}>
-              <GlassCard hover padding="lg" class="h-full text-center">
-                <div class="w-12 h-12 rounded-xl bg-glow-steel/20 mx-auto mb-4 flex items-center justify-center">
-                  <Icon name={pillar.icon} size={24} class="text-accent" />
+            <ScrollReveal delay={index * 120}>
+              <GlassCard hover padding="lg" class="h-full text-center trust-icon-hover">
+                <div class:list={['w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center trust-icon', signalBg[pillar.color]]}>
+                  <Icon name={pillar.icon} size={24} class={signalText[pillar.color]} />
                 </div>
                 <p class="text-label-md font-semibold text-content">{pillar.label}</p>
               </GlassCard>
@@ -125,6 +171,7 @@ const description = 'Security, governance, and compliance are not afterthoughts 
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S3 — Secure SDLC (default)
@@ -141,38 +188,39 @@ const description = 'Security, governance, and compliance are not afterthoughts 
       </ScrollReveal>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        {sdlcCards.map((card, index) => (
-          <div class:list={[index === 6 && 'lg:col-start-2']}>
-            <ScrollReveal delay={index * 80}>
-              <GlassCard hover padding="md" class="h-full">
-                <div class="flex items-start gap-4">
-                  <div class="w-10 h-10 rounded-lg bg-glow-steel/20 flex items-center justify-center shrink-0">
-                    <Icon name={card.icon} size={20} class="text-accent" />
+        {sdlcCards.map((card, index) => {
+          const color = sdlcColorCycle[index];
+          return (
+            <div class:list={[index === 6 && 'lg:col-start-2']}>
+              <ScrollReveal delay={index * 120}>
+                <GlassCard hover padding="md" class="h-full trust-icon-hover">
+                  <div class="flex items-start gap-4">
+                    <div class:list={['w-10 h-10 rounded-lg flex items-center justify-center shrink-0 trust-icon', signalBg[color]]}>
+                      <Icon name={card.icon} size={20} class={signalText[color]} />
+                    </div>
+                    <div>
+                      <p class="text-label-md text-content-muted mb-1">{String(index + 1).padStart(2, '0')}</p>
+                      <h3 class="text-heading-xs font-semibold mb-2">{card.title}</h3>
+                      <p class="text-body-sm text-content-secondary">{card.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p class="text-label-md text-content-muted mb-1">{String(index + 1).padStart(2, '0')}</p>
-                    <h3 class="text-heading-xs font-semibold mb-2">{card.title}</h3>
-                    <p class="text-body-sm text-content-secondary">{card.description}</p>
-                  </div>
-                </div>
-              </GlassCard>
-            </ScrollReveal>
-          </div>
-        ))}
+                </GlassCard>
+              </ScrollReveal>
+            </div>
+          );
+        })}
       </div>
 
-      {/* SDLC diagram placeholder */}
+      {/* SDLC lifecycle SVG diagram */}
       <ScrollReveal delay={600}>
-        <div class="mt-12 max-w-2xl mx-auto">
-          <DiagramPlaceholder
-            title="SDLC Lifecycle Diagram"
-            description="Minimalist circular software development lifecycle with 7 security-integrated phases"
-          />
+        <div class="mt-12">
+          <SecurityLifecycleRing />
         </div>
       </ScrollReveal>
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S4 — Governance by Design (elevated)
@@ -188,41 +236,40 @@ const description = 'Security, governance, and compliance are not afterthoughts 
         />
       </ScrollReveal>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mt-12">
-        {/* Left: Governance principles */}
-        <ScrollReveal delay={100}>
-          <div class="space-y-4">
-            {governancePrinciples.map((principle) => (
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-lg bg-glow-steel/20 flex items-center justify-center shrink-0">
-                  <Icon name={principle.icon} size={20} class="text-accent" />
-                </div>
-                <div>
-                  <h3 class="text-heading-xs font-semibold mb-1">{principle.title}</h3>
-                  <p class="text-body-sm text-content-secondary">{principle.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
+      <div class="relative">
+        {/* Mesh gradient orbs */}
+        <div class="absolute top-1/4 left-0 w-[350px] h-[250px] bg-signal-purple/8 rounded-full blur-[120px] pointer-events-none" style="animation: drift 22s ease-in-out infinite;" aria-hidden="true"></div>
+        <div class="absolute bottom-1/4 right-0 w-[300px] h-[200px] bg-signal-amber/8 rounded-full blur-[100px] pointer-events-none" style="animation: mesh-drift-2 20s ease-in-out infinite;" aria-hidden="true"></div>
 
-        {/* Right: Diagram placeholder */}
-        <ScrollReveal delay={200}>
-          <div class="relative">
-            <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
-            <DiagramPlaceholder
-              title="Governance Framework"
-              description="Enterprise governance pyramid with 5 layers — accountability, data flow, and architectural integrity"
-              class="relative min-h-[300px]"
-            />
-          </div>
-        </ScrollReveal>
+        <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mt-12">
+          {/* Left: Governance principles */}
+          <ScrollReveal delay={100} direction="left">
+            <div class="space-y-4">
+              {governancePrinciples.map((principle) => (
+                <div class="flex items-start gap-4 trust-icon-hover">
+                  <div class="w-10 h-10 rounded-lg bg-signal-blue/15 flex items-center justify-center shrink-0 trust-icon">
+                    <Icon name={principle.icon} size={20} class="text-signal-blue" />
+                  </div>
+                  <div>
+                    <h3 class="text-heading-xs font-semibold mb-1">{principle.title}</h3>
+                    <p class="text-body-sm text-content-secondary">{principle.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+
+          {/* Right: Governance pyramid SVG */}
+          <ScrollReveal delay={200} direction="right">
+            <GovernancePyramid />
+          </ScrollReveal>
+        </div>
       </div>
 
       {/* TOGAF pull-quote */}
       <ScrollReveal delay={400}>
         <div class="mt-12 max-w-2xl mx-auto">
-          <div class="border-l-2 border-glow-blue/40 pl-8">
+          <div class="shimmer-border glass-card p-8 rounded-card">
             <p class="text-label-md text-content-muted uppercase tracking-wider mb-2">Framework Alignment</p>
             <p class="text-body-lg text-content">{togafQuote}</p>
           </div>
@@ -230,7 +277,7 @@ const description = 'Security, governance, and compliance are not afterthoughts 
       </ScrollReveal>
 
       {/* Auditability sub-section */}
-      <div class="mt-20">
+      <div class="mt-16">
         <ScrollReveal>
           <div class="text-center mb-8">
             <h3 class="text-display-md font-display">Auditability by Default</h3>
@@ -240,10 +287,10 @@ const description = 'Security, governance, and compliance are not afterthoughts 
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {auditCapabilities.map((cap, index) => (
-            <ScrollReveal delay={index * 80}>
-              <GlassCard hover padding="md" class="h-full">
-                <div class="w-10 h-10 rounded-lg bg-glow-steel/20 flex items-center justify-center mb-3">
-                  <Icon name={cap.icon} size={20} class="text-accent" />
+            <ScrollReveal delay={index * 120}>
+              <GlassCard hover padding="md" class="h-full trust-icon-hover">
+                <div class:list={['w-10 h-10 rounded-lg flex items-center justify-center mb-3 trust-icon', 'bg-signal-purple/15']}>
+                  <Icon name={cap.icon} size={20} class="text-signal-purple" />
                 </div>
                 <h4 class="text-heading-xs font-semibold mb-2">{cap.title}</h4>
                 <p class="text-body-sm text-content-secondary">{cap.description}</p>
@@ -252,19 +299,17 @@ const description = 'Security, governance, and compliance are not afterthoughts 
           ))}
         </div>
 
-        {/* Audit trail diagram placeholder */}
+        {/* Audit trail flow SVG diagram */}
         <ScrollReveal delay={500}>
-          <div class="mt-12 max-w-2xl mx-auto">
-            <DiagramPlaceholder
-              title="Audit Trail Visualization"
-              description="Data lineage diagram showing interconnected nodes with version timestamps — flowing left to right"
-            />
+          <div class="mt-12">
+            <AuditTrailFlow />
           </div>
         </ScrollReveal>
       </div>
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S5 — Compliance Familiarity (default)
@@ -282,11 +327,11 @@ const description = 'Security, governance, and compliance are not afterthoughts 
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12">
         {complianceStandards.map((standard, index) => (
-          <ScrollReveal delay={index * 100}>
-            <GlassCard hover padding="lg" class="h-full">
+          <ScrollReveal delay={index * 120}>
+            <GlassCard hover padding="lg" class="h-full trust-icon-hover">
               <div class="flex items-start gap-4">
-                <div class="w-12 h-12 rounded-xl bg-glow-steel/20 flex items-center justify-center shrink-0">
-                  <Icon name="shield" size={24} class="text-accent" />
+                <div class:list={['w-12 h-12 rounded-xl flex items-center justify-center shrink-0 trust-icon', signalBg[standard.color]]}>
+                  <Icon name={standard.icon} size={24} class={signalText[standard.color]} />
                 </div>
                 <div>
                   <h3 class="text-heading-sm font-semibold mb-2">{standard.title}</h3>
@@ -303,103 +348,105 @@ const description = 'Security, governance, and compliance are not afterthoughts 
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-glow-steel/10 rounded-full blur-[120px] pointer-events-none ambient-glow"></div>
 
         <ScrollReveal delay={500}>
-          <GlassCard padding="lg" class="relative max-w-2xl mx-auto">
+          <GlassCard padding="lg" class="relative max-w-2xl mx-auto shimmer-border">
             <h3 class="text-heading-sm font-semibold mb-4 text-center">Design Principles</h3>
             <FeatureList items={compliancePrinciples} />
           </GlassCard>
         </ScrollReveal>
       </div>
 
-      {/* Compliance shield placeholder */}
+      {/* Compliance shield SVG diagram */}
       <ScrollReveal delay={600}>
-        <div class="mt-12 max-w-2xl mx-auto">
-          <DiagramPlaceholder
-            title="Compliance Standards"
-            description="Four overlapping translucent shield shapes — certification seals with premium enterprise aesthetic"
-          />
+        <div class="mt-12">
+          <ComplianceShield />
         </div>
       </ScrollReveal>
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S6 — AI-Specific Risk Controls (elevated)
       ══════════════════════════════════════════════ */}
   <Section background="elevated">
     <Container>
-      <ScrollReveal>
-        <SectionHeading
-          align="center"
-          badge="AI RISK"
-          heading="AI-Specific Risk Controls"
-          description={aiRiskIntro}
-        />
-      </ScrollReveal>
+      <div class="relative">
+        {/* Mesh gradient orbs */}
+        <div class="absolute top-1/4 right-0 w-[350px] h-[250px] bg-signal-amber/8 rounded-full blur-[120px] pointer-events-none" style="animation: drift 18s ease-in-out infinite;" aria-hidden="true"></div>
+        <div class="absolute bottom-1/3 left-0 w-[300px] h-[200px] bg-signal-emerald/8 rounded-full blur-[100px] pointer-events-none" style="animation: mesh-drift-1 24s ease-in-out infinite;" aria-hidden="true"></div>
 
-      {/* "The Unsettling Reality" callout */}
-      <ScrollReveal delay={200}>
-        <div class="mt-12 max-w-2xl mx-auto">
-          <GlassCard padding="lg">
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center shrink-0">
-                <Icon name="zap" size={20} class="text-red-400" />
-              </div>
-              <div>
-                <p class="text-label-md text-red-400 uppercase tracking-wider mb-2">The Unsettling Reality</p>
-                <p class="text-body-lg text-content">{unsettlingReality}</p>
-              </div>
-            </div>
-          </GlassCard>
-        </div>
-      </ScrollReveal>
+        <ScrollReveal>
+          <SectionHeading
+            align="center"
+            badge="AI RISK"
+            heading="AI-Specific Risk Controls"
+            description={aiRiskIntro}
+          />
+        </ScrollReveal>
 
-      {/* 6 risk cards */}
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        {riskCards.map((card, index) => (
-          <ScrollReveal delay={index * 80}>
-            <GlassCard hover padding="md" class="h-full">
-              <div class="w-10 h-10 rounded-lg bg-glow-steel/20 flex items-center justify-center mb-3">
-                <Icon name={card.icon} size={20} class="text-accent" />
-              </div>
-              <h3 class="text-heading-xs font-semibold mb-2">{card.title}</h3>
-              <p class="text-body-sm text-content-secondary">{card.description}</p>
-            </GlassCard>
-          </ScrollReveal>
-        ))}
-      </div>
-
-      {/* Our Controls pull-quote */}
-      <ScrollReveal delay={600}>
-        <div class="mt-12 max-w-3xl mx-auto">
-          <div class="border-l-2 border-glow-blue/40 pl-8">
-            <p class="text-label-md text-content-muted uppercase tracking-wider mb-4">Our Controls</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {controlItems.map((item) => (
-                <div class="flex items-start gap-3 text-body-md text-content-secondary">
-                  <div class="w-5 h-5 rounded-full bg-surface-subtle flex items-center justify-center mt-0.5 shrink-0">
-                    <Icon name="check" size={12} class="text-glow-blue" />
-                  </div>
-                  <span>{item.text}</span>
+        {/* "The Unsettling Reality" callout */}
+        <ScrollReveal delay={200}>
+          <div class="mt-12 max-w-2xl mx-auto">
+            <GlassCard padding="lg" class="shimmer-border">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-signal-amber/20 flex items-center justify-center shrink-0">
+                  <Icon name="zap" size={20} class="text-signal-amber" />
                 </div>
-              ))}
+                <div>
+                  <p class="text-label-md text-signal-amber uppercase tracking-wider mb-2">The Unsettling Reality</p>
+                  <p class="text-body-lg text-content">{unsettlingReality}</p>
+                </div>
+              </div>
+            </GlassCard>
+          </div>
+        </ScrollReveal>
+
+        {/* 6 risk cards */}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          {riskCards.map((card, index) => (
+            <ScrollReveal delay={index * 120}>
+              <GlassCard hover padding="md" class="h-full trust-icon-hover">
+                <div class:list={['w-10 h-10 rounded-lg flex items-center justify-center mb-3 trust-icon', 'bg-signal-amber/15']}>
+                  <Icon name={card.icon} size={20} class="text-signal-amber" />
+                </div>
+                <h3 class="text-heading-xs font-semibold mb-2">{card.title}</h3>
+                <p class="text-body-sm text-content-secondary">{card.description}</p>
+              </GlassCard>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {/* Our Controls pull-quote */}
+        <ScrollReveal delay={600}>
+          <div class="mt-12 max-w-3xl mx-auto">
+            <div class="border-l-2 border-signal-emerald/40 pl-8">
+              <p class="text-label-md text-content-muted uppercase tracking-wider mb-4">Our Controls</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {controlItems.map((item) => (
+                  <div class="flex items-start gap-3 text-body-md text-content-secondary">
+                    <div class="w-5 h-5 rounded-full bg-surface-subtle flex items-center justify-center mt-0.5 shrink-0">
+                      <Icon name="check" size={12} class="text-signal-emerald" />
+                    </div>
+                    <span>{item.text}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
 
-      {/* AI risk neural network placeholder */}
-      <ScrollReveal delay={700}>
-        <div class="mt-12 max-w-2xl mx-auto">
-          <DiagramPlaceholder
-            title="AI Risk Landscape"
-            description="Neural network with threat vectors — containment boundaries and risk highlights"
-          />
-        </div>
-      </ScrollReveal>
+        {/* AI risk network SVG diagram */}
+        <ScrollReveal delay={700}>
+          <div class="mt-12">
+            <AIRiskNetwork />
+          </div>
+        </ScrollReveal>
+      </div>
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S7 — Enterprise Delivery Experience (default)
@@ -417,16 +464,19 @@ const description = 'Security, governance, and compliance are not afterthoughts 
 
       <div class="max-w-3xl mx-auto mt-12 space-y-6">
         {deliverySteps.map((step, index) => (
-          <ScrollReveal delay={index * 100}>
-            <GlassCard hover padding="lg" class="relative overflow-hidden">
+          <ScrollReveal delay={index * 120}>
+            <div
+              class:list={['glass-card-hover p-6 lg:p-8 relative overflow-hidden border-t-2', phaseGlowClass[step.color]]}
+              style={`border-top-color: ${accentTopBorderColors[step.color]};`}
+            >
               {/* Giant decorative background number */}
               <span class="absolute bottom-0 right-4 text-[8rem] font-bold leading-none text-tint/4 select-none pointer-events-none">
                 {step.number}
               </span>
 
-              <div class="relative flex items-start gap-5">
-                <div class="w-12 h-12 rounded-xl bg-glow-steel/20 flex items-center justify-center shrink-0">
-                  <Icon name={step.icon} size={24} class="text-accent" />
+              <div class="relative flex items-start gap-5 trust-icon-hover">
+                <div class:list={['w-12 h-12 rounded-xl bg-gradient-to-br flex items-center justify-center shrink-0 trust-icon', accentGradients[step.color]]}>
+                  <Icon name={step.icon} size={24} class="text-content" />
                 </div>
                 <div>
                   <p class="text-label-md text-content-muted mb-1">{step.number}</p>
@@ -434,23 +484,14 @@ const description = 'Security, governance, and compliance are not afterthoughts 
                   <p class="text-body-md text-content-secondary">{step.description}</p>
                 </div>
               </div>
-            </GlassCard>
+            </div>
           </ScrollReveal>
         ))}
       </div>
-
-      {/* Enterprise delivery placeholder */}
-      <ScrollReveal delay={600}>
-        <div class="mt-12 max-w-2xl mx-auto">
-          <DiagramPlaceholder
-            title="Enterprise Delivery Process"
-            description="Multi-stakeholder governance review — connected organizational roles with steel blue tones"
-          />
-        </div>
-      </ScrollReveal>
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S8 — Closing CTA (elevated)
@@ -458,16 +499,18 @@ const description = 'Security, governance, and compliance are not afterthoughts 
   <Section background="elevated">
     <Container>
       <div class="relative text-center max-w-3xl mx-auto">
-        {/* Ambient glow orb */}
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-glow-steel/10 rounded-full blur-[120px] pointer-events-none ambient-glow"></div>
+        {/* Mesh gradient orbs — 3 signal colors */}
+        <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[350px] h-[200px] bg-signal-blue/8 rounded-full blur-[120px] pointer-events-none" style="animation: drift 20s ease-in-out infinite;" aria-hidden="true"></div>
+        <div class="absolute top-1/3 right-1/4 w-[300px] h-[180px] bg-signal-purple/8 rounded-full blur-[100px] pointer-events-none" style="animation: mesh-drift-1 25s ease-in-out infinite;" aria-hidden="true"></div>
+        <div class="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[280px] h-[160px] bg-signal-emerald/8 rounded-full blur-[100px] pointer-events-none" style="animation: mesh-drift-2 22s ease-in-out infinite;" aria-hidden="true"></div>
 
         <ScrollReveal>
-          <p class="relative text-display-md lg:text-display-lg font-display">
+          <p class="relative text-display-md lg:text-display-lg font-display wwd-heading-gradient">
             {coreStatement}
           </p>
         </ScrollReveal>
         <ScrollReveal delay={200}>
-          <div class="relative mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <div class="relative mt-12 flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="primary" size="lg" href="/contact">Discuss Your Security Requirements</Button>
             <Button variant="outline" size="lg" href="/what-we-do">Explore Our Capabilities</Button>
           </div>

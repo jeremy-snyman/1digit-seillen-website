@@ -1,0 +1,130 @@
+---
+/**
+ * AuditTrailFlow — Horizontal flow of 5 connected audit nodes
+ * Replaces S4 Audit Trail DiagramPlaceholder
+ */
+const nodes = [
+  { label: 'Action Logged' },
+  { label: 'Tamper-Sealed' },
+  { label: 'Lineage Traced' },
+  { label: 'Version Tracked' },
+  { label: 'Report Generated' },
+];
+---
+
+<div class="max-w-3xl mx-auto">
+  {/* Desktop SVG */}
+  <svg
+    viewBox="0 0 600 160"
+    class="hidden md:block w-full h-auto"
+    role="img"
+    aria-label="Audit trail flow showing 5 connected stages"
+  >
+    <defs>
+      <linearGradient id="audit-flow-line" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="rgb(var(--color-signal-purple))" stop-opacity="0.1" />
+        <stop offset="50%" stop-color="rgb(var(--color-signal-purple))" stop-opacity="0.5" />
+        <stop offset="100%" stop-color="rgb(var(--color-signal-purple))" stop-opacity="0.1" />
+      </linearGradient>
+    </defs>
+
+    {/* Connecting line */}
+    <line
+      x1="60" y1="70" x2="540" y2="70"
+      stroke="url(#audit-flow-line)"
+      stroke-width="2"
+      stroke-dasharray="8 4"
+      class="audit-connector"
+    />
+
+    {/* Nodes */}
+    {nodes.map((node, i) => {
+      const x = 60 + i * 120;
+      const y = 70;
+      return (
+        <g class="audit-node" style={`animation-delay: ${i * 200}ms;`}>
+          {/* Node circle */}
+          <circle
+            cx={x} cy={y} r="24"
+            fill="rgb(var(--color-signal-purple) / 0.08)"
+            stroke="rgb(var(--color-signal-purple) / 0.35)"
+            stroke-width="1.5"
+          />
+          {/* Node number */}
+          <text
+            x={x} y={y + 1}
+            text-anchor="middle"
+            dominant-baseline="central"
+            fill="rgb(var(--color-signal-purple))"
+            font-size="13"
+            font-weight="600"
+          >
+            {String(i + 1).padStart(2, '0')}
+          </text>
+          {/* Label */}
+          <text
+            x={x} y={y + 40}
+            text-anchor="middle"
+            fill="rgb(var(--color-content-secondary))"
+            font-size="10"
+            font-weight="500"
+          >
+            {node.label}
+          </text>
+          {/* Arrow between nodes */}
+          {i < nodes.length - 1 && (
+            <path
+              d={`M${x + 28} ${y} L${x + 88} ${y}`}
+              stroke="rgb(var(--color-signal-purple) / 0.3)"
+              stroke-width="1.5"
+              marker-end="url(#audit-arrow)"
+            />
+          )}
+        </g>
+      );
+    })}
+
+    <defs>
+      <marker id="audit-arrow" viewBox="0 0 6 6" refX="6" refY="3" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0 0 L6 3 L0 6" fill="rgb(var(--color-signal-purple) / 0.4)" />
+      </marker>
+    </defs>
+  </svg>
+
+  {/* Mobile fallback */}
+  <div class="md:hidden space-y-3">
+    {nodes.map((node, i) => (
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-signal-purple/15 flex items-center justify-center text-label-md font-semibold text-signal-purple shrink-0">
+          {String(i + 1).padStart(2, '0')}
+        </div>
+        <span class="text-body-sm text-content-secondary">{node.label}</span>
+        {i < nodes.length - 1 && (
+          <div class="flex-1 h-px bg-signal-purple/20"></div>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .audit-connector {
+    animation: rail-flow 4s linear infinite;
+    background-size: 200% 100%;
+  }
+  .audit-node {
+    opacity: 0;
+    animation: audit-appear 0.5s ease-out forwards;
+  }
+  @keyframes audit-appear {
+    from { opacity: 0; transform: translateX(-8px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .audit-connector,
+    .audit-node {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>

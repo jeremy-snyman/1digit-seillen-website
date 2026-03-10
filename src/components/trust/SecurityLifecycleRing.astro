@@ -1,0 +1,192 @@
+---
+/**
+ * SecurityLifecycleRing — Circular SDLC ring with 7 hexagonal nodes
+ * Replaces S3 DiagramPlaceholder
+ */
+
+const colorFill: Record<string, string> = {
+  blue: 'rgb(var(--color-signal-blue) / 0.1)',
+  purple: 'rgb(var(--color-signal-purple) / 0.1)',
+  emerald: 'rgb(var(--color-signal-emerald) / 0.1)',
+  amber: 'rgb(var(--color-signal-amber) / 0.1)',
+};
+const colorStroke: Record<string, string> = {
+  blue: 'rgb(var(--color-signal-blue) / 0.4)',
+  purple: 'rgb(var(--color-signal-purple) / 0.4)',
+  emerald: 'rgb(var(--color-signal-emerald) / 0.4)',
+  amber: 'rgb(var(--color-signal-amber) / 0.4)',
+};
+const colorSolid: Record<string, string> = {
+  blue: 'rgb(var(--color-signal-blue))',
+  purple: 'rgb(var(--color-signal-purple))',
+  emerald: 'rgb(var(--color-signal-emerald))',
+  amber: 'rgb(var(--color-signal-amber))',
+};
+
+const phases = [
+  { label: 'Architecture Review', color: 'blue' },
+  { label: 'Threat Model', color: 'purple' },
+  { label: 'Data Classification', color: 'emerald' },
+  { label: 'Access Design', color: 'amber' },
+  { label: 'CI/CD Security', color: 'blue' },
+  { label: 'AI Validation', color: 'purple' },
+  { label: 'Observability', color: 'emerald' },
+];
+
+// Circle layout
+const cx = 250;
+const cy = 200;
+const radius = 140;
+const nodeRadius = 28;
+
+// Pre-compute node positions
+const nodePositions = phases.map((phase, i) => {
+  const angle = (i / phases.length) * 2 * Math.PI - Math.PI / 2;
+  return {
+    x: cx + radius * Math.cos(angle),
+    y: cy + radius * Math.sin(angle),
+    label: phase.label,
+    color: phase.color,
+    num: String(i + 1).padStart(2, '0'),
+    delay: i * 150,
+  };
+});
+
+const mobileColorMap = {
+  blue: 'bg-signal-blue/15 text-signal-blue',
+  purple: 'bg-signal-purple/15 text-signal-purple',
+  emerald: 'bg-signal-emerald/15 text-signal-emerald',
+  amber: 'bg-signal-amber/15 text-signal-amber',
+};
+
+// Pre-compute connecting lines
+const lines = phases.map((_, i) => {
+  const a1 = (i / phases.length) * 2 * Math.PI - Math.PI / 2;
+  const a2 = (((i + 1) % phases.length) / phases.length) * 2 * Math.PI - Math.PI / 2;
+  return {
+    x1: cx + radius * Math.cos(a1),
+    y1: cy + radius * Math.sin(a1),
+    x2: cx + radius * Math.cos(a2),
+    y2: cy + radius * Math.sin(a2),
+  };
+});
+---
+
+<div class="max-w-3xl mx-auto">
+  {/* Desktop SVG */}
+  <svg
+    viewBox="0 0 500 400"
+    class="hidden md:block w-full h-auto"
+    role="img"
+    aria-label="Secure Development Lifecycle — 7 phases arranged in a circle"
+  >
+    <defs>
+      <linearGradient id="arc-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="rgb(var(--color-signal-blue))" stop-opacity="0.4" />
+        <stop offset="50%" stop-color="rgb(var(--color-signal-purple))" stop-opacity="0.6" />
+        <stop offset="100%" stop-color="rgb(var(--color-signal-emerald))" stop-opacity="0.4" />
+      </linearGradient>
+    </defs>
+
+    {/* Outer ring */}
+    <circle
+      cx={cx} cy={cy} r={radius}
+      fill="none"
+      stroke="url(#arc-grad)"
+      stroke-width="1.5"
+      stroke-dasharray="6 4"
+      class="lifecycle-ring"
+    />
+
+    {/* Center shield icon */}
+    <g class="lifecycle-center">
+      <circle cx={cx} cy={cy} r="30" fill="rgb(var(--color-signal-blue) / 0.08)" stroke="rgb(var(--color-signal-blue) / 0.25)" stroke-width="1" />
+      <path
+        d={`M${cx} ${cy - 14}l-10 4v8c0 7.5 10 12.5 10 12.5s10-5 10-12.5v-8l-10-4z`}
+        fill="none"
+        stroke="rgb(var(--color-signal-blue))"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </g>
+
+    {/* Connecting lines between nodes */}
+    {lines.map((l) => (
+      <line
+        x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+        stroke="rgb(var(--color-content-secondary) / 0.12)"
+        stroke-width="1"
+      />
+    ))}
+
+    {/* Phase nodes */}
+    {nodePositions.map((node) => (
+      <g class="lifecycle-node" style={`animation-delay: ${node.delay}ms;`}>
+        <circle
+          cx={node.x} cy={node.y} r={nodeRadius}
+          fill={colorFill[node.color]}
+          stroke={colorStroke[node.color]}
+          stroke-width="1.5"
+        />
+        <text
+          x={node.x} y={node.y + 1}
+          text-anchor="middle"
+          dominant-baseline="central"
+          fill={colorSolid[node.color]}
+          font-size="13"
+          font-weight="600"
+        >
+          {node.num}
+        </text>
+        <text
+          x={node.x}
+          y={node.y + nodeRadius + 14}
+          text-anchor="middle"
+          fill="rgb(var(--color-content-secondary))"
+          font-size="9"
+          font-weight="500"
+        >
+          {node.label}
+        </text>
+      </g>
+    ))}
+  </svg>
+
+  {/* Mobile fallback */}
+  <div class="md:hidden grid grid-cols-2 gap-3">
+    {phases.map((phase, i) => (
+      <div class="flex items-center gap-3 p-3 rounded-lg bg-surface-elevated/50">
+        <div class:list={['w-8 h-8 rounded-lg flex items-center justify-center text-label-md font-semibold shrink-0', mobileColorMap[phase.color]]}>
+          {String(i + 1).padStart(2, '0')}
+        </div>
+        <span class="text-body-sm text-content-secondary">{phase.label}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .lifecycle-ring {
+    animation: glow-breathe 8s ease-in-out infinite;
+  }
+  .lifecycle-center circle {
+    animation: node-pulse 4s ease-in-out infinite;
+  }
+  .lifecycle-node {
+    opacity: 0;
+    animation: lifecycle-appear 0.6s ease-out forwards;
+  }
+  @keyframes lifecycle-appear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lifecycle-ring,
+    .lifecycle-center circle,
+    .lifecycle-node {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>

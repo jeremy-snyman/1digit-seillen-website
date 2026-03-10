@@ -29,6 +29,8 @@ export interface Benefit {
 export interface UseCase {
   title: string;
   description: string;
+  icon: string;
+  accentColor: 'blue' | 'purple' | 'emerald' | 'amber';
 }
 
 // ── Hero ──
@@ -192,21 +194,29 @@ export const useCases: UseCase[] = [
     title: 'AI & Machine Learning',
     description:
       'Centralised, governed data estate that feeds AI models with clean, timely, structured data at scale — at a fraction of hyperscaler compute cost.',
+    icon: 'cpu',
+    accentColor: 'purple',
   },
   {
     title: 'Business Analytics',
     description:
       'Self-service analytics across your entire data landscape with sub-second query performance and predictable infrastructure costs.',
+    icon: 'chart',
+    accentColor: 'blue',
   },
   {
     title: 'Data Consolidation',
     description:
       'Bring fragmented data from legacy systems, SaaS tools, and operational databases into one governed platform without egress penalties.',
+    icon: 'database',
+    accentColor: 'emerald',
   },
   {
     title: 'Regulatory Compliance',
     description:
       'European-sovereign data infrastructure with built-in governance, lineage, and audit capabilities — cost-efficient by design.',
+    icon: 'shield',
+    accentColor: 'amber',
   },
 ];
 

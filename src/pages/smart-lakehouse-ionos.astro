@@ -10,10 +10,11 @@ import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
 import Tag from '@components/ui/Tag.astro';
 import FeatureList from '@components/content/FeatureList.astro';
-import DiagramPlaceholder from '@components/content/DiagramPlaceholder.astro';
 import StatHighlight from '@components/content/StatHighlight.astro';
 import CostComparisonTable from '@components/content/CostComparisonTable.astro';
 import CostCalculatorTeaser from '@components/content/CostCalculatorTeaser.astro';
+import ImagePlaceholder from '@components/ui/ImagePlaceholder.astro';
+import SmokeCanvas from '@components/home/SmokeCanvas.tsx';
 import {
   heroTagline,
   heroPartnershipText,
@@ -32,6 +33,40 @@ import {
 
 const title = 'Tachyon Intelligence Platform — Smart Lakehouse on IONOS';
 const description = 'Enterprise data lakehouse on European sovereign cloud. 40–60% lower infrastructure cost than hyperscaler equivalents.';
+
+const archLayerColors = [
+  { bg: 'bg-signal-purple/20', text: 'text-signal-purple', border: 'border-signal-purple/30', width: 'max-w-[70%]' },
+  { bg: 'bg-signal-blue/15', text: 'text-signal-blue', border: 'border-signal-blue/25', width: 'max-w-[80%]' },
+  { bg: 'bg-signal-emerald/12', text: 'text-signal-emerald', border: 'border-signal-emerald/20', width: 'max-w-[90%]' },
+  { bg: 'bg-signal-amber/10', text: 'text-signal-amber', border: 'border-signal-amber/20', width: 'max-w-full' },
+];
+
+const useCaseAccentMap: Record<string, { iconBg: string; iconColor: string; borderColor: string; glowClass: string }> = {
+  purple: {
+    iconBg: 'bg-signal-purple/15 border border-signal-purple/25',
+    iconColor: 'text-signal-purple',
+    borderColor: 'border-t-2 border-signal-purple/40',
+    glowClass: 'phase-glow-purple',
+  },
+  blue: {
+    iconBg: 'bg-signal-blue/15 border border-signal-blue/25',
+    iconColor: 'text-signal-blue',
+    borderColor: 'border-t-2 border-signal-blue/40',
+    glowClass: 'phase-glow-blue',
+  },
+  emerald: {
+    iconBg: 'bg-signal-emerald/15 border border-signal-emerald/25',
+    iconColor: 'text-signal-emerald',
+    borderColor: 'border-t-2 border-signal-emerald/40',
+    glowClass: 'phase-glow-green',
+  },
+  amber: {
+    iconBg: 'bg-signal-amber/15 border border-signal-amber/25',
+    iconColor: 'text-signal-amber',
+    borderColor: 'border-t-2 border-signal-amber/40',
+    glowClass: 'phase-glow-amber',
+  },
+};
 ---
 
 <PageLayout title={title} description={description}>
@@ -39,13 +74,13 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
   {/* ── S1: Hero ── */}
   <Section class="relative overflow-hidden" padding="none">
     {/* Background layers */}
-    <div class="absolute inset-0">
+    <div class="absolute inset-0 z-0">
       {/* Radial gradient base */}
       <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 40%, rgb(var(--color-surface-elevated)) 0%, rgb(var(--color-surface)) 70%);"></div>
-      {/* Hero background image — slot for future AI-generated webp */}
-      {/* <img src="/images/smart-lakehouse/hero-bg.webp" alt="" class="absolute inset-0 w-full h-full object-cover opacity-30 hero-bg-image" loading="eager" aria-hidden="true" /> */}
-      {/* Scrim */}
-      <div class="absolute inset-0 bg-surface/60"></div>
+      {/* SmokeCanvas ambient */}
+      <SmokeCanvas client:load />
+      {/* Gradient fade below canvas */}
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 70%, rgb(var(--color-surface)) 100%);"></div>
       {/* Top gradient */}
       <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-surface to-transparent"></div>
       {/* Bottom gradient */}
@@ -54,17 +89,19 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
       <div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-glow-steel/15 rounded-full blur-[140px] pointer-events-none"></div>
     </div>
 
-    <div class="relative min-h-[85vh] flex items-center">
+    <div class="relative min-h-[85vh] flex items-center z-10">
       <Container>
         <ScrollReveal>
-          <div class="max-w-3xl pt-32 pb-20">
+          <div class="max-w-3xl pt-32 pb-24">
             <div class="flex gap-3 mb-4">
               <Badge variant="accent">PARTNERSHIP</Badge>
               <Badge>IONOS</Badge>
             </div>
-            <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+            <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-4 lakehouse-gradient-text">
               Tachyon <em class="font-serif italic">Intelligence</em> Platform
             </h1>
+            {/* Four-color gradient line */}
+            <div class="four-color-line mb-6"></div>
             <p class="text-body-lg text-content-secondary max-w-2xl mb-4">
               {heroTagline}
             </p>
@@ -87,13 +124,25 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
         </ScrollReveal>
       </Container>
     </div>
+
+    {/* Scroll indicator */}
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2 text-content-muted">
+      <span class="text-body-xs">Scroll to explore</span>
+      <div class="scroll-indicator-mouse w-6 h-10 rounded-full border-2 border-content-muted/40 flex items-start justify-center p-1.5">
+        <div class="scroll-indicator-dot w-1.5 h-1.5 rounded-full bg-content-muted"></div>
+      </div>
+    </div>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ── S2: Core Commercial Narrative ── */}
   <Section background="elevated">
     <Container>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        {/* Amber glow orb */}
+        <div class="absolute top-1/4 right-0 w-[400px] h-[400px] bg-signal-amber/8 rounded-full blur-[120px] pointer-events-none" style="animation: drift 20s ease-in-out infinite;"></div>
+
         <div>
           <ScrollReveal>
             <SectionHeading
@@ -105,12 +154,12 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
             </p>
           </ScrollReveal>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12">
             {costProblems.map((problem, index) => (
               <ScrollReveal delay={index * 100}>
                 <GlassCard hover padding="md" class="h-full">
-                  <div class="w-10 h-10 rounded-lg bg-glow-steel/20 flex items-center justify-center mb-3">
-                    <Icon name={problem.icon} size={20} class="text-content" />
+                  <div class="w-10 h-10 rounded-lg bg-signal-amber/15 border border-signal-amber/25 flex items-center justify-center mb-3">
+                    <Icon name={problem.icon} size={20} class="text-signal-amber" />
                   </div>
                   <h3 class="text-heading-xs font-semibold mb-2">{problem.title}</h3>
                   <p class="text-body-sm text-content-secondary">{problem.description}</p>
@@ -120,27 +169,29 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
           </div>
 
           <ScrollReveal delay={500}>
-            <p class="text-body-lg text-content-secondary mt-10 max-w-xl">
+            <p class="text-body-lg text-content-secondary mt-12 max-w-xl">
               At small scale, <em class="text-content">manageable</em>. At large scale, <em class="text-content font-semibold">material</em>.
             </p>
           </ScrollReveal>
         </div>
 
-        {/* Cost escalation visual placeholder */}
+        {/* Cost escalation premium placeholder */}
         <ScrollReveal delay={200}>
           <div class="relative hidden lg:block">
-            <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
-            <div class="relative border-2 border-dashed border-surface-border rounded-card p-12 flex flex-col items-center justify-center text-center aspect-[4/3]">
-              <Icon name="chart" size={48} class="text-content-muted mb-4" />
-              <p class="text-heading-xs font-semibold text-content-muted">Cost Escalation</p>
-              <p class="text-body-sm text-content-muted mt-1">AI-generated visual coming soon</p>
-            </div>
+            <ImagePlaceholder
+              variant="premium"
+              aspect="4/3"
+              label="Cost Escalation Curve"
+              icon="chart"
+              accentColor="amber"
+            />
           </div>
         </ScrollReveal>
       </div>
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ── S3: The Tachyon Difference ── */}
   <Section>
@@ -156,7 +207,7 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
       {/* Stat highlights */}
       <div class="relative mt-12">
         {/* Ambient glow behind stats */}
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-glow-steel/10 rounded-full blur-[120px] pointer-events-none ambient-glow"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-signal-emerald/10 rounded-full blur-[120px] pointer-events-none ambient-glow"></div>
 
         <div class="relative grid grid-cols-1 md:grid-cols-3 gap-6">
           {statHighlights.map((stat, index) => (
@@ -167,6 +218,7 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
                   label={stat.label}
                   description={stat.description}
                   size="lg"
+                  valueClass="text-signal-emerald"
                 />
               </GlassCard>
             </ScrollReveal>
@@ -181,12 +233,13 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
         </ScrollReveal>
         <ScrollReveal delay={400}>
           <div class="relative">
-            <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
-            <div class="relative border-2 border-dashed border-surface-border rounded-card p-12 flex flex-col items-center justify-center text-center aspect-[4/3]">
-              <Icon name="shield" size={48} class="text-content-muted mb-4" />
-              <p class="text-heading-xs font-semibold text-content-muted">Tachyon Stability</p>
-              <p class="text-body-sm text-content-muted mt-1">AI-generated visual coming soon</p>
-            </div>
+            <ImagePlaceholder
+              variant="premium"
+              aspect="4/3"
+              label="Infrastructure Cost Stability"
+              icon="shield"
+              accentColor="emerald"
+            />
           </div>
         </ScrollReveal>
       </div>
@@ -199,6 +252,7 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ── S4: Cost Comparison Table ── */}
   <Section background="elevated" id="cost-comparison">
@@ -212,12 +266,16 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
       </ScrollReveal>
 
       <ScrollReveal delay={200}>
-        <div class="mt-12">
-          <CostComparisonTable
-            rows={comparisonRows}
-            callout={comparisonCallout}
-            disclaimer={comparisonDisclaimer}
-          />
+        <div class="relative mt-12">
+          {/* Blue glow orb behind table */}
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-signal-blue/8 rounded-full blur-[120px] pointer-events-none" style="animation: drift 22s ease-in-out infinite;"></div>
+          <div class="relative shimmer-border rounded-card">
+            <CostComparisonTable
+              rows={comparisonRows}
+              callout={comparisonCallout}
+              disclaimer={comparisonDisclaimer}
+            />
+          </div>
         </div>
       </ScrollReveal>
 
@@ -230,6 +288,7 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ── S5: Architecture & Capability ── */}
   <Section id="architecture">
@@ -241,18 +300,20 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
         />
       </ScrollReveal>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mt-12">
-        {/* Left: Diagram + stacked layers */}
+      <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mt-12">
+        {/* Purple glow orb */}
+        <div class="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-signal-purple/8 rounded-full blur-[120px] pointer-events-none" style="animation: drift 20s ease-in-out infinite;"></div>
+
+        {/* Left: Premium placeholder + stacked architecture layers */}
         <div class="space-y-10">
           <ScrollReveal delay={100}>
-            <div class="relative">
-              <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
-              <DiagramPlaceholder
-                title="Architecture Diagram"
-                description="Bespoke SVG diagram — coming soon"
-                class="relative min-h-[240px]"
-              />
-            </div>
+            <ImagePlaceholder
+              variant="premium"
+              aspect="16/9"
+              label="Platform Architecture"
+              icon="layers"
+              accentColor="purple"
+            />
           </ScrollReveal>
 
           <ScrollReveal delay={200}>
@@ -261,11 +322,11 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
               <div class="space-y-3">
                 {architectureLayers.map((layer, i) => (
                   <div class:list={[
-                    'relative px-6 py-4 rounded-card text-center font-medium text-body-md transition-all',
-                    i === 0 && 'bg-glow-steel/20 text-accent border border-glow-steel/30',
-                    i === 1 && 'bg-tint/8 text-content border border-surface-border',
-                    i === 2 && 'bg-tint/5 text-content-secondary border border-surface-border',
-                    i === 3 && 'bg-surface-overlay text-content-muted border border-surface-border',
+                    'arch-layer relative px-6 py-4 rounded-card text-center font-medium text-body-md mx-auto border',
+                    archLayerColors[i].bg,
+                    archLayerColors[i].text,
+                    archLayerColors[i].border,
+                    archLayerColors[i].width,
                   ]}>
                     {layer}
                     {i < architectureLayers.length - 1 && (
@@ -294,8 +355,8 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
         {benefits.map((benefit, index) => (
           <ScrollReveal delay={index * 100}>
             <GlassCard hover padding="lg" class="h-full">
-              <div class="w-12 h-12 rounded-xl bg-glow-steel/20 flex items-center justify-center mb-4">
-                <Icon name={benefit.icon} size={24} class="text-content" />
+              <div class="w-12 h-12 rounded-xl bg-signal-purple/15 border border-signal-purple/25 flex items-center justify-center mb-4">
+                <Icon name={benefit.icon} size={24} class="text-signal-purple" />
               </div>
               <h3 class="text-heading-xs font-semibold mb-2">{benefit.title}</h3>
               <p class="text-body-md text-content-secondary">{benefit.description}</p>
@@ -306,6 +367,7 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ── S6: Use Cases ── */}
   <Section background="elevated">
@@ -318,18 +380,25 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
         />
       </ScrollReveal>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-        {useCases.map((uc, index) => (
-          <ScrollReveal delay={index * 100}>
-            <GlassCard hover padding="lg" class="h-full">
-              <h3 class="text-heading-xs font-semibold mb-3">{uc.title}</h3>
-              <p class="text-body-md text-content-secondary">{uc.description}</p>
-            </GlassCard>
-          </ScrollReveal>
-        ))}
+        {useCases.map((uc, index) => {
+          const accent = useCaseAccentMap[uc.accentColor];
+          return (
+            <ScrollReveal delay={index * 100}>
+              <GlassCard hover padding="lg" class:list={['h-full', accent.borderColor, accent.glowClass]}>
+                <div class:list={['w-10 h-10 rounded-lg flex items-center justify-center mb-3', accent.iconBg]}>
+                  <Icon name={uc.icon} size={20} class={accent.iconColor} />
+                </div>
+                <h3 class="text-heading-xs font-semibold mb-3">{uc.title}</h3>
+                <p class="text-body-md text-content-secondary">{uc.description}</p>
+              </GlassCard>
+            </ScrollReveal>
+          );
+        })}
       </div>
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ── S7: Cost Calculator Teaser ── */}
   <Section>
@@ -356,20 +425,27 @@ const description = 'Enterprise data lakehouse on European sovereign cloud. 40�
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ── S8: Bottom CTA ── */}
   <Section background="elevated">
     <Container>
       <ScrollReveal>
-        <div class="text-center">
-          <SectionHeading
-            align="center"
-            heading="Ready to Reduce Your Data Infrastructure Costs?"
-            description="Compare the Tachyon Intelligence Platform against your current hyperscaler spend."
-          />
-          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg" href="/contact">Compare Your Costs</Button>
-            <Button variant="outline" size="lg" href="/tachyon">Explore Tachyon Engine</Button>
+        <div class="relative text-center">
+          {/* Multi-color ambient glow orbs */}
+          <div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[250px] bg-signal-blue/8 rounded-full blur-[120px] pointer-events-none" style="animation: drift 20s ease-in-out infinite;"></div>
+          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[300px] h-[200px] bg-signal-purple/8 rounded-full blur-[120px] pointer-events-none" style="animation: mesh-drift-1 25s ease-in-out infinite;"></div>
+
+          <div class="relative shimmer-border glass-card p-8 md:p-12 rounded-card max-w-2xl mx-auto">
+            <SectionHeading
+              align="center"
+              heading="Ready to Reduce Your Data Infrastructure Costs?"
+              description="Compare the Tachyon Intelligence Platform against your current hyperscaler spend."
+            />
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="primary" size="lg" href="/contact">Compare Your Costs</Button>
+              <Button variant="outline" size="lg" href="/tachyon">Explore Tachyon Engine</Button>
+            </div>
           </div>
         </div>
       </ScrollReveal>
