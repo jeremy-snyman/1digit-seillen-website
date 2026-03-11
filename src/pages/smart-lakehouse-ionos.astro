@@ -14,6 +14,7 @@ import StatHighlight from '@components/content/StatHighlight.astro';
 import CostComparisonTable from '@components/content/CostComparisonTable.astro';
 import CostCalculatorTeaser from '@components/content/CostCalculatorTeaser.astro';
 import ImagePlaceholder from '@components/ui/ImagePlaceholder.astro';
+import ArchitectureStack from '@components/content/ArchitectureStack.astro';
 import SmokeCanvas from '@components/home/SmokeCanvas.tsx';
 import {
   heroTagline,
@@ -307,13 +308,7 @@ const useCaseAccentMap: Record<string, { iconBg: string; iconColor: string; bord
         {/* Left: Premium placeholder + stacked architecture layers */}
         <div class="space-y-10">
           <ScrollReveal delay={100}>
-            <ImagePlaceholder
-              variant="premium"
-              aspect="16/9"
-              label="Platform Architecture"
-              icon="layers"
-              accentColor="purple"
-            />
+            <ArchitectureStack />
           </ScrollReveal>
 
           <ScrollReveal delay={200}>

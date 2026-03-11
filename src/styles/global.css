@@ -26,6 +26,7 @@
     --color-content-white: 255 255 255;
     --color-content-meta: 99 105 150;
     --color-content-inverse: 4 7 13;
+    --color-nav: 255 255 255;
 
     /* Accent */
     --color-accent: 190 205 225;
@@ -50,7 +51,7 @@
     --color-success: 0 204 102;
 
     /* Signal colors */
-    --color-accent-bright: 130 180 255;
+    --color-accent-bright: 70 130 255;
     --color-signal-blue: 100 180 255;
     --color-signal-purple: 160 120 255;
     --color-signal-amber: 255 180 80;
@@ -89,7 +90,7 @@
       0 12px 40px rgba(80, 100, 130, 0.08);
 
     /* Hero overlays */
-    --color-hero-scrim: rgba(4, 7, 13, 0.4);
+    --color-hero-scrim: rgba(4, 7, 13, 0.40);
     --color-hero-fade: 4 7 13;
 
     /* Selection & Focus */
@@ -120,6 +121,7 @@
     --color-content-white: 255 255 255;
     --color-content-meta: 120 110 155;
     --color-content-inverse: 255 255 255;
+    --color-nav: 0 0 0;
 
     /* Accent */
     --color-accent: 74 53 128;
@@ -183,7 +185,7 @@
       0 12px 32px rgba(74, 53, 128, 0.06);
 
     /* Hero overlays */
-    --color-hero-scrim: rgba(255, 255, 255, 0.6);
+    --color-hero-scrim: rgba(255, 255, 255, 0.40);
     --color-hero-fade: 255 255 255;
 
     /* Selection & Focus */

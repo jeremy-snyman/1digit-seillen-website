@@ -13,8 +13,8 @@ const currentPath = Astro.url.pathname;
         class:list={[
           'px-3 py-2 text-body-sm rounded-button transition-colors duration-200',
           isActive
-            ? 'text-content'
-            : 'text-content-meta hover:text-content',
+            ? 'text-nav'
+            : 'text-nav/60 hover:text-nav',
         ]}
         aria-current={isActive ? 'page' : undefined}
       >

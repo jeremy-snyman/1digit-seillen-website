@@ -14,7 +14,7 @@ const currentPath = Astro.url.pathname;
   <div class="relative flex flex-col h-full pt-20 px-6 pb-8">
     <!-- Close button -->
     <button
-      class="absolute top-5 right-6 p-2 text-content-secondary hover:text-content transition-colors"
+      class="absolute top-5 right-6 p-2 text-nav/60 hover:text-nav transition-colors"
       data-mobile-close
       aria-label="Close menu"
     >
@@ -33,7 +33,7 @@ const currentPath = Astro.url.pathname;
             href={item.href}
             class:list={[
               'text-heading-md py-3 border-b border-surface-border transition-colors',
-              isActive ? 'text-content' : 'text-content-secondary hover:text-content',
+              isActive ? 'text-nav' : 'text-nav/60 hover:text-nav',
             ]}
           >
             {item.label}
@@ -46,7 +46,7 @@ const currentPath = Astro.url.pathname;
     <a
       id="admin-mobile-link"
       href="/admin/insights"
-      class="hidden text-heading-md py-3 border-b border-surface-border text-content-secondary hover:text-content transition-colors"
+      class="hidden text-heading-md py-3 border-b border-surface-border text-nav/60 hover:text-nav transition-colors"
     >
       Admin
     </a>
