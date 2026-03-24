@@ -9,9 +9,7 @@ import Icon from '@components/ui/Icon.astro';
 import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
 import FeatureList from '@components/content/FeatureList.astro';
-import DiagramPlaceholder from '@components/content/DiagramPlaceholder.astro';
 import StatHighlight from '@components/content/StatHighlight.astro';
-import SmokeCanvas from '@components/home/SmokeCanvas.tsx';
 import {
   heroDescription,
   problemIntro,
@@ -38,40 +36,40 @@ const description = 'High-throughput data structuring and activation platform. U
 <PageLayout title={title} description={description}>
 
   {/* ══════════════════════════════════════════════
-      S1 — Hero (full-viewport, SmokeCanvas)
+      S1 — Hero (diagram background)
       ══════════════════════════════════════════════ */}
-  <section class="relative min-h-[90vh] flex items-center overflow-hidden">
+  <section class="force-dark-hero relative min-h-[90vh] flex items-center overflow-hidden">
     {/* Background layers */}
     <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 40%, rgb(var(--color-surface-elevated)) 0%, rgb(var(--color-surface)) 70%);"></div>
-      <SmokeCanvas client:load />
-      <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 70%, rgb(var(--color-surface)) 100%);"></div>
-      {/* Ambient glow orb */}
-      <div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-glow-steel/10 rounded-full blur-[160px] pointer-events-none ambient-glow"></div>
+      <div class="absolute inset-0 hero-bg-image" style="background: url('/images/tachyon/hero-bg.jpg') left center/cover no-repeat;"></div>
+      <div class="absolute inset-0" style="background: rgb(var(--color-surface) / 0.3);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgb(var(--color-surface)) 0%, transparent 25%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(to top, rgb(var(--color-surface)) 0%, transparent 35%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(to left, rgb(var(--color-surface) / 0.7) 0%, transparent 50%);"></div>
     </div>
 
     {/* Content */}
     <div class="relative z-10 px-6 w-full">
       <Container>
-        <div class="max-w-3xl pt-32 pb-20">
+        <div class="ml-auto max-w-xl pt-40 pb-24 text-right">
           <ScrollReveal>
             <Badge variant="accent">PRODUCT</Badge>
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <h1 class="mt-4 mb-2">
-              <span class="tachyon-gradient-text text-display-xl font-display block">Tachyon</span>
+              <span class="text-display-lg lg:text-display-xl font-display block">Tachyon</span>
             </h1>
             <p class="text-heading-lg text-content-secondary mb-6">
               High-Throughput Data Structuring &amp; Activation Platform
             </p>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <p class="text-body-lg text-content-secondary max-w-2xl mb-8">
+            <p class="text-body-lg text-content-secondary ml-auto max-w-md mb-8">
               {heroDescription}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={300}>
-            <div class="flex flex-col sm:flex-row gap-4">
+            <div class="flex flex-col sm:flex-row gap-4 justify-end">
               <Button variant="primary" size="lg" href="/contact">Book a Tachyon Walkthrough</Button>
               <Button variant="outline" size="lg" href="/data-platforms">View Our Platforms</Button>
             </div>
@@ -89,6 +87,7 @@ const description = 'High-throughput data structuring and activation platform. U
     </div>
   </section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S2 — The Problem (elevated)
@@ -137,6 +136,7 @@ const description = 'High-throughput data structuring and activation platform. U
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S3 — What Tachyon Does (4 Core Functions)
@@ -156,11 +156,6 @@ const description = 'High-throughput data structuring and activation platform. U
         {coreFunctions.map((fn, index) => (
           <ScrollReveal delay={index * 120}>
             <GlassCard hover padding="lg" class="relative overflow-hidden h-full">
-              {/* Giant decorative background number */}
-              <span class="absolute bottom-0 right-4 text-[8rem] font-bold leading-none text-tint/4 select-none pointer-events-none">
-                {fn.number}
-              </span>
-
               <div class="relative">
                 {/* Header */}
                 <div class="flex items-start gap-4 mb-4">
@@ -177,11 +172,13 @@ const description = 'High-throughput data structuring and activation platform. U
                 {/* Divider */}
                 <div class="border-t border-surface-border my-5"></div>
 
-                {/* Image placeholder */}
-                <div class="border-2 border-dashed border-surface-border rounded-card p-6 flex flex-col items-center justify-center text-center aspect-[16/9] mb-5">
-                  <Icon name={fn.icon} size={32} class="text-content-muted mb-2" />
-                  <p class="text-body-sm text-content-muted">AI-generated visual coming soon</p>
-                </div>
+                {/* Function image */}
+                <img
+                  src={`/images/tachyon/tachyon-functions-${index + 1}.jpg`}
+                  alt={fn.title}
+                  class="rounded-card w-full aspect-[16/9] object-cover mb-5"
+                  loading="lazy"
+                />
 
                 {/* Feature list */}
                 <FeatureList items={fn.features} />
@@ -198,6 +195,7 @@ const description = 'High-throughput data structuring and activation platform. U
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S4 — Architecture Overview (elevated)
@@ -214,14 +212,15 @@ const description = 'High-throughput data structuring and activation platform. U
       </ScrollReveal>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mt-12">
-        {/* Left: Diagram placeholder */}
+        {/* Left: Architecture image */}
         <ScrollReveal delay={100}>
           <div class="relative">
             <div class="absolute -inset-4 bg-glow-steel/10 rounded-card blur-2xl"></div>
-            <DiagramPlaceholder
-              title="Architecture Diagram"
-              description="Five-layer Tachyon architecture — SVG-ready"
-              class="relative min-h-[300px]"
+            <img
+              src="/images/tachyon/architecture.jpg"
+              alt="Five-layer Tachyon platform architecture"
+              class="relative rounded-card w-full"
+              loading="lazy"
             />
           </div>
         </ScrollReveal>
@@ -259,6 +258,7 @@ const description = 'High-throughput data structuring and activation platform. U
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S5 — Performance Characteristics (default)
@@ -301,6 +301,7 @@ const description = 'High-throughput data structuring and activation platform. U
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S6 — Deployment Options (elevated)
@@ -337,6 +338,7 @@ const description = 'High-throughput data structuring and activation platform. U
     </Container>
   </Section>
 
+  <div class="wwd-section-divider" aria-hidden="true"></div>
 
   {/* ══════════════════════════════════════════════
       S7 — Core Statement / CTA (default)
@@ -365,14 +367,6 @@ const description = 'High-throughput data structuring and activation platform. U
 </PageLayout>
 
 <style>
-  /* Radial gradient text fill on hero "Tachyon" */
-  .tachyon-gradient-text {
-    background: radial-gradient(ellipse at 50% 40%, rgb(228 233 242) 0%, rgb(190 205 225 / 0.6) 60%, rgb(80 100 130 / 0.3) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
   /* Scroll indicator bounce */
   .scroll-indicator-mouse {
     animation: bounce-subtle 2s ease-in-out infinite;

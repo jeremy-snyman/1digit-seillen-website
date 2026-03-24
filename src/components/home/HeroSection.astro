@@ -27,15 +27,15 @@ import Container from '@components/layout/Container.astro';
       <Badge variant="accent" class="normal-case tracking-normal [&>svg]:hidden mb-4 !text-accent-bright !bg-accent-bright/10 !border-accent-bright/25">
         Enterprise AI Architecture & Delivery
       </Badge>
-      <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+      <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6 hero-title">
         The human experts,<br />
         <span class="text-accent-bright">powered by AI</span>
       </h1>
-      <p class="text-body-lg font-medium text-content-secondary max-w-2xl mx-auto mb-10">
+      <p class="text-body-lg font-medium text-content-secondary max-w-2xl mx-auto mb-10 hero-subtitle">
         We bridge complex AI capability and structured enterprise data platforms with disciplined delivery.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <Button href="/ai-readiness-assessment" variant="primary" size="lg">
+        <Button href="/campaign/ai-readiness-assessment?nav=full" variant="primary" size="lg">
           Take AI Readiness Assessment
         </Button>
         <Button href="/data-platforms" variant="outline" size="lg">
@@ -55,6 +55,17 @@ import Container from '@components/layout/Container.astro';
 </section>
 
 <style>
+  .hero-title {
+    text-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.5),
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+  .hero-subtitle {
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.4),
+      0 2px 8px rgba(0, 0, 0, 0.2);
+  }
   .scroll-indicator-mouse {
     animation: bounce-subtle 2s ease-in-out infinite;
   }

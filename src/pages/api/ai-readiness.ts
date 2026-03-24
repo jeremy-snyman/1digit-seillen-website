@@ -24,7 +24,7 @@ export const POST: APIRoute = async ({ request }) => {
       .join('<br/>');
 
     await sendEmail(
-      process.env.SMTP_USER || 'team@1digit.co.uk',
+      process.env.NOTIFICATION_EMAIL || 'team@1digit.co.uk',
       `AI Readiness Assessment: ${name} from ${company} — ${result.band} (${result.overallPercentage}%)`,
       `<h2>New AI Readiness Assessment</h2>
       <p><strong>Name:</strong> ${name}</p>

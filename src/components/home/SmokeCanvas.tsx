@@ -59,12 +59,20 @@ function createParticle(width: number, height: number): SmokeParticle {
   };
 }
 
-export default function SmokeCanvas() {
+interface SmokeCanvasProps {
+  forceDark?: boolean;
+}
+
+export default function SmokeCanvas({ forceDark = false }: SmokeCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
+    if (forceDark) {
+      setTheme('dark');
+      return;
+    }
     setTheme(getTheme());
     const observer = new MutationObserver((mutations) => {
       for (const m of mutations) {
@@ -75,7 +83,7 @@ export default function SmokeCanvas() {
     });
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     return () => observer.disconnect();
-  }, []);
+  }, [forceDark]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');

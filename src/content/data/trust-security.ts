@@ -1,4 +1,4 @@
-// ── Trust & Security Page — Data ──
+// ── Trust & Security Page - Data ──
 
 export type SignalColor = 'blue' | 'purple' | 'amber' | 'emerald';
 
@@ -54,7 +54,7 @@ export interface DeliveryStep {
 // ── S1: Hero ──
 
 export const heroDescription =
-  'Security, governance, and compliance are not afterthoughts — they are embedded into everything we build. Here is how we earn enterprise trust.';
+  'Security, governance, and compliance are not afterthoughts. They are embedded into everything we build. Here is how we earn enterprise trust.';
 
 // ── S2: Philosophy ──
 
@@ -72,13 +72,13 @@ export const philosophyPillars: PhilosophyPillar[] = [
 // ── S3: Secure SDLC ──
 
 export const sdlcIntro =
-  'Every system we deliver passes through a security-integrated development lifecycle. These are not optional add-ons — they are mandatory checkpoints.';
+  'Every system we deliver passes through a security-integrated development lifecycle. These are not optional add-ons. They are mandatory checkpoints.';
 
 export const sdlcCards: SDLCCard[] = [
   {
     icon: 'shield',
     title: 'Architecture Review Checkpoints',
-    description: 'Security review gates at every architecture decision point — before implementation begins.',
+    description: 'Security review gates at every architecture decision point, before implementation begins.',
   },
   {
     icon: 'target',
@@ -88,7 +88,7 @@ export const sdlcCards: SDLCCard[] = [
   {
     icon: 'database',
     title: 'Data Classification',
-    description: 'Sensitivity mapping and data classification integrated into the design phase — not retrofitted after deployment.',
+    description: 'Sensitivity mapping and data classification integrated into the design phase, not retrofitted after deployment.',
   },
   {
     icon: 'lock',
@@ -103,12 +103,12 @@ export const sdlcCards: SDLCCard[] = [
   {
     icon: 'cpu',
     title: 'AI Validation Frameworks',
-    description: 'Purpose-built evaluation and validation frameworks for AI components — prompt security, output guardrails, model governance.',
+    description: 'Purpose-built evaluation and validation frameworks for AI components, including prompt security, output guardrails, and model governance.',
   },
   {
     icon: 'eye',
     title: 'Observability by Design',
-    description: 'Logging, monitoring, and alerting built into the architecture — not bolted on after the first incident.',
+    description: 'Logging, monitoring, and alerting built into the architecture, not bolted on after the first incident.',
   },
 ];
 
@@ -124,12 +124,12 @@ export const governancePrinciples: GovernancePrinciple[] = [
   {
     icon: 'layers',
     title: 'Layered Accountability',
-    description: 'Clear ownership at every layer — data, application, infrastructure, and business logic.',
+    description: 'Clear ownership at every layer: data, application, infrastructure, and business logic.',
   },
   {
     icon: 'shield',
     title: 'Policy-as-Code',
-    description: 'Governance policies codified and enforced automatically — not documented in PDFs that nobody reads.',
+    description: 'Governance policies codified and enforced automatically, not documented in PDFs that nobody reads.',
   },
   {
     icon: 'users',
@@ -149,10 +149,10 @@ export const governancePrinciples: GovernancePrinciple[] = [
 ];
 
 export const togafQuote =
-  'Our architecture governance follows TOGAF principles — not as a certification checkbox, but as a practical framework for maintaining architectural integrity across complex enterprise systems.';
+  'Our architecture governance follows TOGAF principles, not as a certification checkbox, but as a practical framework for maintaining architectural integrity across complex enterprise systems.';
 
 export const auditIntro =
-  'Every decision, every data transformation, every access event — traceable, versioned, and auditable.';
+  'Every decision, every data transformation, every access event: traceable, versioned, and auditable.';
 
 export const auditCapabilities: AuditCapability[] = [
   {
@@ -185,7 +185,7 @@ export const auditCapabilities: AuditCapability[] = [
 // ── S5: Compliance ──
 
 export const complianceIntro =
-  'We design with compliance awareness from the start. Where we claim familiarity — not certification — we are transparent about it.';
+  'We design with compliance awareness from the start. Where we claim familiarity, not certification, we are transparent about it.';
 
 export const complianceStandards: ComplianceStandard[] = [
   {
@@ -215,7 +215,7 @@ export const complianceStandards: ComplianceStandard[] = [
 ];
 
 export const compliancePrinciples: string[] = [
-  'Privacy by design — not privacy by retrofit',
+  'Privacy by design, not privacy by retrofit',
   'Data minimisation as an architectural constraint',
   'Consent management integrated at the data layer',
   'Right to erasure built into data lifecycle management',
@@ -249,7 +249,7 @@ export const riskCards: RiskCard[] = [
   {
     icon: 'users',
     title: 'RBAC for AI Systems',
-    description: 'Granular access control for model endpoints, training data, and inference results — not one API key for everything.',
+    description: 'Granular access control for model endpoints, training data, and inference results. Not one API key for everything.',
   },
   {
     icon: 'alert-triangle',
@@ -275,21 +275,21 @@ export const controlItems: ControlItem[] = [
 // ── S7: Enterprise Delivery ──
 
 export const deliveryIntro =
-  'We deliver into enterprise environments — not startup sandboxes. Our delivery process reflects the governance, security, and stakeholder management that enterprise clients require.';
+  'We deliver into enterprise environments, not startup sandboxes. Our delivery process reflects the governance, security, and stakeholder management that enterprise clients require.';
 
 export const deliverySteps: DeliveryStep[] = [
   {
     number: '01',
     icon: 'shield',
     title: 'Security Architecture Review',
-    description: 'Every engagement begins with a formal security architecture review — threat modelling, data classification, and compliance mapping before a single line of code.',
+    description: 'Every engagement begins with a formal security architecture review: threat modelling, data classification, and compliance mapping before a single line of code.',
     color: 'blue',
   },
   {
     number: '02',
     icon: 'users',
     title: 'Stakeholder Governance Alignment',
-    description: 'We align with your existing governance structures — architecture review boards, change advisory boards, and security committees.',
+    description: 'We align with your existing governance structures: architecture review boards, change advisory boards, and security committees.',
     color: 'purple',
   },
   {
@@ -303,7 +303,7 @@ export const deliverySteps: DeliveryStep[] = [
     number: '04',
     icon: 'clipboard',
     title: 'Documentation and Knowledge Transfer',
-    description: 'Comprehensive runbooks, architecture decision records, and operational documentation — not a GitHub README.',
+    description: 'Comprehensive runbooks, architecture decision records, and operational documentation. Not a GitHub README.',
     color: 'amber',
   },
   {

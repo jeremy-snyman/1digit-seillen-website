@@ -38,7 +38,7 @@ export interface UseCase {
 export const heroTagline = 'Enterprise data lakehouse. Without hyperscaler cost escalation.';
 
 export const heroPartnershipText =
-  '1Digit has architected and delivered a data warehousing platform in partnership with IONOS. We are a technology provider to IONOS — not merely a reseller.';
+  '1Digit has architected and delivered a data warehousing platform in partnership with IONOS. We are a technology provider to IONOS, not merely a reseller.';
 
 export const techStackTags = [
   'Trino',
@@ -74,7 +74,7 @@ export const costProblems: CostProblem[] = [
     icon: 'lock',
     title: 'Egress and Lock-In Fees',
     description:
-      'Moving data out — or moving away — comes with significant financial and technical friction.',
+      'Moving data out, or moving away, comes with significant financial and technical friction.',
   },
 ];
 
@@ -148,6 +148,59 @@ export const architectureFeatures = [
   'Apache Iceberg open table format',
 ];
 
+export interface ArchLayer {
+  number: number;
+  title: string;
+  tech: string;
+  description: string;
+  color: 'amber' | 'purple' | 'blue' | 'emerald';
+}
+
+export const archLayers: ArchLayer[] = [
+  {
+    number: 1,
+    title: 'Infrastructure',
+    tech: 'IONOS + Kubernetes',
+    description: 'European sovereign cloud with container orchestration. Your data never leaves EU jurisdiction.',
+    color: 'amber',
+  },
+  {
+    number: 2,
+    title: 'Ingestion',
+    tech: 'Tachyon',
+    description: 'Our data structuring engine transforms raw, fragmented data into governed, analytics-ready assets at speed.',
+    color: 'purple',
+  },
+  {
+    number: 3,
+    title: 'Pub-Sub',
+    tech: 'Kafka',
+    description: 'Real-time message streaming and queuing. High-throughput event processing with guaranteed delivery.',
+    color: 'blue',
+  },
+  {
+    number: 4,
+    title: 'Data Lake',
+    tech: 'IONOS Object Storage + Iceberg',
+    description: 'S3-compatible sovereign storage with Apache Iceberg open table format. No vendor lock-in, full portability.',
+    color: 'emerald',
+  },
+  {
+    number: 5,
+    title: 'Analytics',
+    tech: 'Trino',
+    description: 'Distributed SQL query engine for sub-second analytics across your entire data lake at any scale.',
+    color: 'blue',
+  },
+  {
+    number: 6,
+    title: 'Visualisation',
+    tech: 'Superset + ML',
+    description: 'Self-service dashboards, interactive exploration, and machine learning. The layer your business users see.',
+    color: 'purple',
+  },
+];
+
 export const benefits: Benefit[] = [
   {
     title: 'Cost Efficiency',
@@ -193,7 +246,7 @@ export const useCases: UseCase[] = [
   {
     title: 'AI & Machine Learning',
     description:
-      'Centralised, governed data estate that feeds AI models with clean, timely, structured data at scale — at a fraction of hyperscaler compute cost.',
+      'Centralised, governed data estate that feeds AI models with clean, timely, structured data at scale, at a fraction of hyperscaler compute cost.',
     icon: 'cpu',
     accentColor: 'purple',
   },
@@ -214,7 +267,7 @@ export const useCases: UseCase[] = [
   {
     title: 'Regulatory Compliance',
     description:
-      'European-sovereign data infrastructure with built-in governance, lineage, and audit capabilities — cost-efficient by design.',
+      'European-sovereign data infrastructure with built-in governance, lineage, and audit capabilities. Cost-efficient by design.',
     icon: 'shield',
     accentColor: 'amber',
   },
@@ -227,4 +280,65 @@ export const architectureLayers = [
   'Processing & Query',
   'Unified Data Lake',
   'IONOS Cloud Infrastructure',
+];
+
+// ── Logo Stack Diagram ──
+
+export interface LogoStackItem {
+  name: string;
+  logo?: string;  // path to SVG/PNG in /public/images/smart-lakehouse/logos/
+  icon?: string;   // fallback Icon component name when no logo file available
+}
+
+export interface LogoStackTier {
+  label: string;
+  color: 'purple' | 'blue' | 'emerald' | 'amber';
+  items: LogoStackItem[];
+}
+
+export const logoStackTiers: LogoStackTier[] = [
+  {
+    label: 'IONOS + Kubernetes',
+    color: 'amber',
+    items: [
+      { name: 'IONOS', logo: '/images/smart-lakehouse/logos/ionos.png', icon: 'globe' },
+      { name: 'Kubernetes', logo: '/images/smart-lakehouse/logos/kubernetes.png', icon: 'settings' },
+    ],
+  },
+  {
+    label: 'Tachyon',
+    color: 'purple',
+    items: [
+      { name: 'Tachyon', logo: '/images/smart-lakehouse/logos/tachyon.jpg', icon: 'zap' },
+    ],
+  },
+  {
+    label: 'Kafka',
+    color: 'blue',
+    items: [
+      { name: 'Apache Kafka', logo: '/images/smart-lakehouse/logos/kafka.svg', icon: 'zap' },
+    ],
+  },
+  {
+    label: 'Iceberg + IONOS S3',
+    color: 'emerald',
+    items: [
+      { name: 'Apache Iceberg', logo: '/images/smart-lakehouse/logos/iceberg.png', icon: 'layers' },
+      { name: 'IONOS S3', logo: '/images/smart-lakehouse/logos/ionos-s3.png', icon: 'database' },
+    ],
+  },
+  {
+    label: 'Trino',
+    color: 'blue',
+    items: [
+      { name: 'Trino', logo: '/images/smart-lakehouse/logos/trino.svg', icon: 'cpu' },
+    ],
+  },
+  {
+    label: 'Superset',
+    color: 'purple',
+    items: [
+      { name: 'Apache Superset', logo: '/images/smart-lakehouse/logos/superset.webp', icon: 'chart' },
+    ],
+  },
 ];

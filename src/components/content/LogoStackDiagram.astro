@@ -1,0 +1,158 @@
+---
+/**
+ * LogoStackDiagram — HTML/CSS stack diagram with technology logos for the
+ * Tachyon Intelligence Platform on IONOS. Shows 4 colour-coded tiers with
+ * logo images (falling back to Icon when no logo file is provided).
+ */
+import Icon from '@components/ui/Icon.astro';
+import type { LogoStackTier } from '@content/data/smart-lakehouse';
+
+interface Props {
+  tiers: LogoStackTier[];
+  class?: string;
+}
+
+const { tiers, class: className } = Astro.props;
+
+const colorMap: Record<string, { bg: string; border: string; label: string; pillBg: string; pillBorder: string }> = {
+  purple: {
+    bg: 'bg-signal-purple/8',
+    border: 'border-signal-purple/25',
+    label: 'text-signal-purple',
+    pillBg: 'bg-signal-purple/15',
+    pillBorder: 'border-signal-purple/30',
+  },
+  blue: {
+    bg: 'bg-signal-blue/8',
+    border: 'border-signal-blue/25',
+    label: 'text-signal-blue',
+    pillBg: 'bg-signal-blue/15',
+    pillBorder: 'border-signal-blue/30',
+  },
+  emerald: {
+    bg: 'bg-signal-emerald/8',
+    border: 'border-signal-emerald/25',
+    label: 'text-signal-emerald',
+    pillBg: 'bg-signal-emerald/15',
+    pillBorder: 'border-signal-emerald/30',
+  },
+  amber: {
+    bg: 'bg-signal-amber/8',
+    border: 'border-signal-amber/25',
+    label: 'text-signal-amber',
+    pillBg: 'bg-signal-amber/15',
+    pillBorder: 'border-signal-amber/30',
+  },
+};
+---
+
+<div class:list={['logo-stack-diagram', className]} role="img" aria-label="Tachyon Intelligence Platform architecture stack showing four tiers with technology logos">
+  {/* Side label */}
+  <div class="logo-stack-side-label">
+    <span class="text-label-md text-content-muted/40 uppercase tracking-widest">Data Flow</span>
+  </div>
+
+  <div class="logo-stack-tiers">
+    {tiers.map((tier, tierIndex) => {
+      const colors = colorMap[tier.color];
+      return (
+        <>
+          {/* Tier band */}
+          <div class:list={['logo-stack-tier rounded-card border p-5 md:p-6', colors.bg, colors.border]}>
+            <div class:list={['text-label-md font-semibold uppercase tracking-wider mb-4', colors.label]}>
+              {tier.label}
+            </div>
+            <div class="flex flex-wrap gap-3 md:gap-4">
+              {tier.items.map((item) => (
+                <div class:list={['logo-stack-item flex items-center gap-2.5 rounded-lg border px-3 py-2', colors.pillBg, colors.pillBorder]}>
+                  {/* Logo or fallback icon */}
+                  <div class:list={['logo-stack-icon w-9 h-9 flex items-center justify-center shrink-0', item.logo?.endsWith('.jpg') && 'rounded-md overflow-hidden']}>
+                    {item.logo ? (
+                      <img
+                        src={item.logo}
+                        alt={`${item.name} logo`}
+                        class:list={[
+                          'object-contain',
+                          item.logo.endsWith('.svg') ? 'w-7 h-7 logo-stack-logo-svg' : 'w-9 h-9 logo-stack-logo-img',
+                        ]}
+                        loading="lazy"
+                      />
+                    ) : (
+                      <Icon name={item.icon || 'layers'} size={22} class={colors.label} />
+                    )}
+                  </div>
+                  <span class="text-body-sm text-content font-medium whitespace-nowrap">{item.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Connector between tiers */}
+          {tierIndex < tiers.length - 1 && (
+            <div class="logo-stack-connector flex justify-center py-2">
+              <div class="flex flex-col items-center gap-0.5">
+                <div class="w-px h-4 border-l border-dashed border-content-muted/30"></div>
+                <Icon name="chevron-right" size={14} class="text-content-muted/40 rotate-90" />
+                <div class="w-px h-4 border-l border-dashed border-content-muted/30"></div>
+              </div>
+            </div>
+          )}
+        </>
+      );
+    })}
+  </div>
+</div>
+
+<style>
+  .logo-stack-diagram {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .logo-stack-side-label {
+    display: none;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .logo-stack-side-label {
+      display: flex;
+    }
+  }
+
+  .logo-stack-tiers {
+    flex: 1;
+  }
+
+  .logo-stack-tier {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .logo-stack-tier:hover {
+    transform: translateX(4px);
+  }
+
+  .logo-stack-item {
+    transition: background-color 0.2s ease;
+  }
+
+  /* SVG logos are black — invert them in dark mode */
+  :global([data-theme='dark']) .logo-stack-logo-svg {
+    filter: brightness(0) invert(1) opacity(0.85);
+  }
+
+  :global([data-theme='light']) .logo-stack-logo-svg {
+    filter: none;
+  }
+
+  /* Raster logos (PNG/WebP) — no filter, they should be provided in appropriate colors */
+  .logo-stack-logo-img {
+    filter: none;
+  }
+</style>

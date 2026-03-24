@@ -71,6 +71,18 @@
   66% { transform: translate(30px, -15px) scale(1.05); }
 }
 
+/* Button shimmer sweep */
+@keyframes btn-shimmer-sweep {
+  0% { left: -60%; }
+  100% { left: 120%; }
+}
+
+/* Button breathing glow */
+@keyframes btn-glow-breathe {
+  0%, 100% { box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 4px 20px rgb(var(--color-accent-bright) / 0.12), 0 0 40px rgb(var(--color-accent-bright) / 0.05); }
+  50% { box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 4px 24px rgb(var(--color-accent-bright) / 0.22), 0 0 60px rgb(var(--color-accent-bright) / 0.08); }
+}
+
 /* CTA glow pulse */
 @keyframes cta-glow-pulse {
   0%, 100% { box-shadow: 0 0 20px rgb(var(--color-accent-bright) / 0.15), 0 0 60px rgb(var(--color-accent-bright) / 0.05); }
@@ -87,6 +99,8 @@
 @media (prefers-reduced-motion: reduce) {
   .shimmer-border::before,
   .mesh-gradient,
+  .btn-glow-breathe,
+  .btn-glow:hover::before,
   [style*="animation: drift"],
   [style*="animation: mesh-drift"],
   [style*="animation: cta-glow-pulse"] {

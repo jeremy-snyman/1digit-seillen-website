@@ -9,10 +9,11 @@ interface Props {
   icon: string;
   accentColor: 'blue' | 'purple' | 'green' | 'amber';
   image?: string;
+  imageLight?: string;
   class?: string;
 }
 
-const { number, title, description, details, icon, accentColor, image, class: className } = Astro.props;
+const { number, title, description, details, icon, accentColor, image, imageLight, class: className } = Astro.props;
 
 const glowClass = `phase-glow-${accentColor}`;
 
@@ -60,10 +61,13 @@ const accentGradients = {
     {/* Description */}
     <p class="text-body-md text-content-secondary mb-5">{description}</p>
 
-    {/* Optional SVG image area */}
+    {/* Optional phase image area */}
     {image && (
       <div class="mb-5 rounded-lg overflow-hidden bg-surface/50">
-        <img src={image} alt={`${title} phase illustration`} class="w-full h-32 object-cover theme-image" loading="lazy" />
+        <img src={image} alt={`${title} phase illustration`} class="w-full h-32 object-cover phase-img-dark" loading="lazy" />
+        {imageLight && (
+          <img src={imageLight} alt={`${title} phase illustration`} class="w-full h-32 object-cover phase-img-light" loading="lazy" />
+        )}
       </div>
     )}
 

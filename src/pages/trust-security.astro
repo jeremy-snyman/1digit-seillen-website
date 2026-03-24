@@ -9,8 +9,6 @@ import Icon from '@components/ui/Icon.astro';
 import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
 import FeatureList from '@components/content/FeatureList.astro';
-import SecurityLifecycleRing from '@components/trust/SecurityLifecycleRing.astro';
-import GovernancePyramid from '@components/trust/GovernancePyramid.astro';
 import AuditTrailFlow from '@components/trust/AuditTrailFlow.astro';
 import ComplianceShield from '@components/trust/ComplianceShield.astro';
 import AIRiskNetwork from '@components/trust/AIRiskNetwork.astro';
@@ -40,7 +38,7 @@ import {
 import type { SignalColor } from '@content/data/trust-security';
 
 const title = 'Trust & Security';
-const description = 'Security, governance, and compliance are not afterthoughts — they are embedded into everything we build.';
+const description = 'Security, governance, and compliance are not afterthoughts. They are embedded into everything we build.';
 
 // Signal color utility maps
 const signalBg: Record<SignalColor, string> = {
@@ -86,7 +84,7 @@ const phaseGlowClass: Record<SignalColor, string> = {
   {/* ══════════════════════════════════════════════
       S1 — Hero (full-viewport, SmokeCanvas)
       ══════════════════════════════════════════════ */}
-  <section class="relative min-h-[80vh] md:min-h-[90vh] flex items-center overflow-hidden">
+  <section class="force-dark-hero relative min-h-[80vh] md:min-h-[90vh] flex items-center overflow-hidden">
     {/* Background layers */}
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 40%, rgb(var(--color-surface-elevated)) 0%, rgb(var(--color-surface)) 70%);"></div>
@@ -189,36 +187,41 @@ const phaseGlowClass: Record<SignalColor, string> = {
         />
       </ScrollReveal>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        {sdlcCards.map((card, index) => {
-          const color = sdlcColorCycle[index];
-          return (
-            <div class:list={[index === 6 && 'lg:col-start-2']}>
-              <ScrollReveal delay={index * 120}>
-                <GlassCard hover padding="md" class="h-full trust-icon-hover">
-                  <div class="flex items-start gap-4">
-                    <div class:list={['w-10 h-10 rounded-lg flex items-center justify-center shrink-0 trust-icon', signalBg[color]]}>
-                      <Icon name={card.icon} size={20} class={signalText[color]} />
-                    </div>
-                    <div>
-                      <p class="text-label-md text-content-muted mb-1">{String(index + 1).padStart(2, '0')}</p>
-                      <h3 class="text-heading-xs font-semibold mb-2">{card.title}</h3>
-                      <p class="text-body-sm text-content-secondary">{card.description}</p>
-                    </div>
-                  </div>
-                </GlassCard>
-              </ScrollReveal>
-            </div>
-          );
-        })}
-      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mt-12 overflow-visible">
+        {/* Left: Lifecycle ring image */}
+        <ScrollReveal delay={100} direction="left">
+          <div class="trust-diagram-blend trust-img-dark lg:scale-115 lg:-ml-6 lg:origin-left">
+            <img src="/images/trust-security/lifecycle-ring-dark.jpg"
+                 alt="Secure Development Lifecycle — 7 phases in a continuous ring"
+                 class="w-full h-auto" width="1456" height="816" loading="lazy" />
+          </div>
+          <div class="trust-img-light lg:scale-115 lg:-ml-6 lg:origin-left">
+            <img src="/images/trust-security/lifecycle-ring-dark.jpg"
+                 alt="Secure Development Lifecycle — 7 phases in a continuous ring"
+                 class="w-full h-auto rounded-2xl border border-surface-border/30 shadow-lg" width="1456" height="816" loading="lazy" />
+          </div>
+        </ScrollReveal>
 
-      {/* SDLC lifecycle SVG diagram */}
-      <ScrollReveal delay={600}>
-        <div class="mt-12">
-          <SecurityLifecycleRing />
-        </div>
-      </ScrollReveal>
+        {/* Right: 7 SDLC checkpoints */}
+        <ScrollReveal delay={200} direction="right">
+          <div class="space-y-5">
+            {sdlcCards.map((card, index) => {
+              const color = sdlcColorCycle[index];
+              return (
+                <div class="flex items-start gap-4 group trust-icon-hover">
+                  <div class:list={['w-9 h-9 rounded-lg flex items-center justify-center shrink-0 trust-icon', signalBg[color]]}>
+                    <Icon name={card.icon} size={18} class={signalText[color]} />
+                  </div>
+                  <div>
+                    <h3 class="text-heading-xs font-semibold mb-0.5">{card.title}</h3>
+                    <p class="text-body-sm text-content-secondary">{card.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </ScrollReveal>
+      </div>
     </Container>
   </Section>
 
@@ -261,9 +264,11 @@ const phaseGlowClass: Record<SignalColor, string> = {
             </div>
           </ScrollReveal>
 
-          {/* Right: Governance pyramid SVG */}
+          {/* Right: Governance image */}
           <ScrollReveal delay={200} direction="right">
-            <GovernancePyramid />
+            <img src="/images/trust-security/governance-by-design.jpg"
+                 alt="Enterprise governance and compliance verification"
+                 class="w-full h-auto rounded-2xl border border-surface-border/30 shadow-lg" width="1456" height="816" loading="lazy" />
           </ScrollReveal>
         </div>
       </div>
@@ -281,7 +286,7 @@ const phaseGlowClass: Record<SignalColor, string> = {
       {/* Auditability sub-section */}
       <div class="mt-16">
         <ScrollReveal>
-          <div class="text-center mb-8">
+          <div class="text-center mb-12">
             <h3 class="text-display-md font-display">Auditability by Default</h3>
             <p class="mt-4 text-body-lg text-content-secondary max-w-2xl mx-auto">{auditIntro}</p>
           </div>
@@ -301,7 +306,7 @@ const phaseGlowClass: Record<SignalColor, string> = {
           ))}
         </div>
 
-        {/* Audit trail flow SVG diagram */}
+        {/* Audit trail flow diagram */}
         <ScrollReveal delay={500}>
           <div class="mt-12">
             <AuditTrailFlow />
@@ -357,7 +362,7 @@ const phaseGlowClass: Record<SignalColor, string> = {
         </ScrollReveal>
       </div>
 
-      {/* Compliance shield SVG diagram */}
+      {/* Compliance shield diagram */}
       <ScrollReveal delay={600}>
         <div class="mt-12">
           <ComplianceShield />
@@ -438,7 +443,7 @@ const phaseGlowClass: Record<SignalColor, string> = {
           </div>
         </ScrollReveal>
 
-        {/* AI risk network SVG diagram */}
+        {/* AI risk network diagram */}
         <ScrollReveal delay={700}>
           <div class="mt-12">
             <AIRiskNetwork />
@@ -526,22 +531,9 @@ const phaseGlowClass: Record<SignalColor, string> = {
     background-clip: text;
   }
 
-  /* Light theme: darker gradient for readability */
-  :global([data-theme="light"]) .trust-gradient-text {
-    background: radial-gradient(ellipse at 50% 40%, rgb(15 20 40) 0%, rgb(40 50 80 / 0.8) 60%, rgb(80 90 120 / 0.5) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
   /* Hero image */
   .trust-hero-img {
     opacity: 0.25;
-  }
-
-  :global([data-theme="light"]) .trust-hero-img {
-    opacity: 0.18;
-    filter: brightness(0.7) contrast(0.9) saturate(0.8);
   }
 
   /* Scroll indicator bounce */

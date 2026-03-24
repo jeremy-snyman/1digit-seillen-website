@@ -40,7 +40,7 @@ export const heroDescription =
 // ── S2: The Problem ──
 
 export const problemIntro =
-  'Modern enterprises operate across dozens — often hundreds — of systems. This creates:';
+  'Modern enterprises operate across dozens, often hundreds, of systems. This creates:';
 
 export const painPoints: PainPoint[] = [
   {
@@ -114,12 +114,12 @@ export const coreFunctions: CoreFunction[] = [
       'Role-based access control',
       'Audit logging',
     ],
-    note: 'Governance is embedded in the ingestion layer — not applied after distribution.',
+    note: 'Governance is embedded in the ingestion layer, not applied after distribution.',
   },
   {
     number: '03',
     title: 'Low-Latency Processing & Activation',
-    tagline: 'From arrival to usable — fast',
+    tagline: 'From arrival to usable. Fast.',
     icon: 'zap',
     features: [
       'Real-time validation and transformation',
@@ -174,7 +174,7 @@ export const architectureLayers: ArchitectureLayer[] = [
 ];
 
 export const architectureCallout =
-  'Each layer is additive. Tachyon can be deployed incrementally — starting with ingestion and structuring, then expanding into governance, activation and AI enablement as requirements evolve.';
+  'Each layer is additive. Tachyon can be deployed incrementally, starting with ingestion and structuring, then expanding into governance, activation and AI enablement as requirements evolve.';
 
 // ── S5: Performance ──
 
@@ -213,7 +213,7 @@ export const deploymentOptions: DeploymentOption[] = [
   {
     icon: 'globe',
     title: 'Managed Cloud',
-    description: 'Fully managed hosted deployment on any major cloud provider — AWS, Azure, GCP, or IONOS.',
+    description: 'Fully managed hosted deployment on any major cloud provider: AWS, Azure, GCP, or IONOS.',
   },
   {
     icon: 'shield',
@@ -243,4 +243,4 @@ export const deploymentClosing =
 // ── S7: Core Statement ──
 
 export const coreStatement =
-  'Tachyon structures, governs and activates enterprise data at speed — ensuring it is ready for any downstream use.';
+  'Tachyon structures, governs and activates enterprise data at speed, ensuring it is ready for any downstream use.';

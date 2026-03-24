@@ -1,170 +1,170 @@
 ---
-/**
- * AIRiskNetwork — Central brain with 6 radial threat nodes + containment boundary
- * Replaces S6 AI Risk DiagramPlaceholder
- */
 const threats = [
-  { label: 'Prompt Injection', angle: 0 },
-  { label: 'Data Leakage', angle: 60 },
-  { label: 'Hallucination', angle: 120 },
-  { label: 'Unauthorized Access', angle: 180 },
-  { label: 'Output Bias', angle: 240 },
-  { label: 'Model Drift', angle: 300 },
+  { label: 'Prompt Injection', angle: 270 },
+  { label: 'Data Leakage', angle: 330 },
+  { label: 'Hallucination', angle: 30 },
+  { label: 'Output Bias', angle: 90 },
+  { label: 'Model Drift', angle: 150 },
+  { label: 'Unauthorized Access', angle: 210 },
 ];
 
-const cx = 250;
-const cy = 180;
-const threatRadius = 120;
-const nodeRadius = 22;
+const cx = 240;
+const cy = 220;
+const radius = 150;
 
-// Pre-compute threat node positions
-const threatNodes = threats.map((t, i) => {
-  const rads = (t.angle * Math.PI) / 180;
+const nodes = threats.map((t) => {
+  const rad = (t.angle * Math.PI) / 180;
   return {
-    x: cx + threatRadius * Math.cos(rads),
-    y: cy + threatRadius * Math.sin(rads),
-    label: t.label,
-    delay: i * 150,
+    ...t,
+    x: cx + radius * Math.cos(rad),
+    y: cy + radius * Math.sin(rad),
   };
 });
 ---
 
-<div class="max-w-3xl mx-auto">
-  {/* Desktop SVG */}
-  <svg
-    viewBox="0 0 500 360"
-    class="hidden md:block w-full h-auto"
-    role="img"
-    aria-label="AI risk network showing 6 threat vectors around a central brain node with containment boundary"
-  >
-    {/* Containment boundary circle (dashed emerald) */}
-    <circle
-      cx={cx} cy={cy} r={threatRadius + 30}
-      fill="none"
-      stroke="rgb(var(--color-signal-emerald) / 0.2)"
-      stroke-width="1.5"
-      stroke-dasharray="8 6"
-      class="containment-ring"
-    />
-    <text
-      x={cx} y={cy - threatRadius - 40}
-      text-anchor="middle"
-      fill="rgb(var(--color-signal-emerald) / 0.6)"
-      font-size="9"
-      font-weight="600"
-      letter-spacing="0.1em"
-    >
-      CONTAINMENT BOUNDARY
-    </text>
+<div class="ai-risk-network" aria-label="AI risk network diagram with 6 threat vectors and containment boundary">
+  <svg viewBox="0 0 480 440" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-lg mx-auto h-auto">
+    <defs>
+      <radialGradient id="ai-core-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="rgb(var(--color-signal-blue) / 0.15)" />
+        <stop offset="100%" stop-color="transparent" />
+      </radialGradient>
+    </defs>
 
-    {/* Connections from center to threat nodes */}
-    {threatNodes.map((node) => (
-      <line
-        x1={cx} y1={cy} x2={node.x} y2={node.y}
-        stroke="rgb(var(--color-signal-amber) / 0.15)"
-        stroke-width="1"
-        stroke-dasharray="4 4"
-      />
+    {/* Containment boundary */}
+    <circle cx={cx} cy={cy} r={radius + 30}
+            stroke="rgb(var(--color-signal-emerald) / 0.25)"
+            stroke-width="1.5"
+            stroke-dasharray="8 6"
+            fill="none"
+            class="containment-ring" />
+
+    {/* Inner containment */}
+    <circle cx={cx} cy={cy} r={radius + 15}
+            stroke="rgb(var(--color-signal-emerald) / 0.1)"
+            stroke-width="1"
+            stroke-dasharray="4 4"
+            fill="none" />
+
+    {/* Connection lines from center to each threat */}
+    {nodes.map((node) => (
+      <line x1={cx} y1={cy} x2={node.x} y2={node.y}
+            stroke="rgb(var(--color-content-muted) / 0.12)"
+            stroke-width="1"
+            stroke-dasharray="4 4" />
     ))}
 
-    {/* Central brain node */}
-    <g class="brain-center">
-      <circle
-        cx={cx} cy={cy} r="32"
-        fill="rgb(var(--color-signal-blue) / 0.08)"
-        stroke="rgb(var(--color-signal-blue) / 0.3)"
-        stroke-width="1.5"
-      />
-      <path
-        d={`M${cx} ${cy - 12} a7 7 0 0 1 6 3.5 5.5 5.5 0 0 1 2 9 7 7 0 0 1-8 8 7 7 0 0 1-8-8 5.5 5.5 0 0 1 2-9 7 7 0 0 1 6-3.5z`}
-        fill="none"
-        stroke="rgb(var(--color-signal-blue))"
-        stroke-width="1.2"
-        stroke-linecap="round"
-      />
-      <line
-        x1={cx} y1={cy - 10} x2={cx} y2={cy + 10}
-        stroke="rgb(var(--color-signal-blue) / 0.4)"
-        stroke-width="1"
-      />
+    {/* Core glow */}
+    <circle cx={cx} cy={cy} r="60" fill="url(#ai-core-glow)" />
+
+    {/* Central AI node */}
+    <circle cx={cx} cy={cy} r="34"
+            fill="rgb(var(--glass-bg) / 0.7)"
+            stroke="rgb(var(--color-signal-blue) / 0.4)"
+            stroke-width="1.5"
+            class="ai-core" />
+
+    {/* Brain/AI icon in center */}
+    <g transform={`translate(${cx - 14}, ${cy - 14})`}>
+      {/* Simple brain shape */}
+      <path d="M14 2 C8 2 4 6 4 10 C2 10 0 12 0 15 C0 18 2 20 4 20.5 C4 24 8 27 14 27 C20 27 24 24 24 20.5 C26 20 28 18 28 15 C28 12 26 10 24 10 C24 6 20 2 14 2Z"
+            fill="none"
+            stroke="rgb(var(--color-signal-blue) / 0.6)"
+            stroke-width="1.2" />
+      {/* Center line */}
+      <line x1="14" y1="6" x2="14" y2="23"
+            stroke="rgb(var(--color-signal-blue) / 0.3)"
+            stroke-width="0.8" />
+      {/* Neural connections */}
+      <path d="M8 10 Q14 13 20 10" fill="none" stroke="rgb(var(--color-signal-blue) / 0.3)" stroke-width="0.8" />
+      <path d="M6 16 Q14 19 22 16" fill="none" stroke="rgb(var(--color-signal-blue) / 0.3)" stroke-width="0.8" />
     </g>
 
     {/* Threat nodes */}
-    {threatNodes.map((node) => (
-      <g class="threat-node" style={`animation-delay: ${node.delay}ms;`}>
-        <circle
-          cx={node.x} cy={node.y} r={nodeRadius}
-          fill="rgb(var(--color-signal-amber) / 0.1)"
-          stroke="rgb(var(--color-signal-amber) / 0.35)"
-          stroke-width="1.5"
-        />
-        <text
-          x={node.x} y={node.y + nodeRadius + 14}
-          text-anchor="middle"
-          fill="rgb(var(--color-content-secondary))"
-          font-size="9"
-          font-weight="500"
-        >
-          {node.label}
-        </text>
-        <text
-          x={node.x} y={node.y + 4}
-          text-anchor="middle"
-          dominant-baseline="central"
-          fill="rgb(var(--color-signal-amber))"
-          font-size="14"
-        >
-          !
-        </text>
+    {nodes.map((node) => (
+      <g class="threat-node">
+        {/* Node circle */}
+        <circle cx={node.x} cy={node.y} r="22"
+                fill="rgb(var(--glass-bg) / 0.6)"
+                stroke="rgb(var(--color-signal-amber) / 0.4)"
+                stroke-width="1.5" />
+        {/* Warning icon */}
+        <text x={node.x} y={node.y + 1}
+              text-anchor="middle" dominant-baseline="central"
+              fill="rgb(var(--color-signal-amber) / 0.7)"
+              font-size="16" font-weight="bold"
+              font-family="var(--font-sans, Inter, sans-serif)">!</text>
       </g>
     ))}
-  </svg>
 
-  {/* Mobile fallback */}
-  <div class="md:hidden space-y-3">
-    <div class="flex items-center justify-center gap-3 p-4 rounded-lg bg-signal-blue/10 border border-signal-blue/20">
-      <div class="w-8 h-8 rounded-full bg-signal-blue/20 flex items-center justify-center text-signal-blue text-label-md font-semibold shrink-0">
-        AI
-      </div>
-      <span class="text-body-sm font-semibold text-content">AI System (Controlled)</span>
-    </div>
-    <div class="grid grid-cols-2 gap-2">
-      {threats.map((threat) => (
-        <div class="flex items-center gap-2 p-3 rounded-lg bg-signal-amber/10 border border-signal-amber/20">
-          <span class="text-signal-amber text-label-md font-bold">!</span>
-          <span class="text-body-xs text-content-secondary">{threat.label}</span>
-        </div>
-      ))}
-    </div>
-    <div class="text-center">
-      <span class="inline-block px-3 py-1 rounded-full bg-signal-emerald/10 border border-signal-emerald/20 text-label-sm text-signal-emerald">
-        Containment Boundary Active
-      </span>
-    </div>
-  </div>
+    {/* Labels */}
+    {nodes.map((node) => {
+      const labelRadius = radius + 52;
+      const rad = (node.angle * Math.PI) / 180;
+      const lx = cx + labelRadius * Math.cos(rad);
+      const ly = cy + labelRadius * Math.sin(rad);
+      return (
+        <text x={lx} y={ly}
+              text-anchor="middle" dominant-baseline="central"
+              fill="rgb(var(--color-content-secondary))"
+              font-size="11" font-weight="500"
+              font-family="var(--font-sans, Inter, sans-serif)">
+          {node.label}
+        </text>
+      );
+    })}
+
+    {/* "CONTAINMENT BOUNDARY" label */}
+    <text x={cx} y="28"
+          text-anchor="middle"
+          fill="rgb(var(--color-signal-emerald) / 0.6)"
+          font-size="9" font-weight="600" letter-spacing="2"
+          font-family="var(--font-sans, Inter, sans-serif)">
+      CONTAINMENT BOUNDARY
+    </text>
+  </svg>
 </div>
 
 <style>
-  .containment-ring {
-    animation: glow-breathe 8s ease-in-out infinite;
-  }
-  .brain-center circle {
-    animation: node-pulse 4s ease-in-out infinite;
-  }
   .threat-node {
-    opacity: 0;
-    animation: threat-appear 0.5s ease-out forwards;
+    transition: filter 0.3s ease;
   }
-  @keyframes threat-appear {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+
+  .threat-node:hover {
+    filter: drop-shadow(0 0 10px rgb(var(--color-signal-amber) / 0.3));
   }
-  @media (prefers-reduced-motion: reduce) {
-    .containment-ring,
-    .brain-center circle,
-    .threat-node {
-      animation: none;
-      opacity: 1;
-    }
+
+  .ai-core {
+    transition: filter 0.3s ease;
   }
+
+  .ai-core:hover {
+    filter: drop-shadow(0 0 14px rgb(var(--color-signal-blue) / 0.3));
+  }
+
+  .containment-ring {
+    animation: containment-rotate 60s linear infinite;
+    transform-origin: center;
+  }
+
+  @keyframes containment-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes threat-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .threat-node {
+    animation: threat-pulse 3s ease-in-out infinite;
+  }
+
+  .threat-node:nth-child(8) { animation-delay: 0s; }
+  .threat-node:nth-child(9) { animation-delay: 0.5s; }
+  .threat-node:nth-child(10) { animation-delay: 1s; }
+  .threat-node:nth-child(11) { animation-delay: 1.5s; }
+  .threat-node:nth-child(12) { animation-delay: 2s; }
+  .threat-node:nth-child(13) { animation-delay: 2.5s; }
 </style>

@@ -8,7 +8,7 @@ export const pillars = [
     approach: [
       'Executive discovery and alignment workshops',
       'Capability benchmarking and scoring across key pillars',
-      'Identification of blockers — data, governance, ownership, architecture, culture',
+      'Identification of blockers: data, governance, ownership, architecture, culture',
       'Prioritised recommendations and transformation roadmap'
     ],
     deliverables: [
@@ -20,7 +20,7 @@ export const pillars = [
     ],
     outcomes: ['Confidence to invest', 'Reduced failed pilots', 'Clear scope and ownership'],
     timeframe: '2–5 weeks',
-    cta: { label: 'Assess Your AI Readiness', href: '/ai-readiness-assessment' },
+    cta: { label: 'Assess Your AI Readiness', href: '/campaign/ai-readiness-assessment?nav=full' },
     accentColor: 'blue' as const,
     thumbnail: '/images/what-we-do/ai-readiness-thumb.jpeg',
     thumbnailLight: '/images/what-we-do/ai-readiness-thumb-light.jpeg',
@@ -62,7 +62,7 @@ export const pillars = [
     icon: 'cpu',
     problem: 'Building AI products without proper architecture leads to fragile systems, compliance risks, and products that cannot scale or be maintained.',
     approach: [
-      'AI-native application design — human + AI workflows',
+      'AI-native application design, human + AI workflows',
       'Agent and workflow integration into business processes',
       'Guardrails, evaluations, and model governance',
       'AI-first SDLC integration',
@@ -88,7 +88,7 @@ export const pillars = [
     number: '04',
     title: 'AI Architecture, Governance & Secure Implementation',
     icon: 'shield',
-    problem: 'AI without governance creates risk — regulatory exposure, security vulnerabilities, and uncontrolled model behaviour that erodes trust.',
+    problem: 'AI without governance creates risk: regulatory exposure, security vulnerabilities, and uncontrolled model behaviour that erodes trust.',
     approach: [
       'Risk and policy frameworks',
       'Security and compliance alignment',
@@ -117,7 +117,7 @@ export const valueProps = [
   {
     icon: 'target',
     title: 'Assessment-First Approach',
-    description: 'We diagnose before we build. Every engagement starts with honest assessment — no assumptions, no templates.',
+    description: 'We diagnose before we build. Every engagement starts with honest assessment. No assumptions, no templates.',
     image: '/images/what-we-do/value-assessment-first.png',
     imageLight: '/images/what-we-do/value-assessment-first-light.png',
   },
@@ -131,7 +131,7 @@ export const valueProps = [
   {
     icon: 'shield',
     title: 'Governance by Design',
-    description: 'Security, compliance, and auditability built in from day one — not bolted on as an afterthought.',
+    description: 'Security, compliance, and auditability built in from day one. Not bolted on as an afterthought.',
     image: '/images/what-we-do/value-governance-by-design.png',
     imageLight: '/images/what-we-do/value-governance-by-design-light.png',
   },
@@ -157,13 +157,14 @@ export const processSteps = [
   {
     number: '01',
     title: 'Diagnose',
-    description: 'We start by understanding your current state — data landscape, organisational readiness, and strategic objectives. No assumptions, no templates.',
+    description: 'We start by understanding your current state: data landscape, organisational readiness, and strategic objectives. No assumptions, no templates.',
     details: ['Stakeholder interviews', 'Data estate mapping', 'Capability assessment', 'Risk identification'],
     icon: 'search',
     accentColor: 'blue' as const,
     independent: true,
     gate: { title: 'Diagnosis Review', criteria: 'Current-state findings reviewed and validated by stakeholders' },
-    image: '/images/how-we-work/diagnose.svg',
+    image: '/images/how-we-work/diagnose-dark.jpg',
+    imageLight: '/images/how-we-work/diagnose-dark.jpg',
   },
   {
     number: '02',
@@ -174,7 +175,8 @@ export const processSteps = [
     accentColor: 'purple' as const,
     independent: true,
     gate: { title: 'Architecture Sign-off', criteria: 'Target architecture and roadmap approved by technical and business leads' },
-    image: '/images/how-we-work/architect.svg',
+    image: '/images/how-we-work/architect-dark.jpg',
+    imageLight: '/images/how-we-work/architect-dark.jpg',
   },
   {
     number: '03',
@@ -185,18 +187,20 @@ export const processSteps = [
     accentColor: 'green' as const,
     independent: true,
     gate: { title: 'Build Acceptance', criteria: 'Deliverables tested, documented, and accepted by stakeholders' },
-    image: '/images/how-we-work/build.svg',
+    image: '/images/how-we-work/build-dark.jpg',
+    imageLight: '/images/how-we-work/build-dark.jpg',
   },
   {
     number: '04',
     title: 'Optimise',
-    description: 'Post-delivery, we monitor, optimise, and evolve. AI systems need continuous attention — we provide the operational framework.',
+    description: 'Post-delivery, we monitor, optimise, and evolve. AI systems need continuous attention. We provide the operational framework.',
     details: ['Performance monitoring', 'Cost optimisation', 'Model drift detection', 'Continuous improvement'],
     icon: 'chart',
     accentColor: 'amber' as const,
     independent: true,
     gate: { title: 'Optimisation Baseline', criteria: 'Performance baselines established and improvement targets agreed' },
-    image: '/images/how-we-work/optimise.svg',
+    image: '/images/how-we-work/optimise-dark.jpg',
+    imageLight: '/images/how-we-work/optimise-dark.jpg',
   },
 ];
 
@@ -224,7 +228,7 @@ export const partnershipInputs = {
   ours: [
     'Dedicated engagement lead and consistent team',
     'Weekly visibility into progress and blockers',
-    'No surprises — risks surfaced early and openly',
+    'No surprises. Risks surfaced early and openly',
     'Documented deliverables at every milestone',
     'Knowledge transfer built into every phase',
   ],
@@ -232,7 +236,7 @@ export const partnershipInputs = {
 
 export const definitionOfDone = [
   { title: 'Documented Deliverables', description: 'All outputs documented, structured, and formally handed over to your team' },
-  { title: 'Stakeholder Sign-off', description: 'Formal acceptance at each milestone checkpoint — nothing ships without approval' },
+  { title: 'Stakeholder Sign-off', description: 'Formal acceptance at each milestone checkpoint. Nothing ships without approval' },
   { title: 'Knowledge Transfer', description: 'Your team understands what was built, why decisions were made, and how to operate it' },
   { title: 'Clear Next Steps', description: 'Defined recommendations and options for the next phase of work' },
 ];

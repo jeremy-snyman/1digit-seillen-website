@@ -17,7 +17,7 @@ const description = 'We help organisations design and deliver AI systems that ar
 
 <PageLayout title={title} description={description}>
   <!-- Hero -->
-  <Section class="pt-40 pb-24 relative overflow-hidden">
+  <Section class="pt-40 pb-24 relative overflow-hidden force-dark-hero">
     <!-- Hero background image -->
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0 hero-bg-image" style="background: url('/images/what-we-do/hero-bg.jpeg') center/cover no-repeat;"></div>
@@ -56,7 +56,7 @@ const description = 'We help organisations design and deliver AI systems that ar
 
           <!-- Primary CTA -->
           <div class="mt-8">
-            <Button variant="primary" size="lg" href="/ai-readiness-assessment">Assess Your AI Readiness</Button>
+            <Button variant="primary" size="lg" href="/campaign/ai-readiness-assessment?nav=full">Assess Your AI Readiness</Button>
           </div>
         </div>
       </ScrollReveal>
@@ -78,7 +78,7 @@ const description = 'We help organisations design and deliver AI systems that ar
         <div class="text-center max-w-4xl mx-auto">
           <Badge>OUR COMMITMENT</Badge>
           <p class="text-display-md font-display mt-6 text-content-secondary leading-relaxed">
-            We don't just advise on AI — we
+            We don't just advise on AI. We
             <strong class="text-content">architect, build,</strong> and
             <strong class="text-content">govern</strong> the systems that make it work.
           </p>
@@ -90,7 +90,7 @@ const description = 'We help organisations design and deliver AI systems that ar
   <div class="wwd-section-divider" aria-hidden="true"></div>
 
   <!-- Why 1digit -->
-  <Section padding="none" class="py-40 relative overflow-hidden">
+  <Section class="relative overflow-hidden">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2
                   w-[793px] h-[499px] rounded-full blur-[150px]
@@ -191,13 +191,16 @@ const description = 'We help organisations design and deliver AI systems that ar
 
   <!-- Pillar Details -->
   {pillars.map((pillar, index) => (
-    <Section padding="sm" id={pillar.id}>
-      <Container>
-        <ScrollReveal delay={100}>
-          <PillarCard {...pillar} index={index} />
-        </ScrollReveal>
-      </Container>
-    </Section>
+    <>
+      {index > 0 && <div class="wwd-section-divider" aria-hidden="true"></div>}
+      <Section padding="sm" id={pillar.id}>
+        <Container>
+          <ScrollReveal delay={100}>
+            <PillarCard {...pillar} index={index} />
+          </ScrollReveal>
+        </Container>
+      </Section>
+    </>
   ))}
 
   <div class="wwd-section-divider" aria-hidden="true"></div>
@@ -205,7 +208,10 @@ const description = 'We help organisations design and deliver AI systems that ar
   <!-- Bottom CTA -->
   <Section padding="none" class="py-40 relative overflow-hidden">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div class="absolute inset-0 opacity-20 hero-bg-image" style="background: url('/images/what-we-do/hero-bg.jpeg') center/cover no-repeat;"></div>
+      <div class="absolute inset-0 wwd-cta-bg" style="background: url('/images/what-we-do/uncertainty-bg.jpg') center/cover no-repeat;"></div>
+      <div class="absolute inset-0" style="background: rgb(var(--color-surface) / 0.6);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgb(var(--color-surface)) 0%, transparent 25%, transparent 75%, rgb(var(--color-surface)) 100%);"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 50%, transparent 30%, rgb(var(--color-surface)) 80%);"></div>
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
                   w-[793px] h-[499px] rounded-full blur-[150px]
                   bg-glow-steel/10"></div>
@@ -221,7 +227,7 @@ const description = 'We help organisations design and deliver AI systems that ar
             description="Our AI Readiness Assessment gives you a clear picture of your current capabilities and a prioritised roadmap forward."
           />
           <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg" href="/ai-readiness-assessment">Take the Assessment</Button>
+            <Button variant="primary" size="lg" href="/campaign/ai-readiness-assessment?nav=full">Take the Assessment</Button>
             <Button variant="outline" size="lg" href="/contact">Book a Scoping Call</Button>
           </div>
         </div>

@@ -126,44 +126,9 @@ const accentColors = ['#64C8FF', '#A064FF', '#50DCB4', '#FFB43C', '#64C8FF'];
     </Container>
   </Section>
 
-  {/* ── S3: Engagement Journey ── */}
-  <div class="wwd-section-divider" aria-hidden="true"></div>
-  <Section>
-    <Container>
-      <ScrollReveal>
-        <SectionHeading
-          align="center"
-          badge="ENGAGEMENT LIFECYCLE"
-          heading="Four Phases. One Structured Journey."
-          headingClass="wwd-heading-gradient"
-          description="Each phase is self-contained with defined deliverables. Commission one, or all four."
-        />
-      </ScrollReveal>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mt-12">
-        {engagementPhases.map((phase, i) => (
-          <ScrollReveal delay={i * 100}>
-            <div>
-              <PhaseCard
-                number={phase.number}
-                title={phase.title}
-                description={phase.description}
-                details={phase.details}
-                icon={phase.icon}
-                accentColor={phase.accentColor}
-                image={phase.image}
-                class="h-full"
-              />
-            </div>
-          </ScrollReveal>
-        ))}
-      </div>
-    </Container>
-  </Section>
-
   {/* ── S4: Assessment Spotlight — AI Readiness Assessment ── */}
   <div class="wwd-section-divider" aria-hidden="true"></div>
-  <Section id="assessment-example" background="elevated" class="relative overflow-hidden">
+  <Section id="assessment-example" class="relative overflow-hidden">
     <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[300px] bg-signal-blue/10 rounded-full blur-[120px] pointer-events-none" style="animation: drift 20s ease-in-out infinite;" aria-hidden="true"></div>
 
     <Container class="relative">
@@ -246,7 +211,7 @@ const accentColors = ['#64C8FF', '#A064FF', '#50DCB4', '#FFB43C', '#64C8FF'];
 
   {/* ── S5: Commitments ── */}
   <div class="wwd-section-divider" aria-hidden="true"></div>
-  <Section>
+  <Section background="elevated">
     <Container>
       <ScrollReveal>
         <SectionHeading
@@ -283,7 +248,7 @@ const accentColors = ['#64C8FF', '#A064FF', '#50DCB4', '#FFB43C', '#64C8FF'];
 
   {/* ── S6: FAQ ── */}
   <div class="wwd-section-divider" aria-hidden="true"></div>
-  <Section background="elevated">
+  <Section>
     <Container size="narrow">
       <ScrollReveal>
         <SectionHeading
