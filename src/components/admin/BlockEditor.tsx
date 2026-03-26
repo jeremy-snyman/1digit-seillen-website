@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { BodyBlock } from '@content/data/insights/index';
+import type { BodyBlock, BlockHeading } from '@content/data/insights/index';
 
 interface Props {
   blocks: BodyBlock[];
@@ -53,6 +53,70 @@ function createEmptyBlock(type: string): BodyBlock {
     default:
       return { type: 'paragraph', content: '' };
   }
+}
+
+function HeadingEditor({
+  heading,
+  onChange,
+}: {
+  heading?: BlockHeading;
+  onChange: (heading?: BlockHeading) => void;
+}) {
+  const hasHeading = !!heading?.text;
+
+  if (!hasHeading && !heading) {
+    return (
+      <button
+        onClick={() => onChange({ text: '', bold: true })}
+        className="text-body-sm text-content-muted hover:text-glow-blue transition-colors"
+      >
+        + Add heading
+      </button>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-2 mb-2">
+      <input
+        type="text"
+        value={heading?.text || ''}
+        onChange={(e) =>
+          onChange(e.target.value ? { ...heading, text: e.target.value } : undefined)
+        }
+        className="flex-1 px-3 py-1.5 rounded bg-tint/5 border border-surface-border text-content text-body-sm font-semibold focus:outline-none focus:border-content/20"
+        placeholder="Block heading..."
+      />
+      <button
+        onClick={() => onChange({ ...heading!, bold: !heading?.bold })}
+        className={`px-2 py-1 rounded text-xs font-bold border transition-colors ${
+          heading?.bold
+            ? 'bg-glow-steel/20 border-glow-blue/30 text-glow-blue'
+            : 'border-surface-border text-content-muted hover:text-content'
+        }`}
+        title="Bold"
+      >
+        B
+      </button>
+      <button
+        onClick={() => onChange({ ...heading!, italic: !heading?.italic })}
+        className={`px-2 py-1 rounded text-xs italic border transition-colors ${
+          heading?.italic
+            ? 'bg-glow-steel/20 border-glow-blue/30 text-glow-blue'
+            : 'border-surface-border text-content-muted hover:text-content'
+        }`}
+        title="Italic"
+      >
+        I
+      </button>
+      <button
+        onClick={() => onChange(undefined)}
+        className="text-content-muted hover:text-red-400 text-xs px-1"
+        title="Remove heading"
+      >
+        ×
+      </button>
+    </div>
+  );
 }
 
 function BlockField({
@@ -290,6 +354,10 @@ export default function BlockEditor({ blocks, onChange }: Props) {
               </button>
             </div>
           </div>
+          <HeadingEditor
+            heading={block.blockHeading}
+            onChange={(h) => updateBlock(i, { ...block, blockHeading: h } as BodyBlock)}
+          />
           <BlockField block={block} index={i} onChange={updateBlock} />
         </div>
       ))}

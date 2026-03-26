@@ -45,6 +45,9 @@ function wordCount(blocks: BodyBlock[]): number {
     if ('heading' in block && typeof block.heading === 'string') {
       count += block.heading.split(/\s+/).length;
     }
+    if (block.blockHeading?.text) {
+      count += block.blockHeading.text.split(/\s+/).length;
+    }
   }
   return count;
 }
@@ -83,6 +86,8 @@ export default function ArticleEditor({ initial, isNew }: Props) {
   const [tagsInput, setTagsInput] = useState(article.tags.join(', '));
   const [copied, setCopied] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [saving, setSaving] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saved' | 'error'>('idle');
 
   // localStorage auto-save
   const storageKey = `admin_draft_${article.slug || 'new'}`;
@@ -171,6 +176,54 @@ export default function ArticleEditor({ initial, isNew }: Props) {
     URL.revokeObjectURL(url);
   }
 
+  async function saveArticle() {
+    const errs = validate();
+    if (errs.length > 0) {
+      setErrors(errs);
+      return;
+    }
+    setErrors([]);
+    setSaving(true);
+    setSaveStatus('idle');
+    try {
+      const res = await fetch('/api/admin/articles', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(article),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Save failed');
+      }
+      setSaveStatus('saved');
+      // Clear localStorage draft after successful save
+      localStorage.removeItem(storageKey);
+      setTimeout(() => setSaveStatus('idle'), 3000);
+      // If this was a new article, redirect to the edit page
+      if (isNew && article.slug) {
+        window.location.href = `/admin/insights/${article.slug}`;
+      }
+    } catch (err) {
+      setSaveStatus('error');
+      setErrors([(err as Error).message]);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function uploadImage(file: File, field: 'ogImage' | 'coverImage') {
+    const form = new FormData();
+    form.append('file', file);
+    try {
+      const res = await fetch('/api/admin/upload', { method: 'POST', body: form });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
+      update(field, data.path);
+    } catch (err) {
+      setErrors([(err as Error).message]);
+    }
+  }
+
   const inputClass =
     'w-full px-3 py-2 rounded bg-tint/5 border border-surface-border text-content text-body-sm focus:outline-none focus:border-content/20 transition-colors';
   const labelClass = 'block text-body-sm font-medium text-content-secondary mb-1';
@@ -190,9 +243,16 @@ export default function ArticleEditor({ initial, isNew }: Props) {
           </button>
           <button
             onClick={downloadJson}
-            className="px-4 py-2 rounded-button bg-glow-steel/20 text-content text-body-sm font-medium border border-surface-border hover:border-content/20 transition-colors"
+            className="px-4 py-2 rounded-button border border-surface-border text-body-sm text-content-secondary hover:border-content/20 transition-colors"
           >
             Download JSON
+          </button>
+          <button
+            onClick={saveArticle}
+            disabled={saving}
+            className="px-5 py-2 rounded-button bg-glow-blue/20 text-glow-blue text-body-sm font-semibold border border-glow-blue/30 hover:bg-glow-blue/30 transition-colors disabled:opacity-50"
+          >
+            {saving ? 'Saving...' : saveStatus === 'saved' ? 'Saved!' : 'Save Article'}
           </button>
         </div>
       </div>
@@ -415,6 +475,69 @@ export default function ArticleEditor({ initial, isNew }: Props) {
           )}
         </div>
 
+        {/* Images */}
+        <div className="glass-card p-6 space-y-4">
+          <h2 className="text-heading-md font-semibold text-content">Images</h2>
+
+          <div>
+            <label className={labelClass}>Cover Image</label>
+            <div className="flex items-center gap-3">
+              <input
+                type="text"
+                value={article.coverImage || ''}
+                onChange={(e) => update('coverImage', e.target.value || null)}
+                className={`${inputClass} flex-1`}
+                placeholder="/images/insights/cover.png"
+              />
+              <label className="px-4 py-2 rounded-button border border-surface-border text-body-sm text-content-secondary hover:border-content/20 transition-colors cursor-pointer whitespace-nowrap">
+                Upload
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) uploadImage(f, 'coverImage');
+                    e.target.value = '';
+                  }}
+                />
+              </label>
+            </div>
+            {article.coverImage && (
+              <img src={article.coverImage} alt="Cover preview" className="mt-2 max-h-32 rounded border border-surface-border" />
+            )}
+          </div>
+
+          <div>
+            <label className={labelClass}>OG Image</label>
+            <div className="flex items-center gap-3">
+              <input
+                type="text"
+                value={article.ogImage}
+                onChange={(e) => update('ogImage', e.target.value)}
+                className={`${inputClass} flex-1`}
+                placeholder="/images/insights/og-image.png"
+              />
+              <label className="px-4 py-2 rounded-button border border-surface-border text-body-sm text-content-secondary hover:border-content/20 transition-colors cursor-pointer whitespace-nowrap">
+                Upload
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) uploadImage(f, 'ogImage');
+                    e.target.value = '';
+                  }}
+                />
+              </label>
+            </div>
+            {article.ogImage && (
+              <img src={article.ogImage} alt="OG preview" className="mt-2 max-h-32 rounded border border-surface-border" />
+            )}
+          </div>
+        </div>
+
         {/* SEO */}
         <div className="glass-card p-6 space-y-4">
           <h2 className="text-heading-md font-semibold text-content">SEO</h2>
@@ -437,16 +560,6 @@ export default function ArticleEditor({ initial, isNew }: Props) {
               rows={2}
               className={inputClass}
               placeholder="Meta description for search results..."
-            />
-          </div>
-          <div>
-            <label className={labelClass}>OG Image Path</label>
-            <input
-              type="text"
-              value={article.ogImage}
-              onChange={(e) => update('ogImage', e.target.value)}
-              className={inputClass}
-              placeholder="/images/insights/article-name.png"
             />
           </div>
         </div>

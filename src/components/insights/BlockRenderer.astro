@@ -1,5 +1,5 @@
 ---
-import type { BodyBlock } from '@content/data/insights/index';
+import type { BodyBlock, BlockHeading } from '@content/data/insights/index';
 import ThesisBlock from './ThesisBlock.astro';
 import QuoteBlock from './QuoteBlock.astro';
 import CalloutBlock from './CalloutBlock.astro';
@@ -11,11 +11,22 @@ interface Props {
 }
 
 const { blocks } = Astro.props;
+
+function headingClasses(h: BlockHeading): string {
+  const classes = ['text-heading-lg', 'font-display', 'mb-4', 'text-content'];
+  if (h.bold !== false) classes.push('font-semibold');
+  if (h.italic) classes.push('italic');
+  return classes.join(' ');
+}
 ---
 
 <div class="space-y-0">
   {blocks.map((block, i) => (
     <ScrollReveal delay={i < 3 ? i * 80 : 0}>
+      {block.blockHeading?.text && (
+        <h3 class={headingClasses(block.blockHeading)}>{block.blockHeading.text}</h3>
+      )}
+
       {block.type === 'paragraph' && (
         <p class="text-body-lg text-content-secondary leading-relaxed mb-6">{block.content}</p>
       )}

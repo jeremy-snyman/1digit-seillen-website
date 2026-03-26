@@ -15,8 +15,8 @@ const { title } = Astro.props;
       <p class="text-body-sm text-content-muted">Checking authentication...</p>
     </div>
 
-    <!-- Admin content — hidden until authenticated -->
-    <div id="admin-content" class="hidden">
+    <!-- Admin content — invisible until authenticated (uses visibility so React can hydrate) -->
+    <div id="admin-content" class="invisible h-0 overflow-hidden">
       <!-- Admin Header -->
       <header class="border-b border-surface-border bg-surface-elevated">
         <div class="max-w-[1260px] mx-auto px-6 py-4 flex items-center justify-between">
@@ -57,16 +57,16 @@ const { title } = Astro.props;
       // Check authentication
       if (!sessionStorage.getItem(STORAGE_KEY)) {
         // Not authenticated — redirect to login
-        loading.classList.remove('hidden');
-        content.classList.add('hidden');
+        loading.style.display = '';
+        content.classList.add('invisible', 'h-0', 'overflow-hidden');
         var currentPath = window.location.pathname;
         window.location.href = '/admin/login?redirect=' + encodeURIComponent(currentPath);
         return;
       }
 
       // Authenticated — show content
-      loading.classList.add('hidden');
-      content.classList.remove('hidden');
+      loading.style.display = 'none';
+      content.classList.remove('invisible', 'h-0', 'overflow-hidden');
 
       // Logout handler — idempotent via data attribute flag
       var logoutBtn = document.getElementById('admin-logout');

@@ -1,18 +1,28 @@
 // ── Insights Module — Types & Data Layer ──
 
 import articlesData from './articles.json';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+const ARTICLES_PATH = join(process.cwd(), 'src/content/data/insights/articles.json');
 
 // ── Body Block Types (discriminated union) ──
 
+export interface BlockHeading {
+  text: string;
+  bold?: boolean;
+  italic?: boolean;
+}
+
 export type BodyBlock =
-  | { type: 'paragraph'; content: string }
-  | { type: 'section'; heading: string; content: string }
-  | { type: 'bulletList'; items: string[] }
-  | { type: 'numberedList'; items: string[] }
-  | { type: 'quote'; content: string; attribution?: string }
-  | { type: 'diagram'; diagramType: string; caption: string; data?: Record<string, unknown> }
-  | { type: 'chart'; chartType: string; caption: string; data: Record<string, unknown>[] }
-  | { type: 'callout'; content: string };
+  | { type: 'paragraph'; content: string; blockHeading?: BlockHeading }
+  | { type: 'section'; heading: string; content: string; blockHeading?: BlockHeading }
+  | { type: 'bulletList'; items: string[]; blockHeading?: BlockHeading }
+  | { type: 'numberedList'; items: string[]; blockHeading?: BlockHeading }
+  | { type: 'quote'; content: string; attribution?: string; blockHeading?: BlockHeading }
+  | { type: 'diagram'; diagramType: string; caption: string; data?: Record<string, unknown>; blockHeading?: BlockHeading }
+  | { type: 'chart'; chartType: string; caption: string; data: Record<string, unknown>[]; blockHeading?: BlockHeading }
+  | { type: 'callout'; content: string; blockHeading?: BlockHeading };
 
 // ── Article Interface ──
 
@@ -46,7 +56,7 @@ export interface InsightArticle {
 
 export type InsightMeta = Omit<InsightArticle, 'bodyBlocks'>;
 
-// ── Data Access ──
+// ── Data Access (cached — for public/static pages) ──
 
 const articles: InsightArticle[] = articlesData as InsightArticle[];
 
@@ -71,6 +81,48 @@ export function getInsightBySlug(slug: string): InsightArticle | undefined {
 export function getPinnedInsight(): InsightArticle | undefined {
   const published = getPublishedInsights();
   return published.find((a) => a.isPinned) ?? published[0];
+}
+
+// ── Fresh Data Access (reads from disk — for admin pages) ──
+
+function readFresh(): InsightArticle[] {
+  const raw = readFileSync(ARTICLES_PATH, 'utf-8');
+  return JSON.parse(raw) as InsightArticle[];
+}
+
+/** All articles fresh from disk, sorted newest-first */
+export function getAllInsightsFresh(): InsightArticle[] {
+  return readFresh().sort(
+    (a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime(),
+  );
+}
+
+/** Single article by slug, fresh from disk */
+export function getInsightBySlugFresh(slug: string): InsightArticle | undefined {
+  return readFresh().find((a) => a.slug === slug);
+}
+
+/** Published articles only, fresh from disk, newest-first */
+export function getPublishedInsightsFresh(): InsightArticle[] {
+  return getAllInsightsFresh().filter((a) => a.status === 'published');
+}
+
+/** The pinned article fresh from disk — fallback to latest published */
+export function getPinnedInsightFresh(): InsightArticle | undefined {
+  const published = getPublishedInsightsFresh();
+  return published.find((a) => a.isPinned) ?? published[0];
+}
+
+/** Distinct categories from published articles, fresh from disk */
+export function getAllCategoriesFresh(): string[] {
+  const cats = new Set(getPublishedInsightsFresh().map((a) => a.category));
+  return [...cats].sort();
+}
+
+/** Distinct tags from published articles, fresh from disk */
+export function getAllTagsFresh(): string[] {
+  const tags = new Set(getPublishedInsightsFresh().flatMap((a) => a.tags));
+  return [...tags].sort();
 }
 
 /** Campaign-featured articles */

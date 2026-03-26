@@ -1,11 +1,11 @@
 ---
 import AdminLayout from '@layouts/AdminLayout.astro';
 import ArticleList from '@components/admin/ArticleList';
-import { getAllInsights } from '@content/data/insights/index';
+import { getAllInsightsFresh } from '@content/data/insights/index';
 
-export const prerender = true;
+export const prerender = false;
 
-const articles = getAllInsights();
+const articles = getAllInsightsFresh();
 ---
 
 <AdminLayout title="Articles">

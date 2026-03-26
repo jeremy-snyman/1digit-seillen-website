@@ -1,18 +1,15 @@
 ---
 import InsightLayout from '@layouts/InsightLayout.astro';
-import { getAllInsights, getInsightBySlug } from '@content/data/insights/index';
+import { getInsightBySlugFresh } from '@content/data/insights/index';
 
-export const prerender = true;
+export const prerender = false;
 
-export function getStaticPaths() {
-  const articles = getAllInsights();
-  return articles.map((article) => ({
-    params: { slug: article.slug },
-    props: { article },
-  }));
+const { slug } = Astro.params;
+const article = getInsightBySlugFresh(slug!);
+
+if (!article) {
+  return Astro.redirect('/admin/insights');
 }
-
-const { article } = Astro.props;
 ---
 
 <!-- Preview banner -->

@@ -42,13 +42,48 @@ export default function ArticleList({ articles: initialArticles }: Props) {
     }
   }
 
-  function togglePin(slug: string) {
-    setArticles((prev) =>
-      prev.map((a) => ({
-        ...a,
-        isPinned: a.slug === slug ? !a.isPinned : false,
-      })),
-    );
+  async function deleteArticle(slug: string, title: string) {
+    if (!confirm(`Delete "${title}"? This cannot be undone.`)) return;
+    try {
+      const res = await fetch(`/api/admin/articles?slug=${encodeURIComponent(slug)}`, {
+        method: 'DELETE',
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        alert(data.error || 'Delete failed');
+        return;
+      }
+      setArticles((prev) => prev.filter((a) => a.slug !== slug));
+    } catch {
+      alert('Failed to delete article');
+    }
+  }
+
+  async function handleTogglePin(slug: string) {
+    const updated = articles.map((a) => ({
+      ...a,
+      isPinned: a.slug === slug ? !a.isPinned : false,
+    }));
+    setArticles(updated);
+    // Persist the change
+    const article = updated.find((a) => a.slug === slug);
+    if (article) {
+      fetch('/api/admin/articles', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(article),
+      }).catch(() => {});
+      // Also unpin others that were pinned
+      for (const a of articles) {
+        if (a.isPinned && a.slug !== slug) {
+          fetch('/api/admin/articles', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...a, isPinned: false }),
+          }).catch(() => {});
+        }
+      }
+    }
   }
 
   function exportJson() {
@@ -154,7 +189,7 @@ export default function ArticleList({ articles: initialArticles }: Props) {
                 </td>
                 <td className="px-4 py-3">
                   <button
-                    onClick={() => togglePin(article.slug)}
+                    onClick={() => handleTogglePin(article.slug)}
                     className={`text-xs px-2 py-0.5 rounded transition-colors ${
                       article.isPinned
                         ? 'bg-glow-steel/20 text-glow-blue'
@@ -180,6 +215,12 @@ export default function ArticleList({ articles: initialArticles }: Props) {
                     >
                       Preview
                     </a>
+                    <button
+                      onClick={() => deleteArticle(article.slug, article.title)}
+                      className="text-body-sm text-content-muted hover:text-red-400 transition-colors"
+                    >
+                      Delete
+                    </button>
                   </div>
                 </td>
               </tr>

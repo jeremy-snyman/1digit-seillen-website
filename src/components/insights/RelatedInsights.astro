@@ -1,5 +1,5 @@
 ---
-import { getPublishedInsights } from '@content/data/insights/index';
+import { getPublishedInsightsFresh } from '@content/data/insights/index';
 import ArticleCard from './ArticleCard.astro';
 import ArticleGrid from './ArticleGrid.astro';
 import Container from '@components/layout/Container.astro';
@@ -15,7 +15,7 @@ interface Props {
 const { currentSlug, category, tags } = Astro.props;
 
 // Score articles by relevance: category match (high), tag overlap (lower)
-const articles = getPublishedInsights()
+const articles = getPublishedInsightsFresh()
   .filter((a) => a.slug !== currentSlug)
   .map((a) => {
     let score = 0;
