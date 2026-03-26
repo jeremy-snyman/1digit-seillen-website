@@ -408,7 +408,7 @@
   .wwd-section-divider {
     height: 1px;
     background: radial-gradient(
-      50% 50%,
+      closest-side at 50% 50%,
       rgb(var(--color-content-secondary) / 0.12) 0%,
       rgb(var(--color-surface)) 100%
     );
@@ -416,7 +416,7 @@
 
   html[data-theme="light"] .wwd-section-divider {
     background: radial-gradient(
-      50% 50%,
+      closest-side at 50% 50%,
       rgb(var(--color-content-secondary) / 0.35) 0%,
       rgb(var(--color-surface)) 100%
     );
