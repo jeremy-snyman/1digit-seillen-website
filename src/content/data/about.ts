@@ -1,4 +1,4 @@
-// ── About Page — Data ──
+// ── About Page -- Data ──
 
 export interface Pillar {
   icon: string;
@@ -28,15 +28,15 @@ export interface Value {
 // ── S1: Hero ──
 
 export const heroDescription =
-  '1Digit is an AI architecture and data engineering firm that enables enterprise AI adoption through structured data platforms, governance models, and scalable engineering. We simplify the complex — so your organisation can move from data chaos to AI-ready infrastructure.';
+  '1Digit is an AI architecture and data engineering firm that enables enterprise AI adoption through structured data platforms, governance models, and scalable engineering. We simplify the complex, so your organisation can move from data chaos to AI-ready infrastructure.';
 
 // ── S2: Mission & Vision ──
 
 export const missionText =
-  'To simplify enterprise data and AI platform delivery — replacing fragmented toolchains, ungoverned data, and runaway costs with structured, production-grade systems that organisations can trust and scale.';
+  'To simplify enterprise data and AI platform delivery, replacing fragmented toolchains, ungoverned data, and runaway costs with structured, production-grade systems that organisations can trust and scale.';
 
 export const visionText =
-  'To make enterprise AI adoption practical, governed, and cost-effective for every organisation — regardless of size, industry, or cloud provider. AI should be an operational advantage, not a perpetual proof-of-concept.';
+  'To make enterprise AI adoption practical, governed, and cost-effective for every organisation, regardless of size, industry, or cloud provider. AI should be an operational advantage, not a perpetual proof-of-concept.';
 
 export const philosophyQuote =
   'AI success is not a model problem. It is a data problem, an architecture problem, and a governance problem.';
@@ -47,12 +47,12 @@ export const corePillars: Pillar[] = [
   {
     icon: 'layers',
     title: 'Structured',
-    description: 'Architecture-led delivery. Every system starts with a blueprint — data models, integration patterns, and governance frameworks defined before a line of code is written.',
+    description: 'Architecture-led delivery. Every system starts with a blueprint: data models, integration patterns, and governance frameworks defined before a line of code is written.',
   },
   {
     icon: 'target',
     title: 'Practical',
-    description: 'AI that delivers measurable outcomes, not proof-of-concepts that never reach production. We build for the real world — timelines, budgets, and operational constraints included.',
+    description: 'AI that delivers measurable outcomes, not proof-of-concepts that never reach production. We build for the real world, including timelines, budgets, and operational constraints included.',
   },
   {
     icon: 'eye',
@@ -70,22 +70,22 @@ export const differentiators: Differentiator[] = [
   {
     icon: 'database',
     title: 'Data-First Approach',
-    description: 'Most AI consultancies start with the model and work backwards. We start with your data landscape — unifying, governing, and structuring it so AI has a foundation worth building on.',
+    description: 'Most AI consultancies start with the model and work backwards. We start with your data landscape, unifying, governing, and structuring it so AI has a foundation worth building on.',
   },
   {
     icon: 'layers',
     title: 'Architecture Discipline',
-    description: 'TOGAF-informed, security-embedded, governance-aligned. We bring enterprise architecture rigour to AI delivery — not startup shortcuts disguised as agility.',
+    description: 'TOGAF-informed, security-embedded, governance-aligned. We bring enterprise architecture rigour to AI delivery, not startup shortcuts disguised as agility.',
   },
   {
     icon: 'settings',
     title: 'We Build, Not Advise',
-    description: 'We deliver working platforms and products — not slide decks. Strategy is only valuable when it becomes implementation. Every engagement produces production-grade outputs.',
+    description: 'We deliver working platforms and products, not slide decks. Strategy is only valuable when it becomes implementation. Every engagement produces production-grade outputs.',
   },
   {
     icon: 'chart',
     title: 'Cost Transparency',
-    description: 'Published pricing, fixed scopes, milestone-based delivery. You always know what you are paying for — and what you are getting. No open-ended retainers, no ambiguous timelines.',
+    description: 'Published pricing, fixed scopes, milestone-based delivery. You always know what you are paying for, and what you are getting. No open-ended retainers, no ambiguous timelines.',
   },
   {
     icon: 'shield',
@@ -97,7 +97,7 @@ export const differentiators: Differentiator[] = [
 // ── S5: Our Approach ──
 
 export const approachIntro =
-  'Our delivery methodology is structured, repeatable, and designed for enterprise environments — not startup sandboxes.';
+  'Our delivery methodology is structured, repeatable, and designed for enterprise environments, not startup sandboxes.';
 
 export const approachSteps: ApproachStep[] = [
   {
@@ -110,7 +110,7 @@ export const approachSteps: ApproachStep[] = [
     number: '02',
     icon: 'layers',
     title: 'Architect',
-    description: 'Enterprise-grade architecture design — data models, integration patterns, governance frameworks, and deployment topology. The blueprint before the build.',
+    description: 'Enterprise-grade architecture design: data models, integration patterns, governance frameworks, and deployment topology. The blueprint before the build.',
   },
   {
     number: '03',
@@ -164,7 +164,7 @@ export const values: Value[] = [
   {
     icon: 'chart',
     title: 'Cost Discipline',
-    description: 'We architect for cost efficiency. Cloud costs should scale with value — not with complexity or vendor lock-in.',
+    description: 'We architect for cost efficiency. Cloud costs should scale with value, not with complexity or vendor lock-in.',
   },
   {
     icon: 'target',
