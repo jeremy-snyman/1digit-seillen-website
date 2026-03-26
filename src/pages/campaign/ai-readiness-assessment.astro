@@ -17,11 +17,15 @@ import MaturityCurve from '@components/campaign/MaturityCurve.astro';
 import {
   campaignMeta,
   hero,
+  socialProof,
   assessmentAreas,
   deliverables,
   processSteps,
+  maturityFeatures,
+  pricingSection,
   whyCredibility,
   whoThisIsFor,
+  bottomCta,
   faqs,
 } from '@content/data/ai-readiness-campaign';
 
@@ -34,40 +38,94 @@ const LayoutComponent = useFullNav ? PageLayout : CampaignLayout;
 <LayoutComponent title={campaignMeta.title} description={campaignMeta.description}>
 
   <!-- 1. Hero -->
-  <Section class="pt-32 pb-16 relative overflow-hidden">
+  <Section class="pt-24 pb-8 relative overflow-hidden" padding="none">
     <div class="ambient-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-glow-blue/10 blur-[120px]"></div>
-    <Container size="narrow" class="relative z-10">
+    <Container class="relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <ScrollReveal>
+          <div>
+            <div class="mb-5">
+              <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-tint/10 bg-tint/5 text-label-sm text-content-secondary">
+                {hero.badge}
+              </div>
+            </div>
+            <h1 class="text-display-md lg:text-display-lg font-display mb-5 uppercase">
+              {hero.headlineBefore}<br />
+              <span class="campaign-gradient-text">{hero.headlineGradient}</span><br />
+              {hero.headlineAfter}
+            </h1>
+            <p class="text-body-md text-content-secondary mb-4 leading-relaxed">
+              {hero.subheading}
+            </p>
+            <p class="text-body-sm text-content-muted mb-6 leading-relaxed">
+              {hero.supportingText}
+            </p>
+            <Button variant="primary" size="lg" href={campaignMeta.ctaHref}>
+              {campaignMeta.ctaText}
+            </Button>
+          </div>
+        </ScrollReveal>
+
+        <!-- Hero Image -->
+        <ScrollReveal delay={200} class="hidden lg:block">
+          <div class="relative max-w-sm mx-auto">
+            <div class="absolute -inset-4 bg-gradient-to-tr from-glow-blue/30 to-glow-steel/20 rounded-2xl blur-2xl opacity-50"></div>
+            <div class="relative overflow-hidden rounded-2xl">
+              <img
+                src={hero.heroImage}
+                alt={hero.heroImageAlt}
+                class="w-full max-h-[420px] object-cover"
+                loading="eager"
+              />
+            </div>
+            <!-- Floating overlay card -->
+            <div class="absolute bottom-4 left-4 glass-card rounded-xl px-4 py-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-glow-blue/15 flex items-center justify-center">
+                  <Icon name="chart" size={20} class="text-glow-blue" />
+                </div>
+                <div>
+                  <p class="text-label-sm text-content-muted">AI Maturity Score</p>
+                  <p class="text-heading-sm font-bold text-glow-blue">3.2/5</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 2. Social Proof Strip -->
+  <Section class="py-12 border-y border-tint/5">
+    <Container>
       <ScrollReveal>
         <div class="text-center">
-          <div class="flex justify-center mb-6">
-            <Badge variant="accent">{hero.badge}</Badge>
-          </div>
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-glow-blue/30 bg-glow-blue/10 mb-8">
-            <span class="text-body-md font-semibold text-glow-blue">{hero.priceLabel}</span>
-          </div>
-          <h1 class="text-display-lg lg:text-display-xl font-display mb-6">
-            {hero.heading.split(hero.serifWord)[0]}<em class="font-serif italic">{hero.serifWord}</em>{hero.heading.split(hero.serifWord)[1]}
-          </h1>
-          <p class="text-body-lg text-content-secondary max-w-xl mx-auto mb-10">
-            {hero.subtext}
+          <p class="text-body-lg text-content-secondary mb-6 max-w-4xl mx-auto">
+            {socialProof.headline}
           </p>
-          <Button variant="primary" size="lg" href={campaignMeta.ctaHref}>
-            {campaignMeta.ctaText}
-          </Button>
+          <div class="flex flex-wrap justify-center gap-6">
+            {socialProof.industries.map((industry) => (
+              <div class="flex items-center gap-2 text-body-sm text-content-muted">
+                <Icon name={industry.icon} size={18} class="text-glow-blue" />
+                <span>{industry.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </ScrollReveal>
     </Container>
   </Section>
 
-  <!-- 2. Assessment Scope -->
+  <!-- 3. The Framework — Six Dimensions -->
   <Section background="elevated">
     <Container>
       <ScrollReveal>
         <SectionHeading
-          badge="What We Assess"
-          heading="Six dimensions of AI readiness"
-          serifWord="readiness"
-          description="We go beyond surface-level surveys. Each dimension is assessed through structured interviews, technical reviews, and evidence-based scoring."
+          badge="The Framework"
+          heading="Six dimensions that matter"
+          serifWord="matter"
+          description="Most companies do not struggle with AI because of a lack of interest. They struggle because strategy, data, technology, governance, skills, and execution are not aligned. We assess each of these through structured interviews, technical review, and evidence-based scoring, so you get an honest view of what is ready, what is not, and where the real constraints sit."
           align="center"
         />
       </ScrollReveal>
@@ -87,48 +145,245 @@ const LayoutComponent = useFullNav ? PageLayout : CampaignLayout;
     </Container>
   </Section>
 
-  <!-- 3. Deliverables -->
+  <!-- 4. Deliverables — Interactive Two Column -->
   <Section>
     <Container>
       <ScrollReveal>
         <SectionHeading
           badge="What You Receive"
-          heading="Five actionable deliverables"
-          serifWord="actionable"
-          description="Every deliverable is designed for decision-makers — not filed away and forgotten."
-          align="center"
+          heading="Five outputs designed for action, not shelfware"
+          serifWord="action"
+          description="Every deliverable is designed to help leadership teams make decisions, align stakeholders, and move forward with confidence."
         />
       </ScrollReveal>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        {deliverables.map((item, i) => (
-          <ScrollReveal delay={i * 100}>
-            <GlassCard hover padding="lg" class="h-full relative overflow-hidden">
-              <span class="absolute top-4 right-5 text-display-lg font-display text-tint/5 select-none leading-none">
-                {item.number}
-              </span>
-              <div class="relative">
-                <div class="w-9 h-9 rounded-full bg-glow-blue/15 flex items-center justify-center mb-4">
-                  <span class="text-body-sm font-bold text-glow-blue">{item.number}</span>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mt-12" id="deliverables-section">
+        <!-- Deliverables list -->
+        <div class="space-y-3">
+          {deliverables.map((item, i) => (
+            <ScrollReveal delay={i * 100}>
+              <button
+                type="button"
+                class:list={[
+                  'deliverable-tab w-full text-left rounded-2xl p-5 border transition-all duration-300 cursor-pointer',
+                  i === 0
+                    ? 'glass-card border-glow-blue/30 bg-glow-blue/5'
+                    : 'glass-card border-transparent hover:border-tint/10',
+                ]}
+                data-target={`preview-${item.number}`}
+              >
+                <div class="flex items-start gap-4">
+                  <div class="w-9 h-9 rounded-full bg-glow-blue/15 flex items-center justify-center shrink-0 mt-0.5">
+                    <span class="text-body-sm font-bold text-glow-blue">{String(item.number).padStart(2, '0')}</span>
+                  </div>
+                  <div>
+                    <h3 class="text-heading-xs font-semibold mb-1">{item.title}</h3>
+                    <p class="text-body-sm text-content-secondary">{item.description}</p>
+                  </div>
                 </div>
-                <h3 class="text-heading-sm font-semibold mb-2">{item.title}</h3>
-                <p class="text-body-md text-content-secondary">{item.description}</p>
-              </div>
-            </GlassCard>
-          </ScrollReveal>
-        ))}
+              </button>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <!-- Preview Panels (sticky right column) -->
+        <ScrollReveal delay={200}>
+          <div class="sticky top-24">
+
+            <!-- Preview 1: Executive Summary -->
+            <div class="deliverable-preview" id="preview-1">
+              <GlassCard padding="lg">
+                <div class="flex items-center justify-between mb-6">
+                  <h3 class="text-heading-sm font-semibold">Executive Summary</h3>
+                  <span class="text-label-xs text-content-muted uppercase tracking-wider">Sample Output</span>
+                </div>
+                <div class="flex items-center gap-6 mb-6 p-4 rounded-xl bg-surface-subtle/50">
+                  <div class="text-center">
+                    <p class="text-display-md font-display text-glow-blue">62%</p>
+                    <p class="text-label-xs text-content-muted uppercase tracking-wider mt-1">Overall Score</p>
+                  </div>
+                  <div class="h-16 w-px bg-tint/10"></div>
+                  <div>
+                    <p class="text-heading-xs font-semibold text-signal-amber">Established</p>
+                    <p class="text-body-sm text-content-muted">Solid foundations with gaps to address</p>
+                  </div>
+                </div>
+                <div class="space-y-3">
+                  <p class="text-label-sm font-semibold text-content-muted uppercase tracking-wider mb-2">Key Findings</p>
+                  <div class="flex items-start gap-2">
+                    <Icon name="check" size={14} class="text-signal-emerald mt-0.5 shrink-0" />
+                    <span class="text-body-sm text-content-secondary">Strong executive sponsorship and clear AI ambition</span>
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <Icon name="alert-triangle" size={14} class="text-signal-amber mt-0.5 shrink-0" />
+                    <span class="text-body-sm text-content-secondary">Data silos limiting cross-functional AI use cases</span>
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <Icon name="alert-triangle" size={14} class="text-signal-amber mt-0.5 shrink-0" />
+                    <span class="text-body-sm text-content-secondary">Governance framework needs formalisation</span>
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <Icon name="x" size={14} class="text-signal-blue mt-0.5 shrink-0" />
+                    <span class="text-body-sm text-content-secondary">Skills gap in MLOps and production deployment</span>
+                  </div>
+                </div>
+              </GlassCard>
+            </div>
+
+            <!-- Preview 2: Capability Heatmap -->
+            <div class="deliverable-preview hidden" id="preview-2">
+              <GlassCard padding="lg">
+                <div class="flex items-center justify-between mb-6">
+                  <h3 class="text-heading-sm font-semibold">Capability Heatmap</h3>
+                  <span class="text-label-xs text-content-muted uppercase tracking-wider">Sample Output</span>
+                </div>
+                <div class="space-y-4">
+                  {[
+                    { label: 'Strategy', score: 72, color: 'bg-signal-emerald' },
+                    { label: 'Data', score: 58, color: 'bg-signal-amber' },
+                    { label: 'Technology', score: 81, color: 'bg-signal-emerald' },
+                    { label: 'Governance', score: 45, color: 'bg-signal-amber' },
+                    { label: 'Skills', score: 63, color: 'bg-signal-blue' },
+                    { label: 'Delivery', score: 52, color: 'bg-signal-amber' },
+                  ].map((dim) => (
+                    <div>
+                      <div class="flex justify-between items-center mb-1.5">
+                        <span class="text-body-sm text-content-secondary">{dim.label}</span>
+                        <span class="text-body-sm font-bold text-content">{dim.score}%</span>
+                      </div>
+                      <div class="w-full h-2.5 bg-surface-subtle rounded-full overflow-hidden">
+                        <div
+                          class:list={['h-full rounded-full transition-all duration-700', dim.color]}
+                          style={`width: ${dim.score}%`}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div class="flex items-center gap-4 mt-6 pt-4 border-t border-tint/5">
+                  <div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-signal-emerald"></div><span class="text-label-xs text-content-muted">Strong (70%+)</span></div>
+                  <div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-signal-blue"></div><span class="text-label-xs text-content-muted">Developing</span></div>
+                  <div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-signal-amber"></div><span class="text-label-xs text-content-muted">Gaps (&lt;60%)</span></div>
+                </div>
+              </GlassCard>
+            </div>
+
+            <!-- Preview 3: Risk & Constraint Analysis -->
+            <div class="deliverable-preview hidden" id="preview-3">
+              <GlassCard padding="lg">
+                <div class="flex items-center justify-between mb-6">
+                  <h3 class="text-heading-sm font-semibold">Risk & Constraint Analysis</h3>
+                  <span class="text-label-xs text-content-muted uppercase tracking-wider">Sample Output</span>
+                </div>
+                <div class="space-y-3">
+                  {[
+                    { risk: 'No model governance framework in place', severity: 'Critical', color: 'bg-red-500/15 text-red-400', border: 'border-red-500/20' },
+                    { risk: 'Data silos across business units', severity: 'High', color: 'bg-signal-amber/15 text-signal-amber', border: 'border-signal-amber/20' },
+                    { risk: 'Limited MLOps capability for production', severity: 'High', color: 'bg-signal-amber/15 text-signal-amber', border: 'border-signal-amber/20' },
+                    { risk: 'Legacy integration dependencies', severity: 'Medium', color: 'bg-signal-blue/15 text-signal-blue', border: 'border-signal-blue/20' },
+                    { risk: 'Vendor lock-in risk on current platform', severity: 'Medium', color: 'bg-signal-blue/15 text-signal-blue', border: 'border-signal-blue/20' },
+                  ].map((item) => (
+                    <div class:list={['flex items-center justify-between p-3 rounded-lg border', item.border, 'bg-surface-subtle/30']}>
+                      <span class="text-body-sm text-content-secondary">{item.risk}</span>
+                      <span class:list={['text-label-xs font-semibold px-2 py-0.5 rounded-full shrink-0 ml-3', item.color]}>{item.severity}</span>
+                    </div>
+                  ))}
+                </div>
+                <div class="mt-5 p-3 rounded-lg bg-surface-subtle/50">
+                  <p class="text-label-xs text-content-muted uppercase tracking-wider mb-1">Impact Summary</p>
+                  <p class="text-body-sm text-content-secondary">2 critical risks identified that could delay AI programmes by 6+ months if unaddressed.</p>
+                </div>
+              </GlassCard>
+            </div>
+
+            <!-- Preview 4: Prioritised Roadmap -->
+            <div class="deliverable-preview hidden" id="preview-4">
+              <GlassCard padding="lg">
+                <div class="flex items-center justify-between mb-6">
+                  <h3 class="text-heading-sm font-semibold">Prioritised Roadmap</h3>
+                  <span class="text-label-xs text-content-muted uppercase tracking-wider">Sample Output</span>
+                </div>
+                <div class="space-y-5">
+                  <div>
+                    <div class="flex items-center gap-2 mb-3">
+                      <div class="w-3 h-3 rounded-full bg-signal-emerald"></div>
+                      <span class="text-label-sm font-semibold uppercase tracking-wider text-signal-emerald">Quick Wins — 0-3 Months</span>
+                    </div>
+                    <div class="space-y-2 ml-5">
+                      <p class="text-body-sm text-content-secondary">Establish data governance committee</p>
+                      <p class="text-body-sm text-content-secondary">Consolidate data catalogue tooling</p>
+                    </div>
+                  </div>
+                  <div class="border-t border-tint/5 pt-5">
+                    <div class="flex items-center gap-2 mb-3">
+                      <div class="w-3 h-3 rounded-full bg-signal-blue"></div>
+                      <span class="text-label-sm font-semibold uppercase tracking-wider text-signal-blue">Near-Term — 3-6 Months</span>
+                    </div>
+                    <div class="space-y-2 ml-5">
+                      <p class="text-body-sm text-content-secondary">Build MLOps pipeline for model deployment</p>
+                      <p class="text-body-sm text-content-secondary">Launch AI skills development programme</p>
+                    </div>
+                  </div>
+                  <div class="border-t border-tint/5 pt-5">
+                    <div class="flex items-center gap-2 mb-3">
+                      <div class="w-3 h-3 rounded-full bg-signal-purple"></div>
+                      <span class="text-label-sm font-semibold uppercase tracking-wider text-signal-purple">Strategic — 6-12 Months</span>
+                    </div>
+                    <div class="space-y-2 ml-5">
+                      <p class="text-body-sm text-content-secondary">Implement enterprise AI platform</p>
+                      <p class="text-body-sm text-content-secondary">Scale proven use cases across business units</p>
+                    </div>
+                  </div>
+                </div>
+              </GlassCard>
+            </div>
+
+            <!-- Preview 5: Recommended Next Steps -->
+            <div class="deliverable-preview hidden" id="preview-5">
+              <GlassCard padding="lg">
+                <div class="flex items-center justify-between mb-6">
+                  <h3 class="text-heading-sm font-semibold">Recommended Next Steps</h3>
+                  <span class="text-label-xs text-content-muted uppercase tracking-wider">Sample Output</span>
+                </div>
+                <div class="space-y-4">
+                  {[
+                    { step: '1', title: 'Address data governance gaps', desc: 'Formalise ownership, access controls, and quality standards across priority data domains.', tag: 'Internal' },
+                    { step: '2', title: 'Build MLOps foundations', desc: 'Establish model deployment pipeline, monitoring, and feedback loops for production AI.', tag: 'Hybrid' },
+                    { step: '3', title: 'Launch AI literacy programme', desc: 'Upskill key teams on AI capabilities, limitations, and responsible use.', tag: 'Internal' },
+                    { step: '4', title: 'Run a scoped proof of value', desc: 'Select one high-impact, low-complexity use case to validate the approach end-to-end.', tag: '1Digit' },
+                  ].map((item) => (
+                    <div class="flex gap-4 p-3 rounded-lg bg-surface-subtle/30">
+                      <div class="w-7 h-7 rounded-full bg-glow-blue/15 flex items-center justify-center shrink-0 mt-0.5">
+                        <span class="text-label-xs font-bold text-glow-blue">{item.step}</span>
+                      </div>
+                      <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-1">
+                          <h4 class="text-body-sm font-semibold">{item.title}</h4>
+                          <span class="text-label-xs text-content-muted px-1.5 py-0.5 rounded bg-surface-subtle">{item.tag}</span>
+                        </div>
+                        <p class="text-body-sm text-content-secondary">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p class="text-body-sm text-content-muted mt-5 italic">No obligation to engage 1Digit for implementation. All recommendations are actionable independently.</p>
+              </GlassCard>
+            </div>
+
+          </div>
+        </ScrollReveal>
       </div>
     </Container>
   </Section>
 
-  <!-- 4. How It Works -->
+  <!-- 5. How It Works — Timeline -->
   <Section background="elevated">
     <Container>
       <ScrollReveal>
         <SectionHeading
           badge="Our Process"
-          heading="Four weeks to clarity"
-          serifWord="clarity"
-          description="A structured engagement designed to be thorough without dragging on."
+          heading="Four Weeks to Clarity"
+          serifWord="Clarity"
+          description="A focused engagement designed to give you a reliable view of where you stand without dragging on for months."
           align="center"
         />
       </ScrollReveal>
@@ -155,138 +410,168 @@ const LayoutComponent = useFullNav ? PageLayout : CampaignLayout;
     </Container>
   </Section>
 
-  <!-- 5. Transparent Pricing -->
+  <!-- 6. AI Maturity Curve — Two Column -->
   <Section>
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <ScrollReveal>
+          <div>
+            <SectionHeading
+              badge="Maturity Model"
+              heading="The AI Maturity Curve"
+              serifWord="Maturity"
+              description="We map your organisation against a five-level AI maturity model, but the real value is not the label. It is understanding what is preventing progress, what is already in place, and what needs to happen next."
+            />
+            <div class="space-y-6 mt-10">
+              {maturityFeatures.map((feature) => (
+                <div class="flex gap-4">
+                  <div class="w-12 h-12 rounded-lg bg-glow-blue/10 flex items-center justify-center shrink-0">
+                    <Icon name={feature.icon} size={24} class="text-glow-blue" />
+                  </div>
+                  <div>
+                    <h4 class="text-heading-xs font-semibold mb-1">{feature.title}</h4>
+                    <p class="text-body-md text-content-secondary">{feature.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <GlassCard padding="lg">
+            <MaturityCurve />
+          </GlassCard>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 7. Pricing -->
+  <Section background="elevated">
     <Container size="narrow">
       <ScrollReveal>
-        <div class="text-center mb-12">
-          <SectionHeading
-            badge="Transparent Pricing"
-            heading="One price, everything included"
-            serifWord="everything"
-            align="center"
-          />
-        </div>
-      </ScrollReveal>
-      <ScrollReveal delay={100}>
         <GlassCard padding="lg" class="shimmer-border text-center">
-          <p class="text-display-lg lg:text-display-xl font-display text-glow-blue mb-2">{campaignMeta.price}</p>
-          <p class="text-body-lg text-content-secondary mb-8">Fixed price · No hidden costs</p>
-          <div class="text-left max-w-md mx-auto mb-8">
-            <FeatureList items={[
-              'Discovery workshop with your leadership team',
-              'Deep assessment across six dimensions',
-              'Capability heatmap and risk analysis',
-              'Prioritised roadmap with quick wins',
-              'Executive readout and Q&A session',
-            ]} />
+          <div class="mb-6">
+            <Badge variant="accent">{pricingSection.badge}</Badge>
           </div>
-          <Button variant="primary" size="lg" href={campaignMeta.ctaHref}>
-            {campaignMeta.ctaText}
+          <h2 class="text-heading-xl lg:text-display-md font-display mb-4 whitespace-pre-line">
+            {pricingSection.headline}
+          </h2>
+          <p class="text-body-md text-content-secondary mb-8">
+            {pricingSection.subhead}
+          </p>
+          <div class="mb-8">
+            <p class="text-display-md lg:text-display-lg font-display campaign-gradient-text inline-block">{pricingSection.price}</p>
+            <p class="text-body-sm text-content-muted mt-1">{pricingSection.priceNote}</p>
+          </div>
+          <div class="text-left max-w-md mx-auto mb-8">
+            <FeatureList items={pricingSection.inclusions} />
+          </div>
+          <p class="text-body-md text-content-meta italic mb-8">
+            {pricingSection.bottomLine}
+          </p>
+          <Button variant="primary" size="lg" href={pricingSection.ctaHref}>
+            {pricingSection.ctaText}
           </Button>
         </GlassCard>
       </ScrollReveal>
     </Container>
   </Section>
 
-  <!-- 6. AI Maturity Curve -->
+  <!-- 8. Who This Is For — Two Column with Icon Cards -->
   <Section background="elevated">
     <Container>
-      <ScrollReveal>
-        <SectionHeading
-          badge="Maturity Model"
-          heading="Where does your organisation sit?"
-          serifWord="organisation"
-          description="Our assessment maps your capabilities against a five-level AI maturity model."
-          align="center"
-        />
-      </ScrollReveal>
-      <ScrollReveal delay={100}>
-        <GlassCard padding="lg" class="mt-12">
-          <MaturityCurve />
-        </GlassCard>
-      </ScrollReveal>
-    </Container>
-  </Section>
-
-  <!-- 7. Why 1Digit -->
-  <Section>
-    <Container size="narrow">
-      <ScrollReveal>
-        <SectionHeading
-          badge="Why 1Digit"
-          heading="Built on deep expertise"
-          serifWord="expertise"
-          align="center"
-        />
-      </ScrollReveal>
-      <ScrollReveal delay={100}>
-        <GlassCard padding="lg" class="mt-12">
-          <FeatureList items={whyCredibility} />
-        </GlassCard>
-      </ScrollReveal>
-    </Container>
-  </Section>
-
-  <!-- 8. Who This Is For -->
-  <Section background="elevated">
-    <Container size="narrow">
-      <ScrollReveal>
-        <SectionHeading
-          badge="Is This For You?"
-          heading="Who this assessment is for"
-          serifWord="for"
-          align="center"
-        />
-      </ScrollReveal>
-      <ScrollReveal delay={100}>
-        <GlassCard padding="lg" class="mt-12">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
-            {whoThisIsFor.map((item) => (
-              <div class="flex items-start gap-3 text-body-md text-content-secondary">
-                <div class="w-5 h-5 rounded-full bg-surface-subtle flex items-center justify-center mt-0.5 shrink-0">
-                  <Icon name="check" size={12} class="text-glow-blue" />
-                </div>
-                <span>{item}</span>
-              </div>
-            ))}
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <ScrollReveal>
+          <div>
+            <SectionHeading
+              badge="Is This For You?"
+              heading="Is this assessment right for you?"
+              serifWord="right"
+            />
+            <p class="text-body-lg text-content-secondary mt-6">
+              {whoThisIsFor.intro}
+            </p>
           </div>
-        </GlassCard>
+        </ScrollReveal>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {whoThisIsFor.items.map((item, i) => (
+            <ScrollReveal delay={i * 100}>
+              <GlassCard hover padding="md" class="h-full text-center">
+                <div class="w-10 h-10 rounded-lg bg-glow-blue/10 mx-auto mb-4 flex items-center justify-center">
+                  <Icon name={item.icon} size={24} class="text-glow-blue" />
+                </div>
+                <p class="text-body-sm text-content-secondary leading-relaxed">{item.text}</p>
+              </GlassCard>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 10. Why 1Digit -->
+  <Section>
+    <Container>
+      <ScrollReveal>
+        <h2 class="text-display-md lg:text-display-lg font-display mb-4">
+          Why <span class="campaign-gradient-text">1Digit</span>
+        </h2>
+        <p class="text-body-lg text-content-secondary font-serif italic mb-8">
+          {whyCredibility.subhead}
+        </p>
+        <p class="text-body-lg text-content-secondary mb-6 max-w-3xl leading-relaxed">
+          {whyCredibility.body}
+        </p>
+        <p class="text-body-md text-content-muted mb-12 max-w-3xl leading-relaxed">
+          {whyCredibility.credibilityLine}
+        </p>
+      </ScrollReveal>
+
+      <ScrollReveal delay={100}>
+        <h3 class="text-heading-md font-semibold mb-8">What sets us apart:</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 max-w-3xl">
+          {whyCredibility.differentiators.map((item) => (
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-glow-blue/15 flex items-center justify-center mt-0.5 shrink-0">
+                <Icon name="check" size={12} class="text-glow-blue" />
+              </div>
+              <span class="text-body-md text-content">{item}</span>
+            </div>
+          ))}
+        </div>
       </ScrollReveal>
     </Container>
   </Section>
 
-  <!-- 9. Bottom CTA -->
+  <!-- 11. Bottom CTA -->
   <Section class="relative overflow-hidden">
     <div class="ambient-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-glow-blue/8 blur-[100px]"></div>
     <Container size="narrow" class="relative z-10">
       <ScrollReveal>
         <div class="text-center">
           <h2 class="text-display-md lg:text-display-lg font-display mb-4">
-            Ready to assess your <em class="font-serif italic">AI readiness</em>?
+            {bottomCta.heading}
           </h2>
-          <p class="text-body-lg text-content-secondary mb-2 max-w-md mx-auto">
-            {campaignMeta.price} · Fixed price · 4 weeks to clarity.
+          <p class="text-body-lg text-content-secondary mb-8 max-w-md mx-auto">
+            {bottomCta.description}
           </p>
-          <p class="text-body-md text-content-meta mb-8 max-w-md mx-auto">
-            Book a 30-minute introduction call to discuss your goals and see if the assessment is right for you.
-          </p>
-          <Button variant="primary" size="lg" href={campaignMeta.ctaHref}>
-            {campaignMeta.ctaText}
+          <Button variant="primary" size="lg" href={bottomCta.ctaHref}>
+            {bottomCta.ctaText}
           </Button>
         </div>
       </ScrollReveal>
     </Container>
   </Section>
 
-  <!-- 10. FAQ -->
+  <!-- 12. FAQ -->
   <Section background="elevated">
     <Container size="narrow">
       <ScrollReveal>
         <SectionHeading
           badge="FAQ"
-          heading="Frequently asked questions"
-          serifWord="questions"
+          heading="Frequently Asked Questions"
+          serifWord="Questions"
           align="center"
         />
       </ScrollReveal>
@@ -303,3 +588,37 @@ const LayoutComponent = useFullNav ? PageLayout : CampaignLayout;
   </Section>
 
 </LayoutComponent>
+
+<style>
+  .campaign-gradient-text {
+    background: linear-gradient(135deg, rgb(var(--color-glow-blue)) 0%, rgb(var(--color-glow-steel)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const tabs = document.querySelectorAll('.deliverable-tab');
+    const previews = document.querySelectorAll('.deliverable-preview');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-target');
+
+        // Update tab styles
+        tabs.forEach((t) => {
+          t.classList.remove('border-glow-blue/30', 'bg-glow-blue/5');
+          t.classList.add('border-transparent');
+        });
+        tab.classList.add('border-glow-blue/30', 'bg-glow-blue/5');
+        tab.classList.remove('border-transparent');
+
+        // Show target preview, hide others
+        previews.forEach((p) => p.classList.add('hidden'));
+        document.getElementById(target)?.classList.remove('hidden');
+      });
+    });
+  });
+</script>

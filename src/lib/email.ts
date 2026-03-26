@@ -1,10 +1,10 @@
 import { Resend } from 'resend';
 
-const resend = process.env.RESEND_API_KEY
-  ? new Resend(process.env.RESEND_API_KEY)
+const resend = import.meta.env.RESEND_API_KEY
+  ? new Resend(import.meta.env.RESEND_API_KEY)
   : null;
 
-const DEFAULT_FROM = process.env.EMAIL_FROM || 'onboarding@resend.dev';
+const DEFAULT_FROM = import.meta.env.EMAIL_FROM || 'onboarding@resend.dev';
 
 export async function sendEmail(
   to: string | string[],

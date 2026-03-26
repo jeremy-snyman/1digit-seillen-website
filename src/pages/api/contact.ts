@@ -3,7 +3,7 @@ import { sendEmail } from '@lib/email';
 
 export const prerender = false;
 
-const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || 'team@1digit.co.uk';
+const NOTIFICATION_EMAIL = import.meta.env.NOTIFICATION_EMAIL || 'team@1digit.co.uk';
 
 export const POST: APIRoute = async ({ request }) => {
   try {

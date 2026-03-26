@@ -10,50 +10,65 @@ export const campaignMeta = {
 };
 
 export const hero = {
-  badge: 'AI Readiness Assessment',
-  heading: 'Know exactly where you stand with AI',
-  serifWord: 'exactly',
-  subtext:
-    'A structured, expert-led engagement that gives your leadership team a clear picture of AI readiness — and a prioritised roadmap to move forward.',
-  priceLabel: '£8,000 · Fixed Price · 4 Weeks',
+  badge: 'AI Readiness Assessment · £8,000 · Fixed Price · 4 Weeks',
+  headlineBefore: 'Understand where',
+  headlineGradient: 'AI can create real value',
+  headlineAfter: 'in your business',
+  subheading:
+    'A structured, expert-led assessment for leadership teams that need a clear view of AI readiness, delivery risk, and what to do next. Across strategy, data, technology, governance, people, and operating model.',
+  supportingText:
+    'Transparent pricing. No generic survey. No vague recommendations. Just a grounded view of where you are, what is holding you back, and how to move forward.',
+  heroImage: '/images/assessment-puzzle.jpeg',
+  heroImageAlt: 'Glowing puzzle piece being placed — representing AI readiness assessment',
+};
+
+export const socialProof = {
+  headline:
+    'Founded by practitioners with 60+ years of combined experience across enterprise architecture, data platforms, AI delivery, product leadership, security, and operational transformation.',
+  industries: [
+    { label: 'Financial Services', icon: 'chart' },
+    { label: 'Travel', icon: 'globe' },
+    { label: 'Technology', icon: 'cpu' },
+    { label: 'Retail', icon: 'layers' },
+  ],
 };
 
 export const assessmentAreas = [
   {
     icon: 'brain',
-    title: 'AI Strategy & Vision',
+    title: 'Strategy & Leadership Alignment',
     description:
-      'How well-defined is your AI ambition? We evaluate strategic clarity, executive alignment, and the link between AI goals and business outcomes.',
+      'How clear is your AI ambition, and is leadership aligned on where value should come from? We assess strategic clarity, executive sponsorship, prioritisation, and how well AI is linked to real business outcomes.',
   },
   {
     icon: 'database',
-    title: 'Data Maturity',
+    title: 'Data Foundations',
     description:
-      'Is your data AI-ready? We assess data quality, accessibility, cataloguing, and the pipelines that feed machine-learning workloads.',
+      'Is your data usable for AI in practice, not just in theory? We assess data quality, accessibility, structure, ownership, and the pipelines needed to support analytics, automation, and AI use cases.',
   },
   {
     icon: 'cpu',
-    title: 'Technology & Infrastructure',
+    title: 'Technology & Integration',
     description:
-      'Can your stack support AI at scale? We review compute capacity, cloud readiness, tooling, and integration points across your estate.',
+      'Can your current stack support AI securely and at scale? We review platform readiness, tooling, cloud and integration constraints, and the practicality of deploying AI into your existing environment.',
   },
   {
     icon: 'shield',
-    title: 'Governance & Compliance',
+    title: 'Risk, Governance & Compliance',
     description:
-      'Are the guardrails in place? We examine data governance frameworks, regulatory compliance, ethical AI policies, and risk management.',
+      'Are the right guardrails in place? We assess governance, security, compliance considerations, model risk, data controls, and decision-making accountability.',
   },
   {
     icon: 'users',
-    title: 'People & Skills',
+    title: 'Skills, Capability & Adoption',
     description:
-      'Does your team have the capability? We map existing skills, identify gaps, and evaluate change-readiness and training programmes.',
+      'Does your organisation have the capability to make AI useful? We assess current skills, delivery capacity, change readiness, training needs, and where capability gaps will slow execution.',
   },
   {
     icon: 'settings',
-    title: 'Operational Readiness',
+    title: 'Delivery & Operational Readiness',
     description:
-      'Can you operationalise AI? We look at MLOps maturity, deployment processes, monitoring, and the feedback loops that sustain AI in production.',
+      'Can you move from pilots to repeatable delivery? We assess deployment processes, monitoring, feedback loops, and the operational conditions needed to sustain AI in production.',
   },
 ];
 
@@ -62,33 +77,45 @@ export const deliverables = [
     number: 1,
     title: 'Executive Summary',
     description:
-      'A board-ready overview of your current AI readiness posture, key findings, and strategic recommendations — written for decision-makers.',
+      'A concise, board-ready view of your current position, the most important findings, and the implications for investment, risk, and execution.',
   },
   {
     number: 2,
     title: 'Capability Heatmap',
     description:
-      'A visual, colour-coded breakdown of maturity across all six assessment dimensions — making strengths and gaps immediately obvious.',
+      'A visual breakdown of maturity across all six dimensions, showing where you are strong, where you are exposed, and where the biggest constraints sit.',
   },
   {
     number: 3,
     title: 'Risk & Constraint Analysis',
     description:
-      'Identification of technical debt, data quality issues, skills gaps, and governance risks that could slow or derail AI initiatives.',
+      'A clear view of the issues most likely to slow, weaken, or derail AI initiatives, from data issues and technical debt to governance gaps, delivery bottlenecks, and capability shortfalls.',
   },
   {
     number: 4,
     title: 'Prioritised Roadmap',
     description:
-      'A sequenced action plan with quick wins, medium-term projects, and strategic investments — mapped to business impact and effort.',
+      'A sequenced plan covering immediate actions, near-term priorities, and strategic investments, mapped against business value, delivery complexity, and organisational readiness.',
   },
   {
     number: 5,
-    title: 'Next Steps & Options',
+    title: 'Recommended Next Steps',
     description:
-      'Clear recommendations on how to move forward — whether you build internally, engage 1Digit, or take a hybrid approach.',
+      'Clear guidance on how to move forward, whether that means progressing internally, working with 1Digit, or using a hybrid approach. No lock-in. No obligation.',
   },
 ];
+
+export const dashboardPreview = {
+  heading: 'Dashboard Preview',
+  dimensions: [
+    { label: 'Strategy', score: 72 },
+    { label: 'Data', score: 58 },
+    { label: 'Technology', score: 81 },
+    { label: 'Governance', score: 45 },
+    { label: 'Skills', score: 63 },
+    { label: 'Delivery', score: 52 },
+  ],
+};
 
 export const processSteps = [
   {
@@ -96,28 +123,28 @@ export const processSteps = [
     title: 'Discovery & Alignment',
     duration: 'Week 1',
     description:
-      'Kick-off workshop with your leadership team to define scope, success criteria, and stakeholder map. We align on what matters most.',
+      'We begin with a working session to understand your context, ambitions, concerns, stakeholders, and success criteria. This ensures the assessment is grounded in your business, not a generic maturity template.',
   },
   {
     step: 2,
-    title: 'Deep Assessment',
-    duration: 'Weeks 2–3',
+    title: 'Evidence-Based Assessment',
+    duration: 'Weeks 2-3',
     description:
-      'Structured interviews, technical reviews, and data audits across all six dimensions. We go deep — not surface-level surveys.',
+      'We run interviews, technical review, and structured analysis across all six dimensions. We look beyond stated ambition and assess the real conditions for AI delivery.',
   },
   {
     step: 3,
-    title: 'Analysis & Synthesis',
+    title: 'Synthesis & Prioritisation',
     duration: 'Week 3',
     description:
-      'Our team synthesises findings into the capability heatmap, risk analysis, and prioritised roadmap. Every recommendation is evidence-backed.',
+      'We bring the findings together into a clear view of strengths, gaps, risks, dependencies, and opportunities. Every recommendation is grounded in evidence and shaped around practical next steps.',
   },
   {
     step: 4,
-    title: 'Readout & Roadmap',
+    title: 'Executive Readout',
     duration: 'Week 4',
     description:
-      'Executive presentation of findings and deliverables. Interactive session to discuss priorities, answer questions, and agree next steps.',
+      'We present the findings, walk through the roadmap, answer questions, and help you align on what should happen next.',
   },
 ];
 
@@ -154,53 +181,128 @@ export const maturityStages = [
   },
 ];
 
-export const whyCredibility = [
-  'Deep experience across data platforms, AI products, and governance',
-  'Trusted by enterprises in financial services, healthcare, and technology',
-  'Vendor-agnostic — we recommend what fits, not what pays commission',
-  'Delivery team of senior consultants, not junior analysts',
-  'Fixed price with no hidden costs or scope creep',
-  'Actionable outputs — not a slide deck that gathers dust',
+export const maturityFeatures = [
+  {
+    icon: 'zap',
+    title: 'Vendor Agnostic',
+    description:
+      'Objective recommendations based on fit, not commission. We focus on your business outcomes, not licensing quotas.',
+  },
+  {
+    icon: 'users',
+    title: 'Senior-Led',
+    description:
+      'No juniors learning on your budget. Direct access to experienced practitioners who understand both technology and operating model change.',
+  },
 ];
 
-export const whoThisIsFor = [
-  "You're exploring AI but unsure where to start",
-  "You've run AI pilots that haven't scaled",
-  'Your board is asking for an AI strategy',
-  'You need to benchmark against industry peers',
-  'You want an independent, vendor-neutral view',
-  "You're planning AI investment and need to prioritise",
-];
+export const pricingSection = {
+  badge: 'Fixed Price Engagement',
+  headline: 'One price.\nOne focused engagement.\nNo surprises.',
+  subhead: 'A fixed-price, expert-led engagement for leadership teams.',
+  price: '£8,000',
+  priceNote: 'plus VAT',
+  inclusions: [
+    'Discovery and alignment workshop with key stakeholders',
+    'Full assessment across six dimensions',
+    'Capability heatmap and constraint analysis',
+    'Prioritised roadmap with practical next steps',
+    'Executive readout and discussion session',
+  ],
+  bottomLine: 'No hidden fees. No variable billing. No bloated consulting team.',
+  ctaText: 'Secure Your Assessment',
+  ctaHref: '/contact',
+};
+
+export const midPageCta = {
+  heading: 'Ready to find out where you stand?',
+  subtext: '30-minute introduction call. No obligation.',
+  ctaText: 'Book an Introduction Call',
+  ctaHref: '/contact',
+};
+
+export const whyCredibility = {
+  subhead: 'We do not look at AI in isolation.',
+  body: 'Our perspective combines strategy, enterprise architecture, data, product, security, governance, and delivery. That matters because most AI programmes do not succeed or fail on the model. They succeed or fail on the surrounding business conditions.',
+  credibilityLine:
+    'Our team has led AI, data, and architecture programmes across FTSE 250 companies, NHS trusts, and high-growth technology firms. We built 1Digit to bring that enterprise-grade experience to organisations that need clarity, not another generic consultancy.',
+  differentiators: [
+    'Broad experience across data platforms, AI products, enterprise systems, and governance',
+    'A practical view of what it takes to move from interest and pilots to real delivery',
+    'Vendor-neutral recommendations based on fit, not commission',
+    'Senior-led engagement from people who understand both technology and operating model change',
+    'Clear outputs designed to support decisions, not just generate discussion',
+  ],
+};
+
+export const whoThisIsFor = {
+  intro:
+    'This is designed for leadership teams that are serious about AI and need a grounded view of where they are, what is missing, and what to do next.',
+  items: [
+    {
+      icon: 'target',
+      text: 'Your leadership team knows AI matters, but needs a clearer view of where to focus',
+    },
+    {
+      icon: 'database',
+      text: 'You have run pilots or experiments, but progress has stalled or failed to scale',
+    },
+    {
+      icon: 'shield',
+      text: 'Your board is asking for a credible plan, not just enthusiasm',
+    },
+    {
+      icon: 'chart',
+      text: 'You are considering investment and need to prioritise properly',
+    },
+    {
+      icon: 'eye',
+      text: 'You want an independent view before committing to platforms, partners, or large programmes',
+    },
+    {
+      icon: 'layers',
+      text: 'You need to understand both opportunity and risk before moving further',
+    },
+  ],
+};
+
+export const bottomCta = {
+  heading: 'Start the conversation',
+  description:
+    'Book a 30-minute introduction call to discuss your goals and see if the assessment is right for you.',
+  ctaText: 'Book an Introduction Call',
+  ctaHref: '/contact',
+};
 
 export const faqs = [
   {
     question: 'How long does the assessment take?',
     answer:
-      'The full engagement runs over four weeks — from kick-off to executive readout. We designed it to be thorough without dragging on.',
+      'The engagement runs over four weeks from kick-off to executive readout. It is designed to be thorough enough to be credible, but focused enough to avoid months of delay.',
   },
   {
     question: 'Who needs to be involved from our side?',
     answer:
-      'We typically engage 6–10 stakeholders across leadership, IT, data, and operations. The time commitment is roughly 2–3 hours per person across the engagement.',
+      'Typically 6 to 10 stakeholders across leadership, technology, data, operations, and relevant business areas. Most people will only need to commit a few hours across the engagement.',
   },
   {
     question: 'Is the £8,000 price fixed?',
     answer:
-      'Yes. £8,000 covers the complete engagement — discovery, assessment, analysis, and executive readout. There are no hidden costs or variable fees.',
+      'Yes. The full engagement is fixed at £8,000 and includes discovery, assessment, analysis, and executive readout. There are no hidden fees.',
   },
   {
     question: 'What if we already have an AI strategy?',
     answer:
-      'Great — the assessment will validate it, identify gaps, and pressure-test your roadmap against operational reality. Most organisations find significant blind spots even with a strategy in place.',
+      'That is often where the assessment becomes most valuable. We help validate the strategy, identify blind spots, and test whether the organisation is actually ready to deliver against it.',
   },
   {
     question: 'Do you only work with large enterprises?',
     answer:
-      'No. The assessment is designed for any organisation serious about AI — from mid-market companies to large enterprises. The methodology scales to your context.',
+      'No. The assessment is designed for organisations that are serious about AI, from mid-market companies to large enterprises. The approach scales to your context.',
   },
   {
     question: 'What happens after the assessment?',
     answer:
-      "You receive the full deliverables pack and can act on the roadmap independently. If you'd like 1Digit to help implement, we can discuss next steps — but there's no obligation.",
+      'You receive the full deliverables pack and can act on it independently. If you want support with implementation afterwards, we can discuss that separately, but there is no obligation.',
   },
 ];
