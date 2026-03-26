@@ -106,10 +106,10 @@ const badgeColor = accentColor ? badgeBgMap[accentColor] : 'bg-glow-steel/20 tex
     <div>
       {detailImage ? (
         <div class="relative mb-6 rounded-xl overflow-hidden">
-          <img src={detailImage} alt=""
+          <img src={detailImage} alt={`${title} capability diagram`}
                class="w-full h-auto object-contain pillar-thumb-dark"
                loading="lazy" />
-          <img src={detailImageLight} alt=""
+          <img src={detailImageLight} alt={`${title} capability diagram`}
                class="w-full h-auto object-contain pillar-thumb-light"
                loading="lazy" />
           <div class="absolute inset-0 pointer-events-none"

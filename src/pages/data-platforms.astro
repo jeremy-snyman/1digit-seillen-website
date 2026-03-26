@@ -19,7 +19,7 @@ import {
   futurePlatforms,
 } from '@content/data/services';
 
-const title = 'Our Platforms';
+const title = 'Enterprise Data Platforms — Tachyon & Smart Lakehouse';
 const description = 'Proven platforms and engineering capability to accelerate data infrastructure, reduce cost, and deliver production-grade AI foundations, whether bespoke, platform-led, or a combination of both.';
 
 const layerColors = [
@@ -53,13 +53,12 @@ const signalColorMap: Record<string, { iconBg: string; iconColor: string; border
         muted
         loop
         playsinline
-        preload="auto"
+        preload="metadata"
         class="absolute inset-0 w-full h-full object-cover z-0 platform-hero-video"
-        poster="/images/data-platforms/hero-poster.jpg"
       >
         <source src="/images/data-platforms/platform-hero.mp4" type="video/mp4" />
       </video>
-      <SmokeCanvas client:load forceDark={true} />
+      <SmokeCanvas client:idle forceDark={true} />
       <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 70%, rgb(var(--color-surface)) 100%);"></div>
     </div>
 
@@ -193,6 +192,8 @@ const signalColorMap: Record<string, { iconBg: string; iconColor: string; border
               alt="Tachyon platform overview: data sources including databases, APIs, and files flow into the Tachyon engine which handles schema and metadata validation, privacy and compliance, AI-driven enrichment, and intelligent routing, outputting to AI enablement, applications, and analytics and storage"
               class="w-full h-auto"
               loading="lazy"
+              width="1264"
+              height="843"
             />
           </div>
         </ScrollReveal>
@@ -254,6 +255,8 @@ const signalColorMap: Record<string, { iconBg: string; iconColor: string; border
               alt="Smart Data Lake on IONOS: isometric illustration showing data flowing from enterprise sources through a sovereign European cloud infrastructure into a glowing data lake, with analytics dashboards and AI outputs above"
               class="w-full h-auto"
               loading="lazy"
+              width="1200"
+              height="896"
             />
           </div>
         </ScrollReveal>

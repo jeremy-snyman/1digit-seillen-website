@@ -23,7 +23,7 @@ import {
 } from '@content/data/ai-readiness-campaign';
 import { pricingFAQ } from '@content/data/faq';
 
-const title = 'How We Price';
+const title = 'Transparent AI Consulting Pricing';
 const description = 'We price around outcomes and defined scope — not hours, not headcount, not open-ended retainers.';
 
 const phaseRailItems = engagementPhases.map((p) => ({ number: p.number, title: p.title }));
@@ -73,7 +73,7 @@ const accentColors = ['#64C8FF', '#A064FF', '#50DCB4', '#FFB43C', '#64C8FF'];
         <div class="col-span-2 hidden lg:block">
           <ScrollReveal delay={150}>
             <div class="relative rounded-2xl overflow-hidden shadow-xl hww-hero-vignette">
-              <img src="/images/pricing/hero.png" alt="Value creation and outcome-based engagement — revenue increase, market expansion, efficiency" class="w-full h-auto" loading="eager" />
+              <img src="/images/pricing/hero.png" alt="Value creation and outcome-based engagement — revenue increase, market expansion, efficiency" class="w-full h-auto" loading="eager" width="1024" height="1024" />
             </div>
           </ScrollReveal>
         </div>
@@ -307,5 +307,19 @@ const accentColors = ['#64C8FF', '#A064FF', '#50DCB4', '#FFB43C', '#64C8FF'];
       </ScrollReveal>
     </Container>
   </Section>
+
+  {/* FAQPage Schema for AI discoverability */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": pricingFAQ.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  })} />
 
 </PageLayout>

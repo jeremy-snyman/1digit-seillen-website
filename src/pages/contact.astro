@@ -9,7 +9,7 @@ import Icon from '@components/ui/Icon.astro';
 import Badge from '@components/ui/Badge.astro';
 import ContactForm from '@components/forms/ContactForm';
 
-const title = 'Contact';
+const title = 'Contact 1Digit — AI & Data Consulting';
 const description = 'Get in touch to discuss your AI and data platform requirements.';
 ---
 
@@ -29,7 +29,7 @@ const description = 'Get in touch to discuss your AI and data platform requireme
     <Container>
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10">
         <ScrollReveal>
-          <ContactForm client:load />
+          <ContactForm client:idle />
         </ScrollReveal>
 
         <ScrollReveal delay={200}>

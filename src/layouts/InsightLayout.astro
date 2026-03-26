@@ -25,6 +25,9 @@ const schema = buildArticleSchema({
   publishDate: article.publishDate,
   slug: article.slug,
   ogImage: article.ogImage || undefined,
+  category: article.category,
+  tags: article.tags,
+  readTimeMinutes: article.readTimeMinutes,
 });
 const canonical = buildInsightCanonical(article.slug);
 const catSlug = categorySlug(article.category);
@@ -82,7 +85,7 @@ const gradientClass = `cat-gradient-${catSlug}`;
             {article.coverImage ? (
               <img
                 src={article.coverImage}
-                alt=""
+                alt={article.title}
                 class="w-full h-full object-cover"
                 loading="eager"
               />

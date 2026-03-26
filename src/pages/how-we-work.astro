@@ -19,7 +19,7 @@ import {
   definitionOfDone,
 } from '@content/data/services';
 
-const title = 'How We Work';
+const title = 'Our AI Consulting Methodology';
 const description = 'Four phases. Clear gates. No chaos.';
 
 const phaseRailItems = processSteps.map((s) => ({ number: s.number, title: s.title }));
@@ -72,8 +72,8 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
         <div class="col-span-2 hidden lg:block">
           <ScrollReveal delay={150}>
             <div class="relative rounded-2xl overflow-hidden shadow-xl hww-hero-vignette">
-              <img src="/images/how-we-work/hero-dark.png" alt="Team collaborating on a process flow diagram" class="w-full h-auto hww-hero-dark" loading="eager" />
-              <img src="/images/how-we-work/hero-light.png" alt="Team collaborating on a process flow diagram" class="w-full h-auto hww-hero-light" loading="eager" />
+              <img src="/images/how-we-work/hero-dark.png" alt="Team collaborating on a process flow diagram" class="w-full h-auto hww-hero-dark" loading="eager" width="1024" height="1024" />
+              <img src="/images/how-we-work/hero-light.png" alt="Team collaborating on a process flow diagram" class="w-full h-auto hww-hero-light" loading="eager" width="1024" height="1024" />
             </div>
           </ScrollReveal>
         </div>
@@ -385,5 +385,37 @@ const dodIcons = ['clipboard', 'check', 'users', 'arrow-right'];
       </ScrollReveal>
     </Container>
   </Section>
+
+  {/* FAQPage Schema for AI discoverability */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is 1Digit's consulting methodology?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "1Digit follows a four-phase engagement methodology: Diagnose (understand current state and assess readiness), Design (define target architecture and roadmap), Deliver (build incrementally with milestone-based scope), and Embed (knowledge transfer and operational handover). Each phase has clear entry/exit criteria and commercial checkpoints.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a typical 1Digit engagement take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Diagnostic engagements typically take 2-5 weeks. Strategy and design phases run 4-8 weeks. Implementation phases vary from 6-20 weeks depending on scope, with clear milestones throughout.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "Does 1Digit use open-ended retainers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. 1Digit does not use open-ended retainers. Every engagement has defined scope, clear deliverables, and commercial checkpoints. Implementation phases are milestone-based with scope boundaries agreed upfront.",
+        },
+      },
+    ],
+  })} />
 
 </PageLayout>

@@ -1,0 +1,43 @@
+# 1Digit
+
+> 1Digit is a UK-based software, data and AI consultancy that helps enterprises design, build, and govern structured AI systems, data platforms, and architecture frameworks.
+
+1Digit works with enterprise organisations to move from fragmented data estates to production-grade AI capability. We combine assessment-first methodology, TOGAF-aligned architecture, and proprietary platform technology to deliver measurable outcomes — not proof-of-concept theatre.
+
+Founded on the principle that AI must be architected, not assembled, 1Digit provides end-to-end delivery from strategy through to production, with governance built in from day one.
+
+## Services
+
+- [AI Readiness & Honest Assessment](https://1digit.co.uk/what-we-do): Capability benchmarking across five pillars, executive workshops, risk analysis, and 6-18 month transformation roadmaps. Typical engagement: 2-5 weeks.
+- [Data & Platform Foundations](https://1digit.co.uk/data-platforms): Data unification, ingestion design, Smart Lakehouse architecture, observability, and cost-efficient cloud design. Typical engagement: 6-16 weeks.
+- [AI-Enabled Products & Engineering](https://1digit.co.uk/what-we-do): AI-native application design, agent integration, guardrails, evaluations, and production readiness. Typical engagement: 8-20 weeks.
+- [AI Architecture, Governance & Secure Implementation](https://1digit.co.uk/architecture): TOGAF-grounded enterprise AI architecture, risk frameworks, compliance alignment, role-based access controls, and AI Ops support. Typical engagement: 4-12 weeks.
+
+## Platforms
+
+- [Tachyon](https://1digit.co.uk/tachyon): High-throughput enterprise data activation platform. Unifies fragmented data, detects sensitivity, enforces structure, and makes data immediately usable for analytics, AI, and operational systems.
+- [Smart Lakehouse on IONOS](https://1digit.co.uk/smart-lakehouse-ionos): Enterprise data lakehouse on European sovereign cloud. 40-60% lower infrastructure cost than hyperscaler equivalents, with full data sovereignty.
+
+## Methodology
+
+- [How We Work](https://1digit.co.uk/how-we-work): Four-phase methodology — Diagnose, Design, Deliver, Embed — with clear gates, commercial checkpoints, and no open-ended retainers.
+- [How We Price](https://1digit.co.uk/how-we-price): Outcome-based pricing with fixed-price diagnostics, milestone-based implementation, and transparent scope management.
+- [AI Architecture Framework](https://1digit.co.uk/architecture): TOGAF-aligned framework covering business, data, application, and technology architecture domains for enterprise AI.
+
+## Trust & Compliance
+
+- [Trust & Security](https://1digit.co.uk/trust-security): Enterprise governance, compliance standards (ISO 27001, SOC 2, GDPR), AI risk management, secure SDLC, and audit capabilities.
+
+## Assessment Tools
+
+- [Free AI Readiness Assessment](https://1digit.co.uk/ai-readiness-assessment): Self-service tool evaluating organisational AI readiness across five pillars with instant results and actionable recommendations.
+
+## Insights
+
+- [Insights Hub](https://1digit.co.uk/insights): Published research on AI readiness, architecture, governance, and platform economics for enterprise leaders and technical decision-makers.
+
+## Contact
+
+- Email: hello@1digit.co.uk
+- Website: https://1digit.co.uk
+- [Contact Page](https://1digit.co.uk/contact)

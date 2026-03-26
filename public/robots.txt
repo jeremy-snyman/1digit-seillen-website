@@ -1,4 +1,32 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Allow AI search/retrieval bots (so content appears in AI answers)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Block AI training bots (prevent content entering training datasets)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
 
 Sitemap: https://1digit.co.uk/sitemap-index.xml

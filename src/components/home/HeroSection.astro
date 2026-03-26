@@ -18,7 +18,7 @@ import Container from '@components/layout/Container.astro';
     <!-- Layer 4: Radial vignette -->
     <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 45%, transparent 35%, rgb(var(--color-surface)) 85%);"></div>
     <!-- Layer 5: Fluid animation overlay (on top of fades so it's visible) -->
-    <FluidCanvas client:load />
+    <FluidCanvas client:idle />
   </div>
 
   <!-- Content -->

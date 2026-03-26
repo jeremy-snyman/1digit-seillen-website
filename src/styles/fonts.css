@@ -2,3 +2,13 @@
 @import '@fontsource/inter/500.css';
 @import '@fontsource/inter/600.css';
 @import '@fontsource/instrument-serif/400-italic.css';
+
+/* Ensure fonts swap in quickly to prevent invisible text */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-display: swap;
+}

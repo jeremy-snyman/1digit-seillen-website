@@ -1,5 +1,7 @@
 // ── Insights Module — Utilities ──
 
+import { SITE } from '@lib/constants';
+
 // ── Date Formatting ──
 
 export function formatInsightDate(dateStr: string): string {
@@ -89,10 +91,13 @@ export interface ArticleSchemaInput {
   slug: string;
   ogImage?: string;
   siteUrl?: string;
+  category?: string;
+  tags?: string[];
+  readTimeMinutes?: number;
 }
 
 export function buildArticleSchema(input: ArticleSchemaInput): Record<string, unknown> {
-  const siteUrl = input.siteUrl ?? 'https://1digit.io';
+  const siteUrl = input.siteUrl ?? SITE.url;
   const url = `${siteUrl}/insights/${input.slug}`;
   const image = input.ogImage
     ? `${siteUrl}${input.ogImage}`
@@ -104,8 +109,16 @@ export function buildArticleSchema(input: ArticleSchemaInput): Record<string, un
     headline: input.title,
     description: input.summary,
     datePublished: input.publishDate,
+    dateModified: input.publishDate,
+    inLanguage: 'en',
     url,
     image,
+    ...(input.tags?.length && { keywords: input.tags.join(', ') }),
+    ...(input.readTimeMinutes && { timeRequired: `PT${input.readTimeMinutes}M` }),
+    ...(input.category && {
+      about: { '@type': 'Thing', name: input.category },
+      articleSection: input.category,
+    }),
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     author: {
       '@type': 'Organization',
@@ -123,6 +136,6 @@ export function buildArticleSchema(input: ArticleSchemaInput): Record<string, un
 
 // ── Canonical URL ──
 
-export function buildInsightCanonical(slug: string, siteUrl = 'https://1digit.io'): string {
+export function buildInsightCanonical(slug: string, siteUrl = SITE.url): string {
   return `${siteUrl}/insights/${slug}`;
 }
