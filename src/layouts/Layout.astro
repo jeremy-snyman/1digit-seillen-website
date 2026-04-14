@@ -37,7 +37,6 @@ const props = Astro.props;
       if (urlParam === 'light' || urlParam === 'dark') return urlParam;
       var stored = localStorage.getItem('theme');
       if (stored === 'light' || stored === 'dark') return stored;
-      if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
       return 'dark';
     }
     document.documentElement.setAttribute('data-theme', resolveTheme());
