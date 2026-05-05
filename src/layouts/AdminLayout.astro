@@ -46,7 +46,7 @@ const { title } = Astro.props;
   </div>
 
   <script is:inline>
-    document.addEventListener('astro:page-load', function() {
+    function adminCheckAuth() {
       var STORAGE_KEY = 'admin_auth';
       var loading = document.getElementById('admin-loading');
       var content = document.getElementById('admin-content');
@@ -77,6 +77,11 @@ const { title } = Astro.props;
           window.location.href = '/admin/login';
         });
       }
-    });
+    }
+
+    // Run immediately for initial/hard-nav page loads
+    adminCheckAuth();
+    // Also run on Astro view-transition navigations
+    document.addEventListener('astro:page-load', adminCheckAuth);
   </script>
 </Layout>

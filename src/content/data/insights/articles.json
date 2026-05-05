@@ -398,7 +398,7 @@
     "publishDate": "2026-02-25",
     "readTimeMinutes": 4,
     "ctaType": "architecture-review",
-    "isPinned": true,
+    "isPinned": false,
     "isCampaignFeatured": false,
     "primaryConversionTarget": "/ai-readiness-assessment",
     "external": false,
@@ -450,5 +450,279 @@
     ],
     "status": "published",
     "coverImage": "/images/insights/tree2.jpeg"
+  },
+  {
+    "id": "insight-1745834400000",
+    "slug": "mythos-finds-where-the-bodies-are-buried",
+    "title": "Mythos Finds Where the Bodies Are Buried",
+    "thesis": "Every shortcut, every deferred fix, every \"we'll get to it later\". Mythos finds them all. The only question is what it costs when it does.",
+    "summary": "A frontier cyber-capable model is about to find the defects your SAST tool cannot see. This is a C-suite problem, not a DevOps one, and the cost of doing nothing is now measurable in ten-million-dollar units.",
+    "researchType": "Strategic Brief",
+    "category": "Security",
+    "tags": [],
+    "campaignTag": null,
+    "publishDate": "2026-04-28",
+    "readTimeMinutes": 21,
+    "ctaType": "security-review",
+    "isPinned": false,
+    "isCampaignFeatured": false,
+    "primaryConversionTarget": "/ai-readiness-assessment",
+    "external": false,
+    "externalUrl": null,
+    "seoTitle": "",
+    "seoDescription": "",
+    "ogImage": "",
+    "coverImage": "/images/insights/mythos-bodies-2.png",
+    "status": "published",
+    "bodyBlocks": [
+      {
+        "type": "paragraph",
+        "content": "By Justin Gane, 1Digit"
+      },
+      {
+        "type": "paragraph",
+        "content": "Several CTOs and CIOs have asked us in the last fortnight whether Mythos is something they need to worry about. The short answer is yes, and not only Mythos. The longer answer, which is the more useful one, is this piece."
+      },
+      {
+        "type": "section",
+        "heading": "A follow-on, not a fresh argument",
+        "content": "A fortnight ago we wrote \"Your AI Strategy Has No Foundation\". The argument was simple. Most enterprises had bought AI capability at the top of the stack without anchoring it to any architectural discipline below. The strategy decks read well in board meetings. The estate underneath them did not match.\n\nThat argument has not gone anywhere. Until the architectural gap is closed, it remains the foundational concern, and nothing in the rest of this piece relieves you of it. What this piece adds is the layer that sits on top. The events of the last fortnight have made infrastructure assurance the next concern every C-suite has to deal with, on top of the architecture work, not in place of it. The two stack. You need both. The difference between getting both right and getting either wrong is the difference between a slide deck the board does not act on and a breach notice the board cannot ignore.\n\nThis piece is addressed to the C-suite. CTOs, CEOs, board members, audit committees. Because what we are about to discuss is not a technical problem, and it is not a DevOps problem. It is a commercial one. If there is a cyber attack tomorrow and your customers' data is lost, how much will it truly cost you? Not the headline regulatory penalty. The full bill. The notification programme, the regulator, the lawyers, the customers you do not win back, the insurance premium you carry forever, and the executive headlines that follow the company for years. That is a board-level question, and it sits with the C-suite. Not the CISO. Not the platform team. The C-suite.\n\nThe work itself can be done by 1Digit. It can be done by any other firm you trust. It can be done by your internal team if you have one with the bench to do it. What cannot happen is nothing. The rest of this piece walks through what the choices look like, what the cost of getting it wrong looks like, and what high confidence looks like."
+      },
+      {
+        "type": "section",
+        "heading": "The twelve companies that already got their head start",
+        "content": "On 6 April 2026, Anthropic did something that ought to have rattled every CISO on the planet. It handed an unreleased, frontier cyber-capable model to twelve of the most hardened security operations in the world, and gave them a ninety-day runway before anyone else saw it.\n\nThe list is telling. AWS. Apple. Microsoft. Google. NVIDIA. JPMorgan Chase. Cisco. CrowdStrike. Broadcom. Palo Alto Networks. The Linux Foundation. That is not a launch-partner list. That is a war room.\n\nAnthropic called it Project Glasswing. In the press release it reads like a responsible-disclosure pilot: an invitation-only preview of Claude Mythos, a model so cyber-capable that Anthropic has declined to release it generally until the consortium has worked through what it can do. The official framing is about uplift, defensive integration, and responsible deployment. Roughly forty additional organisations, including several major banks, are being given structured options to join the programme. Anthropic has committed up to one hundred million dollars in usage credits across these efforts, and four million dollars in direct donations to open-source security organisations.\n\nThe unofficial framing is simpler. If twelve of the best-resourced security operations on earth need three months of private access to figure out what this thing can do to them, the rest of us are not ready.\n\nGlasswing is not a warning shot. It is the warning. Most infrastructures will not survive Mythos in the state they are in today. Not because the model is magic, but because the defects are already there. Mythos does not create them. Mythos finds them. That is what this piece is about."
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "What Dario actually said",
+          "bold": true
+        },
+        "content": "Dario Amodei, Anthropic's chief executive, is not given to understatement, but he is also not given to commercial self-harm. When he speaks about Mythos publicly, he is careful. The words have been chosen."
+      },
+      {
+        "type": "quote",
+        "content": "The dangers of getting this wrong are obvious, but if we get it right, there is a real opportunity to create a fundamentally more secure internet and world than we had before the advent of AI-powered cyber capabilities.",
+        "attribution": "Dario Amodei, Anthropic"
+      },
+      {
+        "type": "paragraph",
+        "content": "Read that again. The dangers of getting this wrong are obvious. A chief executive does not volunteer that sentence without a reason. The second clause is the sales pitch. The first clause is what ought to keep you up at night."
+      },
+      {
+        "type": "paragraph",
+        "content": "And on what comes next:"
+      },
+      {
+        "type": "quote",
+        "content": "More powerful models are going to come from us and from others, and so we do need a plan to respond to this.",
+        "attribution": "Dario Amodei"
+      },
+      {
+        "type": "paragraph",
+        "content": "The \"others\" is doing a lot of work in that sentence. We come back to that when we get to GPT-5.5."
+      },
+      {
+        "type": "paragraph",
+        "content": "Microsoft's chief information security officer, Igor Tsyganskiy, on Microsoft's Glasswing participation:"
+      },
+      {
+        "type": "quote",
+        "content": "The opportunity to use AI responsibly to improve security and reduce risk at scale is unprecedented.",
+        "attribution": "Igor Tsyganskiy, Microsoft CISO"
+      },
+      {
+        "type": "paragraph",
+        "content": "Unprecedented is the word. Not significant. Not substantial. Unprecedented."
+      },
+      {
+        "type": "paragraph",
+        "content": "JPMorgan, in the careful register of a systemically important bank:"
+      },
+      {
+        "type": "quote",
+        "content": "Promoting the cybersecurity and resiliency of the financial system is central to JPMorgan Chase's mission. We will take a rigorous, independent approach to evaluating Mythos's potential.",
+        "attribution": "JPMorgan Chase"
+      },
+      {
+        "type": "paragraph",
+        "content": "Translation: we have committed institutional resource to this evaluation, because the cost of not doing so is worse than the cost of doing so."
+      },
+      {
+        "type": "paragraph",
+        "content": "CrowdStrike, whose entire business is knowing when your stack is being had, said it most plainly:"
+      },
+      {
+        "type": "quote",
+        "content": "If you want to deploy AI, you need security.",
+        "attribution": "CrowdStrike"
+      },
+      {
+        "type": "paragraph",
+        "content": "That is a sentence every board should read aloud in their next meeting."
+      },
+      {
+        "type": "section",
+        "heading": "What Mythos actually does",
+        "content": "The public numbers are the cleanest we have. In a controlled red-team evaluation against Firefox, Mythos produced 181 successful exploit chains. Opus 4.6, Anthropic's previous flagship, produced two. That is approximately ninety times the offensive capability in a single generation.\n\nMythos has reached back into long-lived open-source code and produced findings decades of standard testing had missed. A 27-year-old TCP SACK bug in OpenBSD. A 16-year-old flaw in FFmpeg that had survived five million automated test runs. A 17-year-old NFS remote code execution path in FreeBSD that became CVE-2026-4747. These are not obscure projects. These are the software that sits underneath the software that sits underneath your stack.\n\nThere is a fact from internal safety testing that you should know about. During Mythos's red-team evaluation, the model broke out of the secure sandbox it was being tested inside. Anthropic's own containment was defeated. Not in production, not in the wild, but in a controlled lab where the people running the test were specifically trying to keep it boxed in. That is a useful data point when you are weighing whether your own controls will hold.\n\nThe UK government has weighed in independently. The AI Safety Institute, AISI, ran its own evaluation of Mythos and called the capability \"unprecedented\". On expert-level cyber tasks that no model could complete before April 2025, Mythos succeeds 73 per cent of the time. It became the first model to solve \"The Last Ones\", a thirty-two-step corporate network attack simulation, end to end, in three of its ten attempts, and averaged twenty-two of the thirty-two steps across all attempts. AISI is not a vendor. AISI does not have a commercial reason to dramatise. AISI's framing should carry weight in any UK boardroom.\n\nThe people inside Glasswing are not reacting to a benchmark. They are reacting to a capability. And they are reacting three months before anyone else gets to."
+      },
+      {
+        "type": "section",
+        "heading": "Believe Anthropic. Know why they are saying it.",
+        "content": "Now the caveat.\n\nAnthropic is IPO-bound. Sources close to the process have the target at October 2026, with Goldman Sachs and JPMorgan Chase as lead banks and Wilson Sonsini as legal counsel. The last private valuation was three hundred and eighty billion dollars, set in February 2026 in the Series G round. Bankers are reportedly modelling an IPO valuation between four hundred and five hundred billion dollars, with a raise targeting more than sixty billion. Annualised revenue had reached nineteen billion dollars by March 2026, up from nine billion at the end of 2025. That is one of the fastest revenue ramps in commercial software history.\n\nCommercial incentive is not a reason to dismiss the capability claim. It is a reason to understand why we are hearing about it. Anthropic has every commercial motivation to dramatise what Mythos can do. A launch partner of JPMorgan's scale, wrapped in a responsible-disclosure framework, is the cleanest possible positioning ahead of a public offering. It says: we are the grown-ups in the room. We are serious about safety.\n\nAll of that can be true and the capability claim can still be real. In fact, the combination is the warning. A commercially-motivated actor has staked a four-hundred-billion-dollar IPO narrative on the claim that its model can defeat the cyber defences of most enterprises. AISI, with no commercial motive at all, has independently corroborated the claim. That is not a bluff you make if the model cannot do the thing.\n\nSo: believe the capability. Discount the rhetoric by however much you want. You will still arrive at a number that is too large to ignore."
+      },
+      {
+        "type": "section",
+        "heading": "The window did not close. It already closed.",
+        "content": "If Anthropic were the only lab with a frontier cyber-capable model, this piece would end here.\n\nAnthropic is not the only lab. On 23 April 2026, OpenAI shipped GPT-5.5. The internal codename was Spud. Pretraining had completed on 24 March. It went live in ChatGPT and Codex for paying subscribers on the day of launch, and into the API the day after. Sam Altman called it \"a very strong model\". Greg Brockman said it represented \"two years of research, not an incremental improvement\". The headline benchmark numbers OpenAI published put it ahead of Claude Opus 4.7 on Terminal-Bench 2.0 (82.7 per cent), and on FrontierMath at both the lower and upper levels. OpenAI also reported a sixty per cent reduction in hallucinations versus the prior generation. The use case it is positioned around is multi-step autonomous workflows. Code, debug, research, document, operate software, move across tools until a task is finished.\n\nThe model now generally available in the API is the one OpenAI describes as a digital worker, capable of operating across your tools without supervision. That is the threat surface. It is what an attacker can rent for the price of an API key.\n\nTwo frontier labs are now shipping models in the cyber-capable band. The window we wrote about a fortnight ago, the six-week head start to find your own bodies before someone else did, is closed. You are now operating in the world this article warned about. That is not theatrical. That is what shipped on 23 April."
+      },
+      {
+        "type": "section",
+        "heading": "What your SAST tool cannot see",
+        "content": "Here is the uncomfortable part. Most of the holes Mythos and GPT-5.5 will find are not the holes your static analyser is looking for.\n\nSonarQube, Snyk and CodeRabbit are all excellent at what they do. What they do is pattern-match against a catalogue of known bad shapes. SQL injection, path traversal, hardcoded secrets, unsafe deserialisation. They are indispensable, and we recommend all three in various combinations.\n\nThey do not catch business-logic defects. They do not catch authorisation drift. They do not catch insecure direct object references, or broken object-level authorisation, or the slow decay of permission boundaries that happens when a product team ships ten new endpoints a quarter and the RBAC model was designed for three. They do not catch the case where an agent has been granted tool access that, in combination, allows it to exfiltrate data it was never meant to see.\n\nThe OWASP Top 10 for Large Language Models, updated this year with explicit treatment of agentic and AI-generated code, is in large part a catalogue of defects existing SAST tooling cannot reason about. Excessive agency. Insecure plugin design. Prompt injection into tool-call chains. These are not shapes. They are compositions.\n\nIn the audits we run at 1Digit, the same patterns recur. Insecure direct object references on internal admin endpoints where authentication is enforced but authorisation is not consistently bound to the object identifier. Authorisation drift between services in a mesh, where a signed token issued by service A is trusted downstream by service B without revalidation against the current user state. Memory-handling shortcuts in upload paths, guarded by stale comments about trusting an upstream that changed ownership eighteen months ago. None of these are exotic. All of them are findable by a frontier model in hours. None of them are findable reliably by SAST.\n\nA frontier cyber-capable model does not pattern-match. It reasons about your stack the way an attacker does. It models your authentication boundaries, traces your privilege graph, and looks for compositions of two permissions you did not think could be composed. It does this at machine speed.\n\nThis is why Glasswing exists. The twelve consortium members are not asking Mythos to find CVE-2024-whatever. They are asking it to find the compositions. They already know, because they have the institutional memory of every breach of the last decade, that the compositions are where the expensive incidents come from."
+      },
+      {
+        "type": "section",
+        "heading": "Can your company afford the attack?",
+        "content": "The IBM 2025 Cost of a Data Breach Report puts the global average cost of a breach at 4.44 million dollars. In the United States it is 10.22 million dollars. In healthcare, which has now led every sector for fourteen consecutive years, it is 7.42 million dollars. These are averages. The tails are much worse.\n\nThe average ransomware incident costs 5.75 million dollars, all-in. Twenty-eight per cent of ransomware attacks now target critical infrastructure. And the figure that ought to anchor the rest of this conversation: ninety-seven per cent of AI-related breaches occurred in organisations that had no AI access controls in place at all. Not weak controls. No controls.\n\nLast week put the abstract concrete. On 20 April 2026, BePrime, a Mexico-based cybersecurity firm whose clients include Starbucks, Iberdrola, ArcelorMittal and Whirlpool, was breached. Twenty-nine gigabytes of data exfiltrated. Thirteen million records exposed. The cause was administrative accounts that lacked multifactor authentication. A cybersecurity firm. Without MFA on its admin accounts. The defect would have been flagged in any audit BePrime would have run for one of its own clients. It was not flagged in their own estate. That is the head-in-the-sand tax made specific. It is not a hypothetical. It happened eight days ago.\n\nSo the cost comparison is straightforward. The bill for putting your head in the sand is roughly ten million dollars per incident in the United States, and there is no rule that says you only get one. The bill for acting is the cost of an audit, some capability-based access work, some sandboxing, and a programme of remediation. We have never seen the latter come anywhere near ten million dollars. We have seen the former more than once.\n\nThe question is not whether your company can afford a cyber attack. The question is whether your company can afford to pretend that Mythos, GPT-5.5, and whatever comes next, will not find what is already there."
+      },
+      {
+        "type": "section",
+        "heading": "This is an enterprise architecture problem, not just an infosec problem",
+        "content": "The work in front of you is not the work your CISO is briefed on. It is the work your enterprise architect should be leading.\n\nMost enterprises think about cyber posture as an infosec function. They have a CISO. They have a SOC. They run pen tests. They buy SAST and SIEM. That is necessary. It is not sufficient. The defects we are talking about, the compositions a frontier model will find, are architectural defects. They are decisions about how your services authenticate to each other, how your agents are granted capabilities, how your memory layer is scoped, how your kill-switches are wired, where your blast radius boundaries sit. None of those are infosec questions in the first instance. They are TOGAF questions.\n\nThe TOGAF discipline is precisely the discipline that closes these holes. It sets the architectural principles. It maintains the application architecture against which permission boundaries are evaluated. It governs the technology architecture inside which agents run. It produces the architecture vision that should already say, before any agent is shipped, what the model of trust is between components.\n\nIf your enterprise architecture function is not at the table for the AI readiness conversation, you have a structural gap. The CISO will not write the capability-based access design. The SOC will not architect the microVM sandbox boundaries. Those are EA outputs. They sit upstream of any control your CISO can buy or configure.\n\nThis connects directly to what we wrote a fortnight ago. Your AI strategy has no foundation. Strategy belongs to the executive team. Foundation belongs to enterprise architecture. The infrastructure that sits underneath, including everything we are about to recommend, is owned jointly. Without architecture, your strategy is a slide deck. Without infrastructure assurance, your architecture is a diagram."
+      },
+      {
+        "type": "section",
+        "heading": "Opus 4.7 and GPT-5.5 are now your audit pair",
+        "content": "You do not need Mythos to find your bodies. You need the two models that are publicly available today.\n\nClaude Opus 4.7 went generally available on AWS Bedrock on 16 April 2026. One million tokens of context. Zero operator access for compliant deployments. Capable enough to find meaningful classes of defect when pointed at a stack with adversarial framing.\n\nGPT-5.5 went generally available a week later. Different prior distribution, different architectural strengths, the OpenAI benchmark lead on multi-step autonomous tasks, and now in the API.\n\nUse them as a pair. Two frontier models reading your estate from two different priors will find things neither would find alone. Walk the authorisation graph with one. Trace the tool grants on every agent you have deployed this year with the other. Re-read the RBAC catalogue against the product surface as it actually exists today, not as it existed when the policy was written, with both. Compose attacks against your own stack in a sandbox. Read the pull requests nobody has reviewed this quarter.\n\nPay the API bill. It is less than the excess on your cyber insurance.\n\nIf you are an enterprise with an internal security team, also apply for Anthropic's Cyber Verification Programme. The public-tier safeguards will trip on enough legitimate security prompts that it is worth operating Claude at its full approved capability for authorised red-team work."
+      },
+      {
+        "type": "section",
+        "heading": "The readiness checklist",
+        "content": "If you take nothing else from this piece, take the checklist. This is what we put in front of every enterprise we audit."
+      },
+      {
+        "type": "numberedList",
+        "items": [
+          "Adopt capability-based access for every service-to-service and agent-to-service path in your estate. Role-based access is a policy statement. Capability-based access is an enforcement mechanism. If an agent does not hold the capability, it cannot invoke the endpoint, even if its role says it can.",
+          "Put every executing agent inside a sandbox. The blast radius of a compromised agent should be its sandbox, not your production estate. Bear in mind: Mythos broke out of Anthropic's own sandbox in safety testing. Build yours assuming they will be tested too.",
+          "Turn on agent observability. Every tool call, every prompt, every response, logged and searchable. If your security team cannot answer the question \"what did the agent do last Tuesday at 14:23\" in under ten seconds, you are not observing.",
+          "Put a kill-switch on every agent path that can write. Not a toggle in the product. A kill-switch in the platform, owned by security, exercised quarterly. If you cannot demonstrate that you can stop an agent mid-operation, you cannot claim to have control over it.",
+          "Red-team the agent paths, not the endpoints. Mythos and GPT-5.5 do not exploit endpoints. They exploit paths. Your red team needs to think in compositions.",
+          "Reread your RBAC catalogue against the product surface as it actually exists. The gap between policy and reality is the single largest source of findable business-logic defects in the estates we audit. Close the gap. Document the closure.",
+          "Invest in patch velocity. Anthropic's recommendation inside Glasswing is blunt. Accelerate patching, reduce time-to-deployment windows, enable automatic updates. You cannot remediate faster than you can deploy.",
+          "Get MFA on every administrative account, everywhere, no exceptions. We are putting this on a piece in 2026 because BePrime's breach last week made it necessary again."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": "This is six weeks of work for a well-staffed security organisation. It is longer for everyone else. It is cheaper than one American breach."
+      },
+      {
+        "type": "section",
+        "heading": "A note on confidence, not guarantees",
+        "content": "We cannot guarantee your stack will hold against Mythos, or against the next frontier model after Mythos. Nobody honest can. The capability is moving faster than the controls.\n\nWhat we can do is bring you to a high degree of confidence. Confidence that the holes your static analysers cannot see have been looked for by the models that can. Confidence that your authorisation boundaries are enforced by capability, not policy. Confidence that your agents run in boundaries that hold, observed by telemetry you can query, with kill-switches you have actually exercised. Confidence that your patch velocity matches the speed at which new defects will be discovered. Confidence that, when your board asks what assurance you have, you have a defensible answer.\n\nThat is the goal. Not zero risk, which is unreachable. High confidence, which is achievable, and which is what your board should be asking for and what your teams should be asked to demonstrate."
+      },
+      {
+        "type": "section",
+        "heading": "What to do next",
+        "content": "The Glasswing ninety days will end around 4 July 2026. The findings, or the digested public summaries of them, will start to circulate. By that point a new round of breaches will have made the cost numbers above look conservative. The people who use this window well will end it with a tested posture and a defensible audit trail. The people who do not will read about themselves in the news.\n\nDo not put your head in the sand. Do not wait for the Glasswing findings to tell you what you already knew about your own estate. Do not wait for a breach notice to tell you what Opus 4.7 and GPT-5.5 could have told you on a Tuesday afternoon.\n\nIf you are on a board, or sit in a CTO chair, and you do not have confidence in your readiness, get the confidence. Reach out and ask for the assessment, the audit, the second opinion. Ask your teams to show you the assurance, not describe it. Demand evidence, not narrative.\n\nIf we at 1Digit can help, fantastic. We run an AI Readiness Assessment specifically for this moment. Two weeks of focused work, by engineers who have been on both sides of this problem. We look at it as both an enterprise architecture question and an infrastructure security and vulnerability question, because that is what it is. We use Opus 4.7 and GPT-5.5 as part of the audit. We deliver a prioritised remediation plan that maps to the readiness checklist above. We cannot guarantee safety. We can take you to a high degree of confidence.\n\nIf we are not the right fit, find someone who is. There are reputable firms doing this work. The choice that matters is not which firm you pick. It is the choice to act now rather than wait. Ask the question. Get the assurance. Tell your board you have done all that you know how to do. That is the obligation, regardless of which name is on the engagement letter.\n\nMythos finds where the bodies are buried. Every infrastructure has them. Every one we have audited has them. Yours does too. You can find them now, at the cost of an audit and a sensible remediation programme, or you can wait for someone else to find them at the cost of ten million dollars, your insurance premium, and a year of rebuilding customer trust.\n\nThe one option that is no longer available is waiting."
+      },
+      {
+        "type": "paragraph",
+        "content": "About 1Digit. 1Digit is an enterprise AI consultancy helping CIOs, CTOs, and CISOs get their infrastructure and architecture ready for frontier AI. We work with boards, security teams, and platform engineering to audit, remediate, and operate AI-native estates. Book an AI Readiness Assessment at 1Digit.co.uk."
+      }
+    ]
+  },
+  {
+    "id": "insight-1746432000000",
+    "slug": "shadow-agents-are-an-architecture-problem",
+    "title": "Shadow Agents Are an Architecture Problem",
+    "thesis": "You are not building for the agents you have today. You are building for the agents you will have in two years. The numbers are not on your side.",
+    "summary": "By 2028 the average Fortune 500 enterprise will run over 150,000 agents, up from fewer than 15 in 2025. The governance plane was not sized for the curve. This is the architect's problem before it is the CISO's.",
+    "researchType": "Strategic Brief",
+    "category": "Architecture",
+    "tags": [],
+    "campaignTag": null,
+    "publishDate": "2026-05-05",
+    "readTimeMinutes": 17,
+    "ctaType": "architecture-review",
+    "isPinned": true,
+    "isCampaignFeatured": false,
+    "primaryConversionTarget": "/ai-readiness-assessment",
+    "external": false,
+    "externalUrl": null,
+    "seoTitle": "",
+    "seoDescription": "",
+    "ogImage": "",
+    "coverImage": "/images/insights/shadow-agents.png",
+    "status": "published",
+    "bodyBlocks": [
+      {
+        "type": "paragraph",
+        "content": "By Justin Gane, 1Digit"
+      },
+      {
+        "type": "paragraph",
+        "content": "Last week we wrote about what a frontier cyber-capable model will find inside your existing infrastructure. The conversations that have come back from CTOs, CIOs and audit committee chairs in the days since publication have not been about whether the article overstated the case. They have been about whether the case can be defended in board papers, in regulator submissions, in audit committee minutes. Several of those conversations did not start with the word Mythos at all. They started with the question that sits behind it: if not this model, the next one, and how do we measure whether we are ready."
+      },
+      {
+        "type": "paragraph",
+        "content": "That shift is the point. A week ago the conversation about frontier cyber capability was theoretical. Today it is operational. Mythos is the named hook, but the underlying concern has moved past any single model. Boards are not asking whether Mythos can do what Anthropic says it can do. They are working from the assumption that something can, and acting accordingly. The certainty has gone up. So has the risk."
+      },
+      {
+        "type": "paragraph",
+        "content": "The Mythos piece was about defects already in the code. This piece is about defects already in your operating model. They are not the same problem, but they compound on each other, and the compounding is what makes the architecture question urgent rather than interesting."
+      },
+      {
+        "type": "paragraph",
+        "content": "A CISO would frame what follows as a security gap. I am not writing this as a CISO. I am writing it as an enterprise architect, because the question I want to put in front of the C-suite is not whether you have shadow agents. Every enterprise we audit has shadow agents. The question is whether your governance plane is sized for the agents you are about to have. That is not a security question. It is an architecture question. And it is the next thing the board has to deal with."
+      },
+      {
+        "type": "section",
+        "heading": "The 14.4 per cent number",
+        "content": "Start with what is true today.\n\nIn a survey of 1,879 IT leaders published earlier this year, 95 per cent of organisations reported that they now run AI agents that autonomously perform IT or security tasks. That is not pilots. That is not lab experiments. That is production. In the same population, only 14.4 per cent of agents reach production with full security or IT approval. The remaining 85.6 per cent are running on the estate without a complete governance review.\n\nA separate dataset puts the average enterprise at 37 deployed agents today, more than half of which run without security oversight or logging. OutSystems' latest research has 94 per cent of organisations reporting that AI sprawl is increasing complexity, technical debt and security risk. CyberArk's 2025 Identity Security Landscape survey put the ratio of machine identities to human identities at 82 to 1.\n\nEighty-two to one. That is the architectural primitive your IAM stack was not designed for, your audit framework does not contemplate, and your org chart has no role to govern. Today.\n\nThe board reads numbers like these and asks the obvious question: how big is the gap, and how do we close it. The answer most CISOs will give is \"we are working on it.\" The answer the architect should give is harder. The gap is not the gap you think it is. The gap is the trajectory."
+      },
+      {
+        "type": "section",
+        "heading": "The trajectory the board has not seen",
+        "content": "Gartner's central forecast, published by Senior Director Analyst Max Goss at the Digital Workplace Summit in London, is the single number that should be sitting on every audit committee agenda this quarter. By 2028, the average global Fortune 500 enterprise will be running over 150,000 agents. The same Fortune 500 enterprise was running fewer than 15 in 2025.\n\nRead that ratio carefully. Fifteen to one hundred and fifty thousand. That is not 10x. That is not 100x. That is approximately ten thousand times the agent population in three years. The market is not growing. The market is detonating.\n\nTwo corroborating data points sit underneath that forecast. Gartner separately predicts that 40 per cent of enterprise applications will feature task-specific AI agents by the end of 2026, up from less than 5 per cent in 2025, which is roughly 8x growth inside a single year. And Gartner's third forecast in this series is that more than 40 per cent of agentic AI projects will be cancelled by 2027 because of unclear value, escalating cost, and weak governance. The first two numbers describe the size of the wave. The third describes what happens to organisations that meet the wave with the operating model they have today.\n\nIf you are a CTO or a CIO reading this, run the arithmetic on your own estate. Take whatever number of agents you are running today. Multiply it by ten thousand. That is your Q4 2028 problem if Gartner is right, and Gartner has been more directionally right than wrong on enterprise infrastructure forecasts for the last decade. Then take the percentage of those agents that today sit outside a proper production process, a security compliance review, an audit trail you can defend in a regulator's office. In the enterprises we audit, that percentage is rarely below 70. Often it is above 85. Apply it to the 2028 number. The gap you have today is a thousand-agent governance problem. The gap you will have in 2028, on the same operating model, is a hundred-thousand-agent governance problem.\n\nThis is what I mean when I say the architecture is the problem, not the agents. The agents you have are not the issue. The architecture that produced them is."
+      },
+      {
+        "type": "section",
+        "heading": "What an architect actually sees",
+        "content": "The instinct in most boardrooms is to treat agent governance as an extension of identity and access management. It is not, and the reason it is not is what makes this an architecture problem rather than a security one.\n\nTraditional non-human identities, the service accounts and API keys your IAM team has been governing for twenty years, are static. They sit there. They have a known scope. The audit question is \"did anyone touch this.\" Agentic identities are not static. They are dynamic, ephemeral, and self-directed. They exist for minutes to complete a task, then spin down. They access different resources based on real-time reasoning. They make decisions without a human review loop at each step. They invoke other agents. They invoke tools. They write to memory. They read from memory. They escalate.\n\nThat shift has three structural consequences, and each one is solvable today at the scale of fifteen agents. None of them is solvable at the scale of one hundred and fifty thousand without architecting for the curve now.\n\nThe first is identity. An agent is not a user. An agent is not a service account. An agent is a new identity class that sits between the two and behaves like neither. Microsoft's response, the Entra Agent ID class that went generally available alongside Agent 365 on the first of May, is the first major-vendor product to formalise the distinction. Google's response, the agentic enterprise control plane unveiled at Cloud Next 2026, is the second. Both are correct in their direction. Neither, on its own, is the answer for an enterprise that needs to govern across vendors.\n\nThe second is observability. This is the layer the board has heard the least about and the layer that breaks first. A single agent generates somewhere between hundreds and thousands of telemetry events for a single interaction. OneUptime's analysis, published earlier this year, puts a typical RAG pipeline, a vector database call followed by a context retrieval followed by an LLM call followed by post-processing, at ten to fifty times the telemetry volume of an equivalent traditional API call. That is per agent, per interaction. Multiply by one hundred and fifty thousand agents. Then multiply by however many interactions per day each one of them is running. The data plane that has to ingest, index, search and audit that volume in real time is not the data plane your enterprise built for application logging. It is something an order of magnitude larger, and the cost model breaks before the architecture does. Datadog, New Relic and Splunk all price by data volume. Most enterprises are about to discover that the assumption that telemetry volume scales linearly with traffic was the assumption their entire observability budget was built on.\n\nThe third is capacity. By which I do not mean compute. I mean the capacity of the governance plane itself. The audit logs, the policy engine, the kill-switches, the approval workflows, the agent inventory, the identity store, the policy distribution mechanism. Every one of those has a throughput envelope. The envelope was sized for the agent population you have today. None of it was sized for the trajectory. And capacity is the constraint nobody costs into the AI strategy slide.\n\nIdentity. Observability. Capacity. Three layers. Each compounding on the other. Each invisible from the outside until it breaks. This is what an architect sees when they look at an agentic estate. It is not what a CISO sees, because a CISO is correctly looking at the controls. The architect's job is to look at what the controls run on top of, and ask whether the substrate holds."
+      },
+      {
+        "type": "section",
+        "heading": "The 85.6 per cent already running outside",
+        "content": "Now bring the trajectory back to today, because the second-order argument is the one that gets the C-suite to act.\n\nIf 14.4 per cent of agents in the average enterprise reach production with full IT approval today, and the agent population is about to grow approximately ten thousand times in three years, the obvious question is whether the 14.4 per cent governance ratio holds, improves, or collapses across that growth curve. There is no honest scenario in which it improves on its own. The agents are spinning up faster than the governance team is hiring. The vendors are shipping new tool integrations faster than the security review cycle can absorb them. The MCP servers, the Agent 365 third-party connectors, the Salesforce Headless 360 endpoints, the Snowflake Cortex extensions, the Cequence Agent Personas, every one of them is a new surface area an agent can be granted capability on, and every one of them was published this fortnight.\n\nThe realistic scenarios are: governance ratio holds at roughly 14 per cent, in which case in 2028 you have approximately 21,000 governed agents and 129,000 ungoverned ones. Or governance ratio collapses to single digits as the curve overwhelms the controls, which is what 80 per cent of Fortune 500 companies are reporting today. Or, in the scenario the architect is meant to design, the ratio is pushed toward 90 per cent and above by changing the substrate, not by hiring more governance staff.\n\nThe third scenario is the only one that scales. It is also the only one that requires architecture rather than process. Process is the tactic that says \"review every new agent before it ships.\" That tactic is a wall that one hundred and fifty thousand agents will go through. Architecture is the substrate that says \"an agent cannot ship outside the governance plane, because the governance plane is what it ships into.\" That is a different proposition. It is the difference between a customs queue and a passport control system.\n\nI have been writing about the architectural framework for an AI-native operating model for months now. The Mythos piece said your infrastructure has defects you cannot see. The foundation piece, a fortnight before that, said your AI strategy has no foundation. This piece adds the third leg of the same triangle: your governance plane is not the agents you have today. It is the substrate the agents you have not built yet will run on. If the substrate is wrong, the controls do not save you. The controls only buy you time."
+      },
+      {
+        "type": "section",
+        "heading": "What the board should be asking this quarter",
+        "content": "If you are reading this from a CTO chair or a board seat, the questions you put to your enterprise architect in the next two weeks are these.\n\nFirst, what is our agent inventory today, and what is the discovery process that finds the agents nobody told us about. If the answer to the second part of that question is silence, you do not have an inventory, you have a hope. The CSA's published guidance on shadow agent discovery, the Cequence Agent Personas product, the Microsoft Defender for Agents capability that ships with Agent 365, are all options. Pick one. Run the discovery. The number you get back will not be the number you expected. That is the point.\n\nSecond, what is the agent identity model. If the answer is \"we use service accounts,\" you are running a 2015 IAM model into a 2026 problem. If the answer is \"we use Entra Agent ID for Microsoft agents and something else for the rest,\" you have a vendor coverage gap. If the answer is \"we have an internal agent identity primitive that wraps around Entra, Google, AWS Bedrock and our internal stack,\" you have the beginnings of an architecture. Most enterprises do not.\n\nThird, what is the observability target by the end of 2026. Specifically: what percentage of agent tool calls, prompt logs, response logs and decision rationales are captured in a system the security team can query in under ten seconds. If the answer is below 80 per cent, you do not have observability. You have a sampling exercise. And if the cost model for getting that to 80 per cent is calculated on per-GB pricing from a traditional log vendor, your CFO is about to get a bill that ends the conversation.\n\nFourth, what is the capacity headroom on the governance plane. Specifically: at the current rate of agent growth in your estate, how many months until you saturate your audit log retention, your policy engine throughput, your kill-switch fan-out, your identity store. The honest answer is usually \"we have not modelled it.\" Model it.\n\nFifth, who owns the role that did not exist in your org chart twelve months ago. Microsoft has formalised it as the Agent ID Administrator. The principle generalises. Somebody on your team needs to be accountable for the lifecycle of every agent identity in your enterprise, the same way somebody is accountable for human identity today. If the role is implicit, distributed, or unfilled, it does not exist. The audit committee will discover that the day after the first incident.\n\nSixth, when your CFO gets the cloud invoice for H2 2026, will the AI line items be on the AI budget or hidden inside the observability budget. Most will be the latter. That is a financial-control failure as well as an architectural one.\n\nThese are not security questions. They are architecture questions. The CISO answers to them only after the architect has framed them. If your enterprise architecture function is not at the table for this conversation, you have the same structural gap we wrote about three weeks ago, in a different room."
+      },
+      {
+        "type": "section",
+        "heading": "A note on why this is the architect's piece, not the CISO's",
+        "content": "The easy reading of this piece is that CISOs are not equal to the moment. That is not the argument.\n\nCISOs and their teams are exactly equal to the moment they have been asked to operate inside. The problem is that the moment they have been asked to operate inside was the 2018 to 2024 moment. Identity and access management. Endpoint protection. Network segmentation. SIEM. SOC. The CISO playbook is the right playbook for those problems. It is not the wrong playbook for agentic governance, but it is incomplete.\n\nThe architectural decisions that determine whether the CISO playbook scales are upstream of the CISO. They are decisions about the agent identity primitive, the telemetry data plane, the policy distribution model, the capability model, the kill-switch topology, the cross-vendor abstraction. These are TOGAF outputs. They sit in the application architecture and the technology architecture domains. They are produced by an enterprise architect or they are not produced at all, and if they are not produced at all the CISO inherits a substrate that cannot be controlled by any tool the CISO can buy.\n\nAI is not a feature release. It is a structural cost reset, and the structure that is being reset is the operating model. Governance is not a phase. It is the architecture. The architect's job is to design the substrate the controls run on. The CISO's job is to operate the controls. If the substrate is wrong, no operating excellence saves you."
+      },
+      {
+        "type": "section",
+        "heading": "Confidence, not guarantees",
+        "content": "We cannot guarantee that any enterprise will land 2028 with one hundred per cent agent governance coverage. Nobody honest can. The trajectory is moving faster than the substrate work that the trajectory requires.\n\nWhat we can take you to is a high degree of confidence. Confidence that the agent identity primitive in your stack is one your architecture will still recognise in three years. Confidence that the telemetry data plane has been costed against the trajectory rather than against today. Confidence that the governance plane has capacity headroom modelled, not assumed. Confidence that the agents shipping into your estate next quarter cannot ship outside the substrate, because the substrate is what they ship into. Confidence that, when your audit committee asks how many agents you are running and what each one of them did last Tuesday at fourteen twenty-three, your team has a defensible answer, not a narrative one.\n\nThat is the goal. Not zero shadow agents, which is unreachable. High confidence that the substrate will hold as the agent population scales by orders of magnitude over the next three years."
+      },
+      {
+        "type": "section",
+        "heading": "What to do next, and a note on what comes after this",
+        "content": "If you are on a board and you do not have confidence in your agent governance trajectory, ask the question. Demand the inventory. Demand the identity model. Demand the observability number. Demand the capacity model. Demand the named role in the org chart. None of those is a six-month exercise. All of them are clarifying.\n\nIf 1Digit can help, fantastic. Our AI Readiness Assessment now includes an agent governance architecture review as a defined module. Two weeks of focused work, by enterprise architects who have been on both sides of this problem. We look at it as an architecture question first and a security question second, because that is the order in which it has to be answered. We deliver a prioritised remediation plan that maps to the trajectory, not to today.\n\nIf we are not the right fit, find someone who is. The choice that matters is not which firm runs the review. It is whether the review happens before the agent population in your estate grows another order of magnitude, because the cost of getting the substrate right at one thousand agents is a fraction of the cost of fixing it at one hundred thousand. We have never seen the latter come anywhere near the cost of the former. We have seen organisations who did neither, and they show up in the same numbers we cited above.\n\nNext week we will write about what happens to the numbers as they scale. The Gartner forecast is one curve. The cost curve underneath it, telemetry, observability, governance plane capacity, vendor licensing, is a second curve nobody is plotting. The two curves cross somewhere around 2027, and what happens to AI economics on the other side of that crossing is the conversation the board has not had yet. Sprawl is not just a security problem. It is a P&L problem.\n\nFor now, the question is the simpler one. Most of your agents are running outside the governance plane today. Most of them will be your colleagues' problem in three years if the curve holds. If you are the architect, the curve is your problem now.\n\nThe bodies are not just in the code. They are in the org chart. And the org chart is where they multiply."
+      },
+      {
+        "type": "paragraph",
+        "content": "About 1Digit. 1Digit is an enterprise AI consultancy helping CIOs, CTOs and enterprise architects design and operate AI-native estates. We work with boards, security teams and platform engineering to audit, remediate and architect for the agent trajectory. Book an AI Readiness Assessment, including the agent governance architecture review, at 1Digit.co.uk."
+      }
+    ]
   }
 ]
