@@ -45,13 +45,13 @@ const LayoutComponent = useFullNav ? PageLayout : CampaignLayout;
         <ScrollReveal>
           <div>
             <div class="mb-5">
-              <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-tint/10 bg-tint/5 text-label-sm text-content-secondary">
+              <div class="inline-block max-w-full px-4 py-1.5 rounded-full border border-tint/10 bg-tint/5 text-xs sm:text-label-sm text-content-secondary text-center">
                 {hero.badge}
               </div>
             </div>
-            <h1 class="text-display-md lg:text-display-lg font-display mb-5 uppercase">
-              {hero.headlineBefore}<br />
-              <span class="campaign-gradient-text">{hero.headlineGradient}</span><br />
+            <h1 class="text-heading-xl sm:text-display-md lg:text-display-lg font-display mb-5 uppercase">
+              {hero.headlineBefore}<br class="hidden sm:block" />
+              <span class="campaign-gradient-text">{hero.headlineGradient}</span><br class="hidden sm:block" />
               {hero.headlineAfter}
             </h1>
             <p class="text-body-md text-content-secondary mb-4 leading-relaxed">

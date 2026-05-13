@@ -9,24 +9,24 @@
   aria-describedby="cookie-consent-text"
   hidden
 >
-  <div class="mx-4 mb-4 md:mx-8 md:mb-6 max-w-4xl lg:mx-auto">
-    <div class="backdrop-blur-[20px] bg-surface-elevated/80 border border-tint/10 rounded-2xl p-6 md:p-8 shadow-2xl">
-      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-        <p id="cookie-consent-text" class="text-body-sm text-content-secondary flex-1">
+  <div class="mx-3 mb-3 sm:mx-4 sm:mb-4 md:mx-8 md:mb-6 max-w-4xl lg:mx-auto">
+    <div class="backdrop-blur-[20px] bg-surface-elevated/80 border border-tint/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl">
+      <div class="flex items-center gap-3 sm:gap-6 sm:flex-row">
+        <p id="cookie-consent-text" class="text-xs sm:text-body-sm text-content-secondary flex-1 min-w-0">
           We use cookies to improve your experience. See our
           <a href="/privacy" class="text-glow-blue hover:underline">Privacy Policy</a>
           for details.
         </p>
-        <div class="flex gap-3 shrink-0">
+        <div class="flex gap-2 sm:gap-3 shrink-0">
           <button
             id="cookie-decline"
-            class="px-5 py-2.5 rounded-xl border border-tint/10 text-sm font-medium text-content hover:border-tint/20 transition-colors cursor-pointer"
+            class="px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl border border-tint/10 text-xs sm:text-sm font-medium text-content hover:border-tint/20 transition-colors cursor-pointer whitespace-nowrap"
           >
             Decline
           </button>
           <button
             id="cookie-accept"
-            class="px-5 py-2.5 rounded-xl bg-surface-elevated text-content border border-surface-border text-sm font-semibold hover:bg-tint/10 transition-colors cursor-pointer"
+            class="px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl bg-surface-elevated text-content border border-surface-border text-xs sm:text-sm font-semibold hover:bg-tint/10 transition-colors cursor-pointer whitespace-nowrap"
           >
             Accept
           </button>

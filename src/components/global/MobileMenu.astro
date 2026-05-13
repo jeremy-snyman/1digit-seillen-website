@@ -6,9 +6,9 @@ import ThemeToggle from './ThemeToggle.astro';
 const currentPath = Astro.url.pathname;
 ---
 
-<div id="mobile-menu" class="fixed inset-0 z-[60] hidden" aria-label="Mobile navigation" role="dialog" aria-modal="true">
+<div id="mobile-menu" class="fixed inset-0 z-[100] hidden" aria-label="Mobile navigation" role="dialog" aria-modal="true">
   <!-- Backdrop -->
-  <div class="absolute inset-0 bg-surface/95 backdrop-blur-lg" data-mobile-backdrop></div>
+  <div class="absolute inset-0 bg-surface" data-mobile-backdrop></div>
 
   <!-- Menu content -->
   <div class="relative flex flex-col h-full pt-20 px-6 pb-8">

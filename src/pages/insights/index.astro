@@ -2,6 +2,7 @@
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/global/Header.astro';
 import Footer from '@components/global/Footer.astro';
+import MobileMenu from '@components/global/MobileMenu.astro';
 import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
 import InsightsHero from '@components/insights/InsightsHero.astro';
@@ -31,6 +32,7 @@ const tags = getAllTagsFresh();
   description="Structured perspectives on AI readiness, architecture, governance and platform economics. Published weekly for enterprise leaders and technical decision-makers."
 >
   <Header />
+  <MobileMenu />
   <main id="main-content">
     <InsightsHero />
 

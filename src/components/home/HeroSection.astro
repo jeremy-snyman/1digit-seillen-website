@@ -27,8 +27,8 @@ import Container from '@components/layout/Container.astro';
       <Badge variant="accent" class="normal-case tracking-normal [&>svg]:hidden mb-4 !text-accent-bright !bg-accent-bright/10 !border-accent-bright/25">
         Enterprise AI Architecture & Delivery
       </Badge>
-      <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6 hero-title">
-        The human experts,<br />
+      <h1 class="text-display-md sm:text-display-lg lg:text-display-xl font-display mt-4 mb-6 hero-title">
+        The human experts,<br class="hidden sm:block" />
         <span class="text-accent-bright">powered by AI</span>
       </h1>
       <p class="text-body-lg font-medium text-content-secondary max-w-2xl mx-auto mb-10 hero-subtitle">
@@ -73,7 +73,7 @@ import Container from '@components/layout/Container.astro';
 
 <script>
   const bg = document.querySelector('.parallax-bg') as HTMLElement | null;
-  if (bg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (bg && window.innerWidth >= 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     window.addEventListener('scroll', () => {
       if (window.scrollY < window.innerHeight) {
         bg.style.transform = `translateY(${window.scrollY * 0.3}px)`;

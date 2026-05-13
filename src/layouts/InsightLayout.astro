@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import Header from '@components/global/Header.astro';
 import Footer from '@components/global/Footer.astro';
+import MobileMenu from '@components/global/MobileMenu.astro';
 import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
 import ThesisBlock from '@components/insights/ThesisBlock.astro';
@@ -44,6 +45,7 @@ const gradientClass = `cat-gradient-${catSlug}`;
   canonicalUrl={canonical}
 >
   <Header />
+  <MobileMenu />
   <main id="main-content">
     <!-- Back to Insights -->
     <Section class="pt-28 pb-0">
