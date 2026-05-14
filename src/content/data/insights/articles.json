@@ -648,7 +648,7 @@
     "publishDate": "2026-05-05",
     "readTimeMinutes": 17,
     "ctaType": "architecture-review",
-    "isPinned": true,
+    "isPinned": false,
     "isCampaignFeatured": false,
     "primaryConversionTarget": "/ai-readiness-assessment",
     "external": false,
@@ -724,5 +724,115 @@
         "content": "About 1Digit. 1Digit is an enterprise AI consultancy helping CIOs, CTOs and enterprise architects design and operate AI-native estates. We work with boards, security teams and platform engineering to audit, remediate and architect for the agent trajectory. Book an AI Readiness Assessment, including the agent governance architecture review, at 1Digit.co.uk."
       }
     ]
+  },
+  {
+    "id": "insight-1772058538492",
+    "slug": "what-mythos-is-why-it-has-pulled-two-governments-into-the-room-and-what-to-do-about-it-in-the-next-180-days",
+    "title": "What Mythos Is, Why It Has Pulled Two Governments Into the Room, and What to Do About It in the Next 180 Days",
+    "thesis": "A reference piece for boards, audit committees and C-suites. Synthesised from Anthropic's own disclosures, AISI's UK government evaluation, Mozilla's Firefox 150 release, Palo Alto Networks's frontier-AI defence reports, METR's time-horizon benchmark, the Sullivan and Cromwell legal memo on the US Treasury and Federal Reserve convening, and the conversations we have been having with regulated firms over the last fortnight.",
+    "summary": "A reference piece for boards, audit committees and C-suites. Synthesised from Anthropic's own disclosures, AISI's UK government evaluation, Mozilla's Firefox 150 release, Palo Alto Networks's frontier-AI defence reports, METR's time-horizon benchmark, the Sullivan and Cromwell legal memo on the US Treasury and Federal Reserve convening, and the conversations we have been having with regulated firms over the last fortnight.",
+    "researchType": "Strategic Brief",
+    "category": "AI Strategy",
+    "tags": [],
+    "campaignTag": null,
+    "publishDate": "2026-02-25",
+    "readTimeMinutes": 15,
+    "ctaType": "ai-readiness",
+    "isPinned": true,
+    "isCampaignFeatured": false,
+    "primaryConversionTarget": "/ai-readiness-assessment",
+    "external": false,
+    "externalUrl": null,
+    "seoTitle": "",
+    "seoDescription": "",
+    "ogImage": "/images/insights/generated-image-may-14-2026-9_35am-1-.jpg",
+    "bodyBlocks": [
+      {
+        "type": "paragraph",
+        "content": "If you have not had to read about Mythos yet, this piece is the one to read.\nA growing number of CTOs, CIOs, audit committee chairs and chief executives have asked us in the last fortnight what Mythos actually is and what they are supposed to do about it. The short answer is that Mythos is an unreleased frontier model from Anthropic, restricted to about forty organisations under a programme called Project Glasswing, whose capability has triggered the US Federal Reserve and Treasury to convene the largest US bank CEOs, the IMF to call AI a systemic financial risk, the UK AI Security Institute to publish an independent evaluation using the word \"unprecedented\", and the South Korean government to sit down with Anthropic on 11 May. Mozilla shipped Firefox 150 last month with fixes for 271 vulnerabilities Mythos found in a single evaluation pass.\nThe longer answer is the rest of this piece. We have written about Mythos three times in the last fortnight. This piece is the one we would send to a board member who has twenty minutes and wants to know what is true, what is hype and what to do.\nA brief, honest disclosure before we go further. A week ago we wrote that part of the Mythos noise could be hype, and that some of the framing carried commercial incentives we should discount. We took that position deliberately, because the original announcement came from a vendor heading toward a public offering and the strongest claims sat inside that vendor's own framing. The independent evidence has now arrived. AISI, METR, Mozilla and Palo Alto have published their own findings. Two governments have convened on the strength of those findings. The position a week ago is no longer the right position to hold this week. The threat is real. So is the opportunity. The same capability that finds your vulnerabilities is the one that lets defenders see them first. Both ends of that statement matter."
+      },
+      {
+        "type": "paragraph",
+        "content": "Mythos is an unreleased frontier model from Anthropic. It is not in the API. It is not in the consumer Claude product. Anthropic announced it through Project Glasswing, a controlled-access release to about forty technology and infrastructure organisations including AWS, Apple, Microsoft, Google, NVIDIA, JPMorgan Chase, Cisco, CrowdStrike, Broadcom, Palo Alto Networks, Mozilla and the Linux Foundation. Anthropic has committed one hundred million dollars in usage credits to the programme and four million dollars in donations to open-source security organisations.\nThe model is, in Anthropic's own framing, the first general-purpose frontier model whose cyber-offensive capability is itself the reason for the controlled release. In pre-release testing across major operating systems and web browsers, Anthropic reports that Mythos identified thousands of previously unknown vulnerabilities and reproduced exploits on the first attempt in over 83 per cent of cases.\nThe reason this matters is not the absolute number. It is the slope of the curve. The previous flagship, Opus 4.6, found 22 security-relevant bugs in Firefox 148. On the same target a few weeks later, Mythos found 271 vulnerabilities in Firefox 150. Of those, 180 were rated security-high. In 2025 Mozilla addressed approximately 73 high-severity Firefox vulnerabilities for the entire year. A single AI evaluation pass produced more than twice that figure. Firefox is not a weekend project. It is one of the most security-hardened open-source codebases in the world.",
+        "blockHeading": {
+          "text": "What Mythos is",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "This part matters because it removes the \"Anthropic's commercial narrative\" objection from the conversation.\nThe UK AI Security Institute (AISI), the UK government's own evaluation body, ran Mythos through its cyber range. AISI describes the capability as \"unprecedented\", says Mythos is the first model to complete an AISI cyber range end-to-end, and reports that the model \"can execute multi-stage attacks on vulnerable networks and discover and exploit vulnerabilities autonomously\" when explicitly directed and given network access. AISI is not a vendor.\nMETR, the independent AI safety evaluation group, runs a time-horizon benchmark that measures how long an autonomous task a model can complete with a fifty per cent success rate. In 2021 the leading systems sat at around eight seconds. By mid 2024 they had reached about one hour. METR's evaluation of Mythos Preview reportedly sits at around sixteen hours. The reason that number has a wide confidence interval (METR itself cites a range of 8.5 to 55 hours) is that METR's task suite only contains five tasks of sixteen hours or longer out of 228. The benchmark, in effect, ran out of hard questions at the top.\nMozilla, in its public post titled \"The Zero-Days Are Numbered\", framed the Firefox 150 release as evidence that the cyber balance is starting to shift toward defenders, on the condition that defenders integrate frontier AI into their hardening practice. Their language was deliberate: this is the first evidence at scale that the same capability that worries the security community can also be turned on the codebase before an adversary does.\nPalo Alto Networks, with early unrestricted access to Mythos and GPT-5.5 Cyber, published two reports in April and May. The headline claim: three weeks of model-assisted vulnerability analysis matched a full year of manual penetration testing by humans, with broader coverage. The intrusion-to-exfiltration chain in their controlled testing was compressed to about twenty-five minutes. Their words: a step change in capability that represents a shift from AI as an assistant to AI as an autonomous agent capable of discovering and chaining flaws at a scale that most defenders are not prepared for.",
+        "blockHeading": {
+          "text": "What independent evaluators have said",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "\nOn 7 April, the US Treasury and the Federal Reserve convened the chief executives of the largest US banks in an urgent, closed-door meeting on the cybersecurity risks posed by Mythos. The attendees were the chief executives of Citigroup, Morgan Stanley, Bank of America, Wells Fargo and Goldman Sachs. JPMorgan's chief executive could not attend.\nThis is the first time a single AI release has produced a meeting of that shape. The US Treasury and Federal Reserve do not convene bank CEOs for a press cycle. They convene them when the supervisory perimeter is being redrawn in real time.\nThe IMF followed by formally calling on regulators to treat Mythos-class AI models as a systemic risk to the financial system rather than an operational issue at individual firms. Their argument: banks rely on shared cloud, software and payment infrastructure, so a single AI-powered breach at a major vendor could spread across the system.\nOn 11 May, the South Korean government held a roundtable with Anthropic on cooperation around AI cybersecurity risks, with senior officials from the country's Artificial Intelligence Security Institute, the Korea Internet and Security Agency and Anthropic's global head of policy in the room. Countermeasures are scheduled to be announced by the end of the month. South Korea is reportedly considering joining Project Glasswing.\nTwo governments, on two continents, inside one fortnight, on a single model release. The PRA, the Bank of England and the FCA will not move on the same calendar as the Fed and Treasury. They will move on the same logic. The likely shape of the UK conversation is already visible.",
+        "blockHeading": {
+          "text": "Why two governments are now in the room",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "There is a second layer to the supervisory story, and it has not been priced in by most UK boards yet.\nProject Glasswing is now reported to be deploying Mythos directly to Apple, Amazon, JPMorgan and Palo Alto Networks, with the $100m in usage credits and $4m in open-source security donations Anthropic has committed to the programme. Anthropic is briefing US Homeland Security on Mythos's findings. The notable absence is the European Union. Anthropic is, on the public record, holding back EU access to Mythos pending clarification of the EU AI Act's General Purpose AI provisions. OpenAI, by contrast, has agreed to provide EU access to GPT-5.5-Cyber under different terms.\nThat is not a footnote. It is the beginning of a divergence in who has access to frontier defensive AI and who does not. The UK sits in an unusual position. It is outside the EU AI Act regulatory perimeter and inside the bilateral US AI Safety Institute partnership that AISI has run with the Anthropic, OpenAI and Google evaluation programmes for two years. The practical consequence: UK government, UK national infrastructure operators and UK enterprises with the right partnerships are likely to have access to Mythos-class capability before EU regulators or EU operators do.\nFor a UK regulated firm, that has two implications. The first is sovereign capability. The UK has a window in which it can run frontier defensive AI on its own critical infrastructure ahead of its European peers, if it chooses to use it. The second is procurement. UK enterprises with US headquarters or significant US technology partners will have routes to Mythos-class evaluation that purely European-anchored peers will not. That asymmetry should be discussed at the audit committee level, not buried in a procurement note.",
+        "blockHeading": {
+          "text": "The geopolitical access fault line",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "Stripped of the headlines, the conversations we have been having with regulated firms in the UK have surfaced three patterns.\nThe first is patch velocity. Anthropic has put a six-to-twelve-month responsible-disclosure window on the public record. In most of the regulated estates we have looked at, the credible remediation cycle on a high-severity vulnerability in a production service is materially longer than that window. The gap between the disclosure window and the patch cycle is the size of the unhedged liability.\nThe second is the AI inventory inside the business itself. In the meetings I sat in last week, in two different UK regulated firms, the same thing was true. AI is being used inside the business today, by teams that touch customer data, regulated decisions and supervised processes. And in both rooms, the technology and data teams could not produce an inventory of what AI was being used or where. Mythos lives in the estate the technology function can see. Unsanctioned AI lives in the estate the business has spun up faster than the controls and the inventory have moved with it. Two surfaces, one assurance answer.\nThe third is the interpretability of the code itself. The Mozilla Firefox 150 result is the early signal of a deeper shift. Code that a frontier model can reason about cleanly is code that a frontier model can certify. Code that cannot, because the boundaries are unclear, the abstractions leak, the test coverage is patchy, or the deployment artefacts have drifted from the source of truth, is code that cannot. Most regulated estates contain a meaningful amount of the second category. The trust anchor for software has been the human engineer for forty years. That assurance layer is starting to invert. \"Has this code survived adversarial machine-scale interrogation\" is becoming a stronger statement of assurance than \"did a competent human write this\".",
+        "blockHeading": {
+          "text": "What we are hearing on the ground",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "This is where it pays to be careful, because the same narrative is being used to sell a great deal of theatre.\nMythos is not \"AGI\". A model with high autonomous task performance on coding and cybersecurity benchmarks is not the same thing as a model that can do general work in the real world. Mythos has not been released. Most enterprises will not encounter Mythos directly in the next six months. The \"doubling every four months\" framing has caveats, including measurement instability at the upper end of METR's benchmark.\nThe right way to read the evidence is not \"Mythos is here, panic\". It is \"a capability has been independently validated by AISI, demonstrated at scale by Mozilla and Palo Alto, and triggered a supervisory response from two governments. Plan for the world in which that capability is generally available within six to twelve months, and act now in the window where it is restricted.\"\nThe capability is real. The doubling, with its caveats, is real. The supervisory response is real. Treat all three as the planning baseline and your board will be ahead of the curve. Discount any of them and you are betting the firm on a model release timeline you do not control.",
+        "blockHeading": {
+          "text": "What hype to strip out",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "This is the work we are putting in front of every regulated enterprise we audit. It is not the only work. It is the work the next ninety days will reward and the next twelve months will mark you against.\nNext 30 days. Establish the disclosure-window position. Run a board-level assessment of patch-cycle capacity against a six-to-twelve-month disclosure window. Document, honestly, the median and worst-case days to remediate a high-severity vulnerability in a regulated service today. Start the AI inventory in the business, function by function, business-led, with technology and data participating. Include the unsanctioned. Include the vendor capabilities enabled by a tick-box on a renewal. For each AI use, ask whether it influences a regulated decision (credit, suitability, KYC, hiring, pricing, claims, suspicious activity reporting). Name the owner of the inventory inside the business. This is the work the supervisor will ask to see first.\nNext 90 days. Harden the estate you can see. Adopt capability-based access for every service-to-service and agent-to-service path. Sandbox every executing agent. Turn on agent observability such that every tool call, prompt, response and decision rationale is captured and searchable. Put a kill switch in the platform, owned by security, on every agent path that can write. Red-team the agent paths, not the endpoints. Reread the RBAC catalogue against the product surface as it actually exists. Accelerate patching, with named SLAs measured against the disclosure window. MFA on every administrative account, everywhere, no exceptions. Use Opus 4.7 and GPT-5.5 as an audit pair on the codebase, today, with the right oversight. Pay the API bill. It is less than the excess on your cyber insurance.\nNext 180 days. Build the substrate the next twelve months will require. Begin the refactor of the regulated codebase for AI interpretability: clearer module boundaries, explicit interfaces, test coverage on the assurance-critical paths, deployment artefacts that match the source of truth. Stand up an agent governance plane that can audit, log and revoke agent identity at the same rigour as human identity. Build the audit trail for every regulated decision an AI has touched: who authorised, what model, what evidence retained, who signs. Brief the audit committee on the supervisory trajectory and put the FCA, PRA and BoE conversation on the planning calendar before it lands on yours.",
+        "blockHeading": {
+          "text": "The 30 / 90 / 180 day plan",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "Mythos is part of a wider picture, and the picture is getting harder to dismiss as incremental.\nThe capability profile that matters for the next twelve months is not the single model. It is the combination. Frontier models continue to improve. The skills surface those models can now reach for, in browsers, in code, in enterprise APIs, has gone from a demo to a production primitive in nine months. And if memory gets right, in the sense of persistent context that survives sessions and accumulates over time, the result starts to look meaningfully agentic rather than reactive. METR's time-horizon benchmark is the cleanest signal we have on this. Eight seconds in 2021. One hour in mid-2024. Sixteen hours in April 2026, and the benchmark itself running out of difficult questions at the top.\nThat curve does not necessarily mean AGI is on next year's calendar. I have spent twenty years discounting that statement and I am not going to make it lightly. What it does mean is that the capability is still improving in front of us, and the planning assumption \"models will plateau\" is no longer the safe bet. The safer bet, for any board responsible for a regulated estate, is to plan as if the capability continues to compound, while building the assurance substrate the next generation of that capability will require. That is the work in the 180 days above. It is not theatrical. It is what your supervisor will measure you against.",
+        "blockHeading": {
+          "text": "A wider note on direction of travel",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "We cannot guarantee that any enterprise will hold against a Mythos-class adversary, or against the next frontier model after that. Nobody honest can. What we can do, and what your board is now entitled to ask for, is take you to a high degree of confidence: that your patch velocity is sized for the disclosure window, that your inventory of AI in the business is complete and owned, that your regulated codebase is interpretable to the models that will read it next, and that your audit trail is defensible when the supervisor calls.\nThat is the goal. Not zero risk, which is unreachable. High confidence, which is achievable, and which is what your board should be asking for.",
+        "blockHeading": {
+          "text": "A note on confidence, not guarantees",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "If you have not yet had the board conversation, have it. Use this piece as the briefing.\nIf 1Digit can help, fantastic. We run an AI Readiness Assessment that covers the regulated estate end to end: infrastructure assurance, AI inventory in the business, codebase interpretability, agent governance plane and audit trail. Two weeks of focused work, by engineers and enterprise architects who have been on both sides of this problem.\nIf we are not the right fit, find someone who is. The work is more important than the firm that does it. The window we have, before Mythos-class capability is broadly available, is not a year. It is a single planning cycle.\nThe benchmark ran out of hard questions at sixteen hours. Two governments are already in the room. The estate that is ready for the UK supervisor's version of those conversations is the one your board will want to be running when the meeting is scheduled. That meeting is on this year's calendar.",
+        "blockHeading": {
+          "text": "What to do next",
+          "bold": true
+        }
+      }
+    ],
+    "status": "published",
+    "coverImage": "/images/insights/generated-image-may-14-2026-9_35am-1-.jpg"
   }
 ]
