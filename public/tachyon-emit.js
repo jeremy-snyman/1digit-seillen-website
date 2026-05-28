@@ -14,6 +14,22 @@
   'use strict';
 
   // ---------------------------------------------------------------------------
+  // Dev guard — never emit from localhost or LAN (prevents dev pollution in prod Tachyon)
+  // ---------------------------------------------------------------------------
+
+  var host = window.location.hostname;
+  if (
+    host === 'localhost' ||
+    host === '127.0.0.1' ||
+    host === '0.0.0.0' ||
+    host.endsWith('.local') ||
+    /^192\.168\./.test(host) ||
+    /^10\./.test(host)
+  ) {
+    return;
+  }
+
+  // ---------------------------------------------------------------------------
   // Configuration
   // ---------------------------------------------------------------------------
 
@@ -25,7 +41,7 @@
     module:            '1Digit Tachyon',
     service:           'web',
     locale:            'en_GB',
-    version:           1,
+    version:           2,
     sc:                'public',
     visitorCookieName: '_tch_vid',
     sessionStorageKey: '_tch_sid',
@@ -62,15 +78,27 @@
       '; path=/; SameSite=Lax; Secure';
   }
 
-  // Resolve or create visitor ID (rolling expiry on every page view).
+  // Resolve or create visitor ID (cookie primary, localStorage fallback for cookie-blocked contexts).
+  var VISITOR_LS_KEY = '_tch_vid';
+
+  function readVisitorId() {
+    var fromCookie = getCookie(CONFIG.visitorCookieName);
+    if (fromCookie) return fromCookie;
+    try { return localStorage.getItem(VISITOR_LS_KEY); } catch (_e) { return null; }
+  }
+
+  function writeVisitorId(id) {
+    setCookie(CONFIG.visitorCookieName, id, CONFIG.cookieDays);
+    try { localStorage.setItem(VISITOR_LS_KEY, id); } catch (_e) {}
+  }
+
   var isNewVisitor = false;
-  var visitorId = getCookie(CONFIG.visitorCookieName);
+  var visitorId = readVisitorId();
   if (!visitorId) {
     visitorId = generateId();
     isNewVisitor = true;
   }
-  // Always re-set the cookie to keep the rolling expiry fresh.
-  setCookie(CONFIG.visitorCookieName, visitorId, CONFIG.cookieDays);
+  writeVisitorId(visitorId);
 
   // Session ID -- lives only for the browser session (sessionStorage).
   var sessionId;
