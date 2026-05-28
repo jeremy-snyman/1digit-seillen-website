@@ -1,6 +1,6 @@
-# 1Digit — Software, Data and AI Consultancy
+# 1Digit — AI Architecture & Data Engineering Consultancy
 
-> 1Digit is a UK-based enterprise AI consultancy that helps organisations design, build, and govern structured AI systems, data platforms, and architecture frameworks. We deliver practical AI transformation — not hype.
+> 1Digit is a UK-based enterprise AI consultancy that helps organisations design, build, and govern production-grade AI systems, data platforms, and architecture frameworks. We deliver practical AI transformation — not hype.
 
 ## About 1Digit
 
@@ -19,13 +19,13 @@ Most AI initiatives fail because organisations skip assessment. They invest in t
 
 **What we do:**
 - Executive discovery and alignment workshops
-- Capability benchmarking and scoring across key pillars
+- Capability benchmarking and scoring across five pillars: leadership, data, platform, governance, and people
 - Identification of blockers: data, governance, ownership, architecture, culture
 - Prioritised recommendations and transformation roadmap
 
-**Deliverables:** Executive-ready summary, capability heatmap and scoring, risk and constraint analysis, 6-18 month roadmap with sequencing.
+**Deliverables:** Executive-ready summary, capability heatmap and scoring, risk and constraint analysis, 6–18 month roadmap with sequencing.
 
-**Typical engagement:** 2-5 weeks, fixed-price.
+**Typical engagement:** 2–5 weeks, fixed-price.
 
 ## Service: Data & Platform Foundations
 
@@ -34,13 +34,13 @@ Fragmented data across siloed systems makes AI impossible. Without unified, qual
 **What we do:**
 - Data unification and modelling
 - Ingestion design and implementation using Tachyon
-- Smart Lakehouse architecture and build
+- Smart Lakehouse architecture and build (medallion architecture: bronze, silver, gold)
 - Observability, data quality and lineage foundations
-- Cost-efficient cloud design
+- Cost-efficient cloud design with data sovereignty
 
 **Deliverables:** Target architecture, implementation plan, working ingestion patterns, data model patterns, operational runbook foundations.
 
-**Typical engagement:** 6-16 weeks, milestone-based.
+**Typical engagement:** 6–16 weeks, milestone-based.
 
 ## Service: AI-Enabled Products & Engineering
 
@@ -55,21 +55,21 @@ Building AI products without proper architecture leads to fragile systems, compl
 
 **Deliverables:** Product blueprint and backlog, MVP build plan and milestones, guardrails and evaluation approach, production readiness checklist.
 
-**Typical engagement:** 8-20 weeks, milestone-based.
+**Typical engagement:** 8–20 weeks, milestone-based.
 
 ## Service: AI Architecture, Governance & Secure Implementation
 
 AI without governance creates risk: regulatory exposure, security vulnerabilities, and uncontrolled model behaviour that erodes trust.
 
 **What we do:**
-- Risk and policy frameworks
-- Security and compliance alignment
+- Risk and policy frameworks using TOGAF principles across four domains: business, data, application, technology
+- Security and compliance alignment (ISO 27001, SOC 2, GDPR, EU AI Act)
 - Role-based access controls and auditability
 - AI Ops and AI SecOps support
 
 **Deliverables:** Governance framework and templates, security boundaries and controls, operating model recommendations, retainer options for ongoing oversight.
 
-**Typical engagement:** 4-12 weeks.
+**Typical engagement:** 4–12 weeks.
 
 ## Platform: Tachyon
 
@@ -86,9 +86,9 @@ Tachyon is 1Digit's high-throughput enterprise data activation platform. It unif
 
 ## Platform: Smart Lakehouse on IONOS
 
-Enterprise data lakehouse built on European sovereign cloud infrastructure (IONOS). Delivers 40-60% lower infrastructure cost than hyperscaler equivalents (AWS, Azure, GCP) while maintaining full GDPR compliance and data sovereignty.
+Enterprise data lakehouse built on European sovereign cloud infrastructure (IONOS). Delivers 40–60% lower infrastructure cost than hyperscaler equivalents (AWS, Azure, GCP) while maintaining full GDPR compliance and data sovereignty.
 
-**Why it matters:** European enterprises increasingly need data platforms that guarantee data residency within EU borders. The Smart Lakehouse provides enterprise-grade analytics and AI infrastructure without hyperscaler lock-in or cost escalation.
+**Why it matters:** European enterprises increasingly need data platforms that guarantee data residency within EU borders. The Smart Lakehouse provides enterprise-grade analytics and AI infrastructure without hyperscaler lock-in or cost escalation. Built on medallion architecture (bronze, silver, gold) for progressive data quality and AI readiness.
 
 ## Methodology: How We Work
 
@@ -112,8 +112,8 @@ Each phase has clear entry/exit criteria and commercial checkpoints. No open-end
 
 **FAQ:**
 - *Do you offer fixed-price engagements?* Yes. Diagnostic and strategy phases are fixed-price. Implementation phases are milestone-based.
-- *What is the typical time to value?* Diagnostic engagement delivers insights within 2-5 weeks. First implementation milestones visible within 4-6 weeks of build.
-- *Can we start small?* Yes. The AI Maturity Scan is a lightweight, fixed-price starter engagement.
+- *What is the typical time to value?* Diagnostic engagement delivers insights within 2–5 weeks. First implementation milestones visible within 4–6 weeks of build.
+- *Can we start small?* Yes. The free AI Readiness Assessment is a lightweight, instant-results starter for any enterprise leader.
 
 ## AI Architecture Framework
 
@@ -124,21 +124,164 @@ Each phase has clear entry/exit criteria and commercial checkpoints. No open-end
 3. **Application Architecture** — AI-native application patterns, integration, APIs
 4. **Technology Architecture** — Infrastructure, compute, storage, networking, security
 
+Five reference layers from business capability through to governance and control ensure AI is architected — not assembled.
+
 ## Trust & Security
 
 Security, governance, and compliance are embedded into everything 1Digit builds:
 - ISO 27001 and SOC 2 alignment
 - GDPR compliance and data sovereignty
+- EU AI Act readiness (GPAI obligations, high-risk system classification)
 - AI risk management frameworks
-- Secure SDLC practices
+- Secure SDLC practices with architecture review checkpoints
 - Audit trail and lineage capabilities
-- Role-based access controls
+- Role-based access controls and prompt injection mitigation
 
 ## AI Readiness Assessment Tool
 
-1Digit offers a free, self-service AI Readiness Assessment available at https://1digit.co.uk/ai-readiness-assessment.
+1Digit offers a free, self-service AI Readiness Assessment at https://1digit.co.uk/ai-readiness-assessment.
 
-The assessment evaluates organisational readiness across five pillars and provides instant results with actionable recommendations. It is designed for enterprise leaders and technical decision-makers evaluating AI investment.
+The assessment evaluates organisational readiness across five pillars — leadership & strategy, data, platform & infrastructure, governance & compliance, and people & operations — and provides instant results with actionable recommendations. It is designed for enterprise leaders and technical decision-makers evaluating AI investment.
+
+## Glossary
+
+1Digit maintains an AI & data glossary at https://1digit.co.uk/glossary with plain-English definitions of key terms including: AI readiness, Smart Lakehouse, Tachyon, TOGAF for AI, sovereign cloud, GPAI, agentic AI, guardrails, medallion architecture, CADA, RAG, and AI Ops.
+
+---
+
+## Insights
+
+### Why Data Fragmentation Is the Real Barrier to AI
+URL: https://1digit.co.uk/insights/data-fragmentation-ai-barrier
+Published: 2025-01-15
+Tags: data fragmentation, AI readiness, data platforms
+
+Most organisations do not fail at AI because of models. They fail because their data is fragmented, siloed, and inconsistent. AI systems are only as reliable as the data they are built on — and for most enterprises, that data lives across dozens of incompatible systems with no unified schema, lineage, or quality baseline.
+
+Key claims:
+- Data fragmentation is the primary root cause of AI project failure, not model quality
+- AI systems trained or prompted on fragmented data produce unreliable results regardless of capability
+- A unified data foundation — not a better model — is the first investment an AI-serious organisation must make
+- Tachyon addresses fragmentation through multiplexed ingestion, schema enforcement, and quality scoring
+
+---
+
+### AI Readiness Benchmarking: Where Does Your Organisation Stand?
+URL: https://1digit.co.uk/insights/ai-readiness-benchmarking
+Published: 2025-02-01
+Tags: AI readiness, assessment, benchmarking, governance
+
+Before investing in AI, understand your starting point. A structured assessment prevents costly false starts and ensures investment lands where it matters most. The five-pillar AI readiness framework — leadership, data, platform, governance, people — provides a repeatable benchmark for enterprise organisations.
+
+Key claims:
+- Most organisations overestimate their data readiness and underestimate governance gaps
+- The five pillars of AI readiness map directly to where AI initiatives fail
+- A benchmarked starting position is a prerequisite for a credible AI investment case
+- Self-service assessment (10–15 minutes) provides a directional view; expert diagnostic (2–5 weeks) provides board-ready evidence
+
+---
+
+### Cost Efficiency vs Hyperscale: Rethinking Enterprise Data Infrastructure
+URL: https://1digit.co.uk/insights/cost-efficiency-vs-hyperscale
+Published: 2025-02-15
+Tags: cost efficiency, IONOS, data platforms, cloud
+
+Hyperscaler data warehousing is powerful but expensive. For most enterprise workloads, European sovereign alternatives deliver equivalent capability at a fraction of the cost. The Smart Lakehouse on IONOS delivers 40–60% lower infrastructure cost than AWS, Azure, or GCP equivalents while maintaining full GDPR compliance and data residency within EU borders.
+
+Key claims:
+- Hyperscaler egress charges and premium managed service pricing create avoidable cost structures for most enterprise workloads
+- European sovereign cloud (IONOS) provides equivalent performance for analytics and AI workloads at 40–60% lower cost
+- Data sovereignty is increasingly a hard regulatory requirement — not just a preference — under GDPR, DORA, and CADA
+- Organisations locked into a single hyperscaler face compounding switching costs that sovereign alternatives eliminate from day one
+
+---
+
+### The AI Cost Structure Reset: Why Most Enterprise AI Budgets Are Misallocated
+URL: https://1digit.co.uk/insights/ai-cost-structure-reset
+Published: 2025-03-15
+Tags: AI strategy, cost optimisation, data platforms, enterprise AI
+
+Enterprises allocate 70% of AI budgets to model development and tooling, but 80% of project failures trace back to data infrastructure. Inverting this ratio — investing in data foundations before model capability — is the single highest-leverage change an enterprise AI programme can make.
+
+Key claims:
+- The typical enterprise AI budget is inverted: 70% on models and tooling, 30% on data — but 80% of failures are data problems
+- Increasing model capability does not solve a data quality problem; it makes the problem more expensive
+- A data-first budget framework allocates foundation investment first, then increments model and tooling spend as data quality improves
+- Infrastructure cost reductions (sovereign cloud, lakehouse vs warehouse) free budget for the model work that actually creates value
+
+---
+
+### Your AI Strategy Has No Foundation
+URL: https://1digit.co.uk/insights/your-ai-strategy-has-no-foundation
+Published: 2026-02-25
+
+88% of enterprise AI pilots never reach production. The problem is not the model — it is the absence of a structured data and architecture foundation beneath it. An AI strategy that begins with model selection before establishing data governance, quality baselines, and architectural standards is not a strategy: it is an experiment without controls.
+
+Key claims:
+- Pilot-to-production failure is overwhelmingly a data and architecture problem, not a model problem
+- Governance, guardrails, and compliance requirements defined upfront reduce downstream engineering cost significantly
+- The sequence matters: diagnose → design → deliver, with clear gates between each phase
+- Organisations that skip the architecture phase pay for it in retrofitting costs that exceed the original build
+
+---
+
+### Mythos Finds Where the Bodies Are Buried
+URL: https://1digit.co.uk/insights/mythos-finds-where-the-bodies-are-buried
+Published: 2026-04-28
+
+Anthropic's Mythos finds vulnerabilities your SAST tool cannot see. It locates latent risk in AI systems — unpatched logic, deferred compliance debt, access control gaps — that conventional security tooling misses. This is a C-suite problem, not a DevOps one, and the cost of inaction is measurable in ten-million-dollar units.
+
+Key claims:
+- Mythos is a capability-evaluation framework that reveals what AI systems can be made to do, not just what they are designed to do
+- AISI (UK AI Safety Institute) and independent evaluators have confirmed Mythos findings that commercial AI providers' own testing missed
+- The risk is enterprise-specific: Mythos outcomes vary by deployment context, not just model version
+- Remediation requires architectural change — prompt-layer fixes are insufficient for systemic vulnerabilities
+
+---
+
+### What Mythos Is, Why It Has Pulled Two Governments Into the Room, and What to Do About It in the Next 180 Days
+URL: https://1digit.co.uk/insights/what-mythos-is-why-it-has-pulled-two-governments-into-the-room-and-what-to-do-about-it-in-the-next-180-days
+Published: 2026-02-25
+
+A reference piece for boards, audit committees and C-suites. Synthesised from Anthropic's own disclosures, AISI's UK government evaluation, Mozilla's Firefox 150 release, and Palo Alto Networks's frontier-model assessment. Mythos is not a product announcement — it is a capability disclosure that has changed the regulatory posture of two governments and the threat model of every enterprise running AI in production.
+
+Key claims:
+- Mythos revealed AI system behaviours that two governments (UK and US) considered significant enough to convene formal evaluation processes
+- AISI's evaluation found capabilities that Anthropic's own red-teaming had not surfaced in standard testing
+- Mozilla and Palo Alto confirmed independently that frontier-model capability gaps are wider than provider disclosures had indicated
+- The 30/90/180-day action plan: 30 days — inventory all AI deployments; 90 days — conduct Mythos-style adversarial evaluation; 180 days — implement architectural guardrails and governance framework
+
+---
+
+### Shadow Agents Are an Architecture Problem
+URL: https://1digit.co.uk/insights/shadow-agents-are-an-architecture-problem
+Published: 2026-05-05
+
+By 2028 the average Fortune 500 will run over 150,000 agents. The governance plane was not sized for this curve. Shadow agents — AI agents deployed without architectural oversight, access controls, or audit trails — are an architecture problem before they are a CISO problem. The risk compounds faster than traditional shadow IT because agents take actions, not just store data.
+
+Key claims:
+- Agent proliferation is following the same curve as shadow IT in the 2010s, but the risk profile is fundamentally different: agents act
+- Without an agent registry, access scope definition, and action-reversibility framework, every new agent deployment increases organisational liability
+- The architecture response requires five controls: agent registry, least-privilege access, action audit trails, circuit breakers, and human-in-the-loop gates for irreversible actions
+- Organisations that build the governance plane now will spend a fraction of what reactive remediation costs at scale
+
+---
+
+### CADA and the EU AI Act: What the Two Summer 2026 Deadlines Mean for EU, UK and Cross-Border Businesses
+URL: https://1digit.co.uk/insights/cada-eu-ai-act-summer-2026-deadlines
+Published: 2026-05-28
+Tags: EU AI Act, CADA, GPAI, sovereign cloud, regulatory compliance
+
+In ten weeks, the EU converts five years of digital sovereignty rhetoric into hard law. CADA (Cloud and Data Act) and the EU AI Act's GPAI enforcement provisions both land in the same ten-week window in summer 2026. Any business that touches European data or sells to European customers is now on the clock.
+
+Key claims:
+- CADA (July 2026) mandates cloud provider switching within 30 days, prohibits egress charges, and requires interoperability — effectively writing sovereign cloud preference into hard law
+- EU AI Act GPAI provisions (2 August 2026) impose transparency and capability-disclosure obligations on providers of general-purpose AI models, including all major LLMs
+- Cross-border businesses face double exposure: UK operations under GDPR equivalence, EU operations under both CADA and the AI Act
+- The compliance gap is not primarily a legal problem — it is a data architecture and governance problem that requires technical remediation
+- Organisations that built on European sovereign infrastructure (e.g., Smart Lakehouse on IONOS) are already structurally compliant with CADA's core requirements
+
+---
 
 ## Contact
 

@@ -96,6 +96,9 @@ export interface ArticleSchemaInput {
   readTimeMinutes?: number;
   faqs?: { question: string; answer: string }[];
   howToSteps?: { name: string; text: string }[];
+  author?: { name: string; role?: string; linkedinUrl?: string; avatarUrl?: string };
+  citations?: { name: string; url?: string; publisher?: string }[];
+  mentions?: { name: string; url?: string; type?: 'Organization' | 'Thing' | 'Product' }[];
 }
 
 export function buildArticleSchema(input: ArticleSchemaInput): Record<string, unknown>[] {
@@ -113,7 +116,7 @@ export function buildArticleSchema(input: ArticleSchemaInput): Record<string, un
       description: input.summary,
       datePublished: input.publishDate,
       dateModified: input.publishDate,
-      inLanguage: 'en',
+      inLanguage: 'en-GB',
       url,
       image,
       ...(input.tags?.length && { keywords: input.tags.join(', ') }),
@@ -123,17 +126,38 @@ export function buildArticleSchema(input: ArticleSchemaInput): Record<string, un
         articleSection: input.category,
       }),
       mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-      author: {
-        '@type': 'Organization',
-        name: '1Digit',
-        url: siteUrl,
-      },
+      author: input.author?.name
+        ? {
+            '@type': 'Person',
+            name: input.author.name,
+            url: input.author.linkedinUrl ?? siteUrl,
+            ...(input.author.role && { jobTitle: input.author.role }),
+            ...(input.author.avatarUrl && { image: `${siteUrl}${input.author.avatarUrl}` }),
+            ...(input.author.linkedinUrl && { sameAs: [input.author.linkedinUrl] }),
+          }
+        : { '@type': 'Organization', name: '1Digit', url: siteUrl },
       publisher: {
         '@type': 'Organization',
+        '@id': `${siteUrl}/#org`,
         name: '1Digit',
         url: siteUrl,
         logo: { '@type': 'ImageObject', url: `${siteUrl}/favicon.svg` },
       },
+      ...(input.citations?.length && {
+        citation: input.citations.map((c) => ({
+          '@type': 'CreativeWork',
+          name: c.name,
+          ...(c.url && { url: c.url }),
+          ...(c.publisher && { publisher: { '@type': 'Organization', name: c.publisher } }),
+        })),
+      }),
+      ...(input.mentions?.length && {
+        mentions: input.mentions.map((m) => ({
+          '@type': m.type ?? 'Thing',
+          name: m.name,
+          ...(m.url && { url: m.url }),
+        })),
+      }),
     },
   ];
 

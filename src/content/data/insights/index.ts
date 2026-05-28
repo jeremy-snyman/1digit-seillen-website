@@ -59,6 +59,15 @@ export interface InsightArticle {
   status: 'draft' | 'scheduled' | 'published' | 'archived';
   faqs?: { question: string; answer: string }[];
   howToSteps?: { name: string; text: string }[];
+  author?: {
+    name: string;
+    role?: string;
+    bio?: string;
+    linkedinUrl?: string;
+    avatarUrl?: string;
+  };
+  citations?: { name: string; url?: string; publisher?: string }[];
+  mentions?: { name: string; url?: string; type?: 'Organization' | 'Thing' | 'Product' }[];
 }
 
 // ── Serialisable metadata (no bodyBlocks — safe for client props) ──

@@ -11,6 +11,8 @@ import Badge from '@components/ui/Badge.astro';
 import Tag from '@components/ui/Tag.astro';
 import FeatureList from '@components/content/FeatureList.astro';
 import StatHighlight from '@components/content/StatHighlight.astro';
+import Accordion from '@components/interactive/Accordion.astro';
+import AccordionItem from '@components/interactive/AccordionItem.astro';
 import CostComparisonTable from '@components/content/CostComparisonTable.astro';
 import CostCalculatorTeaser from '@components/content/CostCalculatorTeaser.astro';
 import {
@@ -36,8 +38,31 @@ const archColorMap: Record<string, { numBg: string; numBorder: string; numText: 
   emerald: { numBg: 'bg-signal-emerald/15', numBorder: 'border-signal-emerald/30', numText: 'text-signal-emerald', techText: 'text-signal-emerald' },
 };
 
-const title = 'Tachyon Intelligence Platform | Smart Lakehouse on IONOS';
-const description = 'Enterprise data lakehouse on European sovereign cloud. 40–60% lower infrastructure cost than hyperscaler equivalents.';
+const title = 'Smart Lakehouse on IONOS — EU Sovereign Cloud Data';
+const description = 'Enterprise data lakehouse on European sovereign cloud — IONOS. 40–60% lower cost than AWS, Azure, or GCP, with full EU data sovereignty and GDPR compliance.';
+
+const smartLakehouseFAQ = [
+  {
+    question: 'What is a Smart Lakehouse?',
+    answer: 'A Smart Lakehouse is a unified data architecture that combines the scalability and format flexibility of a data lake with the structure and query performance of a data warehouse. It serves as the foundation for both analytics and AI workloads from a single platform.',
+  },
+  {
+    question: 'Why IONOS and not AWS, Azure, or GCP?',
+    answer: 'IONOS is a European sovereign cloud provider operating exclusively within EU data centre infrastructure. This guarantees data residency within EU borders — a regulatory requirement for many European enterprises under GDPR. IONOS infrastructure also delivers 40–60% lower cost than equivalent hyperscaler services.',
+  },
+  {
+    question: 'What cost savings can we expect compared to hyperscalers?',
+    answer: 'Based on client deployments, enterprises typically achieve 40–60% lower infrastructure cost compared to equivalent AWS, Azure, or GCP configurations. The largest savings come from storage, compute, and egress — areas where hyperscalers charge premium rates at enterprise scale.',
+  },
+  {
+    question: 'How does migration from an existing data warehouse work?',
+    answer: 'Migration typically follows three phases: assessment of current architecture and data volumes, parallel-build of the Smart Lakehouse environment, and cutover with a defined rollback plan. The Tachyon platform handles data ingestion and transformation during migration. Typical engagement: 6–16 weeks.',
+  },
+  {
+    question: 'Is the Smart Lakehouse suitable for regulated industries?',
+    answer: 'Yes. The Smart Lakehouse on IONOS is specifically designed for regulated industries requiring data sovereignty, audit trails, and compliance documentation. It includes GDPR alignment, ISO 27001-compatible security controls, and role-based access controls as standard.',
+  },
+];
 
 const useCaseAccentMap: Record<string, { iconBg: string; iconColor: string; borderColor: string; glowClass: string }> = {
   purple: {
@@ -68,6 +93,9 @@ const useCaseAccentMap: Record<string, { iconBg: string; iconColor: string; bord
 ---
 
 <PageLayout title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"SoftwareApplication","name":"Smart Lakehouse on IONOS","applicationCategory":"BusinessApplication","operatingSystem":"Cloud","description":"Enterprise data lakehouse on European sovereign cloud powered by IONOS. 40–60% lower infrastructure cost than hyperscaler equivalents, with full EU data sovereignty.","provider":{"@id":"https://1digit.co.uk/#org"},"url":"https://1digit.co.uk/smart-lakehouse-ionos","featureList":["EU data sovereignty","GDPR compliance","40–60% cost reduction vs hyperscalers","Smart Lakehouse architecture","IONOS cloud infrastructure"]})} />
+  </Fragment>
 
   {/* ── S1: Hero ── */}
   <section class="force-dark-hero relative min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden">
@@ -437,5 +465,39 @@ const useCaseAccentMap: Record<string, { iconBg: string; iconColor: string; bord
       </ScrollReveal>
     </Container>
   </Section>
+
+  <!-- FAQ Section -->
+  <Section padding="default">
+    <Container size="narrow">
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="FAQ"
+          heading="Common Questions About Smart Lakehouse"
+          description="Everything you need to know before starting an infrastructure conversation."
+        />
+      </ScrollReveal>
+      <div class="mt-10">
+        <ScrollReveal>
+          <Accordion>
+            {smartLakehouseFAQ.map((item) => (
+              <AccordionItem question={item.question} answer={item.answer} />
+            ))}
+          </Accordion>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  {/* FAQPage Schema */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": smartLakehouseFAQ.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+    })),
+  })} />
 
 </PageLayout>

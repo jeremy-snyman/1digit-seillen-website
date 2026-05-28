@@ -1,0 +1,119 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import Badge from '@components/ui/Badge.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import { glossaryTerms } from '@content/data/glossary';
+
+export const prerender = true;
+
+const title = 'AI & Data Glossary — 1Digit';
+const description = 'Plain-English definitions of AI architecture, data engineering, and regulatory terms used by enterprise leaders and technical teams. From AI readiness to sovereign cloud.';
+
+const definedTermSet = {
+  '@type': 'DefinedTermSet',
+  '@id': 'https://1digit.co.uk/glossary#termset',
+  'name': '1Digit AI & Data Glossary',
+  'url': 'https://1digit.co.uk/glossary',
+  'description': description,
+  'publisher': {
+    '@type': 'Organization',
+    '@id': 'https://1digit.co.uk/#org',
+    'name': '1Digit',
+  },
+};
+
+const definedTerms = glossaryTerms.map((term) => ({
+  '@type': 'DefinedTerm',
+  '@id': `https://1digit.co.uk/glossary#${term.slug}`,
+  'name': term.term,
+  'description': term.definition,
+  'url': `https://1digit.co.uk/glossary#${term.slug}`,
+  'inDefinedTermSet': { '@id': 'https://1digit.co.uk/glossary#termset' },
+}));
+---
+
+<PageLayout title={title} description={description}>
+  <!-- Hero -->
+  <Section class="pt-32 pb-16">
+    <Container>
+      <ScrollReveal>
+        <div class="max-w-3xl">
+          <Badge variant="accent">GLOSSARY</Badge>
+          <h1 class="text-display-lg lg:text-display-xl font-display mt-4 mb-6">
+            AI & Data <em class="font-serif italic">Glossary</em>
+          </h1>
+          <p class="text-body-lg text-content-secondary max-w-2xl">
+            Plain-English definitions of the terms enterprise leaders encounter when evaluating or building AI systems — from architecture patterns to regulatory requirements.
+          </p>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Terms -->
+  <Section background="elevated">
+    <Container size="narrow">
+      <div class="space-y-1">
+        {glossaryTerms.map((term, i) => (
+          <ScrollReveal delay={i * 50}>
+            <div
+              id={term.slug}
+              class="py-8 border-b border-surface-border/50 last:border-0 scroll-mt-24"
+            >
+              <div class="flex items-start gap-4">
+                <div class="flex-1">
+                  <h2 class="text-heading-sm font-semibold mb-3">
+                    {term.term}
+                  </h2>
+                  <p class="text-body-md text-content-secondary leading-relaxed">
+                    {term.definition}
+                  </p>
+                  {term.relatedUrl && (
+                    <p class="mt-3">
+                      <a
+                        href={term.relatedUrl}
+                        class="text-body-sm text-content hover:text-content-secondary underline underline-offset-4 transition-colors"
+                      >
+                        {term.relatedLabel} →
+                      </a>
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Bottom CTA -->
+  <Section>
+    <Container size="narrow">
+      <ScrollReveal>
+        <GlassCard padding="lg" class="text-center">
+          <p class="text-heading-sm font-semibold mb-2">See how these concepts apply to your organisation</p>
+          <p class="text-body-md text-content-secondary mb-6">
+            Take the free AI Readiness Assessment — benchmark your organisation across five pillars in 10–15 minutes.
+          </p>
+          <a
+            href="/ai-readiness-assessment"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-surface-elevated border border-surface-border rounded-lg text-body-md font-medium hover:border-content/30 transition-colors"
+          >
+            Start Free Assessment →
+          </a>
+        </GlassCard>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  {/* DefinedTermSet + DefinedTerm Schema */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [definedTermSet, ...definedTerms],
+  })} />
+</PageLayout>

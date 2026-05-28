@@ -10,6 +10,8 @@ import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
 import FeatureList from '@components/content/FeatureList.astro';
 import StatHighlight from '@components/content/StatHighlight.astro';
+import Accordion from '@components/interactive/Accordion.astro';
+import AccordionItem from '@components/interactive/AccordionItem.astro';
 import {
   heroDescription,
   problemIntro,
@@ -30,10 +32,36 @@ import {
 } from '@content/data/tachyon';
 
 const title = 'Tachyon — Enterprise Data Activation Platform';
-const description = 'High-throughput data structuring and activation platform. Unify, govern, and activate enterprise data at speed.';
+const description = 'Tachyon unifies fragmented enterprise data, detects sensitivity, enforces structure, and activates it for analytics and AI — without bespoke pipeline work.';
+
+const tachyonFAQ = [
+  {
+    question: 'What is Tachyon?',
+    answer: "Tachyon is 1Digit's high-throughput enterprise data activation platform. It ingests data from fragmented enterprise sources, detects sensitivity and PII, enforces schema and structure, and produces governed, AI-ready datasets — without bespoke pipeline engineering.",
+  },
+  {
+    question: 'How is Tachyon different from a traditional ETL tool?',
+    answer: 'Traditional ETL tools require manual pipeline coding and struggle with data sensitivity at scale. Tachyon uses automated schema detection, sensitivity classification, and parallel ingestion to handle hundreds of sources and inconsistent formats out of the box — reducing data engineering time significantly.',
+  },
+  {
+    question: 'What data sources and formats does Tachyon support?',
+    answer: 'Tachyon supports multiplexed streaming and batch ingestion across databases, APIs, file formats (Parquet, Delta, Iceberg), and cloud storage. It handles structured, semi-structured, and mixed-format data estates common in enterprise environments.',
+  },
+  {
+    question: 'Does Tachyon help with data sovereignty and GDPR compliance?',
+    answer: 'Yes. Tachyon includes automated PII detection and sensitivity classification as core features. Data governance controls, access policies, and lineage tracking are built into the platform — not added after the fact.',
+  },
+  {
+    question: 'How does Tachyon integrate with existing data infrastructure?',
+    answer: 'Tachyon is deployed as a managed layer on top of existing cloud or on-premise infrastructure. It integrates with standard data warehouses, lakehouses, and BI tools, and produces output in formats compatible with major analytics and AI platforms.',
+  },
+];
 ---
 
 <PageLayout title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"SoftwareApplication","name":"Tachyon","applicationCategory":"BusinessApplication","operatingSystem":"Cloud","description":"High-throughput enterprise data activation platform. Unifies fragmented data, detects sensitivity, enforces structure, and makes data immediately usable for analytics, AI, and operational systems.","provider":{"@id":"https://1digit.co.uk/#org"},"url":"https://1digit.co.uk/tachyon","featureList":["Data unification","Sensitivity detection","Structure enforcement","AI-ready data activation","High-throughput ingestion"]})} />
+  </Fragment>
 
   {/* ══════════════════════════════════════════════
       S1 — Hero (diagram background)
@@ -365,6 +393,40 @@ const description = 'High-throughput data structuring and activation platform. U
       </div>
     </Container>
   </Section>
+
+  <!-- FAQ Section -->
+  <Section padding="default">
+    <Container size="narrow">
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="FAQ"
+          heading="Common Questions About Tachyon"
+          description="Everything you need to know before starting a platform conversation."
+        />
+      </ScrollReveal>
+      <div class="mt-10">
+        <ScrollReveal>
+          <Accordion>
+            {tachyonFAQ.map((item) => (
+              <AccordionItem question={item.question} answer={item.answer} />
+            ))}
+          </Accordion>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  {/* FAQPage Schema */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": tachyonFAQ.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+    })),
+  })} />
 
 </PageLayout>
 

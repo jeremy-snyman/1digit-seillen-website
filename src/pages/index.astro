@@ -11,9 +11,35 @@ import ScrollReveal from '../components/interactive/ScrollReveal.astro';
 import InsightHighlight from '../components/insights/InsightHighlight.astro';
 import Section from '../components/layout/Section.astro';
 import Container from '../components/layout/Container.astro';
+import Accordion from '../components/interactive/Accordion.astro';
+import AccordionItem from '../components/interactive/AccordionItem.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+
+const homeFAQ = [
+  {
+    question: 'What does 1Digit do?',
+    answer: '1Digit is a UK AI architecture and data engineering consultancy. We help enterprises design, build, and govern production-grade AI systems — from data foundations and platform engineering through to governed AI deployment. We work on a fixed-price, assessment-first basis with no open-ended retainers.',
+  },
+  {
+    question: 'Who do you work with?',
+    answer: 'We work with enterprise organisations across the UK and Europe that are investing in AI and need a structured path from fragmented data estates to production AI capability. Our clients are typically in financial services, professional services, insurance, and regulated industries.',
+  },
+  {
+    question: 'How do engagements typically start?',
+    answer: 'Most engagements begin with the AI Readiness Assessment — a 2–5 week fixed-price diagnostic that benchmarks your organisation across five pillars and produces a prioritised transformation roadmap. From there, clients choose to continue with one or more of our implementation phases.',
+  },
+  {
+    question: 'Do you offer fixed-price or outcome-based pricing?',
+    answer: 'Yes. Our diagnostic and strategy phases are fixed-price with clear deliverables. Implementation phases are milestone-based, with commercial checkpoints and stakeholder sign-off before each new scope. We do not do open-ended time-and-materials consulting.',
+  },
+  {
+    question: 'Are you UK-based and do you work internationally?',
+    answer: 'Yes, 1Digit is based in the UK. We work with enterprise clients across the UK and Europe, including cross-border organisations navigating EU AI Act and GDPR requirements.',
+  },
+];
 ---
 
-<PageLayout title="1Digit — Software, Data and AI Consultancy" description="1Digit helps enterprises design and deliver structured AI systems, data platforms, and governance frameworks. Software, data and AI consultancy based in the UK.">
+<PageLayout title="1Digit — Enterprise AI Architecture & Data Engineering" description="1Digit is a UK AI architecture and data engineering consultancy helping enterprises build production-grade AI — from data foundations to governed deployment.">
   <HeroSection />
   <ScrollReveal>
     <LogoMarquee />
@@ -41,4 +67,38 @@ import Container from '../components/layout/Container.astro';
   <ScrollReveal delay={200}>
     <AssessmentCTA />
   </ScrollReveal>
+
+  <!-- FAQ Section -->
+  <Section padding="default">
+    <Container size="narrow">
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="FAQ"
+          heading="Common Questions"
+          description="Answers to the questions enterprise leaders ask us most."
+        />
+      </ScrollReveal>
+      <div class="mt-10">
+        <ScrollReveal>
+          <Accordion>
+            {homeFAQ.map((item) => (
+              <AccordionItem question={item.question} answer={item.answer} />
+            ))}
+          </Accordion>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  {/* FAQPage Schema */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": homeFAQ.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+    })),
+  })} />
 </PageLayout>

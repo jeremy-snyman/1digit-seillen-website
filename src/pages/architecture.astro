@@ -10,11 +10,36 @@ import Button from '@components/ui/Button.astro';
 import Badge from '@components/ui/Badge.astro';
 import FeatureList from '@components/content/FeatureList.astro';
 import ExpandableDetail from '@components/content/ExpandableDetail.astro';
+import Accordion from '@components/interactive/Accordion.astro';
+import AccordionItem from '@components/interactive/AccordionItem.astro';
 
 export const prerender = true;
 
 const title = 'AI Architecture Framework — TOGAF Enterprise Design';
 const description = 'AI systems must be architected — not assembled. We design enterprise AI architecture grounded in TOGAF principles and structured for production.';
+
+const architectureFAQ = [
+  {
+    question: 'What is TOGAF-aligned AI architecture?',
+    answer: 'TOGAF (The Open Group Architecture Framework) is the most widely adopted enterprise architecture framework. 1Digit applies TOGAF principles specifically to AI systems — covering business capability mapping, data architecture, application architecture, and technology architecture — ensuring AI initiatives are grounded in enterprise structure rather than isolated as point solutions.',
+  },
+  {
+    question: 'When does an organisation need an architecture engagement?',
+    answer: 'An architecture engagement is typically needed when: an organisation has multiple AI pilots that are not connected; when AI systems need to meet enterprise compliance and governance standards; when integrating AI with existing enterprise platforms (ERP, CRM, data warehouses); or when a board or regulator requires documented AI governance frameworks.',
+  },
+  {
+    question: 'What are the deliverables from an architecture engagement?',
+    answer: 'Typical deliverables include: a current-state architecture assessment, target-state architecture blueprint, AI governance framework and policy templates, technology selection recommendations, and an implementation roadmap with milestones and commercial checkpoints. Engagement duration: 4–12 weeks.',
+  },
+  {
+    question: 'How does your architecture work connect to data platforms and security?',
+    answer: "Architecture, data platforms, and security are interconnected layers in 1Digit's framework. Architecture defines the structure; data platforms (Tachyon, Smart Lakehouse) provide the foundation; and governance, security, and compliance controls are embedded across all layers from day one.",
+  },
+  {
+    question: 'Do you work on existing systems or only greenfield builds?',
+    answer: 'Both. We work with organisations modernising legacy systems and those building from scratch. Our assessment-first approach means we understand what you have before recommending change — and our TOGAF-based methodology handles both brownfield and greenfield scenarios.',
+  },
+];
 
 const architectureDomains = [
   {
@@ -307,4 +332,53 @@ const governanceItems = [
       </ScrollReveal>
     </Container>
   </Section>
+
+  <Section padding="none" class="py-8 border-t border-surface-border/50">
+    <Container>
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-body-sm text-content-muted">
+        <span>Related:</span>
+        <a href="/data-platforms" class="hover:text-content transition-colors">Data & Platform Foundations</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="/trust-security" class="hover:text-content transition-colors">Trust & Security</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="/how-we-work" class="hover:text-content transition-colors">How We Work</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="/what-we-do" class="hover:text-content transition-colors">All Services</a>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- FAQ Section -->
+  <Section padding="default">
+    <Container size="narrow">
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="FAQ"
+          heading="Common Questions About AI Architecture"
+          description="What enterprise leaders ask before starting an architecture engagement."
+        />
+      </ScrollReveal>
+      <div class="mt-10">
+        <ScrollReveal>
+          <Accordion>
+            {architectureFAQ.map((item) => (
+              <AccordionItem question={item.question} answer={item.answer} />
+            ))}
+          </Accordion>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  {/* FAQPage Schema */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": architectureFAQ.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+    })),
+  })} />
 </PageLayout>

@@ -11,6 +11,7 @@ interface Props {
   type?: 'website' | 'article';
   publishDate?: string;
   author?: string;
+  breadcrumb?: { name: string; url: string }[];
 }
 
 const {
@@ -23,9 +24,10 @@ const {
   type = 'website',
   publishDate,
   author,
+  breadcrumb,
 } = Astro.props;
 
-const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
+const fullTitle = title.startsWith(SITE.name) ? title : `${title} | ${SITE.name}`;
 const canonical = canonicalUrl || new URL(Astro.url.pathname, SITE.url).href;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, SITE.url).href;
 ---
@@ -58,21 +60,40 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, SITE.
 <meta name="twitter:image" content={ogImageUrl} />
 <meta name="twitter:image:alt" content={ogImageAlt ?? title} />
 
-<!-- Structured Data: Organization -->
-{type === 'website' && (
+<!-- Structured Data: WebSite (homepage only) -->
+{type === 'website' && Astro.url.pathname === '/' && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE.url}/#website`,
+    "url": SITE.url,
+    "name": SITE.name,
+    "publisher": { "@id": `${SITE.url}/#org` },
+    "inLanguage": "en-GB",
+  })} />
+)}
+
+<!-- Structured Data: Organization (homepage only) -->
+{type === 'website' && Astro.url.pathname === '/' && (
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
+    "@id": `${SITE.url}/#org`,
     "name": "1Digit",
     "url": SITE.url,
     "description": SITE.description,
     "email": SITE.email,
+    "telephone": "+442082424055",
     "areaServed": "GB",
     "serviceType": ["AI Consulting", "Data Engineering", "Enterprise Architecture", "AI Readiness Assessment"],
     "logo": { "@type": "ImageObject", "url": `${SITE.url}/favicon.svg` },
+    "sameAs": [
+      "https://www.linkedin.com/company/1digit"
+    ],
     "contactPoint": {
       "@type": "ContactPoint",
       "email": SITE.email,
+      "telephone": "+442082424055",
       "contactType": "sales",
       "availableLanguage": "English",
     },
@@ -86,7 +107,13 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, SITE.
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE.url },
-      { "@type": "ListItem", "position": 2, "name": title, "item": canonical },
+      ...(breadcrumb ?? []).map((crumb, i) => ({
+        "@type": "ListItem",
+        "position": i + 2,
+        "name": crumb.name,
+        "item": `${SITE.url}${crumb.url}`,
+      })),
+      { "@type": "ListItem", "position": (breadcrumb?.length ?? 0) + 2, "name": title, "item": canonical },
     ],
   })} />
 )}

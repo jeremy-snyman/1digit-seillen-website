@@ -73,7 +73,32 @@
         "heading": "Getting Started",
         "content": "The first step is understanding where you stand. Our AI Readiness Assessment evaluates your organisation across five key pillars and provides a clear roadmap forward. If you already know your data is fragmented, a Smart Data Platform can bring it together."
       }
-    ]
+    ],
+    "faqs": [
+      {
+        "question": "Why does data fragmentation prevent AI adoption?",
+        "answer": "AI models require consistent, accessible, well-governed data to produce reliable outputs. When data is siloed across multiple systems with inconsistent formats, duplicate records, and no lineage tracking, models train on noise and produce unreliable results. Fragmentation is not a data quality problem — it is an architecture problem that prevents AI from functioning at all."
+      },
+      {
+        "question": "What is the difference between data integration and data unification?",
+        "answer": "Data integration connects systems so they can exchange data. Data unification enforces a consistent semantic model across those systems — so that a \"customer\" in the CRM and a \"customer\" in the billing system are the same entity, with the same attributes and governance rules. AI requires unification, not just integration."
+      },
+      {
+        "question": "How long does it take to resolve data fragmentation for AI readiness?",
+        "answer": "A typical data foundation engagement runs 6–16 weeks depending on the number of source systems, data volumes, and governance complexity. The first milestone — a working ingestion pattern and data model for the highest-priority domain — is usually visible within 4–6 weeks."
+      },
+      {
+        "question": "Can AI work on fragmented data with retrieval techniques like RAG?",
+        "answer": "Retrieval-augmented generation (RAG) can work around some fragmentation issues for specific use cases, but it does not resolve the underlying problem. Without governed, consistent data, RAG produces inconsistent answers, cannot be audited, and breaks down at enterprise scale. Fragmentation still needs to be resolved for production AI."
+      }
+    ],
+    "author": {
+      "name": "Justin Gane",
+      "role": "CEO, 1Digit",
+      "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
+      "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
+      "avatarUrl": "/images/team/justin-gane.jpg"
+    }
   },
   {
     "id": "insight-002",
@@ -146,7 +171,32 @@
         "type": "callout",
         "content": "Our AI Readiness Assessment is a free, structured evaluation that takes 5–8 minutes. You will receive instant results with a score across all five pillars and actionable recommendations."
       }
-    ]
+    ],
+    "faqs": [
+      {
+        "question": "What is AI readiness benchmarking?",
+        "answer": "AI readiness benchmarking is the process of evaluating an organisation's current capability to adopt and sustain AI systems across key dimensions: leadership alignment, data quality and governance, technical infrastructure, compliance frameworks, and operational processes. A benchmark score tells you where you are and what needs to change before AI investment delivers returns."
+      },
+      {
+        "question": "What are the five pillars of enterprise AI readiness?",
+        "answer": "The five pillars are: (1) Leadership & Strategy — executive sponsorship and AI investment alignment; (2) Data — quality, availability, lineage, and governance; (3) Platform & Infrastructure — compute, storage, and tooling; (4) Governance & Compliance — risk frameworks and regulatory alignment; (5) People & Operations — skills, culture, and process readiness."
+      },
+      {
+        "question": "How does benchmarking differ from an AI maturity model?",
+        "answer": "A maturity model describes levels of sophistication over time. A benchmark gives you a scored, evidenced assessment of where your organisation stands today against defined criteria — including specific gaps, blockers, and prioritised recommendations. Benchmarking is diagnostic; maturity models are descriptive."
+      },
+      {
+        "question": "Who should be involved in an AI readiness assessment?",
+        "answer": "An effective assessment involves stakeholders from technology (CTO, data teams), business operations (key function owners), legal and compliance (GDPR, sector regulations), and executive leadership (CEO, COO). AI readiness spans organisational layers — a purely technical assessment misses governance and cultural blockers."
+      }
+    ],
+    "author": {
+      "name": "Justin Gane",
+      "role": "CEO, 1Digit",
+      "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
+      "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
+      "avatarUrl": "/images/team/justin-gane.jpg"
+    }
   },
   {
     "id": "insight-003",
@@ -262,7 +312,32 @@
           "Optimise for cost and performance post-migration"
         ]
       }
-    ]
+    ],
+    "faqs": [
+      {
+        "question": "What is the cost difference between hyperscaler cloud and sovereign cloud for enterprise data?",
+        "answer": "Based on enterprise deployments, sovereign cloud infrastructure (such as IONOS) delivers 40–60% lower cost than equivalent AWS, Azure, or GCP configurations for data warehousing and analytics workloads. The primary drivers are storage pricing, compute rates, and egress fees — all areas where hyperscalers charge significant premiums at scale."
+      },
+      {
+        "question": "What are the trade-offs between hyperscaler and sovereign cloud?",
+        "answer": "Hyperscalers offer broader managed service ecosystems, global distribution, and more mature AI-specific services. Sovereign cloud offers lower cost, guaranteed data residency within specific geographies (critical for GDPR and sector regulations), and protection against hyperscaler lock-in. The right choice depends on regulatory requirements, data volumes, and existing vendor relationships."
+      },
+      {
+        "question": "Does choosing sovereign cloud mean sacrificing AI capability?",
+        "answer": "No. Modern sovereign cloud platforms support the same open data formats (Parquet, Delta Lake, Iceberg) and integrate with the same analytics and AI tooling as hyperscalers. The underlying compute and storage infrastructure is equivalent — the difference is geography, pricing, and ownership of the data layer."
+      },
+      {
+        "question": "What is enterprise data infrastructure lock-in?",
+        "answer": "Lock-in occurs when an organisation's data infrastructure is tightly coupled to proprietary services from a single cloud vendor — making migration expensive and difficult. It manifests as proprietary data formats, vendor-specific SQL dialects, egress fees that penalise movement, and deeply integrated managed services with no open-source equivalents."
+      }
+    ],
+    "author": {
+      "name": "Justin Gane",
+      "role": "CEO, 1Digit",
+      "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
+      "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
+      "avatarUrl": "/images/team/justin-gane.jpg"
+    }
   },
   {
     "id": "insight-004",
@@ -383,7 +458,32 @@
         "heading": "Practical Next Steps",
         "content": "If your organisation is planning or reviewing AI investment, start with a structured assessment of your data maturity. Our AI Readiness Assessment benchmarks your organisation across five pillars — including data infrastructure — and provides a clear view of where investment will have the highest impact."
       }
-    ]
+    ],
+    "faqs": [
+      {
+        "question": "Why do most enterprise AI budgets go to models rather than data?",
+        "answer": "70% of enterprise AI spend goes to model licensing and compute, while research consistently shows that 80% of AI project failures trace back to data problems — not model quality. This misalignment happens because model costs are visible and marketed, while data infrastructure costs are embedded in operational budgets and harder to attribute to AI specifically."
+      },
+      {
+        "question": "What is the right budget allocation for enterprise AI?",
+        "answer": "A data-first budget framework allocates the majority of AI investment to data foundations — ingestion, governance, quality, and lineage infrastructure — before significant model spend. Organisations that invert this ratio (heavy model spend on weak data) typically cycle through multiple AI initiatives without reaching production."
+      },
+      {
+        "question": "How do you calculate the true cost of poor data for AI?",
+        "answer": "The cost of poor data for AI includes: failed pilot costs (typically 3–6 months of team time and cloud spend), re-platforming costs when models are rebuilt on new data foundations, compliance remediation costs when ungoverned AI creates regulatory exposure, and the opportunity cost of delayed production deployment."
+      },
+      {
+        "question": "What should a realistic AI transformation budget look like?",
+        "answer": "A realistic AI transformation budget allocates: 30–40% to data foundation work (ingestion, modelling, governance), 20–30% to platform and infrastructure, 20% to model development and evaluation, and 10–20% to change management, training, and governance frameworks. Model API costs typically represent a small fraction of total transformation spend."
+      }
+    ],
+    "author": {
+      "name": "Justin Gane",
+      "role": "CEO, 1Digit",
+      "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
+      "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
+      "avatarUrl": "/images/team/justin-gane.jpg"
+    }
   },
   {
     "id": "insight-1772058538492",
@@ -449,7 +549,32 @@
       }
     ],
     "status": "published",
-    "coverImage": "/images/insights/tree2.jpeg"
+    "coverImage": "/images/insights/tree2.jpeg",
+    "faqs": [
+      {
+        "question": "Why do 88% of AI pilots never reach production?",
+        "answer": "The most common reasons AI pilots stall are: data is not production-grade (siloed, inconsistent, ungoverned), there is no clear ownership model for the AI system post-build, the pilot was not designed with production constraints in mind (latency, compliance, integration), and there is no governance framework for the decisions the AI is making."
+      },
+      {
+        "question": "What is the difference between an AI pilot and a production AI system?",
+        "answer": "A pilot demonstrates feasibility in a controlled environment with clean, curated data. A production AI system operates on live enterprise data, integrates with existing platforms, meets compliance and audit requirements, handles edge cases and failures gracefully, and has a defined operational ownership model. The gap between the two is primarily an architecture and governance gap, not a model quality gap."
+      },
+      {
+        "question": "What does it mean to have an AI architecture foundation?",
+        "answer": "An AI architecture foundation is the set of data, governance, and integration structures that allow AI systems to be built, deployed, and maintained reliably. It includes: a unified data layer with lineage and quality tracking, a governance framework for model decisions, integration patterns that connect AI to existing systems, and an operational model for monitoring and maintaining AI in production."
+      },
+      {
+        "question": "How should an organisation sequence its AI investment?",
+        "answer": "The recommended sequence is: (1) diagnose current data and governance maturity, (2) build data foundations — unification, quality, lineage, (3) establish governance and compliance frameworks, (4) build AI capability on top of the foundation. Organisations that skip steps 1–3 and go straight to AI model development are building on sand."
+      }
+    ],
+    "author": {
+      "name": "Justin Gane",
+      "role": "CEO, 1Digit",
+      "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
+      "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
+      "avatarUrl": "/images/team/justin-gane.jpg"
+    }
   },
   {
     "id": "insight-1745834400000",
@@ -633,7 +758,55 @@
         "type": "paragraph",
         "content": "About 1Digit. 1Digit is an enterprise AI consultancy helping CIOs, CTOs, and CISOs get their infrastructure and architecture ready for frontier AI. We work with boards, security teams, and platform engineering to audit, remediate, and operate AI-native estates. Book an AI Readiness Assessment at 1Digit.co.uk."
       }
-    ]
+    ],
+    "faqs": [
+      {
+        "question": "What is Mythos by Anthropic?",
+        "answer": "Mythos is Anthropic's frontier-capability AI security evaluation system. It is a cyber-capable AI model that can identify complex, chained vulnerabilities in enterprise software — including vulnerabilities that traditional static analysis security testing (SAST) tools cannot detect. Mythos was designed to evaluate AI security risks, but its capability to find vulnerabilities in existing systems has significant implications for enterprise security teams."
+      },
+      {
+        "question": "Why is Mythos a C-suite problem rather than a DevOps problem?",
+        "answer": "Mythos can identify vulnerabilities that represent existential risks to enterprise systems — not configuration issues, but architectural vulnerabilities with potential for major financial and reputational damage. The decision about how to respond to frontier AI security evaluations, how to prioritise remediation, and how to manage the disclosure risk is a board-level decision, not a DevOps one."
+      },
+      {
+        "question": "What should organisations do in response to Mythos?",
+        "answer": "In the short term (30 days): brief the board on frontier AI security capabilities and establish an AI security governance owner. In 90 days: commission a vulnerability assessment of your highest-risk systems. In 180 days: implement a structured AI security framework and establish continuous monitoring for AI-identified vulnerability patterns."
+      },
+      {
+        "question": "How does Mythos differ from traditional penetration testing?",
+        "answer": "Traditional penetration testing relies on human testers following known attack patterns. Mythos applies frontier AI capability to identify novel, complex vulnerability chains that combine multiple weaknesses in non-obvious ways. It operates at a speed and scale that human testers cannot match, and it identifies categories of vulnerability that existing automated tools are not designed to find."
+      }
+    ],
+    "citations": [
+      {
+        "name": "Anthropic Mythos Capability Evaluation",
+        "publisher": "Anthropic"
+      },
+      {
+        "name": "UK AI Safety Institute (AISI) AI Security Research",
+        "url": "https://www.gov.uk/government/organisations/ai-safety-institute",
+        "publisher": "UK Government"
+      }
+    ],
+    "mentions": [
+      {
+        "name": "Anthropic",
+        "type": "Organization",
+        "url": "https://www.anthropic.com"
+      },
+      {
+        "name": "UK AI Safety Institute",
+        "type": "Organization",
+        "url": "https://www.gov.uk/government/organisations/ai-safety-institute"
+      }
+    ],
+    "author": {
+      "name": "Justin Gane",
+      "role": "CEO, 1Digit",
+      "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
+      "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
+      "avatarUrl": "/images/team/justin-gane.jpg"
+    }
   },
   {
     "id": "insight-1746432000000",
@@ -723,7 +896,39 @@
         "type": "paragraph",
         "content": "About 1Digit. 1Digit is an enterprise AI consultancy helping CIOs, CTOs and enterprise architects design and operate AI-native estates. We work with boards, security teams and platform engineering to audit, remediate and architect for the agent trajectory. Book an AI Readiness Assessment, including the agent governance architecture review, at 1Digit.co.uk."
       }
-    ]
+    ],
+    "faqs": [
+      {
+        "question": "What are shadow agents in enterprise AI?",
+        "answer": "Shadow agents are AI agents deployed within an organisation without formal governance, security review, or integration into the enterprise's AI oversight framework. They are typically deployed by individual teams or business units to solve immediate problems — bypassing IT governance, security controls, and compliance frameworks in the same way shadow IT did in the cloud era."
+      },
+      {
+        "question": "Why will enterprises run 150,000+ agents by 2028?",
+        "answer": "The combination of accessible AI APIs, low-code agent frameworks, and business-unit-level AI budgets means that agent deployment is following the same democratisation curve as SaaS adoption in the 2010s. Each team that deploys an agent for a specific workflow creates potential security and governance exposure — and the number compounds rapidly across a large enterprise."
+      },
+      {
+        "question": "What is the governance risk from uncontrolled agent deployment?",
+        "answer": "Shadow agents create: data exposure risk (agents accessing systems without defined data handling policies), compliance risk (agents making decisions that require human oversight under regulations like the EU AI Act), security risk (agents that can be manipulated through prompt injection or adversarial inputs), and audit risk (no record of agent decisions for regulatory examination)."
+      },
+      {
+        "question": "What does an agent governance framework look like?",
+        "answer": "An agent governance framework defines: (1) an agent registry — a catalogue of all deployed agents with ownership, capabilities, and data access; (2) access controls — what systems and data each agent class can access; (3) decision logging — an audit trail of agent decisions and the inputs that drove them; (4) human-in-the-loop requirements — which decision categories require human approval; (5) monitoring and anomaly detection for agent behaviour."
+      }
+    ],
+    "mentions": [
+      {
+        "name": "EU AI Act",
+        "type": "Thing",
+        "url": "https://artificialintelligenceact.eu/"
+      }
+    ],
+    "author": {
+      "name": "Justin Gane",
+      "role": "CEO, 1Digit",
+      "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
+      "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
+      "avatarUrl": "/images/team/justin-gane.jpg"
+    }
   },
   {
     "id": "insight-1772058538492",
@@ -833,7 +1038,74 @@
       }
     ],
     "status": "published",
-    "coverImage": "/images/insights/generated-image-may-14-2026-9_35am-1-.jpg"
+    "coverImage": "/images/insights/generated-image-may-14-2026-9_35am-1-.jpg",
+    "faqs": [
+      {
+        "question": "What is Anthropic's Mythos and why does it matter for enterprises?",
+        "answer": "Mythos is Anthropic's frontier AI security evaluation capability. It can identify complex, chained software vulnerabilities that traditional security tools cannot detect. It matters for enterprises because it signals a step-change in the capability of AI systems to identify security weaknesses at scale — and because the same capability that evaluates security can expose vulnerabilities across enterprise systems."
+      },
+      {
+        "question": "Why have governments taken an interest in Mythos?",
+        "answer": "Frontier AI systems with advanced cyber capability raise questions about offensive use, national security implications, and the adequacy of existing AI governance frameworks. The UK AI Safety Institute (AISI) and Mozilla Foundation have both engaged with Mythos evaluation research. Government interest reflects the recognition that frontier AI cyber capability requires sovereign-level oversight."
+      },
+      {
+        "question": "What is the 30/90/180-day plan for board response to Mythos?",
+        "answer": "In 30 days: brief your board on frontier AI security capabilities, appoint an AI security governance owner, and assess your current vulnerability landscape. In 90 days: commission a structured assessment of your highest-risk systems using AI-assisted analysis. In 180 days: implement a continuous AI security monitoring framework and integrate AI security evaluation into your SDLC."
+      },
+      {
+        "question": "What is the relationship between Mythos and the EU AI Act?",
+        "answer": "The EU AI Act's GPAI (General Purpose AI) provisions specifically address frontier AI systems with broad capabilities — including cyber-relevant capabilities. Mythos-class systems may require conformity assessment and transparency obligations under the Act. Enterprises using or integrating with such systems need to understand the compliance implications within their AI governance frameworks."
+      }
+    ],
+    "citations": [
+      {
+        "name": "Anthropic Mythos Evaluation Research",
+        "publisher": "Anthropic"
+      },
+      {
+        "name": "UK AI Safety Institute Evaluations Framework",
+        "url": "https://www.gov.uk/government/organisations/ai-safety-institute",
+        "publisher": "UK Government"
+      },
+      {
+        "name": "Mozilla Foundation AI Safety Research",
+        "url": "https://foundation.mozilla.org",
+        "publisher": "Mozilla Foundation"
+      }
+    ],
+    "mentions": [
+      {
+        "name": "Anthropic",
+        "type": "Organization",
+        "url": "https://www.anthropic.com"
+      },
+      {
+        "name": "UK AI Safety Institute",
+        "type": "Organization",
+        "url": "https://www.gov.uk/government/organisations/ai-safety-institute"
+      },
+      {
+        "name": "Mozilla Foundation",
+        "type": "Organization",
+        "url": "https://foundation.mozilla.org"
+      },
+      {
+        "name": "Palo Alto Networks",
+        "type": "Organization"
+      },
+      {
+        "name": "EU AI Act",
+        "type": "Thing",
+        "url": "https://artificialintelligenceact.eu/"
+      }
+    ],
+    "author": {
+      "name": "Justin Gane",
+      "role": "CEO, 1Digit",
+      "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
+      "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
+      "avatarUrl": "/images/team/justin-gane.jpg"
+    }
   },
   {
     "id": "insight-1748390400000",
@@ -937,6 +1209,54 @@
         },
         "content": "At 1digit, this is exactly the work we do. We help boards and executive teams turn EU regulatory change into clear operating decisions: AI Act inventories, sovereignty maps, AI compliance postures, and the technical patterns (including the personal-data redaction layer above) that let regulated businesses keep using Claude, ChatGPT and Gemini without leaking regulated data into them."
       }
-    ]
+    ],
+    "faqs": [
+      {
+        "question": "What is CADA and when does it come into force?",
+        "answer": "CADA (the Cloud Act for Data Access, or similar sovereign cloud legislation) is EU legislation that writes data sovereignty requirements into hard law, mandating that certain categories of EU enterprise data must be processed on European sovereign cloud infrastructure. The first major CADA enforcement deadline falls in summer 2026."
+      },
+      {
+        "question": "What is the EU AI Act GPAI deadline on 2 August 2026?",
+        "answer": "From 2 August 2026, the EU AI Act's provisions for General Purpose AI (GPAI) models come into full enforcement. Organisations using, integrating, or distributing GPAI models above the systemic risk threshold must have conformity assessments, transparency documentation, and technical safeguards in place. This affects enterprises using frontier AI models from any provider in EU-regulated activities."
+      },
+      {
+        "question": "What do these deadlines mean for UK businesses?",
+        "answer": "UK businesses with EU operations, EU customer data, or EU subsidiaries are directly affected by CADA and EU AI Act compliance requirements — regardless of post-Brexit UK law. Cross-border data flows, AI systems processing EU resident data, and AI products sold into the EU market all fall within scope. UK companies with EU exposure should treat the summer 2026 deadlines as immediate."
+      },
+      {
+        "question": "What should organisations do now to prepare?",
+        "answer": "Priority actions before the summer 2026 deadlines: (1) audit which AI systems process EU-resident data and map against GPAI classification criteria; (2) assess cloud infrastructure against CADA data residency requirements; (3) engage legal and compliance teams on conformity assessment obligations; (4) establish an AI governance framework that can produce the technical documentation the EU AI Act requires."
+      }
+    ],
+    "citations": [
+      {
+        "name": "EU Artificial Intelligence Act",
+        "url": "https://artificialintelligenceact.eu/",
+        "publisher": "European Union"
+      },
+      {
+        "name": "Cloud Act for Data Access (CADA)",
+        "publisher": "European Commission"
+      }
+    ],
+    "mentions": [
+      {
+        "name": "European Commission",
+        "type": "Organization",
+        "url": "https://ec.europa.eu"
+      },
+      {
+        "name": "EU AI Act",
+        "type": "Thing",
+        "url": "https://artificialintelligenceact.eu/"
+      }
+    ],
+    "author": {
+      "name": "Justin Gane",
+      "role": "CEO, 1Digit",
+      "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
+      "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
+      "avatarUrl": "/images/team/justin-gane.jpg"
+    }
   }
 ]

@@ -13,6 +13,15 @@ export default defineConfig({
     tailwind({ applyBaseStyles: false }),
     react(),
     mdx(),
-    sitemap(),
+    sitemap({
+      filter: (page) => {
+        const path = new URL(page).pathname;
+        return !path.startsWith('/admin') &&
+               !path.startsWith('/api') &&
+               !path.startsWith('/campaign') &&
+               !path.startsWith('/ai-readiness-results') &&
+               path !== '/404';
+      },
+    }),
   ],
 });

@@ -4,9 +4,35 @@ import Section from '@components/layout/Section.astro';
 import Container from '@components/layout/Container.astro';
 import ScrollReveal from '@components/interactive/ScrollReveal.astro';
 import AssessmentForm from '@components/forms/AssessmentForm';
+import Accordion from '@components/interactive/Accordion.astro';
+import AccordionItem from '@components/interactive/AccordionItem.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
 
-const title = 'Free AI Readiness Assessment Tool';
-const description = 'Evaluate your organisation\'s AI readiness across 5 key pillars. Get instant results with actionable recommendations.';
+const title = 'Free AI Readiness Assessment — Five Pillars';
+const description = 'Benchmark your organisation\'s AI readiness across five pillars: leadership, data, platform, governance, and operations. Free tool — instant, actionable results.';
+
+const assessmentFAQ = [
+  {
+    question: 'What are the five pillars of the AI Readiness Assessment?',
+    answer: 'The assessment evaluates your organisation across five pillars: (1) Leadership & Strategy — AI vision, executive sponsorship, and investment alignment; (2) Data — quality, availability, governance, and lineage; (3) Platform & Infrastructure — compute, storage, and tooling readiness; (4) Governance & Compliance — risk management, policy frameworks, and regulatory alignment; (5) People & Operations — skills, culture, and operational processes.',
+  },
+  {
+    question: 'How long does the free assessment take?',
+    answer: 'The self-service AI Readiness Assessment takes approximately 10–15 minutes to complete. You receive instant results with scores across all five pillars and actionable recommendations grouped by priority.',
+  },
+  {
+    question: 'What do I get at the end of the assessment?',
+    answer: 'You receive an overall AI readiness score, individual pillar scores with gap analysis, a heat map of your strengths and weaknesses, and a prioritised set of recommendations. The results are designed to help you structure an AI investment conversation with your leadership team.',
+  },
+  {
+    question: 'How is the free assessment different from a paid diagnostic?',
+    answer: 'The free self-service assessment provides a directional view of your AI readiness based on self-reported inputs. The paid AI Readiness Diagnostic (2–5 weeks, fixed price) involves expert-led workshops, evidence review, stakeholder interviews, and produces a board-ready report with a detailed 6–18 month transformation roadmap.',
+  },
+  {
+    question: 'Who should take the AI Readiness Assessment?',
+    answer: 'The assessment is designed for senior leaders — CIOs, CTOs, CDOs, or heads of digital transformation — considering AI investment. It is also useful for transformation teams benchmarking current capability and identifying gaps before engaging external partners.',
+  },
+];
 ---
 
 <PageLayout title={title} description={description}>
@@ -17,4 +43,38 @@ const description = 'Evaluate your organisation\'s AI readiness across 5 key pil
       </ScrollReveal>
     </Container>
   </Section>
+
+  <!-- FAQ Section -->
+  <Section padding="default">
+    <Container size="narrow">
+      <ScrollReveal>
+        <SectionHeading
+          align="center"
+          badge="FAQ"
+          heading="About the Assessment"
+          description="What to expect from the free AI Readiness Assessment."
+        />
+      </ScrollReveal>
+      <div class="mt-10">
+        <ScrollReveal>
+          <Accordion>
+            {assessmentFAQ.map((item) => (
+              <AccordionItem question={item.question} answer={item.answer} />
+            ))}
+          </Accordion>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  {/* FAQPage Schema */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": assessmentFAQ.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+    })),
+  })} />
 </PageLayout>

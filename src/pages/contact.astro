@@ -10,10 +10,13 @@ import Badge from '@components/ui/Badge.astro';
 import ContactForm from '@components/forms/ContactForm';
 
 const title = 'Contact 1Digit — AI & Data Consulting';
-const description = 'Get in touch to discuss your AI and data platform requirements.';
+const description = 'Contact 1Digit to discuss your enterprise AI or data engineering requirements. Email hello@1digit.co.uk or book a 30-minute scoping call — no hard sell.';
 ---
 
 <PageLayout title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"ContactPage","name":"Contact 1Digit","url":"https://1digit.co.uk/contact","description":"Contact 1Digit to discuss enterprise AI architecture and data engineering engagements.","mainEntity":{"@context":"https://schema.org","@type":"Organization","@id":"https://1digit.co.uk/#org","name":"1Digit","url":"https://1digit.co.uk","email":"hello@1digit.co.uk","telephone":"+442082424055","contactPoint":[{"@type":"ContactPoint","email":"hello@1digit.co.uk","telephone":"+442082424055","contactType":"sales","availableLanguage":"English"}]}})} />
+  </Fragment>
   <Section class="pt-32 pb-8">
     <Container>
       <ScrollReveal>

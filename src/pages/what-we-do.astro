@@ -11,11 +11,17 @@ import GlassCard from '@components/ui/GlassCard.astro';
 import Icon from '@components/ui/Icon.astro';
 import { pillars, valueProps } from '@content/data/services';
 
-const title = 'AI & Data Consulting Services';
-const description = 'We help organisations design and deliver AI systems that are structured, secure, and commercially viable.';
+const title = 'Enterprise AI & Data Services — Architecture to Delivery';
+const description = 'Four services — AI readiness, data platforms, AI product engineering, and architecture governance — covering the full journey from strategy to production AI.';
 ---
 
 <PageLayout title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"AI Readiness & Honest Assessment","description":"Capability benchmarking across five pillars, executive workshops, risk analysis, and 6–18 month transformation roadmaps. Typical engagement: 2–5 weeks.","provider":{"@id":"https://1digit.co.uk/#org"},"areaServed":"GB","serviceType":"AI Readiness Assessment","url":"https://1digit.co.uk/what-we-do"})} />
+    <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"Data & Platform Foundations","description":"Data unification, ingestion design, Smart Lakehouse architecture, observability, and cost-efficient cloud design. Typical engagement: 6–16 weeks.","provider":{"@id":"https://1digit.co.uk/#org"},"areaServed":"GB","serviceType":"Data Engineering","url":"https://1digit.co.uk/data-platforms"})} />
+    <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"AI-Enabled Products & Engineering","description":"AI-native application design, agent integration, guardrails, evaluations, and production readiness. Typical engagement: 8–20 weeks.","provider":{"@id":"https://1digit.co.uk/#org"},"areaServed":"GB","serviceType":"AI Engineering","url":"https://1digit.co.uk/what-we-do"})} />
+    <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"Service","name":"AI Architecture, Governance & Secure Implementation","description":"TOGAF-grounded enterprise AI architecture, risk frameworks, compliance alignment, and AI Ops support. Typical engagement: 4–12 weeks.","provider":{"@id":"https://1digit.co.uk/#org"},"areaServed":"GB","serviceType":"Enterprise Architecture","url":"https://1digit.co.uk/architecture"})} />
+  </Fragment>
   <!-- Hero -->
   <Section class="pt-40 pb-24 relative overflow-hidden force-dark-hero">
     <!-- Hero background image -->
@@ -232,6 +238,21 @@ const description = 'We help organisations design and deliver AI systems that ar
           </div>
         </div>
       </ScrollReveal>
+    </Container>
+  </Section>
+
+  <Section padding="none" class="py-8 border-t border-surface-border/50">
+    <Container>
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-body-sm text-content-muted">
+        <span>Related:</span>
+        <a href="/how-we-work" class="hover:text-content transition-colors">How We Work</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="/how-we-price" class="hover:text-content transition-colors">How We Price</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="/architecture" class="hover:text-content transition-colors">AI Architecture Framework</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="/data-platforms" class="hover:text-content transition-colors">Data Platforms</a>
+      </div>
     </Container>
   </Section>
 </PageLayout>

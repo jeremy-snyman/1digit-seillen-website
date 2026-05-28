@@ -31,6 +31,7 @@ Founded on the principle that AI must be architected, not assembled, 1Digit prov
 ## Assessment Tools
 
 - [Free AI Readiness Assessment](https://1digit.co.uk/ai-readiness-assessment): Self-service tool evaluating organisational AI readiness across five pillars with instant results and actionable recommendations.
+- [AI & Data Glossary](https://1digit.co.uk/glossary): Plain-English definitions of AI architecture, data engineering, and regulatory terms — from AI readiness to sovereign cloud, GPAI, RAG, agentic AI, and CADA.
 
 ## Insights
 

@@ -11,6 +11,8 @@ import ContextualCTA from '@components/insights/ContextualCTA.astro';
 import RelatedInsights from '@components/insights/RelatedInsights.astro';
 import PdfDownload from '@components/insights/PdfDownload';
 import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import Accordion from '@components/interactive/Accordion.astro';
+import AccordionItem from '@components/interactive/AccordionItem.astro';
 import { formatInsightDate, buildArticleSchema, buildInsightCanonical, categorySlug } from '@lib/insights';
 import type { InsightArticle } from '@content/data/insights/index';
 
@@ -31,6 +33,9 @@ const schemas = buildArticleSchema({
   readTimeMinutes: article.readTimeMinutes,
   faqs: article.faqs,
   howToSteps: article.howToSteps,
+  author: article.author,
+  citations: article.citations,
+  mentions: article.mentions,
 });
 const canonical = buildInsightCanonical(article.slug);
 const catSlug = categorySlug(article.category);
@@ -46,8 +51,15 @@ const gradientClass = `cat-gradient-${catSlug}`;
   type="article"
   publishDate={article.publishDate}
   canonicalUrl={canonical}
-  author="1Digit"
+  author={article.author?.name ?? '1Digit'}
+  breadcrumb={[{ name: 'Insights', url: '/insights' }]}
 >
+  {article.tags?.map((tag) => (
+    <meta slot="head" property="article:tag" content={tag} />
+  ))}
+  {article.category && (
+    <meta slot="head" property="article:section" content={article.category} />
+  )}
   <Header />
   <MobileMenu />
   <main id="main-content">
@@ -80,6 +92,39 @@ const gradientClass = `cat-gradient-${catSlug}`;
         <ScrollReveal delay={80}>
           <h1 class="text-display-md lg:text-display-lg font-display font-medium mb-8 text-content">{article.title}</h1>
         </ScrollReveal>
+
+        <!-- Author byline (shown when author data is present) -->
+        {article.author?.name && (
+          <ScrollReveal delay={100}>
+            <div class="flex items-center gap-3 mb-2">
+              {article.author.avatarUrl ? (
+                <img
+                  src={article.author.avatarUrl}
+                  alt={article.author.name}
+                  class="w-8 h-8 rounded-full object-cover border border-surface-border/50"
+                  loading="eager"
+                />
+              ) : (
+                <div class="w-8 h-8 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-xs font-medium text-accent">
+                  {article.author.name.charAt(0)}
+                </div>
+              )}
+              <div class="flex items-center gap-1.5 text-body-sm text-content-muted">
+                <span class="text-content font-medium">
+                  {article.author.linkedinUrl ? (
+                    <a href={article.author.linkedinUrl} target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">{article.author.name}</a>
+                  ) : article.author.name}
+                </span>
+                {article.author.role && (
+                  <>
+                    <span aria-hidden="true">&middot;</span>
+                    <span>{article.author.role}</span>
+                  </>
+                )}
+              </div>
+            </div>
+          </ScrollReveal>
+        )}
       </Container>
     </Section>
 
@@ -139,6 +184,55 @@ const gradientClass = `cat-gradient-${catSlug}`;
         <PdfDownload client:visible article={article} />
       </Container>
     </Section>
+
+    <!-- FAQ Accordion (shown when article has faqs) -->
+    {article.faqs?.length && (
+      <Section padding="sm">
+        <Container size="narrow">
+          <ScrollReveal>
+            <div class="border-t border-surface-border/50 pt-10">
+              <h2 class="text-heading-md font-display font-medium mb-6 text-content">Frequently Asked Questions</h2>
+              <Accordion>
+                {article.faqs.map((faq) => (
+                  <AccordionItem question={faq.question} answer={faq.answer} />
+                ))}
+              </Accordion>
+            </div>
+          </ScrollReveal>
+        </Container>
+      </Section>
+    )}
+
+    <!-- Author Bio (shown when author bio text is present) -->
+    {article.author?.bio && (
+      <Section padding="none" class="pb-8">
+        <Container size="narrow">
+          <div class="border-t border-surface-border/50 pt-8 flex items-start gap-4">
+            {article.author.avatarUrl ? (
+              <img
+                src={article.author.avatarUrl}
+                alt={article.author.name}
+                class="w-12 h-12 rounded-full object-cover border border-surface-border/50 shrink-0"
+                loading="lazy"
+              />
+            ) : (
+              <div class="w-12 h-12 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-sm font-medium text-accent shrink-0">
+                {article.author.name.charAt(0)}
+              </div>
+            )}
+            <div>
+              <p class="text-body-sm font-medium text-content mb-0.5">
+                {article.author.linkedinUrl ? (
+                  <a href={article.author.linkedinUrl} target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">{article.author.name}</a>
+                ) : article.author.name}
+                {article.author.role && <span class="text-content-muted font-normal"> &middot; {article.author.role}</span>}
+              </p>
+              <p class="text-body-sm text-content-muted">{article.author.bio}</p>
+            </div>
+          </div>
+        </Container>
+      </Section>
+    )}
 
     <!-- Related Insights -->
     <RelatedInsights
