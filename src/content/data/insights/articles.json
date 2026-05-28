@@ -761,20 +761,24 @@
     ],
     "faqs": [
       {
-        "question": "What is Mythos by Anthropic?",
-        "answer": "Mythos is Anthropic's frontier-capability AI security evaluation system. It is a cyber-capable AI model that can identify complex, chained vulnerabilities in enterprise software — including vulnerabilities that traditional static analysis security testing (SAST) tools cannot detect. Mythos was designed to evaluate AI security risks, but its capability to find vulnerabilities in existing systems has significant implications for enterprise security teams."
+        "question": "What is Anthropic's Mythos model?",
+        "answer": "Mythos is Anthropic's frontier cyber-capable AI model, released to a select group of twelve security organisations — including AWS, Microsoft, JPMorgan, and CrowdStrike — for a ninety-day evaluation starting April 2026, before wider release. In controlled red-team testing against Firefox, Mythos produced 181 successful exploit chains compared to two from Anthropic's previous flagship model Opus 4.6 — approximately ninety times the offensive capability in a single model generation."
       },
       {
-        "question": "Why is Mythos a C-suite problem rather than a DevOps problem?",
-        "answer": "Mythos can identify vulnerabilities that represent existential risks to enterprise systems — not configuration issues, but architectural vulnerabilities with potential for major financial and reputational damage. The decision about how to respond to frontier AI security evaluations, how to prioritise remediation, and how to manage the disclosure risk is a board-level decision, not a DevOps one."
+        "question": "What types of vulnerabilities can Mythos find that traditional SAST tools miss?",
+        "answer": "Traditional static analysis tools like SonarQube, Snyk, and CodeRabbit pattern-match against catalogues of known bad shapes — SQL injection, path traversal, hardcoded credentials. Mythos reasons about multi-step logic flaws: authentication bypass sequences that span multiple services, race conditions in async flows, trust boundary violations in microservice architectures, and subtle cryptographic misuse. These classes of vulnerability are invisible to pattern-matching tools because they require reasoning about system state across many components simultaneously."
       },
       {
-        "question": "What should organisations do in response to Mythos?",
-        "answer": "In the short term (30 days): brief the board on frontier AI security capabilities and establish an AI security governance owner. In 90 days: commission a vulnerability assessment of your highest-risk systems. In 180 days: implement a structured AI security framework and establish continuous monitoring for AI-identified vulnerability patterns."
+        "question": "Is Mythos the only frontier cyber-capable AI model?",
+        "answer": "No. On 23 April 2026, OpenAI shipped GPT-5.5 (internal codename Spud), with comparable offensive capability. Mythos is the named hook, but the underlying concern extends to any frontier model. The capability is now in multiple labs, and future generations will be more capable still. Anthropic's own CEO has publicly stated: 'More powerful models are going to come from us and from others, and so we do need a plan to respond to this.'"
       },
       {
-        "question": "How does Mythos differ from traditional penetration testing?",
-        "answer": "Traditional penetration testing relies on human testers following known attack patterns. Mythos applies frontier AI capability to identify novel, complex vulnerability chains that combine multiple weaknesses in non-obvious ways. It operates at a speed and scale that human testers cannot match, and it identifies categories of vulnerability that existing automated tools are not designed to find."
+        "question": "What is the financial cost of not preparing for AI-enabled cyber threats?",
+        "answer": "The IBM 2025 Cost of a Data Breach Report puts the global average breach cost at $4.44 million. In the United States it is $10.22 million. In healthcare, which has led every sector for fourteen consecutive years, it is $7.42 million. These are averages — the tails are much larger for complex, multi-system breaches of the type frontier models are capable of engineering. Preparing now is cheaper than one American breach."
+      },
+      {
+        "question": "What should enterprises do to prepare before the Glasswing evaluation findings are published?",
+        "answer": "The priority sequence is: (1) Run a frontier model audit against your own infrastructure now, using Claude Opus 4.7 or GPT-5.5, before Mythos findings become public. (2) Treat the audit as an architecture exercise, not a penetration test — the goal is to find logic-layer vulnerabilities your SAST tools cannot see. (3) Remediate findings before the Glasswing ninety-day window closes (around 4 July 2026), when digested findings will start to circulate. (4) Assign a named enterprise architect, not just the CISO, to own the remediation programme."
       }
     ],
     "citations": [
@@ -899,20 +903,24 @@
     ],
     "faqs": [
       {
-        "question": "What are shadow agents in enterprise AI?",
-        "answer": "Shadow agents are AI agents deployed within an organisation without formal governance, security review, or integration into the enterprise's AI oversight framework. They are typically deployed by individual teams or business units to solve immediate problems — bypassing IT governance, security controls, and compliance frameworks in the same way shadow IT did in the cloud era."
+        "question": "What are shadow agents?",
+        "answer": "Shadow agents are AI agents running in production without full IT approval or governance coverage. In a survey of 1,879 IT leaders, 95% of organisations reported running AI agents that autonomously perform IT or security tasks. Of those, only 14.4% had reached production with full IT approval — meaning the vast majority of deployed agents are operating outside formal governance."
       },
       {
-        "question": "Why will enterprises run 150,000+ agents by 2028?",
-        "answer": "The combination of accessible AI APIs, low-code agent frameworks, and business-unit-level AI budgets means that agent deployment is following the same democratisation curve as SaaS adoption in the 2010s. Each team that deploys an agent for a specific workflow creates potential security and governance exposure — and the number compounds rapidly across a large enterprise."
+        "question": "How many AI agents will the average Fortune 500 run by 2028?",
+        "answer": "Gartner's forecast, published by Senior Director Analyst Max Goss, is that by 2028 the average global Fortune 500 enterprise will run over 150,000 agents. Today's agent populations are in the hundreds to low thousands. The jump is approximately ten-thousand-fold in three years — faster than any previous enterprise technology adoption curve."
       },
       {
-        "question": "What is the governance risk from uncontrolled agent deployment?",
-        "answer": "Shadow agents create: data exposure risk (agents accessing systems without defined data handling policies), compliance risk (agents making decisions that require human oversight under regulations like the EU AI Act), security risk (agents that can be manipulated through prompt injection or adversarial inputs), and audit risk (no record of agent decisions for regulatory examination)."
+        "question": "Why is agent governance an architecture problem rather than a security problem?",
+        "answer": "Traditional IAM tools were designed for human identities and static non-human identities like service accounts and API keys. AI agents are dynamic: they spawn sub-agents, acquire credentials at runtime, operate across multiple systems simultaneously, and change behaviour based on context. IAM was not designed for this model. Governing agents at scale requires an identity fabric, an observability plane, and an architecture pattern — none of which are native to existing SIEM or IAM tooling."
       },
       {
-        "question": "What does an agent governance framework look like?",
-        "answer": "An agent governance framework defines: (1) an agent registry — a catalogue of all deployed agents with ownership, capabilities, and data access; (2) access controls — what systems and data each agent class can access; (3) decision logging — an audit trail of agent decisions and the inputs that drove them; (4) human-in-the-loop requirements — which decision categories require human approval; (5) monitoring and anomaly detection for agent behaviour."
+        "question": "What questions should a board ask their CTO about agent governance?",
+        "answer": "The five questions that matter: (1) What is the agent inventory today, and what is the discovery process for agents nobody declared? (2) Does the identity model extend to non-human agent identities? (3) What percentage of agent behaviour is observable at the governance layer? (4) Does the current architecture have the capacity to govern 150,000 agents? (5) Who in the organisation owns agent governance — and does that person have the mandate and budget to act?"
+      },
+      {
+        "question": "Is agent governance a CISO responsibility?",
+        "answer": "Not primarily. CISOs and their teams are well-equipped for the threat model that existed between 2018 and 2024. Agent governance requires an enterprise architect in the lead role, with the CISO as a critical stakeholder. The reason is structural: the problem is not threat detection, it is the absence of an identity fabric and observability plane capable of operating at the agent trajectory's scale."
       }
     ],
     "mentions": [
@@ -1212,20 +1220,24 @@
     ],
     "faqs": [
       {
-        "question": "What is CADA and when does it come into force?",
-        "answer": "CADA (the Cloud Act for Data Access, or similar sovereign cloud legislation) is EU legislation that writes data sovereignty requirements into hard law, mandating that certain categories of EU enterprise data must be processed on European sovereign cloud infrastructure. The first major CADA enforcement deadline falls in summer 2026."
+        "question": "What is CADA and when does it come into effect?",
+        "answer": "CADA (Cloud and AI Development Act) is the centrepiece of the EU's Tech Sovereignty Package. It creates a binding statutory definition of 'sovereign cloud', mandates sovereign hosting for sensitive public-sector data in healthcare, financial systems, and judicial data, and is on track for Q4 2027 adoption. Unlike GDPR, it is paired with industrial policy — directing public procurement toward EU-qualified providers."
       },
       {
-        "question": "What is the EU AI Act GPAI deadline on 2 August 2026?",
-        "answer": "From 2 August 2026, the EU AI Act's provisions for General Purpose AI (GPAI) models come into full enforcement. Organisations using, integrating, or distributing GPAI models above the systemic risk threshold must have conformity assessments, transparency documentation, and technical safeguards in place. This affects enterprises using frontier AI models from any provider in EU-regulated activities."
+        "question": "When does the EU AI Act enforcement go live for GPAI providers?",
+        "answer": "The EU AI Act's enforcement regime for General-Purpose AI (GPAI) model providers goes live on 2 August 2026. From that date, the AI Office can request documentation, run independent model evaluations, demand mitigation measures, and order providers to restrict or withdraw models from the EU market. Fines reach 3% of global annual turnover or €15 million, whichever is higher."
       },
       {
-        "question": "What do these deadlines mean for UK businesses?",
-        "answer": "UK businesses with EU operations, EU customer data, or EU subsidiaries are directly affected by CADA and EU AI Act compliance requirements — regardless of post-Brexit UK law. Cross-border data flows, AI systems processing EU resident data, and AI products sold into the EU market all fall within scope. UK companies with EU exposure should treat the summer 2026 deadlines as immediate."
+        "question": "Does the EU AI Act apply to UK and non-EU businesses?",
+        "answer": "Yes. The EU AI Act's scope is defined by market access, not headquarters. Any provider placing a GPAI model on the EU market is in scope, regardless of where they are based. Non-EU providers must appoint an authorised representative inside the Union before placing a model on the market. UK businesses selling SaaS into the EU, financial services firms with EU customers, and any business whose AI model is used in Europe are all in scope."
       },
       {
-        "question": "What should organisations do now to prepare?",
-        "answer": "Priority actions before the summer 2026 deadlines: (1) audit which AI systems process EU-resident data and map against GPAI classification criteria; (2) assess cloud infrastructure against CADA data residency requirements; (3) engage legal and compliance teams on conformity assessment obligations; (4) establish an AI governance framework that can produce the technical documentation the EU AI Act requires."
+        "question": "What is the difference between 'EU sovereign cloud' under CADA and simply storing data in an EU region?",
+        "answer": "They are not the same. Under CADA, 'sovereign' requires that the provider meets defined tests covering ownership structure, operational control, legal jurisdiction, and immunity from extra-territorial access laws such as the US CLOUD Act. A US-owned cloud region inside Frankfurt or Dublin still falls under the CLOUD Act. CADA is specifically designed to close that gap by requiring EU-domiciled ownership and control, not just physical data location."
+      },
+      {
+        "question": "What should businesses do before 2 August 2026?",
+        "answer": "The priority sequence is: (1) Build an inventory of every GPAI model in use, including shadow usage. (2) Classify each model's compliance posture and identify any AI systems built on top. (3) Implement a technical layer to redact personal data before prompts leave your perimeter. (4) Map which workloads will fall under CADA's mandatory sovereign hosting categories. (5) Brief the board — the AI Act fine ceiling alone (3% of global turnover) makes this a board-level exposure."
       }
     ],
     "citations": [

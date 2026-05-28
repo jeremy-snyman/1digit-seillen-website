@@ -73,32 +73,36 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, SITE.
   })} />
 )}
 
-<!-- Structured Data: Organization (homepage only) -->
-{type === 'website' && Astro.url.pathname === '/' && (
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "@id": `${SITE.url}/#org`,
-    "name": "1Digit",
-    "url": SITE.url,
-    "description": SITE.description,
+<!-- Structured Data: Organization (every page) -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${SITE.url}/#org`,
+  "name": "1Digit",
+  "url": SITE.url,
+  "description": SITE.description,
+  "email": SITE.email,
+  "telephone": "+442082424055",
+  "areaServed": ["GB", "EU"],
+  "serviceType": ["AI Consulting", "Data Engineering", "Enterprise Architecture", "AI Readiness Assessment"],
+  "logo": { "@type": "ImageObject", "url": `${SITE.url}/favicon.svg` },
+  "sameAs": [
+    "https://www.linkedin.com/company/1digit",
+    "https://1digit.co.uk"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
     "email": SITE.email,
     "telephone": "+442082424055",
-    "areaServed": "GB",
-    "serviceType": ["AI Consulting", "Data Engineering", "Enterprise Architecture", "AI Readiness Assessment"],
-    "logo": { "@type": "ImageObject", "url": `${SITE.url}/favicon.svg` },
-    "sameAs": [
-      "https://www.linkedin.com/company/1digit"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": SITE.email,
-      "telephone": "+442082424055",
-      "contactType": "sales",
-      "availableLanguage": "English",
-    },
-  })} />
-)}
+    "contactType": "sales",
+    "availableLanguage": "English",
+  },
+  "founder": {
+    "@type": "Person",
+    "@id": `${SITE.url}/team/justin-gane#person`,
+    "name": "Justin Gane",
+  },
+})} />
 
 <!-- Structured Data: BreadcrumbList -->
 {Astro.url.pathname !== '/' && (

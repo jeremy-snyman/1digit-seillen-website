@@ -1,0 +1,152 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Button from '@components/ui/Button.astro';
+import { SITE } from '@lib/constants';
+import { getPublishedInsights } from '@content/data/insights/index';
+
+const articles = getPublishedInsights().filter(
+  (a) => a.author?.name === 'Justin Gane'
+);
+
+const person = {
+  name: 'Justin Gane',
+  role: 'CEO, 1Digit',
+  bio: 'Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.',
+  linkedinUrl: 'https://www.linkedin.com/in/justin-gane-bba64913',
+  avatarUrl: '/images/team/justin-gane.jpg',
+};
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${SITE.url}/team/justin-gane#person`,
+  name: person.name,
+  jobTitle: person.role,
+  description: person.bio,
+  url: `${SITE.url}/team/justin-gane`,
+  image: `${SITE.url}${person.avatarUrl}`,
+  sameAs: [
+    person.linkedinUrl,
+  ],
+  worksFor: {
+    '@type': 'Organization',
+    '@id': `${SITE.url}/#org`,
+    name: '1Digit',
+    url: SITE.url,
+  },
+  knowsAbout: [
+    'AI Architecture',
+    'Enterprise Data Engineering',
+    'AI Governance',
+    'EU AI Act',
+    'Sovereign Cloud',
+    'Data Platforms',
+  ],
+};
+---
+
+<PageLayout
+  title={`${person.name} — ${person.role} | 1Digit`}
+  description={person.bio}
+  ogImage={person.avatarUrl}
+  ogImageAlt={person.name}
+  canonicalUrl={`${SITE.url}/team/justin-gane`}
+  breadcrumb={[{ name: 'Team', url: '/team' }]}
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(personSchema)} />
+
+  <!-- Hero -->
+  <Section class="pt-32 pb-12">
+    <Container size="narrow">
+      <ScrollReveal>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-8">
+          <img
+            src={person.avatarUrl}
+            alt={person.name}
+            class="w-24 h-24 rounded-full object-cover border border-surface-border/50 shrink-0"
+            width="96"
+            height="96"
+            loading="eager"
+          />
+          <div>
+            <p class="text-label-md text-content-muted uppercase tracking-wider mb-2">Team</p>
+            <h1 class="text-display-md font-display font-medium text-content mb-1">{person.name}</h1>
+            <p class="text-body-lg text-accent">{person.role}</p>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Bio -->
+  <Section background="elevated" class="py-12">
+    <Container size="narrow">
+      <ScrollReveal>
+        <div class="max-w-2xl">
+          <p class="text-body-lg text-content-secondary leading-relaxed mb-8">{person.bio}</p>
+          <Button
+            href={person.linkedinUrl}
+            variant="outline"
+            size="md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn Profile
+          </Button>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- Articles -->
+  {articles.length > 0 && (
+    <Section class="py-16">
+      <Container size="narrow">
+        <ScrollReveal>
+          <h2 class="text-heading-lg font-display font-medium text-content mb-8">Published Insights</h2>
+        </ScrollReveal>
+        <div class="space-y-4">
+          {articles.map((article, i) => (
+            <ScrollReveal delay={i * 60}>
+              <a href={`/insights/${article.slug}`} class="block group">
+                <GlassCard hover padding="lg">
+                  <div class="flex items-start justify-between gap-4">
+                    <div class="min-w-0">
+                      <p class="text-label-sm text-content-muted mb-1">
+                        {article.category} &middot; {new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(article.publishDate))}
+                      </p>
+                      <h3 class="text-heading-xs font-semibold text-content group-hover:text-accent transition-colors mb-2 leading-snug">
+                        {article.title}
+                      </h3>
+                      <p class="text-body-sm text-content-muted line-clamp-2">{article.thesis}</p>
+                    </div>
+                    <span class="text-content-muted group-hover:text-accent transition-colors shrink-0 mt-1" aria-hidden="true">&rarr;</span>
+                  </div>
+                </GlassCard>
+              </a>
+            </ScrollReveal>
+          ))}
+        </div>
+      </Container>
+    </Section>
+  )}
+
+  <!-- CTA -->
+  <Section background="elevated" class="py-16">
+    <Container size="narrow">
+      <ScrollReveal>
+        <div class="text-center max-w-xl mx-auto">
+          <h2 class="text-heading-lg font-display font-medium text-content mb-4">Work with Justin</h2>
+          <p class="text-body-md text-content-secondary mb-8">
+            Book a free call to discuss AI architecture, data platforms, or EU AI Act readiness for your organisation.
+          </p>
+          <Button href="/contact" variant="primary" size="lg">Book a Free Call</Button>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+</PageLayout>
