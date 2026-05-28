@@ -738,7 +738,7 @@
     "publishDate": "2026-02-25",
     "readTimeMinutes": 15,
     "ctaType": "ai-readiness",
-    "isPinned": true,
+    "isPinned": false,
     "isCampaignFeatured": false,
     "primaryConversionTarget": "/ai-readiness-assessment",
     "external": false,
@@ -834,5 +834,109 @@
     ],
     "status": "published",
     "coverImage": "/images/insights/generated-image-may-14-2026-9_35am-1-.jpg"
+  },
+  {
+    "id": "insight-1748390400000",
+    "slug": "cada-eu-ai-act-summer-2026-deadlines",
+    "title": "CADA and the EU AI Act: What the Two Summer 2026 Deadlines Mean for EU, UK and Cross-Border Businesses",
+    "thesis": "In ten weeks, the EU converts five years of digital sovereignty rhetoric into hard law — and any business that touches European data or sells to European customers is now on the clock.",
+    "summary": "Two EU laws are landing in the same ten-week window: the Cloud and AI Development Act (CADA), which creates a binding statutory definition of sovereign cloud, and the EU AI Act's Chapter V enforcement regime for General-Purpose AI, which goes live on 2 August 2026. Together they restructure how any business operating in or trading with Europe must think about cloud infrastructure, AI model use, and compliance.",
+    "researchType": "Strategic Brief",
+    "category": "Regulation",
+    "tags": [],
+    "campaignTag": null,
+    "publishDate": "2026-05-28",
+    "readTimeMinutes": 13,
+    "ctaType": "ai-readiness",
+    "isPinned": true,
+    "isCampaignFeatured": false,
+    "primaryConversionTarget": "/ai-readiness-assessment",
+    "external": false,
+    "externalUrl": null,
+    "seoTitle": "",
+    "seoDescription": "",
+    "ogImage": "/images/insights/eu_act_square-2.png",
+    "coverImage": "/images/insights/eu_act_square-2.png",
+    "status": "published",
+    "bodyBlocks": [
+      {
+        "type": "paragraph",
+        "content": "In the space of ten weeks, the European Union is converting more than five years of digital sovereignty rhetoric into hard law. Two distinct moves are landing in the same window, and together they will reshape how any business that touches European data or sells to European customers operates cloud and AI.\nThe first is the Tech Sovereignty Package, unveiled this week, anchored by the Cloud and AI Development Act (CADA, sometimes written as CAIDA). The second is the EU AI Act, which has technically been in force since 2024 but whose enforcement powers over General-Purpose AI model providers go live on 2 August 2026.\nThis is the most consequential European regulatory moment for cloud and AI since GDPR. The difference is the speed. GDPR gave businesses years to prepare. CADA is already on the legislative track and the AI Act enforcement clock is at sixty-six days. Below is what each Act actually says, and what it means in practice for businesses in the EU, in the UK, and anywhere else that trades with Europe."
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "Part one: what CADA actually says",
+          "bold": true
+        },
+        "content": "CADA is the centrepiece of the Tech Sovereignty Package and the most consequential of the four. It does four things.\n\n1. It writes a statutory definition of \"sovereign cloud\"\nUntil now, \"sovereign\" was a marketing term policed (loosely) by voluntary certification schemes such as EUCS. CADA proposes to convert it into a binding legal category. To call a cloud service sovereign under EU law, the provider will have to meet defined tests covering ownership structure, operational control, legal jurisdiction, and immunity from extra-territorial access laws like the United States CLOUD Act.\nThis last point is the geopolitical heart of CADA. The 2018 US CLOUD Act allows American authorities to compel US-headquartered companies to hand over data they hold, even when that data is stored in Europe. For Brussels, that has long been an unresolved sovereignty problem sitting underneath every public-sector contract with AWS, Microsoft Azure and Google Cloud. CADA is the legal instrument designed to close it.\n\n2. It mandates sovereign hosting for highly sensitive public-sector data\nCertain categories of public-sector data will be required to live on EU-sovereign infrastructure. Healthcare records, financial systems and judicial data are the three named categories under consideration. This is not guidance. This is procurement law: if you want to sell into those workloads, your platform must qualify under the statutory sovereignty definition.\n\n3. It sits alongside the Chips Act 2.0 and the EuroStack agenda\nCADA is not a standalone instrument. It is paired with a refreshed Chips Act 2.0 (covering semiconductors and AI compute capacity) and the wider EuroStack policy movement, which advocates a coherent European stack across cloud, chips, cybersecurity, AI and connectivity. Read together, this is industrial policy as much as regulation. Brussels is redirecting public-sector spend toward European providers, on purpose, over the next decade.\n\n4. It is on a defined political track\nCADA still requires sign-off from all 27 member states. The Commission's published roadmap (agreed 23 April 2026) sets Q4 2027 as the indicative target window for adoption, not a binding legal deadline. The technical detail (notably, whether foreign-owned European subsidiaries can qualify as sovereign, and how governance and operational access are policed in practice) is still being negotiated. But the policy direction is fixed and the Commission's own officials have started using sharper language to justify it. Thibaut Kleiner, Director for Future Networks at DG CONNECT, warned that Europe risks \"becoming a technological colony\" without action."
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "Part two: what the EU AI Act says (Chapter V, GPAI, enforcement going live)",
+          "bold": true
+        },
+        "content": "The EU AI Act is the world's first horizontal regulation of artificial intelligence. It has been in force in stages since 2024. The summer 2026 milestone is the activation of enforcement powers against providers of General-Purpose AI (GPAI) models. There are four substantive things this Chapter does.\n\n1. It defines what counts as a GPAI provider\nA GPAI provider is any organisation that places a general-purpose AI model on the EU market. The operative legal trigger is \"placed on the market\" under Article 3(9), not the looser commercial sense of \"released\". That captures OpenAI, Anthropic, Google, Meta, Mistral, xAI and a long list of others, regardless of where they are headquartered, the moment their model is first made available in the Union or integrated into a system sold there.\nModels presumed to have \"high impact capabilities\" (cumulative training compute above 10^25 FLOP, a rebuttable presumption under Article 51(2)) face a higher tier of obligations as GPAI with systemic risk (GPAISR).\n\n2. It imposes four substantive obligations\nFor all GPAI providers: maintain technical documentation on how the model was built, trained, evaluated and tested, and keep it current; provide clear information and documentation to downstream providers so they can meet their own AI Act obligations; adopt a written policy to comply with EU copyright law; publish a sufficiently detailed summary of the content used to train the model.\nFor GPAISR providers, the obligations are layered under Article 55: adversarial testing and state-of-the-art model evaluations; systemic risk assessment and mitigation at Union level; serious-incident reporting to the AI Office; and demonstrably adequate cybersecurity for the model and its weights. The Article 73 serious-incident reporting timeline (which applies to high-risk AI systems generally, alongside the GPAISR duty) is tiered: two days for widespread infringement or serious disruption of critical infrastructure, ten days where death has occurred, and fifteen days for other serious incidents.\n\n3. It gives the Commission and the AI Office real teeth\nFrom 2 August 2026, the AI Office can request documentation (Article 91), run independent evaluations of the model itself (Article 92), demand mitigation measures where systemic risk is suspected, and at the extreme end order the provider to restrict, withdraw or recall the model from the EU market (Article 93). Fines under Article 101 reach 3 per cent of global annual turnover or EUR 15 million, whichever is higher. (The Article 99 regime covering AI systems, distinct from this GPAI regime, can reach 7 per cent or EUR 35 million for prohibited-practice breaches.)\nEnforcement is not theoretical. National market surveillance authorities, downstream providers, and the AI Act's scientific panel all have formal routes to flag suspected breaches and force the Commission to act.\n\n4. It applies extraterritorially\nThis is the part UK and other non-EU businesses keep missing. The AI Act's scope is defined by market access, not headquarters (Article 2(1)(a)). Any provider placing a GPAI model on the EU market is in scope, regardless of where they are based. Providers established outside the EU must appoint an authorised representative inside the Union before placing the model on the market (Article 54). A narrow exception applies to genuinely free and open-source GPAI models that do not pose systemic risk; open-source GPAISR providers must still appoint a representative.\nIf you use a US frontier model to power a service that European customers can buy, you sit inside a compliance chain that ends at the AI Office."
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "What this means for businesses inside the EU",
+          "bold": true
+        },
+        "content": "For European businesses, the implications are direct and largely procurement-led.\nCloud and infrastructure decisions become legal decisions, not just commercial ones. If you operate in healthcare, financial services, judicial systems, or any public-sector adjacent activity, you must be able to demonstrate that sensitive workloads sit on infrastructure that meets the CADA sovereignty definition. That will reshape tender language and reference architectures during 2026 and 2027 even before the Act formally adopts. Procurement teams will not wait for the legal text to harden when they know the direction of travel.\nSupplier qualification will tighten. Working with hyperscaler infrastructure is not banned, and is unlikely to be, but the path to using it for sensitive workloads will run through EU-domiciled subsidiaries, sovereign regions, and joint-venture structures with European operators. Microsoft has already moved with Bleu in France and Delos in Germany. AWS has its European Sovereign Cloud initiative. Google Cloud has expanded its sovereign and air-gapped offering. Expect more, and expect commercial terms to follow the legal definition rather than lead it.\nAI compliance now has a defined deliverable. Your AI Act file is no longer an internal aspiration. It has a date. By 2 August 2026 you should have a documented inventory of every GPAI model in use, the supplier's GPAI compliance posture for each, your own classification of any AI systems built on top, and the audit evidence to back it up. The Article 73 fifteen-day serious-incident reporting requirement also needs an internal process before that date, not after the first incident.\nCodes of practice are the path of least resistance. The Commission has said it will focus enforcement on monitoring adherence to codes of practice for providers that sign up to them. Suppliers (and by extension, the businesses depending on them) that align to the Code of Practice gain the practical benefit of a narrower enforcement surface."
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "What this means for UK businesses",
+          "bold": true
+        },
+        "content": "The UK has chosen a different regulatory path: lighter touch domestically, with a £500 million Sovereign AI Unit (launched April 2026), an AI Growth Lab proposed under the Regulating for Growth Bill, and the AI Security Institute (formerly the AI Safety Institute, renamed in 2025) which has earned international credibility through the global AISI network. The UK has no equivalent to CADA and no equivalent statutory GPAI obligation. That sounds like an advantage. It is not, for three reasons.\nOne: UK businesses selling into the EU are in scope of both Acts regardless of UK policy. If your customer is European, the legal framework that governs their procurement is European, and your platform, your AI model use, and your data hosting all have to satisfy it. UK divergence at the policy level does not buy you divergence at the commercial level. The market is the market.\nTwo: UK enterprises depend disproportionately on US frontier models. OpenAI, Anthropic and Google between them power the overwhelming majority of UK enterprise AI deployments. The de-facto compliance posture of a UK business is therefore shaped by what those three providers publish to the AI Office. That is a dependency UK boards do not yet treat with the seriousness it warrants.\nThree: Whitehall has not yet declared its hand on sovereign cloud. The £500 million Sovereign AI Unit, the political appetite to attract US hyperscaler investment, and the question of whether to match CADA, diverge from it, or design a third path are all open. Enterprises cannot wait for that choice to resolve. The procurement reality is that EU customers will demand CADA-aligned posture from UK suppliers before Whitehall declares its position.\nIn practice, the UK businesses most exposed are: AI vendors selling SaaS into the EU, financial services firms with EU branches or EU customers, healthcare and life sciences businesses with European data, and any UK-based subsidiary of an EU parent. For all of them, the question is not whether the EU regime applies. It does. The question is what posture they document, and by when.\nThe closest UK legislation to a sovereignty regime is the Cyber Security and Resilience Bill (which expands NIS scope to managed service and data-centre operators) and the Data (Use and Access) Act 2025 (which adjusts how UK GDPR applies to AI training and automated decision-making). Neither is a statutory sovereign cloud definition. The UK procurement-level rules (G-Cloud 14's UK hosting requirement, sectoral guidance from the ICO, FCA and NHS) sit alongside but do not substitute for CADA-equivalent law."
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "What this means for non-EU businesses trading with EU companies",
+          "bold": true
+        },
+        "content": "The principle is straightforward and worth saying clearly: market access defines scope, not residency. If you sell software, services or data products into the EU, you are inside both regimes regardless of where you are headquartered.\nThat has three practical consequences.\nContract language will change. EU customers will start adding sovereignty clauses, AI Act compliance warranties, and audit rights to procurement contracts. If you are a US, Canadian, Indian or Australian supplier and your standard contract does not have answers for these, you will lose deals. Some of those deals you will lose without anyone telling you why.\nYou may need an EU representative. Non-EU providers of GPAI models must appoint an authorised representative within the Union before placing a model on the market. Many businesses will discover this only when their European partner asks for it. The fix is not difficult, but it is a piece of corporate plumbing that takes weeks, not days.\nData residency assumptions need re-examining. \"Storage in an EU region\" is not the same as \"sovereign infrastructure\". A US-owned cloud region inside Frankfurt or Dublin still falls under the US CLOUD Act. If your European customers operate in regulated sectors, expect their sovereignty audit to look through the region label and into the ownership and operational control of the underlying provider."
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "What sensible action looks like before August",
+          "bold": true
+        },
+        "content": "CADA is on a longer fuse. The AI Act enforcement clock is the urgent one. For most businesses, the right sequence over the next eight to twelve weeks is:"
+      },
+      {
+        "type": "numberedList",
+        "items": [
+          "Inventory. Build a single, accurate list of every GPAI model in use across the business. Include shadow usage (employees pasting regulated data into Claude, ChatGPT or Gemini to draft, summarise or translate). Most enterprises underestimate this by a factor of three or more.",
+          "Classify. For each model, identify the supplier's GPAI compliance posture, any systemic-risk classification, and any AI systems your business has built on top. This is what an Article 73 reporting process and an AI Office documentation request will both want.",
+          "Decide on the technical mitigation for personal data. Policy alone will not stop employees pasting regulated information into LLMs. The only workable answer is technical: a layer that redacts personal data before the prompt leaves your perimeter, gets the answer, and reinstates context locally. The model never sees the regulated payload. The user gets the productivity. The regulator gets a defensible audit trail. This is the system 1digit is building with its clients today.",
+          "Map sovereignty exposure. Identify which workloads will fall under CADA's mandatory sovereign hosting categories if and when the Act adopts. For most businesses with EU customers, this is a much smaller subset than they fear, but it must be identified and isolated now to avoid an expensive forced migration in 2027.",
+          "Brief the board. Compliance with the AI Act is a board-level exposure, not a technology line item. The fine ceiling alone (3 per cent of global turnover) makes that true. Boards should be told the deadline, the inventory, the posture and the gaps, in plain language, before August."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "The honest summary",
+          "bold": true
+        },
+        "content": "The European Union has decided, in two pieces of law landing in the same quarter, that the rules of cloud and AI are no longer being set by the technology industry. They are being set by the regulator, with hard procurement and compliance constraints attached.\nFor European businesses, this is a structural shift in how technology decisions are made. For UK businesses, it is a market-access shift that overrides whatever the UK government eventually decides domestically. For everyone else, it is the new bar for selling into the world's third-largest single market.\nSixty-six days to 2 August. Eighteen months to expected CADA adoption. The work to be ready for both starts now."
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "How 1digit can help",
+          "bold": true
+        },
+        "content": "At 1digit, this is exactly the work we do. We help boards and executive teams turn EU regulatory change into clear operating decisions: AI Act inventories, sovereignty maps, AI compliance postures, and the technical patterns (including the personal-data redaction layer above) that let regulated businesses keep using Claude, ChatGPT and Gemini without leaking regulated data into them."
+      }
+    ]
   }
 ]
