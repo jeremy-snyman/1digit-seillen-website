@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "submit": "node scripts/submit-urls.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
