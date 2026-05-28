@@ -20,7 +20,7 @@ interface Props {
 
 const { article } = Astro.props;
 const formattedDate = formatInsightDate(article.publishDate);
-const schema = buildArticleSchema({
+const schemas = buildArticleSchema({
   title: article.title,
   summary: article.summary,
   publishDate: article.publishDate,
@@ -29,6 +29,8 @@ const schema = buildArticleSchema({
   category: article.category,
   tags: article.tags,
   readTimeMinutes: article.readTimeMinutes,
+  faqs: article.faqs,
+  howToSteps: article.howToSteps,
 });
 const canonical = buildInsightCanonical(article.slug);
 const catSlug = categorySlug(article.category);
@@ -40,9 +42,11 @@ const gradientClass = `cat-gradient-${catSlug}`;
   title={article.seoTitle || article.title}
   description={article.seoDescription || article.summary}
   ogImage={article.ogImage || undefined}
+  ogImageAlt={article.title}
   type="article"
   publishDate={article.publishDate}
   canonicalUrl={canonical}
+  author="1Digit"
 >
   <Header />
   <MobileMenu />
@@ -146,5 +150,7 @@ const gradientClass = `cat-gradient-${catSlug}`;
   <Footer />
 
   <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  {schemas.map((s) => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))}
 </Layout>

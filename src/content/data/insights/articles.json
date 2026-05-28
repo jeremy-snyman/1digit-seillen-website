@@ -23,7 +23,7 @@
     "externalUrl": null,
     "seoTitle": "Data Fragmentation: The Real Barrier to Enterprise AI",
     "seoDescription": "Discover why fragmented data is the #1 reason AI initiatives fail and what you can do about it.",
-    "ogImage": "",
+    "ogImage": "/images/og/insights/data-fragmentation-ai-barrier.png",
     "coverImage": null,
     "status": "published",
     "bodyBlocks": [
@@ -100,7 +100,7 @@
     "externalUrl": null,
     "seoTitle": "AI Readiness Benchmarking for Enterprise Organisations",
     "seoDescription": "Learn how to benchmark your organisation's AI readiness across leadership, data, platform, governance, and operations.",
-    "ogImage": "",
+    "ogImage": "/images/og/insights/ai-readiness-benchmarking.png",
     "coverImage": null,
     "status": "published",
     "bodyBlocks": [
@@ -173,7 +173,7 @@
     "externalUrl": null,
     "seoTitle": "Enterprise Data Infrastructure: Cost Efficiency vs Hyperscale",
     "seoDescription": "Compare hyperscaler costs with European sovereign alternatives for enterprise data warehousing and AI workloads.",
-    "ogImage": "",
+    "ogImage": "/images/og/insights/cost-efficiency-vs-hyperscale.png",
     "coverImage": null,
     "status": "published",
     "bodyBlocks": [
@@ -289,7 +289,7 @@
     "externalUrl": null,
     "seoTitle": "The AI Cost Structure Reset: Fixing Enterprise AI Budget Misallocation",
     "seoDescription": "Why 70% of enterprise AI budgets go to models when 80% of failures are data problems. A data-first budget framework for enterprise leaders.",
-    "ogImage": "",
+    "ogImage": "/images/og/insights/ai-cost-structure-reset.png",
     "coverImage": null,
     "status": "published",
     "bodyBlocks": [
@@ -403,9 +403,9 @@
     "primaryConversionTarget": "/ai-readiness-assessment",
     "external": false,
     "externalUrl": null,
-    "seoTitle": "",
-    "seoDescription": "",
-    "ogImage": "",
+    "seoTitle": "Why Your AI Strategy Has No Foundation",
+    "seoDescription": "88% of AI pilots never reach production. The problem is not the model — it is the absence of a structured data and architecture foundation beneath it.",
+    "ogImage": "/images/og/insights/your-ai-strategy-has-no-foundation.png",
     "bodyBlocks": [
       {
         "type": "paragraph",
@@ -469,9 +469,9 @@
     "primaryConversionTarget": "/ai-readiness-assessment",
     "external": false,
     "externalUrl": null,
-    "seoTitle": "",
-    "seoDescription": "",
-    "ogImage": "",
+    "seoTitle": "Mythos Finds Where the Bodies Are Buried",
+    "seoDescription": "Anthropic's Mythos finds vulnerabilities your SAST tool cannot see. This is a C-suite problem, not a DevOps one, and the cost of inaction is now measurable in ten-million-dollar units.",
+    "ogImage": "/images/og/insights/mythos-finds-where-the-bodies-are-buried.png",
     "coverImage": "/images/insights/mythos-bodies-2.png",
     "status": "published",
     "bodyBlocks": [
@@ -653,9 +653,9 @@
     "primaryConversionTarget": "/ai-readiness-assessment",
     "external": false,
     "externalUrl": null,
-    "seoTitle": "",
-    "seoDescription": "",
-    "ogImage": "",
+    "seoTitle": "Shadow Agents Are an Architecture Problem",
+    "seoDescription": "By 2028 the average Fortune 500 will run over 150,000 agents. The governance plane was not sized for this curve — the architect's problem before the CISO's.",
+    "ogImage": "/images/og/insights/shadow-agents-are-an-architecture-problem.png",
     "coverImage": "/images/insights/shadow-agents.png",
     "status": "published",
     "bodyBlocks": [
@@ -743,8 +743,8 @@
     "primaryConversionTarget": "/ai-readiness-assessment",
     "external": false,
     "externalUrl": null,
-    "seoTitle": "",
-    "seoDescription": "",
+    "seoTitle": "What Mythos Is, and What Boards Must Do in 180 Days",
+    "seoDescription": "The definitive board briefing on Anthropic's Mythos: what AISI, Mozilla and Palo Alto found, why two governments are in the room, and your 30/90/180-day plan.",
     "ogImage": "/images/insights/generated-image-may-14-2026-9_35am-1-.jpg",
     "bodyBlocks": [
       {
@@ -853,8 +853,8 @@
     "primaryConversionTarget": "/ai-readiness-assessment",
     "external": false,
     "externalUrl": null,
-    "seoTitle": "",
-    "seoDescription": "",
+    "seoTitle": "CADA + EU AI Act: The Two Summer 2026 Deadlines",
+    "seoDescription": "Two EU laws land in the same ten weeks: CADA writes sovereign cloud into hard law, and the EU AI Act's GPAI enforcement clock hits zero on 2 August 2026.",
     "ogImage": "/images/insights/eu_act_square-2.png",
     "coverImage": "/images/insights/eu_act_square-2.png",
     "status": "published",

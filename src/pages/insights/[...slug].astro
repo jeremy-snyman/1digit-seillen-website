@@ -1,11 +1,15 @@
 ---
 import InsightLayout from '@layouts/InsightLayout.astro';
-import { getInsightBySlugFresh } from '@content/data/insights/index';
+import { getInsightBySlug, getPublishedInsights } from '@content/data/insights/index';
 
-export const prerender = false;
+export function getStaticPaths() {
+  return getPublishedInsights().map((article) => ({
+    params: { slug: article.slug },
+  }));
+}
 
 const { slug } = Astro.params;
-const article = slug ? getInsightBySlugFresh(slug) : undefined;
+const article = slug ? getInsightBySlug(slug) : undefined;
 
 if (!article) {
   return Astro.redirect('/insights');

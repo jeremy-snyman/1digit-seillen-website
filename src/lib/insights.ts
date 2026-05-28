@@ -94,44 +94,75 @@ export interface ArticleSchemaInput {
   category?: string;
   tags?: string[];
   readTimeMinutes?: number;
+  faqs?: { question: string; answer: string }[];
+  howToSteps?: { name: string; text: string }[];
 }
 
-export function buildArticleSchema(input: ArticleSchemaInput): Record<string, unknown> {
+export function buildArticleSchema(input: ArticleSchemaInput): Record<string, unknown>[] {
   const siteUrl = input.siteUrl ?? SITE.url;
   const url = `${siteUrl}/insights/${input.slug}`;
   const image = input.ogImage
     ? `${siteUrl}${input.ogImage}`
     : `${siteUrl}/images/og/insights-default.png`;
 
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: input.title,
-    description: input.summary,
-    datePublished: input.publishDate,
-    dateModified: input.publishDate,
-    inLanguage: 'en',
-    url,
-    image,
-    ...(input.tags?.length && { keywords: input.tags.join(', ') }),
-    ...(input.readTimeMinutes && { timeRequired: `PT${input.readTimeMinutes}M` }),
-    ...(input.category && {
-      about: { '@type': 'Thing', name: input.category },
-      articleSection: input.category,
-    }),
-    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-    author: {
-      '@type': 'Organization',
-      name: '1Digit',
-      url: siteUrl,
+  const schemas: Record<string, unknown>[] = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: input.title,
+      description: input.summary,
+      datePublished: input.publishDate,
+      dateModified: input.publishDate,
+      inLanguage: 'en',
+      url,
+      image,
+      ...(input.tags?.length && { keywords: input.tags.join(', ') }),
+      ...(input.readTimeMinutes && { timeRequired: `PT${input.readTimeMinutes}M` }),
+      ...(input.category && {
+        about: { '@type': 'Thing', name: input.category },
+        articleSection: input.category,
+      }),
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      author: {
+        '@type': 'Organization',
+        name: '1Digit',
+        url: siteUrl,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: '1Digit',
+        url: siteUrl,
+        logo: { '@type': 'ImageObject', url: `${siteUrl}/favicon.svg` },
+      },
     },
-    publisher: {
-      '@type': 'Organization',
-      name: '1Digit',
-      url: siteUrl,
-      logo: { '@type': 'ImageObject', url: `${siteUrl}/favicon.svg` },
-    },
-  };
+  ];
+
+  if (input.faqs?.length) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: input.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
+    });
+  }
+
+  if (input.howToSteps?.length) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: input.title,
+      step: input.howToSteps.map((step) => ({
+        '@type': 'HowToStep',
+        name: step.name,
+        text: step.text,
+      })),
+    });
+  }
+
+  return schemas;
 }
 
 // ── Canonical URL ──

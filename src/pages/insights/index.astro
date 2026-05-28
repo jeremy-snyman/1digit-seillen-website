@@ -9,22 +9,20 @@ import InsightsHero from '@components/insights/InsightsHero.astro';
 import FeaturedArticle from '@components/insights/FeaturedArticle.astro';
 import InsightsFilter from '@components/insights/InsightsFilter';
 import {
-  getPublishedInsightsFresh,
-  getPinnedInsightFresh,
-  getAllCategoriesFresh,
-  getAllTagsFresh,
+  getPublishedInsights,
+  getPinnedInsight,
+  getAllCategories,
+  getAllTags,
   toMeta,
 } from '@content/data/insights/index';
 
-export const prerender = false;
-
-const featured = getPinnedInsightFresh();
-const allPublished = getPublishedInsightsFresh();
+const featured = getPinnedInsight();
+const allPublished = getPublishedInsights();
 const gridArticles = allPublished
   .filter((a) => featured ? a.slug !== featured.slug : true)
   .map(toMeta);
-const categories = getAllCategoriesFresh();
-const tags = getAllTagsFresh();
+const categories = getAllCategories();
+const tags = getAllTags();
 ---
 
 <Layout

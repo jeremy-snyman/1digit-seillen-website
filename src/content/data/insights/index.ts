@@ -26,6 +26,13 @@ export type BodyBlock =
 
 // ── Article Interface ──
 
+/**
+ * Insights article SEO conventions:
+ * - seoTitle: ≤60 chars, primary keyword first, no brand suffix ("| 1Digit" added by SEOHead)
+ * - seoDescription: 150–160 chars, lead with the claim, active voice
+ * - ogImage: /images/og/insights/<slug>.png (1200×630)
+ * - faqs / howToSteps: optional — populate when article contains a natural FAQ block or a How-To list
+ */
 export interface InsightArticle {
   id: string;
   slug: string;
@@ -50,6 +57,8 @@ export interface InsightArticle {
   coverImage: string | null;
   bodyBlocks: BodyBlock[];
   status: 'draft' | 'scheduled' | 'published' | 'archived';
+  faqs?: { question: string; answer: string }[];
+  howToSteps?: { name: string; text: string }[];
 }
 
 // ── Serialisable metadata (no bodyBlocks — safe for client props) ──
