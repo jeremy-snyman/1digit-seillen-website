@@ -283,6 +283,21 @@ Key claims:
 
 ---
 
+URL: https://1digit.co.uk/insights/one-in-five-got-ai-into-production
+Published: 2026-06-02
+Tags: enterprise AI, production, enterprise architecture, AI governance, AI readiness
+
+One in five enterprise AI programmes is in production at scale; four in five are not. The ratio holds across RAND (80% failure), IDC (88% of proofs-of-concept) and MIT's NANDA report (95%). The failure rate is not random — the 20% did the architectural work across four disciplines, the 80% did not. Three signals from the last six weeks (Oracle's commodity-model thesis, $5.5bn of lab investment in the integration layer, and Project Glasswing's security findings) make the architectural argument concrete.
+
+Key claims:
+- The model is not the moat: frontier models are converging commodities (Ellison/Oracle); the 20% treat proprietary data plus a portable reasoning/integration layer as the IP, not model selection
+- The labs voted with their balance sheets: Anthropic ($1.5bn JV with Blackstone, Hellman & Friedman, Goldman) and OpenAI (>$4bn Deployment Company) both spent serious capital in the same fortnight on the integration layer the 20% already own
+- Security architecture is now non-negotiable: Project Glasswing's Claude Mythos Preview flagged 10,000+ zero-days in 30 days and writes working exploits on first attempt 83% of the time; Writer's 2026 survey has 67% of executives admitting an AI-tool data leak and 35% unable to pull the plug on a rogue agent
+- Process architecture decides outcomes: the 20% redesigned the workflow before deploying AI; Gartner forecasts 40% of enterprise AI agents demoted or decommissioned by 2027 over governance gaps found only after incidents
+- The assessment is four questions across data, solution, security and process architecture — four evidenced yes answers put a business in the 20%; the Q3 2026 regulatory window (BoE/PRA/FCA, EU AI Act GPAI enforcement on 2 August, ENISA) is the time to do the work under your own steam
+
+---
+
 ## Contact
 
 - **Email:** hello@1digit.co.uk

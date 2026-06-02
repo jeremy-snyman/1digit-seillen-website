@@ -49,12 +49,12 @@ const gradientClass = `cat-gradient-${catSlug}`;
     </div>
 
     <!-- Image area -->
-    <div class="mx-4 mb-4 h-48 rounded-xl overflow-hidden">
+    <div class="mx-4 mb-4 h-48 rounded-xl overflow-hidden bg-surface-elevated">
       {coverImage ? (
         <img
           src={coverImage}
           alt={title}
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
       ) : (

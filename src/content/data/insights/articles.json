@@ -1128,7 +1128,7 @@
     "publishDate": "2026-05-28",
     "readTimeMinutes": 13,
     "ctaType": "ai-readiness",
-    "isPinned": true,
+    "isPinned": false,
     "isCampaignFeatured": false,
     "primaryConversionTarget": "/ai-readiness-assessment",
     "external": false,
@@ -1261,6 +1261,145 @@
         "name": "EU AI Act",
         "type": "Thing",
         "url": "https://artificialintelligenceact.eu/"
+      }
+    ],
+    "author": {
+      "name": "Justin Gane",
+      "role": "CEO, 1Digit",
+      "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
+      "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
+      "avatarUrl": "/images/team/justin-gane.jpg"
+    }
+  },
+  {
+    "id": "insight-1748822400000",
+    "slug": "one-in-five-got-ai-into-production",
+    "title": "One in Five Got AI Into Production. Be the One.",
+    "thesis": "The failure rate is not random. The 20% did the architectural work. The 80% did not.",
+    "summary": "One in five enterprise AI programmes is in production at scale; four in five are not. The ratio is not random — the 20% did the architectural work across data, solution, security and process. The 80% did not.",
+    "researchType": "Strategic Brief",
+    "category": "Architecture",
+    "tags": [],
+    "campaignTag": null,
+    "publishDate": "2026-06-02",
+    "readTimeMinutes": 11,
+    "ctaType": "ai-readiness",
+    "isPinned": true,
+    "isCampaignFeatured": false,
+    "primaryConversionTarget": "/ai-readiness-assessment",
+    "external": false,
+    "externalUrl": null,
+    "seoTitle": "One in Five Got AI Into Production. Be the One.",
+    "seoDescription": "Four in five enterprise AI programmes never reach production. The 20% did the architectural work across data, solution, security and process. Here's the test.",
+    "ogImage": "/images/og/insights/one-in-five-got-ai-into-production.png",
+    "coverImage": "/images/insights/oninfive_square.png",
+    "bodyBlocks": [
+      {
+        "type": "paragraph",
+        "content": "One in five enterprise AI programmes is in production at scale. Four in five are not. RAND has it at 80%. IDC puts 88% of proofs-of-concept failing to graduate. MIT's NANDA report says 95%, on a methodology that has been challenged. Pick the most generous read. The ratio holds."
+      },
+      {
+        "type": "paragraph",
+        "content": "I will say something I have said before, because it matters more now than the last time I said it. Enterprise architecture and solution architecture have been in and out of fashion for fifteen years. Right now they are the work that decides whether AI lands on the P&L or joins the decommissioned-pilot pile. Building any structure without a blueprint, a foundation and structural review produces something that crumbles. The 20% built scaffolding, rigour and measurement. They iterated. They are not in production by accident."
+      },
+      {
+        "type": "paragraph",
+        "content": "Three signals from the last six weeks make this concrete."
+      },
+      {
+        "type": "section",
+        "heading": "One. The model is not the moat.",
+        "content": "Larry Ellison on Oracle's earnings call: every frontier model is trained on the same public internet. Same Wikipedia, same Reddit, same archive. Converging in quality, falling in price, eroding in differentiation. His word for them was commodities. Oracle moved FY26 capex from $35bn to $50bn behind that thesis. Backlog $523bn. The bet is not on which model wins. The bet is on the infrastructure that lets enterprises run secure reasoning across data nobody else can access.\n\nThis is the data architecture argument said out loud by the most senior public-markets voice in enterprise software.\n\nThe 20% have already concluded what Ellison just said publicly. They stopped running model selection as the strategic decision two cycles ago. Their AI strategy is not \"which frontier model do we standardise on.\" It is \"which of our proprietary data assets is most defensible, and how do we build a portable reasoning layer over it that lets us swap models out as they evolve.\" Model endpoints are abstracted behind an integration layer. Reasoning over governed data is the IP.\n\nThe 80% are still running model selection as the strategic decision. They are coupling specific models to specific workflows. Every model release forces an internal re-engineering exercise. They have built their AI estate on a layer that the vendors themselves now describe as a commodity.\n\nThe architectural difference is the difference between the model is the IP (the 80% position) and the data and the integration are the IP (the 20% position). Ellison just made that distinction inarguable."
+      },
+      {
+        "type": "section",
+        "heading": "Two. The labs voted with their balance sheets.",
+        "content": "4 May: Anthropic launched an enterprise services joint venture with Blackstone, Hellman & Friedman, and Goldman Sachs. Combined commitment $1.5bn. Built to do one thing: help mid-sized businesses deploy Claude across their core operations. 21 May: the venture acquired Fractional AI, pulling it out of an eleven-month partnership with OpenAI.\n\n12 May: OpenAI launched the Deployment Company with more than $4bn in initial capital. TPG, Advent, Bain Capital, Brookfield, fifteen other partners. Same day, it acquired Tomoro, an applied AI consulting firm bringing 150 forward-deployed engineers.\n\nTwo frontier labs, in the same fortnight, both spent serious capital on the layer between their models and the businesses trying to use them.\n\nThis is not coincidence. It is the labs walking themselves to the same conclusion every honest operator has been reaching for the last twelve months. The model is not where the work happens. The integration is. The supervisory perimeter is. The governance is. The labs would rather own that work than rent it out to system integrators who do not move at their pace.\n\nThis is the solution architecture argument settling on a $5.5bn answer.\n\nThe 20% built that layer themselves. They have the operating layer between the frontier model and the regulated business, and they own it. The labs are now paying tens of millions to acquire the same capability the 20% have in-house. The 80% outsourced it to a system integrator on a multi-year engagement, or are waiting for the lab to ship it as a product. Both positions get worse as the labs accelerate. In twelve months the 80% will be renting the integration from the lab they bought their tokens from, on the lab's terms, and the lab will own the workflow context, the data exposure and the budget."
+      },
+      {
+        "type": "section",
+        "heading": "Three. Mythos has closed the security architecture loop.",
+        "content": "Anthropic launched Project Glasswing on 7 April 2026, built around an unreleased frontier model called Claude Mythos Preview. Thirty days of operation: more than 10,000 high or critical zero-day vulnerabilities flagged across every major operating system and web browser. The model generates working exploits on first attempt in more than 83% of cases. A 27-year-old vulnerability in OpenBSD. A 16-year-old vulnerability in FFmpeg in a line of code that five million automated test passes never caught. A 17-year-old remote code execution flaw in FreeBSD (CVE-2026-4747) that allows root on any machine running NFS.\n\nThe Glasswing partner list reads like a who's who of the industry. AWS, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorgan, the Linux Foundation, Microsoft, NVIDIA, Palo Alto Networks. IBM joined on 19 May. ENISA, the EU cybersecurity agency, joined on 1 June, the first EU institution and the first partner outside the US-UK axis. The Federal Reserve and Treasury convened bank CEOs on this in April. The IMF has flagged Mythos-class AI as a systemic risk.\n\nThe implication is simple. The moat Ellison described, proprietary data and defensible enterprise context, is only a moat if it has been assessed. If a frontier model can find a 27-year-old vulnerability in OpenBSD in a fortnight, and generate a working exploit on first attempt 83% of the time, the supervisory perimeter around your AI estate has to be a serious piece of engineering. Not an afterthought. Not a 2023 control framework with 2026 agents on top.\n\nThe 20% have mapped where AI is making or shaping decisions in their business, sanctioned and unsanctioned. They have identity at the agent level, not just at the user level. They have policy enforcement at the tool-call boundary. This is what MCP gateways like Natoma exist to provide, which is exactly why Snowflake acquired Natoma on 27 May. They have audit trails the regulator can read. They have kill-switches that work.\n\nThe 80% have a 2023 security architecture and a 2026 attack surface. Writer's 2026 enterprise AI survey has 67% of executives admitting their company has already suffered a data leak via an unapproved AI tool. 35% admit they could not immediately \"pull the plug\" on a rogue agent. Those are not edge cases. They are the default condition.\n\nThe PRA, the Bank of England and the FCA will move on Mythos-class supervisory questions before the end of Q3, and now with EU supervisory peers that have the same tooling. The supervisory shift is no longer hypothetical, no longer transatlantic-asymmetric, no longer two years away."
+      },
+      {
+        "type": "section",
+        "heading": "Four. The workflow was redesigned, not just automated.",
+        "content": "The fourth signal does not come from a press release. It comes from the pattern that shows up every time you look closely at an AI programme that landed.\n\nThe 20% redesigned the workflow before they deployed the AI. They picked the workflows where outcome was measurable. They built the supervision layer before they shipped. They aligned the KPI to a business result, not a deployment milestone. The agent does not sit on top of the existing process. The process was reshaped around what the agent makes possible.\n\nThe 80% deployed AI into a 2019 org chart, ran the cost lever, and called the result transformation. Gartner has forecast that by 2027, 40% of enterprise AI agents will be demoted or decommissioned over governance gaps identified only after production incidents. The 80% are most of that 40%.\n\nThis is the process architecture argument. \"Redesigning the workflow\" is not a slogan. It is a sequence of decisions. Where the agent sits. What it owns. What it asks a human. What KPI moves when it works. What KPI moves when it fails. Who supervises. Who gets paged. The 20% have those questions answered before the model goes in. The 80% are answering them after the incident."
+      },
+      {
+        "type": "section",
+        "heading": "Four questions. Four architectural disciplines. Four reasons the 80% fail.",
+        "content": "This is the assessment. Four questions, four yes answers with evidence, and you are in the 20%. Anything less and you are not."
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "Is your moat data and domain, or is it model selection?",
+          "bold": true
+        },
+        "content": "(Data architecture.) If your AI strategy still rests on standardising on a specific frontier vendor, you are exposed to the wrong variable. The 20% built a portable reasoning layer over governed data. The model is replaceable. The data and the integration are not."
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "Have you built the integration layer the labs are now buying, or are you waiting for them to sell it back to you?",
+          "bold": true
+        },
+        "content": "(Solution architecture.) The integration layer is the operating layer between the frontier model and the regulated business. It enforces context, governance, identity, audit. The 20% own it. The labs are now paying nine figures to acquire it. The 80% are about to rent it back from the lab they bought their tokens from, on the lab's terms."
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "Do you know where AI is making decisions in your business, sanctioned and unsanctioned, and what supervises it?",
+          "bold": true
+        },
+        "content": "(Security architecture.) The Mythos numbers and the Writer 67% are the floor. If you cannot map your AI estate today (agents, models, tools, permissions) you cannot defend it tomorrow. The 20% have the map. The 80% have a 2023 security policy and a hope."
+      },
+      {
+        "type": "paragraph",
+        "blockHeading": {
+          "text": "Did you redesign the workflow before you deployed the AI, or did you deploy AI into the existing one?",
+          "bold": true
+        },
+        "content": "(Process architecture.) If you put a frontier model into a 2019 workflow and ran the cost lever, you are in the 80%. The redesign is the work. The model is the easy part."
+      },
+      {
+        "type": "section",
+        "heading": "Where 1Digit sits",
+        "content": "We do this work in production environments under ISO 27001, ISO 42001 and SOC 2. AI in the loop, humans in the loop, both clearly defined, neither dominant. Real audit trails, real governance, real KPI movement that survives an audit committee meeting.\n\nWe know what the 20% looks like because that is the work we have been doing inside live businesses for the past eighteen months. The four questions above are not theoretical. They are the four questions we work on every week with clients who are already in production at scale and others who are sequencing themselves into it."
+      },
+      {
+        "type": "section",
+        "heading": "The path forward",
+        "content": "The honest path is an assessment, not another pilot. Two to three weeks of defined, scoped work. A map of where true value lives in your business: the data, the domain, the operational knowledge that is defensible because nobody else has it. A map of the AI estate currently making or shaping decisions, sanctioned and unsanctioned. A map of the supervisory gap. A sequenced recommendation of what to do, in what order, to close it.\n\nThe deliverable is something the board can act on this quarter, not a deck. Production-grade. Governance-grade. Sequenced for the FY27 budget review."
+      },
+      {
+        "type": "section",
+        "heading": "The Q3 window",
+        "content": "The Bank of England, the PRA and the FCA will move on Mythos-class supervisory questions before the end of Q3. The EU AI Act's full GPAI enforcement powers go live on 2 August. ENISA now has access to the same supervisory tooling that the labs and the largest US banks have. The FY27 budget reviews start in October. The window to do this work under your own steam, rather than under regulatory pressure or after a production incident, is the one we are in right now.\n\nThe labs are no longer waiting. JPMorgan, Microsoft and Salesforce, among others, have already moved agentic AI from R&D into core operating cost. The reclassification is the public declaration that the work is no longer experimental. It is now governed, funded, audited and reported on like any other operating activity.\n\nBeing in the 20% is not a destination. It is a discipline. The work is specific, the sequence matters, and the window to do it under your own steam is open right now.\n\nIf you cannot say with evidence that your business is in the 20%, the next conversation is the assessment, not another pilot. Be the One. We are running a small number of these over the coming quarter. If that is the conversation you want to have, come alongside."
+      }
+    ],
+    "status": "published",
+    "faqs": [
+      {
+        "question": "What does \"the 20%\" mean in enterprise AI?",
+        "answer": "Roughly one in five enterprise AI programmes reaches production at scale; four in five do not. The ratio holds across the major studies — RAND puts failure at 80%, IDC at 88% of proofs-of-concept, and MIT's NANDA report at 95%. The 20% that succeed are the organisations that did the architectural work before deploying; the failure rate is not random."
+      },
+      {
+        "question": "Why do 80% of enterprise AI programmes fail to reach production?",
+        "answer": "The failure is architectural, not technical. The 80% treat model selection as the strategy, deploy AI into existing 2019 workflows, run a 2023 security posture against a 2026 attack surface, and outsource the integration layer. They skip the data, solution, security and process architecture work that turns a pilot into a governed, audited production system."
+      },
+      {
+        "question": "What are the four architectural disciplines that separate the 20% from the 80%?",
+        "answer": "Data architecture — a portable reasoning layer over governed, proprietary data rather than a bet on a single frontier model. Solution architecture — owning the integration/operating layer between the model and the regulated business, the same layer the labs are now spending billions to acquire. Security architecture — mapping and supervising every place AI makes or shapes decisions, with agent-level identity, tool-call policy enforcement, audit trails and working kill-switches. Process architecture — redesigning the workflow around what the agent makes possible before deployment, not bolting AI onto the existing one."
+      },
+      {
+        "question": "Why does Claude Mythos and Project Glasswing matter for AI security architecture?",
+        "answer": "Anthropic's Project Glasswing, built around the Claude Mythos Preview model, flagged more than 10,000 high or critical zero-day vulnerabilities in thirty days and generates working exploits on first attempt over 83% of the time — including decades-old flaws in OpenBSD, FFmpeg and FreeBSD. It proves that a defensible data moat is only a moat if the supervisory perimeter around the AI estate is serious engineering, not a 2023 control framework with 2026 agents on top."
+      },
+      {
+        "question": "What is the Q3 2026 regulatory window for enterprise AI?",
+        "answer": "The Bank of England, PRA and FCA are expected to move on Mythos-class supervisory questions before the end of Q3 2026, the EU AI Act's full GPAI enforcement powers go live on 2 August 2026, and ENISA now has the same supervisory tooling as the labs and the largest US banks. With FY27 budget reviews starting in October, this is the window to run an AI readiness assessment under your own steam rather than under regulatory pressure or after a production incident."
       }
     ],
     "author": {

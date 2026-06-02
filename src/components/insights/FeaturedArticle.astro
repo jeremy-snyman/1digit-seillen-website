@@ -49,12 +49,12 @@ const gradientClass = `cat-gradient-${catSlug}`;
             </div>
 
             <!-- Right: cover image or gradient placeholder -->
-            <div class="relative h-64 md:h-auto min-h-[280px] overflow-hidden">
+            <div class="relative h-64 md:h-auto min-h-[280px] overflow-hidden bg-surface-elevated">
               {article.coverImage ? (
                 <img
                   src={article.coverImage}
                   alt={article.title}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
               ) : (

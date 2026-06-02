@@ -46,17 +46,67 @@ const { title } = Astro.props;
   </div>
 
   <script is:inline>
+    var STORAGE_KEY = 'admin_auth';
+    var AUTH_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+
+    // Auth persists in localStorage (survives tab close / browser restart),
+    // with a rolling 7-day expiry. sessionStorage was the old store and was
+    // the cause of the admin reverting to a "disabled" state every new session.
+    function adminIsAuthed() {
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return false;
+        var ts = parseInt(raw, 10);
+        if (!ts || isNaN(ts)) return false;
+        if (Date.now() - ts > AUTH_TTL_MS) {
+          localStorage.removeItem(STORAGE_KEY);
+          return false;
+        }
+        return true;
+      } catch (_e) {
+        return false;
+      }
+    }
+
+    // Once content is revealed for this document, never hide it again. This is
+    // the fail-safe: any later re-entry (React re-render, autosave, a stray
+    // astro event, a transiently unreadable token) can only ever KEEP the admin
+    // shown — it can never flip a working session back to the disabled state.
+    var adminShown = false;
+
+    function adminReveal() {
+      var loading = document.getElementById('admin-loading');
+      var content = document.getElementById('admin-content');
+      if (loading) loading.style.display = 'none';
+      if (content) content.classList.remove('invisible', 'h-0', 'overflow-hidden');
+      adminShown = true;
+
+      var logoutBtn = document.getElementById('admin-logout');
+      if (logoutBtn && !logoutBtn.hasAttribute('data-listener-bound')) {
+        logoutBtn.setAttribute('data-listener-bound', 'true');
+        logoutBtn.addEventListener('click', function() {
+          try { localStorage.removeItem(STORAGE_KEY); } catch (_e) {}
+          window.location.href = '/admin/login';
+        });
+      }
+    }
+
     function adminCheckAuth() {
-      var STORAGE_KEY = 'admin_auth';
       var loading = document.getElementById('admin-loading');
       var content = document.getElementById('admin-content');
 
       // Bail if not on an admin layout page
       if (!loading || !content) return;
 
-      // Check authentication
-      if (!sessionStorage.getItem(STORAGE_KEY)) {
-        // Not authenticated — redirect to login
+      // Already revealed this session — keep it shown, just refresh the expiry.
+      // Never re-hide.
+      if (adminShown) {
+        try { localStorage.setItem(STORAGE_KEY, String(Date.now())); } catch (_e) {}
+        return;
+      }
+
+      // First reveal: only redirect away if we can positively confirm NO auth.
+      if (!adminIsAuthed()) {
         loading.style.display = '';
         content.classList.add('invisible', 'h-0', 'overflow-hidden');
         var currentPath = window.location.pathname;
@@ -64,19 +114,9 @@ const { title } = Astro.props;
         return;
       }
 
-      // Authenticated — show content
-      loading.style.display = 'none';
-      content.classList.remove('invisible', 'h-0', 'overflow-hidden');
-
-      // Logout handler — idempotent via data attribute flag
-      var logoutBtn = document.getElementById('admin-logout');
-      if (logoutBtn && !logoutBtn.hasAttribute('data-listener-bound')) {
-        logoutBtn.setAttribute('data-listener-bound', 'true');
-        logoutBtn.addEventListener('click', function() {
-          sessionStorage.removeItem(STORAGE_KEY);
-          window.location.href = '/admin/login';
-        });
-      }
+      // Authenticated — refresh the rolling expiry, then reveal (sticky).
+      try { localStorage.setItem(STORAGE_KEY, String(Date.now())); } catch (_e) {}
+      adminReveal();
     }
 
     // Run immediately for initial/hard-nav page loads

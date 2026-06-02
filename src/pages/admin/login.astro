@@ -64,15 +64,34 @@ import Layout from '@layouts/Layout.astro';
   </main>
 
   <script is:inline>
-    document.addEventListener('astro:page-load', function() {
+    function initAdminLogin() {
+      var STORAGE_KEY = 'admin_auth';
+      var AUTH_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
       var form = document.getElementById('admin-login-form');
       var errorEl = document.getElementById('login-error');
 
       // Bail if not on login page
       if (!form || !errorEl) return;
 
+      // Auth persists in localStorage with a rolling 7-day expiry.
+      function isAuthed() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return false;
+          var ts = parseInt(raw, 10);
+          if (!ts || isNaN(ts)) return false;
+          if (Date.now() - ts > AUTH_TTL_MS) {
+            localStorage.removeItem(STORAGE_KEY);
+            return false;
+          }
+          return true;
+        } catch (_e) {
+          return false;
+        }
+      }
+
       // If already authenticated, redirect immediately
-      if (sessionStorage.getItem('admin_auth')) {
+      if (isAuthed()) {
         var params = new URLSearchParams(window.location.search);
         var redirect = params.get('redirect') || '/admin/insights';
         window.location.href = redirect;
@@ -107,8 +126,8 @@ import Layout from '@layouts/Layout.astro';
 
         // Simple hash-based check
         if (userHash === EXPECTED_USER_HASH && passHash === EXPECTED_PASS_HASH) {
-          // Store auth token
-          sessionStorage.setItem('admin_auth', btoa(Date.now().toString()));
+          // Store auth token — localStorage persists across tabs/sessions
+          try { localStorage.setItem(STORAGE_KEY, String(Date.now())); } catch (_e) {}
 
           // Redirect
           var params = new URLSearchParams(window.location.search);
@@ -119,6 +138,10 @@ import Layout from '@layouts/Layout.astro';
           errorEl.classList.remove('hidden');
         }
       });
-    });
+    }
+
+    // Run immediately for initial/hard-nav page loads, and on view-transition navigations
+    initAdminLogin();
+    document.addEventListener('astro:page-load', initAdminLogin);
   </script>
 </Layout>
