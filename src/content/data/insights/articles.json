@@ -574,7 +574,8 @@
       "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
       "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
       "avatarUrl": "/images/team/justin-gane.jpg"
-    }
+    },
+    "requiresLeadGate": false
   },
   {
     "id": "insight-1745834400000",
@@ -1269,7 +1270,8 @@
       "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
       "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
       "avatarUrl": "/images/team/justin-gane.jpg"
-    }
+    },
+    "requiresLeadGate": false
   },
   {
     "id": "insight-1748822400000",
@@ -1408,6 +1410,7 @@
       "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
       "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
       "avatarUrl": "/images/team/justin-gane.jpg"
-    }
+    },
+    "requiresLeadGate": false
   }
 ]

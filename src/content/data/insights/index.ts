@@ -51,6 +51,8 @@ export interface InsightArticle {
   primaryConversionTarget: string;
   external: boolean;
   externalUrl: string | null;
+  /** Gate this article behind the lead-capture form (default false). */
+  requiresLeadGate?: boolean;
   seoTitle: string;
   seoDescription: string;
   ogImage: string;

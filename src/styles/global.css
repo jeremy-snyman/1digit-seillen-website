@@ -939,3 +939,69 @@ html[data-theme="light"] .platform-hero-video {
     display: none;
   }
 }
+
+/* ============================================
+   Insight Lead Gate — overlay, card, reveal
+   ============================================ */
+
+/* Backdrop fade-in */
+@keyframes lg-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Card spring-in (desktop modal) */
+@keyframes lg-card-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Bottom-sheet slide-up (mobile) */
+@keyframes lg-sheet-up {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Whole overlay dissolve on unlock */
+@keyframes lg-overlay-out {
+  from { opacity: 1; }
+  to   { opacity: 0; transform: scale(1.01); }
+}
+
+/* Checkmark stroke draw */
+@keyframes lg-check-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.lg-backdrop { animation: lg-backdrop-in 250ms ease-out both; }
+.lg-card     { animation: lg-card-in 400ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.lg-overlay-out { animation: lg-overlay-out 500ms ease-in both; pointer-events: none; }
+
+/* Mobile: dock the card to the bottom as a sheet */
+@media (max-width: 640px) {
+  .lg-card { animation: lg-sheet-up 380ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+}
+
+/* Top progress rail */
+.lg-rail {
+  height: 2px;
+  background: rgb(var(--color-accent) / 0.9);
+  box-shadow: 0 0 8px rgb(var(--color-accent) / 0.7);
+  transition: width 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Checkmark path: dashed so it can draw in */
+.lg-check-path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: lg-check-draw 500ms ease-out 80ms forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lg-backdrop,
+  .lg-card,
+  .lg-overlay-out { animation: none; }
+  .lg-card { opacity: 1; transform: none; }
+  .lg-rail { transition: none; }
+  .lg-check-path { animation: none; stroke-dashoffset: 0; }
+}

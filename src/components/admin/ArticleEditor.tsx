@@ -71,6 +71,7 @@ function createEmptyArticle(): InsightArticle {
     primaryConversionTarget: '/ai-readiness-assessment',
     external: false,
     externalUrl: null,
+    requiresLeadGate: false,
     seoTitle: '',
     seoDescription: '',
     ogImage: '',
@@ -458,6 +459,15 @@ export default function ArticleEditor({ initial, isNew }: Props) {
                 className="rounded"
               />
               <span className="text-body-sm text-content-secondary">External</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={article.requiresLeadGate ?? false}
+                onChange={(e) => update('requiresLeadGate', e.target.checked)}
+                className="rounded"
+              />
+              <span className="text-body-sm text-content-secondary">Lead gate</span>
             </label>
           </div>
 

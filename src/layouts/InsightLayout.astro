@@ -11,6 +11,7 @@ import ContextualCTA from '@components/insights/ContextualCTA.astro';
 import RelatedInsights from '@components/insights/RelatedInsights.astro';
 import PdfDownload from '@components/insights/PdfDownload';
 import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import LeadGate from '@components/forms/LeadGate';
 import Accordion from '@components/interactive/Accordion.astro';
 import AccordionItem from '@components/interactive/AccordionItem.astro';
 import { formatInsightDate, buildArticleSchema, buildInsightCanonical, categorySlug } from '@lib/insights';
@@ -62,6 +63,9 @@ const gradientClass = `cat-gradient-${catSlug}`;
   )}
   <Header />
   <MobileMenu />
+  {article.requiresLeadGate && (
+    <LeadGate client:load slug={article.slug} title={article.title} />
+  )}
   <main id="main-content">
     <!-- Back to Insights -->
     <Section class="pt-28 pb-0">

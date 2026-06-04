@@ -34,6 +34,8 @@
   // ---------------------------------------------------------------------------
 
   var CONFIG = {
+    // Base ingress URL; per-event endpoints are derived as `${endpointBase}/${eventName}`.
+    endpointBase:      'https://tachyon-dev.seillen.com/tachyon',
     endpoint:          'https://tachyon-dev.seillen.com/tachyon/PageLoaded',
     pipeline:          'Website',
     source:            'Vivid',
@@ -246,16 +248,38 @@
   // Build and send event
   // ---------------------------------------------------------------------------
 
-  function buildEvent(isSpa) {
+  // Generic envelope builder, shared by every event type. Produces the metadata
+  // wrapper + the payload fields common to all events. `eventName` sets the schema;
+  // `extraPayload` carries the event-specific fields (merged onto the base payload).
+  function buildEnvelope(eventName, extraPayload) {
     var now = new Date().toISOString();
     var loc = window.location;
 
-    var event = {
+    var payload = {
+      url:       loc.origin + loc.pathname + loc.search,
+      path:      loc.pathname,
+      referrer:  document.referrer || '',
+      title:     document.title || '',
+      timestamp: now,
+      visitorId: visitorId,
+      sessionId: sessionId,
+      device:    getDeviceInfo(),
+    };
+
+    if (extraPayload) {
+      for (var k in extraPayload) {
+        if (Object.prototype.hasOwnProperty.call(extraPayload, k)) {
+          payload[k] = extraPayload[k];
+        }
+      }
+    }
+
+    return {
       metadata: {
         locale:           CONFIG.locale,
         pipeline:         CONFIG.pipeline,
         source:           CONFIG.source,
-        eventName:        'PageLoaded',
+        eventName:        eventName,
         version:          CONFIG.version,
         brand:            CONFIG.brand,
         service:          CONFIG.service,
@@ -271,28 +295,27 @@
           fp:        visitorId,
           sessionId: sessionId,
         },
+        // NOTE: lead events (LeadCaptured) carry PII (name, email). pd stays false
+        // for now because pd:true currently crashes tachyon-public — flagged to the
+        // backend to handle/encrypt LeadCaptured data once that bug is fixed.
         pd:             false,
         sc:             CONFIG.sc,
         synthetic:      false,
         ingestionType:  'single',
         discoverable:   true,
       },
-      payload: {
-        url:          loc.origin + loc.pathname + loc.search,
-        path:         loc.pathname,
-        referrer:     document.referrer || '',
-        title:        document.title || '',
-        timestamp:    now,
-        visitorId:    visitorId,
-        sessionId:    sessionId,
-        isNewVisitor: isNewVisitor,
-        device:       getDeviceInfo(),
-        navigation: {
-          type:      getNavigationType(isSpa),
-          entryPage: isEntryPage,
-        },
-      },
+      payload: payload,
     };
+  }
+
+  function buildEvent(isSpa) {
+    var event = buildEnvelope('PageLoaded', {
+      isNewVisitor: isNewVisitor,
+      navigation: {
+        type:      getNavigationType(isSpa),
+        entryPage: isEntryPage,
+      },
+    });
 
     // Performance metrics are only meaningful on full page loads.
     if (!isSpa) {
@@ -311,15 +334,16 @@
     return event;
   }
 
-  function send(event) {
+  function send(event, endpoint) {
     var body = JSON.stringify(event);
+    var url = endpoint || CONFIG.endpoint;
 
     // Use fetch with keepalive + credentials:omit.
     // sendBeacon with a JSON Blob triggers a preflight; the Tachyon ingress returns
     // Access-Control-Allow-Credentials:true alongside Allow-Origin:* which browsers
     // reject. fetch with credentials:omit sidesteps that constraint entirely.
     if (typeof fetch === 'function') {
-      fetch(CONFIG.endpoint, {
+      fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: body,
@@ -331,6 +355,22 @@
       });
     }
   }
+
+  // ---------------------------------------------------------------------------
+  // Public API: window.Tachyon.emit(eventName, extraPayload)
+  // Lets other islands (e.g. the insight lead-capture form) emit custom events
+  // that reuse this script's visitor/session identity and transport.
+  // ---------------------------------------------------------------------------
+
+  window.Tachyon = window.Tachyon || {};
+  window.Tachyon.emit = function (eventName, extraPayload) {
+    try {
+      var event = buildEnvelope(eventName, extraPayload);
+      send(event, CONFIG.endpointBase + '/' + eventName);
+    } catch (_e) {
+      // Swallow -- analytics is non-critical.
+    }
+  };
 
   // ---------------------------------------------------------------------------
   // Trigger: initial page load
