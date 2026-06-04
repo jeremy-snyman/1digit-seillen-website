@@ -64,7 +64,13 @@ const gradientClass = `cat-gradient-${catSlug}`;
   <Header />
   <MobileMenu />
   {article.requiresLeadGate && (
-    <LeadGate client:load slug={article.slug} title={article.title} />
+    <LeadGate
+      client:load
+      slug={article.slug}
+      title={article.title}
+      category={article.category}
+      readTimeMinutes={article.readTimeMinutes}
+    />
   )}
   <main id="main-content">
     <!-- Back to Insights -->

@@ -5,6 +5,8 @@ const INSIGHTS_URL = '/insights';
 interface Props {
   slug: string;
   title: string;
+  category?: string;
+  readTimeMinutes?: number;
 }
 
 // Memory is keyed by BOTH person and article:
@@ -56,7 +58,7 @@ function alreadyLeadFor(slug: string): boolean {
   return readSubmittedSlugs().indexOf(slug) !== -1;
 }
 
-// ── Floating-label text field ──────────────────────────────────────────────
+// ── Underline editorial field ──────────────────────────────────────────────
 function Field({
   id,
   label,
@@ -78,6 +80,12 @@ function Field({
 }) {
   return (
     <div>
+      <label
+        htmlFor={id}
+        className="block text-label-sm uppercase tracking-[0.08em] text-content-muted mb-1.5"
+      >
+        {label}
+      </label>
       <div className="relative">
         <input
           id={id}
@@ -86,24 +94,23 @@ function Field({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           onBlur={onBlur}
-          placeholder=" "
           aria-invalid={!!error}
           aria-describedby={error ? `${id}-error` : undefined}
-          className="peer w-full bg-tint/5 border border-tint/10 rounded-xl px-4 pt-6 pb-2 text-content placeholder-transparent focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent-muted transition-colors"
+          className={`w-full bg-transparent rounded-none border-0 border-b px-0 py-2 pr-6 text-content placeholder:text-content-muted/60 focus:outline-none transition-colors ${
+            error
+              ? 'border-danger'
+              : valid
+                ? 'border-accent'
+                : 'border-surface-border focus:border-accent'
+          }`}
         />
-        <label
-          htmlFor={id}
-          className="pointer-events-none absolute left-4 top-2 text-xs text-accent transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-content-muted peer-focus:top-2 peer-focus:text-xs peer-focus:text-accent"
-        >
-          {label}
-        </label>
-        {valid && (
+        {valid && !error && (
           <svg
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-400 animate-[lg-backdrop-in_200ms_ease-out]"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-accent animate-[lg-backdrop-in_200ms_ease-out]"
             viewBox="0 0 20 20"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2.5"
+            strokeWidth="2"
             aria-hidden="true"
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 10.5l4 4 8-9" />
@@ -111,7 +118,7 @@ function Field({
         )}
       </div>
       {error && (
-        <p id={`${id}-error`} className="text-sm text-red-400 mt-1.5">
+        <p id={`${id}-error`} className="text-sm text-danger mt-1.5">
           {error}
         </p>
       )}
@@ -119,8 +126,8 @@ function Field({
   );
 }
 
-// ── Pill toggle switch ─────────────────────────────────────────────────────
-function Toggle({
+// ── Minimal square checkbox ────────────────────────────────────────────────
+function Check({
   checked,
   onChange,
   label,
@@ -130,29 +137,33 @@ function Toggle({
   label: string;
 }) {
   return (
-    <label className="flex items-center justify-between gap-4 cursor-pointer min-h-[44px]">
-      <span className="text-sm text-content-secondary">{label}</span>
+    <label className="flex items-center gap-3 cursor-pointer min-h-[44px]">
       <button
         type="button"
-        role="switch"
+        role="checkbox"
         aria-checked={checked}
         aria-label={label}
         onClick={() => onChange(!checked)}
-        className={`relative shrink-0 w-12 h-7 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent-muted ${
-          checked ? 'bg-accent' : 'bg-tint/15'
+        className={`shrink-0 w-[18px] h-[18px] rounded-[3px] border flex items-center justify-center transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-accent-muted ${
+          checked ? 'bg-accent border-accent' : 'bg-transparent border-surface-border hover:border-content/30'
         }`}
       >
-        <span
-          className={`absolute top-1 left-1 w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${
-            checked ? 'translate-x-5 scale-100' : 'scale-95'
-          }`}
-        />
+        {checked && (
+          <svg className="w-3 h-3 text-white" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 10.5l4 4 8-9" />
+          </svg>
+        )}
       </button>
+      <span className="text-body-sm text-content-secondary">{label}</span>
     </label>
   );
 }
 
-export default function LeadGate({ slug, title }: Props) {
+export default function LeadGate({ slug, category, readTimeMinutes }: Props) {
+  const kicker =
+    category && readTimeMinutes
+      ? `${category} · ${readTimeMinutes} min read`
+      : category || 'Further reading';
   const [mounted, setMounted] = useState(false);
   const [gating, setGating] = useState(false);
   const [unlocking, setUnlocking] = useState(false);
@@ -189,15 +200,14 @@ export default function LeadGate({ slug, title }: Props) {
     if (!alreadyLeadFor(slug)) {
       setGating(true);
 
-      // Recognise a returning person — pre-fill from their saved profile so they
-      // only confirm rather than retype. They still submit to unlock this article.
+      // Recognise a returning person — pre-fill name/email so they only confirm
+      // rather than retype. Consent opt-ins are deliberately NOT restored: they
+      // always start unticked so every submission is a fresh affirmative choice.
       const profile = readProfile();
       if (profile) {
         setFirstName(profile.firstName || '');
         setLastName(profile.lastName || '');
         setEmail(profile.email || '');
-        setMarketingOptIn(!!profile.marketingOptIn);
-        setContactOptIn(!!profile.contactOptIn);
       }
 
       const prev = document.body.style.overflow;
@@ -217,9 +227,6 @@ export default function LeadGate({ slug, title }: Props) {
   const lastValid = lastName.trim().length > 0;
   const emailValid = EMAIL_RE.test(email.trim());
   const formValid = firstValid && lastValid && emailValid;
-
-  const completed = [firstValid, lastValid, emailValid].filter(Boolean).length;
-  const progress = Math.round((completed / 3) * 100);
 
   function unlock() {
     setUnlocking(true);
@@ -308,22 +315,10 @@ export default function LeadGate({ slug, title }: Props) {
       {/* Backdrop — blurs the locked article behind */}
       <div className="lg-backdrop absolute inset-0 backdrop-blur-xl bg-surface/75" aria-hidden="true" />
 
-      {/* Card */}
-      <div className="lg-card relative w-full sm:max-w-md glass-card rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-accent/10 px-6 pt-8 pb-7 sm:px-8">
-        {/* Top progress rail */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-tint/10" aria-hidden="true">
-          <div className="lg-rail" style={{ width: `${progress}%` }} />
-        </div>
-
-        {/* Ambient orb */}
-        <div
-          className="ambient-glow -top-16 -right-16 w-[220px] h-[220px] bg-accent/20"
-          style={{ position: 'absolute' }}
-          aria-hidden="true"
-        />
-
+      {/* Editorial column */}
+      <div className="lg-card relative w-full sm:max-w-[520px] bg-surface-elevated border border-surface-border shadow-card rounded-t-2xl sm:rounded-[6px] px-7 py-9 sm:px-10 sm:py-11">
         {/* Mobile grab handle */}
-        <div className="sm:hidden mx-auto mb-5 h-1 w-10 rounded-full bg-tint/20" aria-hidden="true" />
+        <div className="sm:hidden mx-auto -mt-3 mb-6 h-1 w-10 rounded-full bg-tint/20" aria-hidden="true" />
 
         {/* Close — returns to the insights list (visitor was after an article) */}
         {status !== 'success' && (
@@ -331,54 +326,54 @@ export default function LeadGate({ slug, title }: Props) {
             type="button"
             onClick={exitToInsights}
             aria-label="Close and return to insights"
-            className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full flex items-center justify-center text-content-muted hover:text-content hover:bg-tint/10 transition-colors focus:outline-none focus:ring-2 focus:ring-accent-muted"
+            className="absolute top-5 right-6 sm:top-6 z-10 text-content-muted hover:text-content transition-colors focus:outline-none"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
               <path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" />
             </svg>
           </button>
         )}
 
         {status === 'success' ? (
-          <div className="relative text-center py-6">
-            <div className="mx-auto mb-4 w-14 h-14 rounded-full bg-emerald-400/10 text-emerald-400 flex items-center justify-center">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                <path className="lg-check-path" strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
+          <div className="relative">
+            <p className="text-label-md uppercase text-content-meta mb-4">Thank you</p>
+            <h2 className="text-heading-xl leading-[1.1] text-content">
+              You're <em className="font-serif italic font-normal">in</em>.
+            </h2>
+            <div className="mt-5 pt-5 border-t border-surface-border">
+              <p className="text-body-md text-content-secondary">Enjoy the read.</p>
             </div>
-            <h2 className="text-heading-md font-display font-medium text-content">You're in</h2>
-            <p className="text-body-sm text-content-muted mt-1">Enjoy the read.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="relative" noValidate>
-            <h2 id="lg-heading" className="text-heading-md font-display font-medium text-content">
-              Read the full briefing
+            <p className="text-label-md uppercase text-content-meta mb-4 pr-8">{kicker}</p>
+            <h2 id="lg-heading" className="text-heading-xl leading-[1.1] text-content">
+              Read the full{' '}
+              <em className="font-serif italic font-normal text-content">briefing</em>
             </h2>
-            <p className="text-body-sm text-content-muted mt-1 mb-6">
-              Tell us where to send it — it takes ten seconds.
+            <p className="text-body-md text-content-secondary mt-3 mb-8">
+              A few details and the full piece is yours.
             </p>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Field
-                  id="firstName"
-                  label="First name"
-                  value={firstName}
-                  valid={firstValid}
-                  error={touched.firstName && !firstValid ? 'Required' : undefined}
-                  onChange={setFirstName}
-                  onBlur={() => setTouched((t) => ({ ...t, firstName: true }))}
-                />
-                <Field
-                  id="lastName"
-                  label="Last name"
-                  value={lastName}
-                  valid={lastValid}
-                  error={touched.lastName && !lastValid ? 'Required' : undefined}
-                  onChange={setLastName}
-                  onBlur={() => setTouched((t) => ({ ...t, lastName: true }))}
-                />
-              </div>
+            <div className="space-y-5">
+              <Field
+                id="firstName"
+                label="First name"
+                value={firstName}
+                valid={firstValid}
+                error={touched.firstName && !firstValid ? 'Required' : undefined}
+                onChange={setFirstName}
+                onBlur={() => setTouched((t) => ({ ...t, firstName: true }))}
+              />
+              <Field
+                id="lastName"
+                label="Last name"
+                value={lastName}
+                valid={lastValid}
+                error={touched.lastName && !lastValid ? 'Required' : undefined}
+                onChange={setLastName}
+                onBlur={() => setTouched((t) => ({ ...t, lastName: true }))}
+              />
               <Field
                 id="email"
                 label="Work email"
@@ -389,54 +384,52 @@ export default function LeadGate({ slug, title }: Props) {
                 onChange={setEmail}
                 onBlur={() => setTouched((t) => ({ ...t, email: true }))}
               />
-
-              <div className="pt-1 space-y-1 border-t border-surface-border/50 mt-2">
-                <Toggle
-                  checked={marketingOptIn}
-                  onChange={setMarketingOptIn}
-                  label="Keep me updated with 1Digit insights."
-                />
-                <Toggle
-                  checked={contactOptIn}
-                  onChange={setContactOptIn}
-                  label="I'd like 1Digit to contact me."
-                />
-              </div>
             </div>
 
-            {submitError && <p className="text-sm text-red-400 mt-4">{submitError}</p>}
+            <div className="mt-7 pt-6 border-t border-surface-border space-y-1">
+              <Check
+                checked={marketingOptIn}
+                onChange={setMarketingOptIn}
+                label="Keep me updated with 1Digit insights."
+              />
+              <Check
+                checked={contactOptIn}
+                onChange={setContactOptIn}
+                label="I'd like 1Digit to contact me."
+              />
+            </div>
 
-            <button
-              type="submit"
-              disabled={!formValid || status === 'submitting'}
-              className={`mt-6 w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium bg-[rgb(var(--color-btn-primary-bg))] text-[rgb(var(--color-btn-primary-text))] border border-surface-border transition-all duration-300 ${
-                formValid && status !== 'submitting'
-                  ? 'btn-glow hover:border-content/20 active:scale-[0.98] opacity-100'
-                  : 'opacity-50 cursor-not-allowed'
-              }`}
-            >
-              {status === 'submitting' ? (
-                <>
-                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z" />
-                  </svg>
-                  Sending…
-                </>
-              ) : (
-                <>
-                  Read the article <span aria-hidden="true">→</span>
-                </>
-              )}
-            </button>
+            {submitError && <p className="text-sm text-danger mt-4">{submitError}</p>}
 
-            <p className="text-xs text-content-muted text-center mt-4">
-              We respect your privacy.{' '}
-              <a href="/privacy" className="text-accent hover:underline">
-                Privacy Policy
+            <div className="mt-8 flex items-center justify-between gap-4">
+              <button
+                type="submit"
+                disabled={!formValid || status === 'submitting'}
+                className={`inline-flex items-center justify-center gap-2 px-7 py-3 rounded-[3px] font-medium bg-[rgb(var(--color-btn-primary-bg))] text-[rgb(var(--color-btn-primary-text))] border border-surface-border transition-all duration-200 ${
+                  formValid && status !== 'submitting'
+                    ? 'hover:border-content/30 active:scale-[0.99] opacity-100'
+                    : 'opacity-50 cursor-not-allowed'
+                }`}
+              >
+                {status === 'submitting' ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z" />
+                    </svg>
+                    Sending…
+                  </>
+                ) : (
+                  <>
+                    Read the article <span aria-hidden="true">→</span>
+                  </>
+                )}
+              </button>
+
+              <a href="/privacy" className="text-xs text-content-muted hover:text-content transition-colors shrink-0">
+                Privacy
               </a>
-              .
-            </p>
+            </div>
           </form>
         )}
       </div>
