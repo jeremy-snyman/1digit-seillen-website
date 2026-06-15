@@ -1,0 +1,209 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import CampaignLayout from '@layouts/CampaignLayout.astro';
+import Section from '@components/layout/Section.astro';
+import Container from '@components/layout/Container.astro';
+import ScrollReveal from '@components/interactive/ScrollReveal.astro';
+import GlassCard from '@components/ui/GlassCard.astro';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import SectionHeading from '@components/ui/SectionHeading.astro';
+
+import {
+  campaignMeta,
+  hero,
+  problem,
+  regulation,
+  howWeHelp,
+  about,
+  closing,
+} from '@content/data/be-the-one-campaign';
+
+export const prerender = false;
+
+const useFullNav = Astro.url.searchParams.get('nav') === 'full';
+const LayoutComponent = useFullNav ? PageLayout : CampaignLayout;
+---
+
+<LayoutComponent title={campaignMeta.title} description={campaignMeta.description}>
+
+  <!-- 1. Hero -->
+  <Section class="pt-24 pb-12 relative overflow-hidden" padding="none">
+    <div class="ambient-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-glow-blue/10 blur-[120px]"></div>
+    <Container class="relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <ScrollReveal>
+          <div>
+            <div class="mb-5">
+              <div class="inline-block max-w-full px-4 py-1.5 rounded-full border border-tint/10 bg-tint/5 text-xs sm:text-label-sm text-content-secondary">
+                {hero.badge}
+              </div>
+            </div>
+            <h1 class="text-heading-xl sm:text-display-md lg:text-display-lg font-display mb-5">
+              {hero.headlineBefore}<br class="hidden sm:block" />
+              <span class="campaign-gradient-text font-serif italic">{hero.headlineEmphasis}</span>
+            </h1>
+            <p class="text-body-lg text-content-secondary mb-8 max-w-xl leading-relaxed">
+              {hero.subheading}
+            </p>
+            <div class="flex flex-wrap items-center gap-4">
+              <Button variant="primary" size="lg" href={hero.primaryCtaHref}>
+                {hero.primaryCtaText}
+              </Button>
+              <Button variant="ghost" size="lg" href={hero.secondaryCtaHref}>
+                {hero.secondaryCtaText}
+              </Button>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <!-- Hero stat card -->
+        <ScrollReveal delay={200}>
+          <div class="relative max-w-md mx-auto lg:ml-auto lg:mr-0">
+            <div class="absolute -inset-4 bg-gradient-to-tr from-glow-blue/30 to-glow-steel/20 rounded-2xl blur-2xl opacity-50"></div>
+            <GlassCard padding="lg" class="relative">
+              <div class="flex items-center gap-6">
+                <p class="text-[5.5rem] leading-none font-display campaign-gradient-text shrink-0">
+                  {hero.stat.number}
+                </p>
+                <div class="h-20 w-px bg-tint/15 shrink-0"></div>
+                <div>
+                  <p class="text-label-md uppercase tracking-wider text-glow-blue mb-1.5">{hero.stat.unit}</p>
+                  <p class="text-body-md text-content-secondary leading-relaxed">{hero.stat.description}</p>
+                </div>
+              </div>
+            </GlassCard>
+          </div>
+        </ScrollReveal>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 2. Problem — Why pilots stall -->
+  <Section background="elevated">
+    <Container size="narrow">
+      <ScrollReveal>
+        <SectionHeading
+          badge={problem.badge}
+          heading={problem.heading}
+          serifWord={problem.serifWord}
+          description={problem.body}
+        />
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- 3. Regulation — Free resource -->
+  <Section id="regulation">
+    <Container size="narrow">
+      <ScrollReveal>
+        <SectionHeading
+          badge={regulation.badge}
+          heading={regulation.heading}
+          description={regulation.body}
+        />
+      </ScrollReveal>
+      <ScrollReveal delay={100}>
+        <GlassCard padding="lg" class="mt-8 border-l-2 border-glow-blue/40">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+            <div>
+              <h3 class="text-heading-sm font-semibold mb-1">{regulation.card.title}</h3>
+              <p class="text-body-md text-content-secondary">{regulation.card.text}</p>
+            </div>
+            <Button variant="outline" size="md" href={`${regulation.card.ctaHref}?from=be-the-one`} class="shrink-0">
+              {regulation.card.ctaText} →
+            </Button>
+          </div>
+        </GlassCard>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- 4. How we help — The POC-to-Production Map -->
+  <Section background="elevated">
+    <Container>
+      <ScrollReveal>
+        <div class="max-w-3xl">
+          <SectionHeading
+            badge={howWeHelp.badge}
+            heading={howWeHelp.heading}
+            serifWord={howWeHelp.serifWord}
+            description={howWeHelp.body}
+          />
+          <div class="mt-8">
+            <Button variant="primary" size="lg" href={howWeHelp.ctaHref}>
+              {howWeHelp.ctaText}
+            </Button>
+          </div>
+        </div>
+      </ScrollReveal>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+        {howWeHelp.cards.map((card, i) => (
+          <ScrollReveal delay={i * 100}>
+            <GlassCard hover padding="lg" class="h-full">
+              <p class="text-label-md font-bold text-glow-blue mb-4 tracking-wider">{card.number}</p>
+              <h3 class="text-heading-sm font-semibold mb-2">{card.title}</h3>
+              <p class="text-body-md text-content-secondary leading-relaxed">{card.description}</p>
+            </GlassCard>
+          </ScrollReveal>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 5. About — Who we are -->
+  <Section>
+    <Container size="narrow">
+      <ScrollReveal>
+        <SectionHeading
+          badge={about.badge}
+          heading={about.heading}
+          serifWord={about.serifWord}
+          description={about.body}
+          align="center"
+        />
+      </ScrollReveal>
+      <ScrollReveal delay={100}>
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 mt-10">
+          {about.sectors.map((sector) => (
+            <span class="text-label-md uppercase tracking-wider text-content-muted">{sector}</span>
+          ))}
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+  <!-- 6. Closing CTA -->
+  <Section id="booking" background="elevated" class="relative overflow-hidden">
+    <div class="ambient-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-glow-blue/8 blur-[100px]"></div>
+    <Container size="narrow" class="relative z-10">
+      <ScrollReveal>
+        <div class="text-center">
+          <SectionHeading
+            badge={closing.badge}
+            heading={closing.heading}
+            serifWord={closing.serifWord}
+            description={closing.body}
+            align="center"
+          />
+          <div class="mt-8">
+            <Button variant="primary" size="lg" href={closing.ctaHref}>
+              {closing.ctaText}
+            </Button>
+          </div>
+          <p class="text-body-sm text-content-muted mt-5">{closing.note}</p>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </Section>
+
+</LayoutComponent>
+
+<style>
+  .campaign-gradient-text {
+    background: linear-gradient(135deg, rgb(var(--color-glow-blue)) 0%, rgb(var(--color-glow-steel)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>

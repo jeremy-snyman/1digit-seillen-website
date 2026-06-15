@@ -77,10 +77,12 @@ const gradientClass = `cat-gradient-${catSlug}`;
     <Section class="pt-28 pb-0">
       <Container size="narrow">
         <a
+          id="article-back-link"
           href="/insights"
+          data-default-href="/insights"
           class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-body-sm text-content-muted hover:text-content border border-surface-border/[var(--alpha-surface-border)] hover:border-accent/30 transition-all duration-300"
         >
-          <span>&larr;</span> Back to Insights
+          <span aria-hidden="true">&larr;</span> <span id="article-back-label">Back to Insights</span>
         </a>
       </Container>
     </Section>
@@ -260,3 +262,29 @@ const gradientClass = `cat-gradient-${catSlug}`;
     <script type="application/ld+json" set:html={JSON.stringify(s)} />
   ))}
 </Layout>
+
+<!-- Contextual return: relabel the top "Back" pill when the reader arrived from a campaign (?from=) -->
+<script>
+  // Known campaigns that link readers into an article. The href comes from this
+  // map (never from the param) so the param can't be used for open redirects.
+  const CAMPAIGN_RETURNS = {
+    'be-the-one': { label: 'Be the One', url: '/campaign/be-the-one' },
+  };
+
+  function applyCampaignReturn() {
+    const link = document.getElementById('article-back-link');
+    const label = document.getElementById('article-back-label');
+    if (!link || !label) return;
+    const from = new URLSearchParams(window.location.search).get('from');
+    const target = from ? CAMPAIGN_RETURNS[from] : undefined;
+    if (target) {
+      link.setAttribute('href', target.url);
+      label.textContent = 'Back to ' + target.label;
+    } else {
+      link.setAttribute('href', link.dataset.defaultHref || '/insights');
+      label.textContent = 'Back to Insights';
+    }
+  }
+
+  document.addEventListener('astro:page-load', applyCampaignReturn);
+</script>
