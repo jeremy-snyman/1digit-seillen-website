@@ -4,6 +4,7 @@ import ThesisBlock from './ThesisBlock.astro';
 import QuoteBlock from './QuoteBlock.astro';
 import CalloutBlock from './CalloutBlock.astro';
 import DiagramBlock from './DiagramBlock.astro';
+import TableBlock from './TableBlock.astro';
 import ScrollReveal from '@components/interactive/ScrollReveal.astro';
 
 interface Props {
@@ -61,7 +62,11 @@ function headingClasses(h: BlockHeading): string {
       )}
 
       {block.type === 'callout' && (
-        <CalloutBlock content={block.content} />
+        <CalloutBlock content={block.content} cta={block.cta} />
+      )}
+
+      {block.type === 'table' && (
+        <TableBlock columns={block.columns} rows={block.rows} caption={block.caption} />
       )}
 
       {block.type === 'diagram' && (

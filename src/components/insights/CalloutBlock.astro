@@ -4,9 +4,10 @@ import Icon from '@components/ui/Icon.astro';
 
 interface Props {
   content: string;
+  cta?: { label: string; href: string };
 }
 
-const { content } = Astro.props;
+const { content, cta } = Astro.props;
 ---
 
 <div class="my-8">
@@ -15,7 +16,17 @@ const { content } = Astro.props;
       <div class="flex-shrink-0 mt-0.5">
         <Icon name="lightbulb" size={20} class="text-accent" />
       </div>
-      <p class="text-body-md text-content-secondary leading-relaxed">{content}</p>
+      <div>
+        <p class="text-body-md text-content-secondary leading-relaxed">{content}</p>
+        {cta && (
+          <a
+            href={cta.href}
+            class="inline-flex items-center gap-1.5 mt-3 text-body-sm font-medium text-accent hover:gap-2.5 transition-all duration-300"
+          >
+            {cta.label} <span aria-hidden="true">&rarr;</span>
+          </a>
+        )}
+      </div>
     </div>
   </GlassCard>
 </div>

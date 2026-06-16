@@ -22,7 +22,8 @@ export type BodyBlock =
   | { type: 'quote'; content: string; attribution?: string; blockHeading?: BlockHeading }
   | { type: 'diagram'; diagramType: string; caption: string; data?: Record<string, unknown>; blockHeading?: BlockHeading }
   | { type: 'chart'; chartType: string; caption: string; data: Record<string, unknown>[]; blockHeading?: BlockHeading }
-  | { type: 'callout'; content: string; blockHeading?: BlockHeading };
+  | { type: 'table'; columns: string[]; rows: string[][]; caption?: string; blockHeading?: BlockHeading }
+  | { type: 'callout'; content: string; cta?: { label: string; href: string }; blockHeading?: BlockHeading };
 
 // ── Article Interface ──
 
@@ -45,7 +46,7 @@ export interface InsightArticle {
   campaignTag: string | null;
   publishDate: string;
   readTimeMinutes: number;
-  ctaType: 'ai-readiness' | 'platform-discussion' | 'architecture-review' | 'security-review';
+  ctaType: 'ai-readiness' | 'platform-discussion' | 'architecture-review' | 'security-review' | 'consultation';
   isPinned: boolean;
   isCampaignFeatured: boolean;
   primaryConversionTarget: string;

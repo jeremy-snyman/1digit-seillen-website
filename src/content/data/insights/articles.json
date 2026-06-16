@@ -1287,7 +1287,7 @@
     "publishDate": "2026-06-02",
     "readTimeMinutes": 11,
     "ctaType": "ai-readiness",
-    "isPinned": true,
+    "isPinned": false,
     "isCampaignFeatured": false,
     "primaryConversionTarget": "/ai-readiness-assessment",
     "external": false,
@@ -1413,5 +1413,329 @@
       "avatarUrl": "/images/team/justin-gane.jpg"
     },
     "requiresLeadGate": false
+  },
+  {
+    "id": "insight-1781618144743",
+    "slug": "the-2026-ai-regulation-map",
+    "title": "The 2026 AI Regulation Map",
+    "thesis": "Where EU and UK rules actually stand, and what lands before your FY27 budget.",
+    "summary": "A dated, practical map of EU and UK AI regulation: what is actually enforceable, when, and what each milestone means if you have AI in or near production. Refreshed quarterly.",
+    "researchType": "Strategic Brief",
+    "category": "Regulation",
+    "tags": [
+      "EU AI Act",
+      "UK GDPR",
+      "AI governance",
+      "automated decision-making",
+      "ISO 42001",
+      "compliance"
+    ],
+    "campaignTag": null,
+    "publishDate": "2026-06-15",
+    "readTimeMinutes": 14,
+    "ctaType": "consultation",
+    "isPinned": true,
+    "isCampaignFeatured": false,
+    "primaryConversionTarget": "/contact",
+    "external": false,
+    "externalUrl": null,
+    "requiresLeadGate": false,
+    "seoTitle": "The 2026 AI Regulation Map: EU & UK",
+    "seoDescription": "Where EU and UK AI rules actually stand in 2026: what's enforceable, when, and what each deadline means if you have AI in or near production. Updated quarterly.",
+    "ogImage": "/images/og/insights/the-2026-ai-regulation-map.png",
+    "coverImage": "/images/insights/eu_uk_laws_roadmap-2.png",
+    "bodyBlocks": [
+      {
+        "type": "paragraph",
+        "content": "Most of what is written about AI regulation is either a news roundup or a panic. Neither helps you decide what to do this quarter. So this is something different: a dated, practical map you can locate your own business on. It tells you what is actually enforceable, when, and what each milestone means if you have AI in production or close to it."
+      },
+      {
+        "type": "paragraph",
+        "content": "It is current as of 15 June 2026. We refresh it every quarter, because the dates keep moving, and the firms that get caught out are usually working from a deadline that has already changed."
+      },
+      {
+        "type": "paragraph",
+        "content": "There is one point worth making before the detail. The regulation is not the reason to get your AI estate governed and into production. It is the deadline. The work, mapping where AI is making decisions, building the supervisory layer, proving you can show an auditor what is running, is the same work whether the regulator arrives or not. The regulation just sets the clock. That is the lens we read every milestone below through."
+      },
+      {
+        "type": "section",
+        "heading": "What is actually enforceable, and when",
+        "content": "This is the whole map on one screen. Everything after it is explanation."
+      },
+      {
+        "type": "table",
+        "columns": [
+          "Date",
+          "Jurisdiction",
+          "What changes",
+          "Status"
+        ],
+        "rows": [
+          [
+            "2 Feb 2025",
+            "EU",
+            "Prohibited AI practices (Article 5) and AI literacy duties apply",
+            "In force"
+          ],
+          [
+            "2 Aug 2025",
+            "EU",
+            "Obligations for providers of general-purpose AI (GPAI) models begin to apply",
+            "In force"
+          ],
+          [
+            "5 Feb 2026",
+            "UK",
+            "Data (Use and Access) Act s.80 replaces UK GDPR Article 22; new automated decision-making rules apply",
+            "In force"
+          ],
+          [
+            "12 May 2026",
+            "UK",
+            "Statutory duty for the ICO Code of Practice on AI and automated decision-making takes effect (SI 2026/425)",
+            "In force"
+          ],
+          [
+            "19 Jun 2026",
+            "UK",
+            "New statutory complaint-handling duty for controllers (new s.164A DPA 2018)",
+            "In force from this date"
+          ],
+          [
+            "2 Aug 2026",
+            "EU",
+            "Commission gains enforcement powers over GPAI providers, including fines",
+            "Live, not deferred"
+          ],
+          [
+            "Summer 2026",
+            "UK",
+            "ICO final guidance on automated decision-making expected",
+            "Consultation closed 29 May 2026"
+          ],
+          [
+            "2 Dec 2027",
+            "EU",
+            "High-risk obligations for standalone Annex III systems now apply (deferred from Aug 2026)",
+            "Agreed, pending formal adoption"
+          ],
+          [
+            "2 Aug 2028",
+            "EU",
+            "High-risk obligations for AI embedded in regulated products (Annex I) now apply",
+            "Agreed, pending formal adoption"
+          ]
+        ],
+        "caption": "Current as of 15 June 2026. Refreshed quarterly."
+      },
+      {
+        "type": "paragraph",
+        "content": "The single most important row is the one most boards have wrong. We come back to it below."
+      },
+      {
+        "type": "section",
+        "heading": "Part one: the EU picture",
+        "content": "The EU AI Act has been arriving in stages since 2024. Two milestones shape 2026, and the simplification package everyone is talking about changed only one of them."
+      },
+      {
+        "type": "paragraph",
+        "content": "The milestone that lands this summer is the one for providers of general-purpose AI models, the foundation models that sit underneath most enterprise AI.",
+        "blockHeading": {
+          "text": "GPAI enforcement is live in August. It was not deferred.",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "The obligations themselves have applied since 2 August 2025. What changes on 2 August 2026 is enforcement: from that date the European Commission can enforce those obligations against GPAI providers and levy fines. That date is real, it is weeks away as you read this, and crucially it was not touched by the simplification package that softened other parts of the Act."
+      },
+      {
+        "type": "paragraph",
+        "content": "If you build on a frontier model, this matters even though the primary obligation sits with the model provider. Your provider's compliance posture (the documentation they give you, the transparency information you can pass downstream) becomes a live question the moment enforcement begins. Procurement and risk teams should already be asking model vendors for their GPAI compliance position rather than assuming it."
+      },
+      {
+        "type": "paragraph",
+        "content": "In November 2025 the Commission proposed a “Digital Omnibus” to simplify the AI Act. On 7 May 2026 the Council and Parliament reached a provisional political agreement on it. This is the change almost everyone has heard about and almost everyone has half-right.",
+        "blockHeading": {
+          "text": "The Digital Omnibus: what got deferred, and what did not",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "What it defers: the obligations for high-risk AI systems. Standalone high-risk systems listed in Annex III (the kind used in recruitment, credit scoring, essential services and similar) now move to 2 December 2027. High-risk AI embedded in regulated products under Annex I moves to 2 August 2028. The original dates were 2 August 2026 and 2 August 2027 respectively, so this is a meaningful extension, more than a year in each case."
+      },
+      {
+        "type": "paragraph",
+        "content": "What it does not defer: the GPAI enforcement that begins on 2 August 2026. The simplification touched the high-risk timeline, not the general-purpose model timeline."
+      },
+      {
+        "type": "paragraph",
+        "content": "There is also a new prohibition being added to Article 5, covering AI-generated non-consensual intimate imagery and child sexual abuse material. And one procedural caveat that matters for planning: the Omnibus is a provisional agreement. It takes legal effect only once it is formally adopted and published in the Official Journal, which is expected before 2 August 2026. Until then, the letter of the law still reads August 2026 for high-risk, even though the political direction is settled. Plan to the agreed dates, but know the formal switch has not flipped yet."
+      },
+      {
+        "type": "callout",
+        "blockHeading": {
+          "text": "The trap in one sentence",
+          "bold": true
+        },
+        "content": "Here is the August 2026 date most boards have wrong. They believe high-risk AI obligations land on 2 August 2026. They do not. Those moved to December 2027. What lands on 2 August 2026 is GPAI enforcement. If your compliance plan is built around getting high-risk systems ready for this August, you have given yourself eighteen extra months you did not know you had. If your plan assumed nothing happens this August, you have missed that enforcement against the model layer your whole estate sits on goes live. Most organisations have exactly one of these two facts and are missing the other."
+      },
+      {
+        "type": "section",
+        "heading": "Part two: the UK picture",
+        "content": "The UK has chosen a different road. There is no UK AI Act and none is planned. The approach is principles-based and pro-innovation, with existing regulators (the ICO, the FCA, the PRA, Ofcom and others) applying AI oversight through the powers they already have.\n\nFor a cross-border business this means you do not get one rulebook: you get the EU AI Act on one side and a cluster of UK data and sector rules on the other. The UK milestones that actually bite in 2026 sit in data protection law."
+      },
+      {
+        "type": "paragraph",
+        "content": "On 5 February 2026, section 80 of the Data (Use and Access) Act 2025 came into force and replaced Article 22 of the UK GDPR. This is the rule that governs decisions made about people by automated means, exactly the territory most production AI operates in.",
+        "blockHeading": {
+          "text": "Automated decision-making: the rules already changed",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "The reform widens where you can rely on solely automated decisions, but it ties that to a defined set of safeguards for any decision with legal or similarly significant effect: telling the individual the decision was automated, letting them make representations, letting them contest it, and giving them a route to human intervention. Explicit consent is no longer required for significant automated decisions unless special category data (health, ethnicity and the like) is involved."
+      },
+      {
+        "type": "paragraph",
+        "content": "The practical reading is simple. If you have an AI system making or materially shaping decisions about people (employment, credit, access to a service), the UK has just told you what the guardrails around it must look like, and that rule is already in force. Not coming. In force since February."
+      },
+      {
+        "type": "paragraph",
+        "content": "The ICO ran a consultation on updated automated decision-making guidance that closed on 29 May 2026, with final guidance expected over the summer. That guidance is the detail organisations have been waiting for, and it is worth tracking, because it will set the ICO's expectations on what “meaningful human involvement” and an effective challenge route actually require in practice."
+      },
+      {
+        "type": "paragraph",
+        "content": "On 19 June 2026, a new statutory complaint-handling duty comes into force for data controllers, inserted as a new section 164A of the Data Protection Act 2018 by the Data (Use and Access) Act.",
+        "blockHeading": {
+          "text": "The complaint-handling duty",
+          "bold": true
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "It requires controllers to have a clear, effective process for receiving and handling data protection complaints directly from individuals, to accept complaints however they arrive (including over social media), and the ICO's draft guidance proposes resolving them within a month, and within three months at the outside. This is not AI-specific, but it lands directly on AI-driven processing, because the complaints most likely to test it are exactly the “why did your system decide this about me” complaints that automated decision-making generates. If your AI touches customers or staff, your complaints process needs to be ready for it by 19 June 2026."
+      },
+      {
+        "type": "section",
+        "heading": "Part three: where you actually stand",
+        "content": "Strip the dates back and a regulated mid-market business with AI in or near production is being asked, by both jurisdictions, the same underlying question. Can you show, on demand, where AI is making or shaping decisions in your business, what supervises each of those points, and what happens when one of them goes wrong?\n\nThe EU asks it through GPAI enforcement and the high-risk regime. The UK asks it through the automated decision-making safeguards and the complaints duty. The vocabulary differs. The demand is identical: a mapped, supervised, auditable AI estate.\n\nThis is why the compliance angle and the production angle are not two projects. They are one. The reason four in five enterprise AI programmes never reach production at scale is rarely the model. It is the absence of exactly the things the regulation is now asking for: governed data, a supervisory layer, decisions you can evidence, a way to intervene. The firms that get AI into production are the ones that built that scaffolding first. The regulation has simply made the scaffolding non-optional and put a date on it.\n\nSo the honest “where you stand” test is not “are we compliant.” It is “could we prove it.” If a regulator, or a board member, or a customer asked you tomorrow to show the map of AI decisions in your business and the controls around them, would you have the map, or would you have to go and build it under pressure? The organisations that are calm about 2026 are the ones that already have the map. The ones that are anxious are the ones discovering they cannot produce it."
+      },
+      {
+        "type": "section",
+        "heading": "Part four: what the rules actually require of you",
+        "content": "Strip the dates back and the EU and UK frameworks ask for broadly the same eight things. None of them is exotic. Most are overdue rather than new."
+      },
+      {
+        "type": "numberedList",
+        "items": [
+          "Know where your AI makes decisions, and make sure your people understand it. Both regimes assume you hold an inventory of where AI makes or shapes decisions and what data each system touches. The EU AI Act goes further and makes AI literacy a legal duty: since February 2025, Article 4 requires providers and deployers to ensure the staff who operate or rely on AI understand its capabilities, limits and risks. You cannot govern, or defend, a system nobody has mapped.",
+          "Keep a human in charge of significant decisions. Article 26 requires deployers of high-risk systems to assign human oversight to people with the competence and the authority to override or stop the system, through a control that is genuinely accessible. The UK reaches the same place through data protection law: since 5 February 2026 the DUAA permits a solely automated decision with legal or similarly significant effect only if you tell the person, let them make representations, let them contest the outcome, and give them a route to human intervention.",
+          "Log it, and be able to prove what happened. Article 26 requires deployers to keep the system's automated logs for at least six months. GDPR Article 35 requires a Data Protection Impact Assessment wherever processing is likely to be high risk, which covers most production AI that touches personal data. The test a regulator, an auditor or a customer will apply is blunt: show me the decision, the data behind it, and the record.",
+          "Protect personal data by design, not after the fact. This is the obligation most enterprises are exposed on. GDPR Article 25 requires data protection by design and by default, and names pseudonymisation and data minimisation explicitly. An employee pasting a customer record into a frontier model is the precise opposite of that. The lawful pattern is to minimise and pseudonymise personal data before it reaches a model you do not control.",
+          "Do due diligence on the model underneath you. Under the EU's General-Purpose AI Code of Practice, model providers must give deployers an information package: capabilities and limits, safe-use instructions, known biases, and any restrictions on use. The 2026 market norm is to put this in the contract: documentation pass-through, cascading incident notification, and training-data provenance warranties. If you build on a frontier model, request that package before 2 August, when GPAI enforcement begins.",
+          "Be transparent that AI was involved. From 2 August 2026, Article 50 requires deployers to disclose AI-generated or manipulated content, including deepfakes and AI-written text published to inform the public. The UK ADM rules require you to tell a person when a significant decision about them was made by a machine.",
+          "Handle complaints properly. From 19 June 2026, the new section 164A duty requires every UK controller to run a clear, effective process for data-protection complaints, and the complaints most likely to test it are exactly the AI-driven ones.",
+          "Hold it together with a management system. None of the above sticks as a one-off project. ISO 42001, the first AI management system standard, gives you the repeatable structure (governance, risk assessment, oversight, continual improvement) that turns scattered controls into something you can certify and an auditor will accept. The UK's own statutory code of practice on AI and ADM, in force from 12 May 2026, points the same way."
+        ]
+      },
+      {
+        "type": "section",
+        "heading": "Part five: what to do now",
+        "content": "The encouraging part: almost all of this can be started now, under your own steam, before any deadline bites. And the work that makes you compliant is the same work that gets a stalled pilot into production. That is the whole Be the One idea: the one in five that reach production built this scaffolding first.\n\nA practical order to start this quarter:"
+      },
+      {
+        "type": "numberedList",
+        "items": [
+          "Map your AI decisions. One page: where AI makes or shapes a decision, what personal data it touches, who owns it. Nothing else works without this, and it is a week of effort, not a programme.",
+          "Stand up a personal-data redaction layer. This is the fast win, deployable in weeks rather than quarters. Redact on the way out, rehydrate on the way in: before a prompt leaves your perimeter, every name and identifier is swapped for a consistent token, so the model reasons on the structure and never learns who the person is, and the real values are restored inside your walls when the answer comes back. It satisfies Article 25 data-protection-by-design directly, and it lets your people keep using the best frontier models without leaking regulated data into them. For most regulated businesses this is the single highest-value control to put in place now.",
+          "Put oversight and a challenge route on significant decisions. A named human who can override, and a clear path for an affected person to contest. Required by both regimes, and sensible regardless.",
+          "Turn on logging at the point of decision. Capture who or what authorised each decision, the data it used, and the outcome, with at least six months retained.",
+          "Run a DPIA on your highest-risk processing. Not everything, just the handful of systems making significant decisions about people.",
+          "Do the vendor due diligence. Request the GPAI documentation package from your model providers and get pass-through and incident-notification clauses into the contract, before 2 August.",
+          "Stand up the section 164A complaints process. This one has a hard date: 19 June. Make sure AI-driven complaints route into it.",
+          "Wrap it in an AI management system. Align to ISO 42001 so this is repeatable and certifiable, not a one-time scramble."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": "Do these and two things happen at once. You are demonstrably ready for every date on the map, and you have built exactly the foundations that move a pilot from proof-of-concept to production. Compliance and production are not two projects. They are one, and this is the list."
+      },
+      {
+        "type": "section",
+        "heading": "Where this leaves the work",
+        "content": "Legislation is the “why now.” A governed AI estate, in production, that you can put in front of an auditor, is the “what to do.” Those have to meet, and the window to do that work under your own steam (rather than under enforcement pressure or after an incident) is the one we are in right now: after the dates are known, before they bite.\n\nThis is the work 1Digit does. We build and run production-grade AI for regulated UK businesses under ISO 27001, ISO 42001 and SOC 2, with humans and AI both in the loop, real audit trails, and governance that survives an audit committee. The personal-data redaction layer in step two is something we can stand up quickly, and it is often the fastest single way to make frontier AI safe to use across a regulated business. We are not a policy shop and this is not legal advice; we are the people who do the engineering and the operating-model work that turns a regulatory deadline into a system you can actually stand behind.\n\nIf you have a pilot that has stalled, or an estate you could not fully map today, that is the exact problem we work on. The first step is a short conversation, not a commitment."
+      },
+      {
+        "type": "callout",
+        "content": "This map is refreshed each quarter. If you would like the updated version sent to you when the next deadlines move, get in touch and we will send it. No pitch, just the refreshed map.",
+        "cta": {
+          "label": "Request the refreshed map",
+          "href": "/contact"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": "Last updated 15 June 2026. This is general information, not legal advice. Verify specific obligations against the primary sources and your own advisers before acting."
+      }
+    ],
+    "status": "published",
+    "faqs": [
+      {
+        "question": "What actually changes on 2 August 2026 under the EU AI Act?",
+        "answer": "Enforcement of the general-purpose AI (GPAI) obligations begins: from that date the European Commission can enforce them against model providers and levy fines. The high-risk obligations do not land then: the Digital Omnibus moved standalone Annex III high-risk systems to 2 December 2027 and product-embedded Annex I systems to 2 August 2028. Most boards have this the wrong way round."
+      },
+      {
+        "question": "Did the EU defer the AI Act's high-risk rules?",
+        "answer": "Yes. Under the Digital Omnibus (provisional political agreement reached 7 May 2026), standalone high-risk systems in Annex III move to 2 December 2027 and high-risk AI embedded in regulated products under Annex I moves to 2 August 2028, extensions of more than a year. The GPAI enforcement date of 2 August 2026 was not deferred. The Omnibus takes legal effect only once formally adopted and published in the Official Journal."
+      },
+      {
+        "question": "What UK AI rules take effect in 2026?",
+        "answer": "There is no UK AI Act. The 2026 obligations sit in data protection law: section 80 of the Data (Use and Access) Act 2025 replaced UK GDPR Article 22 on automated decision-making (in force 5 February 2026); a statutory ICO code of practice on AI and ADM took effect on 12 May 2026 (SI 2026/425); and a new statutory complaint-handling duty (section 164A DPA 2018) comes into force on 19 June 2026."
+      },
+      {
+        "question": "Do UK rules still require consent for automated decisions?",
+        "answer": "Explicit consent is no longer required for a solely automated decision with legal or similarly significant effect, unless special category data (such as health or ethnicity) is involved. Instead, the Data (Use and Access) Act requires safeguards: tell the individual the decision was automated, let them make representations, let them contest it, and give them a route to human intervention."
+      },
+      {
+        "question": "What do the EU and UK AI rules actually require in practice?",
+        "answer": "Both jurisdictions ask for the same thing in different words: a mapped, supervised, auditable AI estate. In practice that means an inventory of where AI makes decisions, human oversight and a challenge route on significant decisions, logging and DPIAs, data protection by design (minimisation and pseudonymisation, such as a redaction layer), vendor due diligence on the model underneath you, transparency that AI was involved, a complaints process, and an ISO 42001 management system to hold it together."
+      }
+    ],
+    "citations": [
+      {
+        "name": "EU Artificial Intelligence Act (Regulation (EU) 2024/1689)",
+        "publisher": "European Union"
+      },
+      {
+        "name": "Data (Use and Access) Act 2025",
+        "publisher": "UK Parliament"
+      },
+      {
+        "name": "Data Protection Act 2018 (section 164A)",
+        "publisher": "UK Parliament"
+      },
+      {
+        "name": "ICO Code of Practice on AI and automated decision-making (SI 2026/425)",
+        "publisher": "Information Commissioner's Office"
+      },
+      {
+        "name": "General-Purpose AI Code of Practice",
+        "publisher": "European Commission"
+      },
+      {
+        "name": "ISO/IEC 42001:2023, AI management systems",
+        "publisher": "ISO"
+      }
+    ],
+    "author": {
+      "name": "Justin Gane",
+      "role": "CEO, 1Digit",
+      "bio": "Founder and CEO of 1Digit. Builds enterprise AI architecture and data platforms for regulated industries across the UK and Europe.",
+      "linkedinUrl": "https://www.linkedin.com/in/justin-gane-bba64913",
+      "avatarUrl": "/images/team/justin-gane.jpg"
+    }
   }
 ]

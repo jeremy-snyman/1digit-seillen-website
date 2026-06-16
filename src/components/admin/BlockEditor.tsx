@@ -13,6 +13,7 @@ const blockTypeLabels: Record<string, string> = {
   numberedList: 'Numbered List',
   quote: 'Quote',
   callout: 'Callout',
+  table: 'Table',
   diagram: 'Diagram',
   chart: 'Chart',
 };
@@ -46,6 +47,12 @@ function createEmptyBlock(type: string): BodyBlock {
       return { type: 'quote', content: '', attribution: '' };
     case 'callout':
       return { type: 'callout', content: '' };
+    case 'table':
+      return {
+        type: 'table',
+        columns: ['Date', 'Jurisdiction', 'What changes', 'Status'],
+        rows: [['', '', '', '']],
+      };
     case 'diagram':
       return { type: 'diagram', diagramType: 'architecture-layered', caption: '' };
     case 'chart':
@@ -222,13 +229,122 @@ function BlockField({
 
     case 'callout':
       return (
-        <textarea
-          value={block.content}
-          onChange={(e) => onChange(index, { ...block, content: e.target.value })}
-          rows={2}
-          className="w-full px-3 py-2 rounded bg-tint/5 border border-surface-border text-content text-body-sm focus:outline-none focus:border-content/20 resize-y"
-          placeholder="Callout text..."
-        />
+        <div className="space-y-2">
+          <textarea
+            value={block.content}
+            onChange={(e) => onChange(index, { ...block, content: e.target.value })}
+            rows={2}
+            className="w-full px-3 py-2 rounded bg-tint/5 border border-surface-border text-content text-body-sm focus:outline-none focus:border-content/20 resize-y"
+            placeholder="Callout text..."
+          />
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={block.cta?.label || ''}
+              onChange={(e) => {
+                const label = e.target.value;
+                const href = block.cta?.href || '';
+                onChange(index, { ...block, cta: label || href ? { label, href } : undefined });
+              }}
+              className="flex-1 px-3 py-2 rounded bg-tint/5 border border-surface-border text-content text-body-sm focus:outline-none focus:border-content/20"
+              placeholder="CTA label (optional)..."
+            />
+            <input
+              type="text"
+              value={block.cta?.href || ''}
+              onChange={(e) => {
+                const href = e.target.value;
+                const label = block.cta?.label || '';
+                onChange(index, { ...block, cta: label || href ? { label, href } : undefined });
+              }}
+              className="flex-1 px-3 py-2 rounded bg-tint/5 border border-surface-border text-content text-body-sm focus:outline-none focus:border-content/20"
+              placeholder="CTA href e.g. /contact"
+            />
+          </div>
+        </div>
+      );
+
+    case 'table':
+      return (
+        <div className="space-y-3">
+          {/* Column headers */}
+          <div className="flex gap-2 items-center">
+            {block.columns.map((col, ci) => (
+              <input
+                key={ci}
+                type="text"
+                value={col}
+                onChange={(e) => {
+                  const columns = [...block.columns];
+                  columns[ci] = e.target.value;
+                  onChange(index, { ...block, columns });
+                }}
+                className="flex-1 px-2 py-1.5 rounded bg-tint/10 border border-surface-border text-content text-xs font-semibold uppercase tracking-wide focus:outline-none focus:border-content/20"
+                placeholder={`Column ${ci + 1}`}
+              />
+            ))}
+            <button
+              onClick={() => {
+                const columns = block.columns.slice(0, -1);
+                const rows = block.rows.map((r) => r.slice(0, columns.length));
+                if (columns.length >= 1) onChange(index, { ...block, columns, rows });
+              }}
+              className="text-content-muted hover:text-red-400 text-xs px-1.5"
+              title="Remove last column"
+            >
+              −col
+            </button>
+            <button
+              onClick={() => {
+                const columns = [...block.columns, `Column ${block.columns.length + 1}`];
+                const rows = block.rows.map((r) => [...r, '']);
+                onChange(index, { ...block, columns, rows });
+              }}
+              className="text-glow-blue hover:underline text-xs px-1.5"
+              title="Add column"
+            >
+              +col
+            </button>
+          </div>
+
+          {/* Rows */}
+          {block.rows.map((row, ri) => (
+            <div key={ri} className="flex gap-2 items-center">
+              <span className="text-content-muted text-xs w-5 text-right flex-shrink-0">{ri + 1}</span>
+              {block.columns.map((_, ci) => (
+                <input
+                  key={ci}
+                  type="text"
+                  value={row[ci] ?? ''}
+                  onChange={(e) => {
+                    const rows = block.rows.map((r) => [...r]);
+                    while (rows[ri].length < block.columns.length) rows[ri].push('');
+                    rows[ri][ci] = e.target.value;
+                    onChange(index, { ...block, rows });
+                  }}
+                  className="flex-1 px-2 py-1.5 rounded bg-tint/5 border border-surface-border text-content text-body-sm focus:outline-none focus:border-content/20"
+                  placeholder={block.columns[ci] || `Col ${ci + 1}`}
+                />
+              ))}
+              <button
+                onClick={() => {
+                  const rows = block.rows.filter((_, j) => j !== ri);
+                  onChange(index, { ...block, rows: rows.length ? rows : [block.columns.map(() => '')] });
+                }}
+                className="text-content-muted hover:text-red-400 text-xs px-1.5"
+                title="Remove row"
+              >
+                ×
+              </button>
+            </div>
+          ))}
+          <button
+            onClick={() => onChange(index, { ...block, rows: [...block.rows, block.columns.map(() => '')] })}
+            className="text-body-sm text-glow-blue hover:underline ml-7"
+          >
+            + Add row
+          </button>
+        </div>
       );
 
     case 'diagram':

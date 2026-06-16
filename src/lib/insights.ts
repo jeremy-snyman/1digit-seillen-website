@@ -75,6 +75,15 @@ export const ctaMap: Record<string, CtaConfig> = {
     secondaryLabel: 'Get in Touch',
     secondaryHref: '/contact?topic=security',
   },
+  consultation: {
+    heading: 'Start the conversation',
+    description:
+      'A stalled pilot, or an AI estate you could not fully map today, is the exact problem we work on. The first step is a short conversation, not a commitment.',
+    primaryLabel: 'Talk to us',
+    primaryHref: '/contact',
+    secondaryLabel: 'What we do',
+    secondaryHref: '/what-we-do',
+  },
 };
 
 /** Resolve CTA config with fallback to ai-readiness */

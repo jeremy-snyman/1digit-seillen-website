@@ -298,6 +298,24 @@ Key claims:
 
 ---
 
+### The 2026 AI Regulation Map
+
+URL: https://1digit.co.uk/insights/the-2026-ai-regulation-map
+Published: 2026-06-15 (refreshed quarterly)
+Tags: EU AI Act, UK GDPR, automated decision-making, AI governance, ISO 42001, compliance
+
+A dated, practical map of where EU and UK AI regulation actually stands for a regulated business with AI in or near production: what is enforceable, when, and what each milestone means. The central correction: most boards have the 2 August 2026 date wrong. What lands then is enforcement of the EU AI Act's general-purpose AI (GPAI) obligations, not the high-risk regime. The Digital Omnibus (provisional agreement 7 May 2026) deferred standalone high-risk (Annex III) to 2 December 2027 and product-embedded high-risk (Annex I) to 2 August 2028. The EU and UK ask the same underlying question in different words: can you show a mapped, supervised, auditable AI estate on demand?
+
+Key claims:
+- 2 August 2026 is GPAI enforcement going live (the Commission can fine GPAI providers), NOT high-risk obligations; the GPAI date was not deferred by the Digital Omnibus
+- EU high-risk obligations were deferred: standalone Annex III systems to 2 December 2027, regulated-product Annex I systems to 2 August 2028 (provisional until formally adopted in the Official Journal)
+- The UK has no AI Act; 2026 obligations sit in data law: DUAA 2025 s.80 replaced UK GDPR Article 22 on automated decision-making (in force 5 February 2026), a statutory ICO code took effect 12 May 2026 (SI 2026/425), and a new complaint-handling duty (s.164A DPA 2018) came into force 19 June 2026
+- UK significant automated decisions no longer require explicit consent unless special category data is involved, but require safeguards: notify, allow representations, allow contest, and provide human intervention
+- Both regimes reduce to the same eight requirements: inventory AI decisions and AI literacy, human oversight, logging plus DPIAs, data protection by design (minimise/pseudonymise, e.g. a redaction layer), model-provider due diligence, AI-involvement transparency, a complaints process, and an ISO 42001 management system
+- Compliance and production are one project: the scaffolding the regulation now mandates is the same scaffolding that moves a stalled pilot into production
+
+---
+
 ## Contact
 
 - **Email:** hello@1digit.co.uk
