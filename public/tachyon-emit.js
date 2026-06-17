@@ -376,7 +376,21 @@
   // Trigger: initial page load
   // ---------------------------------------------------------------------------
 
+  // Dedupe guard: the initial load can be hit by several triggers (window 'load',
+  // astro:page-load, and the History API patch during hydration). Emit at most one
+  // PageLoaded per URL within a short window so a single page view isn't double-counted.
+  var lastTrackedKey = '';
+  var lastTrackedAt = 0;
+
   function trackPageLoad(isSpa) {
+    var key = window.location.pathname + window.location.search;
+    var nowMs = Date.now();
+    if (key === lastTrackedKey && nowMs - lastTrackedAt < 1500) {
+      return;
+    }
+    lastTrackedKey = key;
+    lastTrackedAt = nowMs;
+
     try {
       var event = buildEvent(isSpa);
       send(event);
@@ -432,6 +446,9 @@
   function onHistoryChange() {
     // If Astro is handling navigation, let astro:page-load do the tracking.
     if (astroDetected) return;
+    // Ignore history mutations during initial load/hydration (e.g. a component
+    // calling replaceState) — those must not pre-empt the first PageLoaded.
+    if (!initialLoadTracked) return;
     // Short delay to allow framework to update document.title and location.
     setTimeout(function () {
       trackPageLoad(true);
@@ -449,7 +466,7 @@
   };
 
   window.addEventListener('popstate', function () {
-    if (astroDetected) return;
+    if (astroDetected || !initialLoadTracked) return;
     setTimeout(function () {
       trackPageLoad(true);
     }, 50);
