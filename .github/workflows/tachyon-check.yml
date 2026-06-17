@@ -1,0 +1,32 @@
+name: Tachyon health-check
+
+# Catches the failure mode from June 2026: the emitter's schema version drifted
+# out of sync with the backend, every PageLoaded event 404'd, and analytics
+# silently stopped landing for weeks. This posts one synthetic event and fails
+# (emailing the repo owner) if the live ingress ever stops accepting events.
+
+on:
+  # Continuous safety net — verify the LIVE deployed tracker every 6 hours.
+  schedule:
+    - cron: '0 */6 * * *'
+  # Verify on any change to the tracker or the check itself.
+  push:
+    branches: [main]
+    paths:
+      - 'public/tachyon-emit.js'
+      - 'scripts/check-tachyon.mjs'
+      - '.github/workflows/tachyon-check.yml'
+  # Allow manual runs from the Actions tab.
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # Checks the committed tracker AND the live deployed script against the
+      # Tachyon ingress; non-zero exit fails the run and notifies.
+      - run: node scripts/check-tachyon.mjs --deployed

@@ -43,6 +43,9 @@
     module:            '1Digit Tachyon',
     service:           'web',
     locale:            'en_GB',
+    // MUST match a PageLoaded schema version registered on the Tachyon backend.
+    // Do NOT bump without a deployed matching schema: a mismatch makes every event
+    // 404 and silently drop. After any change run `npm run tachyon:check`.
     version:           1,
     sc:                'public',
     visitorCookieName: '_tch_vid',
@@ -334,6 +337,8 @@
     return event;
   }
 
+  var warnedOnce = false;
+
   function send(event, endpoint) {
     var body = JSON.stringify(event);
     var url = endpoint || CONFIG.endpoint;
@@ -342,18 +347,32 @@
     // sendBeacon with a JSON Blob triggers a preflight; the Tachyon ingress returns
     // Access-Control-Allow-Credentials:true alongside Allow-Origin:* which browsers
     // reject. fetch with credentials:omit sidesteps that constraint entirely.
-    if (typeof fetch === 'function') {
-      fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: body,
-        keepalive: true,
-        mode: 'cors',
-        credentials: 'omit',
-      }).catch(function () {
-        // Silently swallow -- analytics must never break the page.
-      });
-    }
+    if (typeof fetch !== 'function') return;
+
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: body,
+      keepalive: true,
+      mode: 'cors',
+      credentials: 'omit',
+    }).then(function (res) {
+      // NOT silent on rejection. A non-2xx response (e.g. a schema/version
+      // mismatch returning 404) is exactly the failure that went unnoticed for
+      // weeks. Surface it: one console warning + a global flag anyone can inspect.
+      // Never throw — analytics must still never break the page.
+      if (res && !res.ok) {
+        try {
+          window.__tachyonLastError = { status: res.status, url: url, at: new Date().toISOString() };
+        } catch (_e) {}
+        if (!warnedOnce) {
+          warnedOnce = true;
+          try { console.warn('[tachyon] event rejected by ingress — HTTP ' + res.status + ' ' + url); } catch (_e) {}
+        }
+      }
+    }).catch(function () {
+      // Network error -- swallow; analytics must never break the page.
+    });
   }
 
   // ---------------------------------------------------------------------------

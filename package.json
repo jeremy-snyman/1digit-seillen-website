@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "submit": "node scripts/submit-urls.mjs"
+    "submit": "node scripts/submit-urls.mjs",
+    "tachyon:check": "node scripts/check-tachyon.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
