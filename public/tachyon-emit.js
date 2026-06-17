@@ -43,7 +43,7 @@
     module:            '1Digit Tachyon',
     service:           'web',
     locale:            'en_GB',
-    version:           2,
+    version:           1,
     sc:                'public',
     visitorCookieName: '_tch_vid',
     sessionStorageKey: '_tch_sid',
