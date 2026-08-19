@@ -144,6 +144,18 @@
       }
     }
 
+    // T70: ad-platform click IDs, captured verbatim beside the UTMs so paid
+    // attribution joins on the platform's own id. Personal data: these ride
+    // the payload as fields only and are never logged or printed.
+    var clickKeys = ['gclid', 'fbclid', 'msclkid', 'li_fat_id', 'ttclid', 'twclid'];
+    for (var c = 0; c < clickKeys.length; c++) {
+      var cv = params.get(clickKeys[c]);
+      if (cv) {
+        utm[clickKeys[c]] = cv;
+        hasAny = true;
+      }
+    }
+
     return hasAny ? utm : undefined;
   }
 

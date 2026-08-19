@@ -54,8 +54,30 @@ function buildEvent(version) {
         screenHeight: 800, pixelRatio: 1, language: 'en-GB', userAgent: 'tachyon-healthcheck', connection: '4g',
       },
       isNewVisitor: true, navigation: { type: 'initial', entryPage: true },
+      utm: { source: 'healthcheck', medium: 'cpc', gclid: 'healthcheck-gclid' },
     },
   };
+}
+
+
+// ---------------------------------------------------------------------------
+// T70 (HELIX-CRM-SPINE-RALPH-001 W7) -- click-ID capture check.
+// The tracker must capture the six ad-platform click IDs beside the UTMs.
+// Static: every key must appear in the emit script. Live: buildEvent carries
+// a gclid inside payload.utm, so the POST above also proves the ingress
+// accepts click IDs. Click IDs are personal data: payload fields only,
+// never logged -- this check never prints their values from real traffic.
+// ---------------------------------------------------------------------------
+const CLICK_ID_KEYS = ['gclid', 'fbclid', 'msclkid', 'li_fat_id', 'ttclid', 'twclid'];
+
+function checkClickIdCapture(label, src) {
+  const missing = CLICK_ID_KEYS.filter((k) => !src.includes(`'${k}'`));
+  if (missing.length === 0) {
+    console.log(`\u2713 [${label}] tracker captures all ${CLICK_ID_KEYS.length} click-ID keys`);
+    return true;
+  }
+  console.error(`\u2717 [${label}] tracker does NOT capture click IDs: ${missing.join(', ')}`);
+  return false;
 }
 
 async function check(label, src) {
@@ -86,7 +108,9 @@ async function check(label, src) {
 }
 
 const checkDeployed = process.argv.includes('--deployed');
-let ok = await check('local', readFileSync(LOCAL_PATH, 'utf-8'));
+const localSrc = readFileSync(LOCAL_PATH, 'utf-8');
+let ok = await check('local', localSrc);
+ok = checkClickIdCapture('local', localSrc) && ok;
 
 if (checkDeployed) {
   try {
